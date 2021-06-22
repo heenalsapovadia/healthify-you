@@ -13,8 +13,7 @@ before_script:
   # or modify a file to insert a variable from your CI config here?
   
   - sudo yum –y install openssh-server openssh-clients
-  - sudo systemctl start sshd
-  - sudo systemctl status sshd
+  - service sshd start
   - eval $(ssh-agent -s)
   - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
