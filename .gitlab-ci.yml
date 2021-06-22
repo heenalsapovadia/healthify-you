@@ -11,11 +11,11 @@ before_script:
   # Do anything you have to do before your stages below here.
   # For example, do you need to change permissions on a build folder
   # or modify a file to insert a variable from your CI config here?
-  #- apt-get update -qy
-  #- service ssh start
-  #- apt-get install ssh
-  #- eval $(ssh-agent -s)
-  #- echo "$PROD_DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
+  - apt-get update -qy
+  - service ssh start
+  - apt-get install ssh
+  - eval $(ssh-agent -s)
+  - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/*
