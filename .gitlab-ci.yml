@@ -38,7 +38,7 @@ buildStep:
     - /target
   script:
     #mvn clean install
-    mvn $MAVEN_CLI_OPTS compile
+    mvn compile
 
 testStep:
   image: maven:3-jdk-8
@@ -51,7 +51,7 @@ testStep:
       junit:
         - /target/surefire-reports/TEST-*.xml
   script:
-    mvn verify
+    mvn clean test
 
 deployStep:
   stage: deploy
