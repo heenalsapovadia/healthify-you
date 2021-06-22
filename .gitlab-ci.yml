@@ -18,6 +18,7 @@ before_script:
   - eval $(ssh-agent -s)
   - echo "$DEPLOY_SSH_KEY" | tr -d '\r'  | ssh-add -
   - ssh-add <(echo "$PRIVATE_KEY")
+  - echo "$DEPLOY_SSH_KEY" | ssh-add - > ~/.ssh/id_rsa
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/*
@@ -69,9 +70,7 @@ deployStep:
       - /target
 
   script:
-    - chmod og-rwx $ID_RSA
-    - ssh-keygen -y -f /${DEPLOY_USER}/.ssh/id_rsa > /${DEPLOY_USER}/.ssh/id_rsa.pub
-    
+   
     #- chmod og-rwx ${DEPLOY_SSH_KEY}
     #- chmod og-rwx ${PROD_DB_CONFIG}
     #- chmod og-rwx ${SCHEMA}
