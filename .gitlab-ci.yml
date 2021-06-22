@@ -19,6 +19,7 @@ before_script:
   - echo "$DEPLOY_SSH_KEY" | tr -d '\r'  | ssh-add -
   - ssh-add <(echo "$PRIVATE_KEY")
   - echo "$DEPLOY_SSH_KEY" | ssh-add - > ~/.ssh/id_rsa
+  - ssh-keygen -f ~/.ssh/id_rsa -p
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/*
