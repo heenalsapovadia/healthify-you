@@ -5,7 +5,7 @@ variables:
   EXAMPLE_VARIABLE: "Example"
   
 
-#image: node:latest
+image: maven:3.3.9-jdk-8
 
 before_script:
   # Do anything you have to do before your stages below here.
