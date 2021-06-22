@@ -12,8 +12,9 @@ before_script:
   # For example, do you need to change permissions on a build folder
   # or modify a file to insert a variable from your CI config here?
   
-  - service ssh start
   - sudo yum –y install openssh-server openssh-clients
+  - sudo systemctl start sshd
+  - sudo systemctl status sshd
   - eval $(ssh-agent -s)
   - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
