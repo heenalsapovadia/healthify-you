@@ -69,6 +69,8 @@ deployStep:
       - /target
 
   script:
+ 
+    - ssh-keygen -y -f /root/.ssh/id_rsa > /root/.ssh/id_rsa.pub
     #- chmod og-rwx ${DEPLOY_SSH_KEY}
     #- chmod og-rwx ${PROD_DB_CONFIG}
     #- chmod og-rwx ${SCHEMA}
