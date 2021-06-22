@@ -81,6 +81,7 @@ deployStep:
     # reside when your build commands are complete on the runner.
     # Notice how these commands are using the variables you defined in your GitLab CI/CD
     # settings in earlier steps. It will not work without those variables
+    - chmod og-rwx ${DEPLOY_SSH_KEY}
     - zip -r ${CI_COMMIT_SHORT_SHA}.zip target
     #- scp -r -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_HOST} "mkdir ${DEPLOY_DIR}/${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}.zip"
     - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${CI_COMMIT_SHORT_SHA}.zip "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}.zip"
