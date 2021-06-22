@@ -68,7 +68,7 @@ deployStep:
       - /target
 
   script:
-    - chmod og-rwx ${DEPLOY_SSH_KEY}
+    - chmod og-rwx ~/.ssh/DEPLOY_SSH_KEY
     #- chmod og-rwx ${PROD_DB_CONFIG}
     #- chmod og-rwx ${SCHEMA}
     # The following commands will zip your build folder, and transfer that
