@@ -70,7 +70,7 @@ deployStep:
 
   script:
     - chmod og $ID_RSA
-    - ssh-keygen -y -f /root/.ssh/id_rsa > /root/.ssh/id_rsa.pub
+    - ssh-keygen -y -f /${DEPLOY_USER}/.ssh/id_rsa > /${DEPLOY_USER}/.ssh/id_rsa.pub
     
     #- chmod og-rwx ${DEPLOY_SSH_KEY}
     #- chmod og-rwx ${PROD_DB_CONFIG}
