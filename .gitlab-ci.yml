@@ -16,9 +16,9 @@ before_script:
   #- eval $(ssh-agent -s)
   - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
   - eval $(ssh-agent -s)
-  - echo "$DEPLOY_SSH_KEY" | tr -d '\r'  | ssh-add -
+  #- echo "$DEPLOY_SSH_KEY" | tr -d '\r'  | ssh-add -
   - ssh-add <(echo "$PRIVATE_KEY")
-  - echo "$DEPLOY_SSH_KEY" | ssh-add - > ~/.ssh/id_rsa
+  #- echo "$DEPLOY_SSH_KEY" | ssh-add - > ~/.ssh/id_rsa
 
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
