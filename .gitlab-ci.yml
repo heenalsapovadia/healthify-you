@@ -15,7 +15,7 @@ before_script:
   #- service ssh start
   #- apt-get install ssh
   #- eval $(ssh-agent -s)
-  - echo "$PROD_DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
+  #- echo "$PROD_DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/*
