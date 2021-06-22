@@ -28,7 +28,7 @@ stages:
   - deploy
 
 buildStep:
-  image: maven:3-jdk-8
+  image: maven:latest
   stage: build
   tags:
     - ugrad
@@ -36,7 +36,8 @@ buildStep:
     paths:
     - /target
   script:
-    mvn clean install
+    #mvn clean install
+    mvn $MAVEN_CLI_OPTS compile
 
 testStep:
   image: maven:3-jdk-8
