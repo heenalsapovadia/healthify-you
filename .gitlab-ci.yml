@@ -16,6 +16,15 @@ before_script:
   #- apt-get install ssh
   #- eval $(ssh-agent -s)
   #- echo "$PROD_DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+                - mkdir -p ~/.ssh
+                - echo "$DEPLOY_SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+                - chmod 700 ~/.ssh/id_rsa
+                - eval "$(ssh-agent -s)"
+                - ssh-add ~/.ssh/id_rsa
+                - ssh-keyscan -t rsa 129.173.20.18 > ~/.ssh/known_hosts
+                - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+                - chmod 644 ~/.ssh/known_hosts
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/*
