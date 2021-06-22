@@ -11,9 +11,9 @@ before_script:
   # Do anything you have to do before your stages below here.
   # For example, do you need to change permissions on a build folder
   # or modify a file to insert a variable from your CI config here?
-  - apt-get update -qy
+  
   - service ssh start
-  - apt-get install ssh
+  - sudo yum –y install openssh-server openssh-clients
   - eval $(ssh-agent -s)
   - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
