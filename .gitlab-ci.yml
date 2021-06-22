@@ -71,7 +71,6 @@ deployStep:
     #- chmod og-rwx ${DEPLOY_SSH_KEY}
     #- chmod og-rwx ${PROD_DB_CONFIG}
     #- chmod og-rwx ${SCHEMA}
-    chmod og-rwx ${ID_RSA}
     # The following commands will zip your build folder, and transfer that
     # zip file to the designated Timberlea account. You will need to change
     # the <BUILDDIRECTORY> string to the actual directory where your build artifacts
