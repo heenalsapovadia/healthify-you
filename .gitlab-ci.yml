@@ -17,6 +17,7 @@ before_script:
   - echo "$PROD_DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
+  - chmod 600 ~/.ssh/*
 
 stages:
 # These are the three states we want, building the app, testing it by
