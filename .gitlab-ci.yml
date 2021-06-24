@@ -3,6 +3,7 @@ variables:
   # later in the script by referring to the variable like so:
   #   ${EXAMPLE_VARIABLE}
   EXAMPLE_VARIABLE: "Example"
+  EXECUTABLE_TO_DEPLOY: "/target"
   
 
 image: maven:3.3.9-jdk-8
@@ -69,7 +70,7 @@ deployTest:
   script:
     - chmod og-rwx ${DEPLOY_SSH_KEY}
   
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" -J "${DEPLOY_USER}@${DEPLOY_HOST}:" -P "22" "/users/grad/${DEPLOY_USER}/${DEPLOY_DIR}/"
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" "${EXECUTABLE_TO_DEPLOY}" "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   environment:
     name: Production
   only:
@@ -83,7 +84,7 @@ deployProd:
     paths:
       - /target
   script:
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" "${EXECUTABLE_TO_DEPLOY}" "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   environment:
     name: Test
   only:
