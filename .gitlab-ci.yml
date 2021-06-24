@@ -80,7 +80,7 @@ deployProd:
     - ugrad
   artifacts:
     paths:
-      - Group2/target
+      - /target
   script:
     - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   environment:
