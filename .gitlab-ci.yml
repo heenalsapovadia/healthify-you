@@ -69,7 +69,7 @@ deployTest:
   script:
     - chmod og-rwx ${DEPLOY_SSH_KEY}
   
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" -J "${DEPLOY_USER}@${DEPLOY_HOST}: -P 22 "/users/grad/${DEPLOY_USER}/${DEPLOY_DIR}/"
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" -J "${DEPLOY_USER}@${DEPLOY_HOST}:" -P "22" " "/users/grad/${DEPLOY_USER}/${DEPLOY_DIR}/"
   environment:
     name: Production
   only:
