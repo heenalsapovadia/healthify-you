@@ -70,7 +70,7 @@ deployTest:
   script:
     - chmod og-rwx ${DEPLOY_SSH_KEY}
   
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" "${EXECUTABLE_TO_DEPLOY}" "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   environment:
     name: Production
   only:
@@ -84,7 +84,7 @@ deployProd:
     paths:
       - /target
   script:
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" "${EXECUTABLE_TO_DEPLOY}" "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   environment:
     name: Test
   only:
