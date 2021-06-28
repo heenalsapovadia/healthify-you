@@ -1,4 +1,4 @@
 package persistence.admin.dao;
 
-public class RegistrationDAO {
+public interface RegistrationDAO {
 }

@@ -1,4 +1,4 @@
 package persistence.doctor.util;
 
-public class RecommendationUtil {
+public interface RecommendationUtil {
 }

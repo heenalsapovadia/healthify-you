@@ -1,4 +1,4 @@
 package persistence.patient.dao;
 
-public class AppointmentDAO {
+public interface AppointmentDAO {
 }
