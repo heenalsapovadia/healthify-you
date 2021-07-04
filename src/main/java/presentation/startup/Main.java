@@ -1,3 +1,5 @@
+package presentation.startup;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -10,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		/* Used for Testing. Refer this while making connections in all features. */
 		DatabaseConnection dbConnObject = new DatabaseConnection();
-		Connection conn = dbConnObject.loadDatabaseConnection("database.properties");
+		Connection conn = dbConnObject.loadDatabaseConnection();
 		try {
 			if(conn.isValid(500)) {
 				LOGGER.log(Level.INFO, "Connection Successful!");
