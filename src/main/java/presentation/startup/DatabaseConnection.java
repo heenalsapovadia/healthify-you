@@ -1,3 +1,4 @@
+package presentation.startup;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,9 +12,9 @@ public class DatabaseConnection {
 	
 	private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
 	
-	public Connection loadDatabaseConnection(String filename) {
+	public Connection loadDatabaseConnection() {
 		Connection connection = null;
-		try (InputStream resourceStream = this.getClass().getClassLoader().getResourceAsStream(filename)){
+		try (InputStream resourceStream = this.getClass().getClassLoader().getResourceAsStream("database.properties")){
 			Properties prop = new Properties();
 			prop.load(resourceStream);
 			String databaseType = prop.getProperty("databaseType");
