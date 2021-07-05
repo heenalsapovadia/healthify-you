@@ -1,4 +1,11 @@
 package persistence.doctor.daoImpl;
 
-public class AppointmentDAOImpl {
+import persistence.doctor.dao.AppointmentDAO;
+
+public class AppointmentDAOImpl implements AppointmentDAO {
+
+    @Override
+    public boolean validateAppointmentId(){
+        return false;
+    }
 }
