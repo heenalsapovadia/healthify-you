@@ -1,8 +1,27 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import presentation.doctor.DoctorMenuOutput;
 
 public class Main {
-    public static void main(String[] args){
-        /*
+
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+
+	public static void main(String[] args) {
+		/* Used for Testing. Refer this while making connections in all features. */
+		DatabaseConnection dbConnObject = new DatabaseConnection();
+		Connection conn = dbConnObject.loadDatabaseConnection("database.properties");
+		try {
+			if(conn.isValid(500)) {
+				LOGGER.log(Level.INFO, "Connection Successful!");
+			}
+		} catch (SQLException e) {
+			LOGGER.log(Level.INFO, e.toString());
+		}
+
+		/*
         Take user input for login or signup
          */
 
@@ -14,6 +33,5 @@ public class Main {
         For doctor medicine prescription
          */
         DoctorMenuOutput.prescribeMedication();
-
-    }
+	}
 }
