@@ -15,4 +15,6 @@ public class ScreenTitles {
 	
 	public static final String pharmaInvoice = "Pharmaceutical Supplies Receipt";
 	public static final String invoice = "Invoices";
+	public static final String login = "Login";
+	public static final String signUp = "Sign Up";
 }
