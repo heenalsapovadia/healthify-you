@@ -1,10 +1,10 @@
 package presentation.startup;
 
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import javax.xml.bind.DatatypeConverter;
 
 public class SHA_Hash {
 	public String getSHA(String password){
@@ -12,8 +12,12 @@ public class SHA_Hash {
 			try {
 				MessageDigest md = MessageDigest.getInstance("SHA-256");
 				byte[] digest = md.digest(password.getBytes(StandardCharsets.UTF_8));
-				sha256 = DatatypeConverter.printHexBinary(digest).toLowerCase();
-
+				BigInteger num = new BigInteger(1, digest);
+			    String hashtext = num.toString(16);
+	            while (hashtext.length() < 32) {
+	                sha256 = "0" + hashtext;
+	            }
+	           
 			} catch (NoSuchAlgorithmException e) {
 				e.getLocalizedMessage();
 			}
