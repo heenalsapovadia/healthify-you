@@ -1,5 +1,7 @@
 package persistence.doctor.dao;
 
+import persistence.doctor.model.Appointment;
+
 public interface AppointmentDAO {
-     boolean validateAppointmentId();
+     Appointment validateAppointmentId(Appointment appointment);
 }
