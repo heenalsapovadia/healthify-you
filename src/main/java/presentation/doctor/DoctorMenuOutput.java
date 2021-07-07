@@ -5,6 +5,8 @@ import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
+import presentation.CommonConstants;
+import presentation.ScreenTitles;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,15 @@ import java.util.Scanner;
 public class DoctorMenuOutput {
 
     public static void prescribeMedication(){
+
+        for(int i=0; i<100; i++)
+            System.out.print(CommonConstants.headingChar);
+        System.out.println();
+        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+ ScreenTitles.prescription+CommonConstants.titleSpace);
+        for(int i=0; i<100; i++)
+            System.out.print(CommonConstants.headingChar);
+        System.out.println();
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Appointment ID : ");
         int appointmentId = sc.nextInt();
@@ -64,5 +75,6 @@ public class DoctorMenuOutput {
         }
         PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
         prescriptionDAO.insertPrescription(prescriptionList);
+        System.out.println("Medicines prescribed successfully!");
     }
 }

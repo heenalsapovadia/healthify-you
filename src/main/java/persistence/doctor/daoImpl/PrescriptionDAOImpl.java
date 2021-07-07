@@ -15,8 +15,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 
     @Override
     public void insertPrescription(List<Prescription> prescriptionList){
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.conn;
         /*
         find existing max prescription id,
         and increment by 1
@@ -49,8 +48,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 
     @Override
     public int findMaxPrescriptionId() {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.conn;
 
         String sql = "SELECT MAX(prescription_id) FROM prescription";
         try(PreparedStatement ps = conn.prepareStatement(sql)){

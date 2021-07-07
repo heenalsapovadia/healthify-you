@@ -13,8 +13,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public Appointment validateAppointmentId(Appointment appointment) {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.conn;
 
         // Dummy ID, need to be replaced with current Logged In Doctor's ID
         int doctor_id = 123;

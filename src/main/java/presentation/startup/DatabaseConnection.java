@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class DatabaseConnection {
 	
 	private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
+	public static Connection conn;
 	
 	public Connection loadDatabaseConnection() {
 		Connection connection = null;
