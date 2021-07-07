@@ -16,7 +16,7 @@ public class Main {
 		DatabaseConnection dbConnObject = new DatabaseConnection();
 		Connection conn = dbConnObject.loadDatabaseConnection();
 		try {
-			if(conn.isValid(500)) {
+			if(conn.isValid(1000)) {
 				LOGGER.log(Level.INFO, "Connection Successful!");
 			}
 		} catch (SQLException e) {

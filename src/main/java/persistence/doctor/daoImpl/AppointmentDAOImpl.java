@@ -16,9 +16,13 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection conn = databaseConnection.loadDatabaseConnection();
 
-        String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ?";
+        // Dummy ID, need to be replaced with current Logged In Doctor's ID
+        int doctor_id = 123;
+
+        String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ? AND doctor_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, appointment.getAppointment_id());
+            ps.setInt(2, doctor_id);
 
             ResultSet rs = ps.executeQuery();
 
