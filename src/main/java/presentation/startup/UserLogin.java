@@ -7,6 +7,8 @@ import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
 import presentation.CommonConstants;
 import presentation.ScreenTitles;
+import presentation.patient.PatientMenuOutput;
+import presentation.patient.RegisterPatient;
 
 public class UserLogin{
 	public boolean Login(){
@@ -36,7 +38,7 @@ public class UserLogin{
 		int sel;
 		while(true){
 			System.out.println("1. Continue");
-			System.out.println("2. Sign Up");
+			System.out.println("2. Patient Sign Up");
 			System.out.println("3. Exit");
 		
 			System.out.println("Please enter your selection below:");
@@ -55,19 +57,13 @@ public class UserLogin{
 				 }
 				 else{
 					 UserLoginDAO dao= new UserLoginDAOImpl();
-					 if(dao.GetuserDetails(userId, password)==true){
-						 System.out.println("Successfully Logged in");
-						 break;
+					 System.out.println(dao.GetuserDetails(userId, password));
+					 break;
 					 }
-					 else{
-						 System.out.println("Password does not match with the User ID");
-						 break;
-					 }
-					 
-				 }
-				 
+				
 			case 2:
-				//SignUp;
+			    RegisterPatient obj= new RegisterPatient();
+			    obj.RegisterPatient(); 
 				break;
 			case 3:
 				System.out.print("EXIT!");
