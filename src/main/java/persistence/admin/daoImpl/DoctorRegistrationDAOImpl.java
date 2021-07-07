@@ -10,8 +10,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 
     @Override
     public int updateDoctorDetails(DoctorRegistration doc) throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
         Statement statement = conn.createStatement();
 
         try {
@@ -31,8 +30,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
     @Override
     public boolean checkDoctorExists(String email) throws SQLException {
 
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
         Statement statement = conn.createStatement();
         ResultSet rS = null;
 
