@@ -1,8 +1,9 @@
 # Editor specific files
-/target
+
 
 #IntelliJ
 .idea
+/target
 healthifyyou.iml
 
 #Eclipse
