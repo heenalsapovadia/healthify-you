@@ -1,5 +1,5 @@
 # Editor specific files
-/src/main/java/presentation/startup/SHA_Hash.java
+/target
 
 #IntelliJ
 .idea
