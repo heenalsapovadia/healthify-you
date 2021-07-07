@@ -32,7 +32,6 @@ public class UserLoginDAOImpl implements UserLoginDAO {
                     	String pwd = resultSet.getObject(2).toString();
                         String userType = resultSet.getObject(3).toString();
                         String hashedpassword=sha.getSHA(password);
-                        System.out.println(hashedpassword);
                         if(!hashedpassword.equals(pwd))
                         	return "Incorrect Password!";
                         else

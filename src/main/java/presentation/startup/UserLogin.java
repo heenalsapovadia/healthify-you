@@ -31,8 +31,8 @@ public class UserLogin{
         	hidden+="*";
         }
         System.out.println();
-        System.out.println("Enter email : "+userId);
-        System.out.println("Enter password : "+hidden);
+        System.out.println("Email : "+userId);
+        System.out.println("Password : "+hidden);
         System.out.println();
         System.out.println();
 		int sel;

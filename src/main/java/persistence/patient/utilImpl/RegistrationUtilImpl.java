@@ -20,7 +20,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 
 	@Override
 	public String ValidateContact(long Contact) {
-		 String contactregex = "\\d{10}";  
+		 String contactregex = "^(902?)\\d{6}$";  
 		 Pattern pattern = Pattern.compile(contactregex);  
 		 Matcher matcher = pattern.matcher(Contact+"");  
 		 if(matcher.matches()==false){
