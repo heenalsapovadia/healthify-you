@@ -1,5 +1,6 @@
 package presentation.doctor;
 
+import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
@@ -61,7 +62,7 @@ public class DoctorMenuOutput {
             prescriptionList.add(prescription);
             medicineNumber--;
         }
-        PrescriptionDAOImpl prescriptionDAO = new PrescriptionDAOImpl();
+        PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
         prescriptionDAO.insertPrescription(prescriptionList);
     }
 }
