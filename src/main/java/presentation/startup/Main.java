@@ -14,12 +14,10 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 		/* Used for Testing. Refer this while making connections in all features. */
 //		System.gc();
-		DatabaseConnection dbConnObject = new DatabaseConnection();
-//		Connection conn = dbConnObject.loadDatabaseConnection();
-		String email;
-		DatabaseConnection.conn = new DatabaseConnection().loadDatabaseConnection();
+		Connection conn = DatabaseConnection.getConnection();
+
 		try {
-			if(DatabaseConnection.conn.isValid(1000)) {
+			if(conn.isValid(2000)) {
 				LOGGER.log(Level.INFO, "Connection Successful!");
 			}
 		} catch (SQLException e) {

@@ -11,8 +11,11 @@ import presentation.ScreenTitles;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class DoctorMenuOutput {
+
+    private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
 
     public static void prescribeMedication(){
 
@@ -29,10 +32,11 @@ public class DoctorMenuOutput {
         int appointmentId = sc.nextInt();
 
         /*
-        Validate appointment ID
+        Call for Validation of appointment ID
          */
         PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();
         Appointment validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
+
         while(validAppointment==null){
             System.out.println("INVALID Appointment Id entered, Please try again...");
             System.out.print("Appointment ID : ");
@@ -48,6 +52,10 @@ public class DoctorMenuOutput {
         System.out.print("Number of medicines to prescribe : ");
         int medicineNumber = sc.nextInt();
         List<Prescription> prescriptionList = new ArrayList<>();
+
+        /*
+        Take user input for all medicines
+         */
         while(medicineNumber>0){
             System.out.print("Medicine Name : ");
             String medicineName = sc.next();
@@ -73,8 +81,13 @@ public class DoctorMenuOutput {
             prescriptionList.add(prescription);
             medicineNumber--;
         }
+
+        /*
+        Insert the prescriptions
+         */
         PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
         prescriptionDAO.insertPrescription(prescriptionList);
+
         System.out.println("Medicines prescribed successfully!");
     }
 }

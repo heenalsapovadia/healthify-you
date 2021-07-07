@@ -8,14 +8,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AppointmentDAOImpl implements AppointmentDAO {
 
+    private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
+
     @Override
     public Appointment validateAppointmentId(Appointment appointment) {
-        Connection conn = DatabaseConnection.conn;
+        Connection conn = DatabaseConnection.getConnection();
 
-        // Dummy ID, need to be replaced with current Logged In Doctor's ID
+        // Dummy ID, needs to be replaced with current Logged In Doctor's ID
         int doctor_id = 123;
 
         String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ? AND doctor_id = ?";
@@ -25,7 +29,6 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
             ResultSet rs = ps.executeQuery();
 
-//            if(rs.getRow()>0) return true;
             if(rs.next()) {
                 appointment.setPatient_id(rs.getInt("patient_id"));
                 appointment.setDoctor_id(rs.getInt("doctor_id"));
@@ -38,7 +41,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
             }
         }
         catch (SQLException e){
-//                LOGGER.log(Level.SEVERE, e.toString());
+            LOGGER.log(Level.SEVERE, e.toString());
             System.out.println("SQL ERROR:"+e.getMessage());
         }
         return null;

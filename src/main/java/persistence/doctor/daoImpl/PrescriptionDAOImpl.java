@@ -1,5 +1,6 @@
 package persistence.doctor.daoImpl;
 
+import persistence.admin.daoImpl.PharmaInvoiceDAOImpl;
 import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.model.Prescription;
 import presentation.startup.DatabaseConnection;
@@ -10,12 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PrescriptionDAOImpl implements PrescriptionDAO {
 
+    private static final Logger LOGGER = Logger.getLogger(PrescriptionDAOImpl.class.getName());
+
     @Override
     public void insertPrescription(List<Prescription> prescriptionList){
-        Connection conn = DatabaseConnection.conn;
+        Connection conn = DatabaseConnection.getConnection();
         /*
         find existing max prescription id,
         and increment by 1
@@ -40,7 +45,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
                 ps.executeUpdate();
             }
             catch (SQLException e){
-//                LOGGER.log(Level.SEVERE, e.toString());
+                LOGGER.log(Level.SEVERE, e.toString());
                 System.out.println("SQL ERROR:"+e.getMessage());
             }
         }
@@ -48,7 +53,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 
     @Override
     public int findMaxPrescriptionId() {
-        Connection conn = DatabaseConnection.conn;
+        Connection conn = DatabaseConnection.getConnection();
 
         String sql = "SELECT MAX(prescription_id) FROM prescription";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -57,7 +62,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
                 return rs.getInt("MAX(prescription_id)");
         }
         catch (SQLException e){
-//                LOGGER.log(Level.SEVERE, e.toString());
+            LOGGER.log(Level.SEVERE, e.toString());
             System.out.println("SQL ERROR:"+e.getMessage());
         }
         return 0;

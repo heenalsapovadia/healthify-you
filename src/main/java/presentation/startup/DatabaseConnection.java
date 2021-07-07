@@ -11,10 +11,9 @@ import java.util.logging.Logger;
 public class DatabaseConnection {
 	
 	private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
-	public static Connection conn;
+	private static Connection connection;
 	
-	public Connection loadDatabaseConnection() {
-		Connection connection = null;
+	public void loadDatabaseConnection() {
 		try (InputStream resourceStream = this.getClass().getClassLoader().getResourceAsStream("database.properties")){
 			Properties prop = new Properties();
 			prop.load(resourceStream);
@@ -28,6 +27,12 @@ public class DatabaseConnection {
 		}
 		catch(IOException | SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			LOGGER.log(Level.INFO, "Exception in creating database connection!\n{0}", e.toString());
+		}
+	}
+
+	public static Connection getConnection(){
+		if(connection == null) {
+			new DatabaseConnection().loadDatabaseConnection();
 		}
 		return connection;
 	}
