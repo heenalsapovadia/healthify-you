@@ -7,9 +7,9 @@ import java.security.NoSuchAlgorithmException;
 
 
 public class SHA_Hash {
-	public String getSHA(String password){
-		String p = "";
-		MessageDigest digest = null;    /* creates a MessageDigest object to generate hash value */
+    public String getSHA(String password){
+        String p = "";
+        MessageDigest digest = null;    /* creates a MessageDigest object to generate hash value */
         try {
             digest = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {
@@ -20,8 +20,6 @@ public class SHA_Hash {
         p = sb.toString();    /* converts the value of StringBuilder class into a String object and stores it in the tmp variable */
 
         return p;
-			
-		}
 
-	
+    }
 }
