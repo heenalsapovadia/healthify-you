@@ -20,4 +20,5 @@ public class CommonConstants {
 	public static final String mediumSpace = "\t\t";
 	public static final String commonTextSeparator = mediumSpace+":"+mediumSpace;
 	public static final String commaDelimiter = ",";
+	public static final String subheading =" :: ";
 }

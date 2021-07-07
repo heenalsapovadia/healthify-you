@@ -10,3 +10,4 @@ healthifyyou.iml
 .project
 .settings
 .metadata
+/target/
