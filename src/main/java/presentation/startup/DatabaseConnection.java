@@ -9,9 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseConnection {
-
+	
 	private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
-
+	
 	public Connection loadDatabaseConnection() {
 		Connection connection = null;
 		try (InputStream resourceStream = this.getClass().getClassLoader().getResourceAsStream("database.properties")){
