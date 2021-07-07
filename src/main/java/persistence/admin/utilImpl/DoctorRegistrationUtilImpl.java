@@ -15,7 +15,7 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
 
     @Override
     public boolean validateFirstName(String fname) {
-        if(fname!=null && !fname.equals("") && fname.matches("^[a-zA-Z]*$")) {
+        if(fname!=null && !fname.equals("") && fname.matches("^[ a-zA-Z]*$")) {
             return true;
         } else{
             return false;
