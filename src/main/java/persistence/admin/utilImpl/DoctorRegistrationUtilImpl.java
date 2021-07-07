@@ -82,9 +82,7 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     public boolean validateEmail(String email) {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
+                "[a-zA-Z0-9_+&*-]+)*@healthifyyou.com";
 
         Pattern p = Pattern.compile(regex);
 
