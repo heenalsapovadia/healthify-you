@@ -2,8 +2,6 @@ package persistence.admin.util;
 
 public interface DoctorRegistrationUtil {
 
-    public boolean validateID(String doctorID);
-
     public boolean validateFirstName(String fname);
 
     public boolean validateLastName(String lname);
@@ -16,7 +14,7 @@ public interface DoctorRegistrationUtil {
 
     public boolean validateCity(String city);
 
-    public boolean validateContact(String contact);
+    public boolean validateContact(Long contact);
 
     public boolean validateEmail(String email);
 

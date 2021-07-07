@@ -23,22 +23,23 @@ public class DoctorRegistrationOutput {
         System.out.println("Please enter the details below:\n");
 
 
-        System.out.println("Enter you registered identification number (ID)");
-        String doctorID = sc.nextLine().trim();
-        boolean checkID = doctorRegistrationUtilImpl.validateID(doctorID);
+        System.out.println("Enter your email address");
+        String email = sc.nextLine().trim();
+        boolean checkEmail = doctorRegistrationUtilImpl.validateEmail(email);
 
-        if(!checkID) {
+        if(!checkEmail) {
             do {
-                System.err.println("Invalid ID! Enter valid DoctorID starting with REGN!");
-                System.out.println("Enter you registered identification number (ID)");
-                doctorID = sc.nextLine().trim();
-                checkID = doctorRegistrationUtilImpl.validateID(doctorID);
-            } while (!checkID);
+                System.err.println("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)");
+                System.out.println("Enter your email address");
+                email = sc.nextLine().trim();
+                checkEmail = doctorRegistrationUtilImpl.validateEmail(email);
+            } while (!checkEmail);
         }
 
-        if(checkID) {
-                doc.setDoctorID(doctorID);
+        if(checkEmail) {
+            doc.setEmail(email);
         }
+
 
 
         System.out.println("Enter your first name");
@@ -77,24 +78,6 @@ public class DoctorRegistrationOutput {
         }
 
 
-        System.out.println("Enter your email address");
-        String email = sc.nextLine().trim();
-        boolean checkEmail = doctorRegistrationUtilImpl.validateEmail(email);
-
-        if(!checkEmail) {
-            do {
-                System.err.println("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)");
-                System.out.println("Enter your email address");
-                email = sc.nextLine().trim();
-                checkEmail = doctorRegistrationUtilImpl.validateEmail(email);
-            } while (!checkEmail);
-        }
-
-        if(checkEmail) {
-            doc.setEmail(email);
-        }
-
-
         System.out.println("Enter your password! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)");
         String password = sc.nextLine().trim();
         boolean checkPassword = doctorRegistrationUtilImpl.validatePassword(password);
@@ -122,7 +105,7 @@ public class DoctorRegistrationOutput {
                 System.err.println("Invalid Date! Enter date in valid format! (should be YYYY-MM-DD)");
                 System.out.println("Enter your joining date (YYYY-MM-DD)");
                 jDate = sc.nextLine().trim();
-                checkJDate = doctorRegistrationUtilImpl.validatePassword(jDate);
+                checkJDate = doctorRegistrationUtilImpl.validateDate(jDate);
             } while (!checkJDate);
         }
 
@@ -187,14 +170,13 @@ public class DoctorRegistrationOutput {
 
 
         System.out.println("Enter your contact number (902######)");
-        String contactNumber = sc.nextLine().trim();
+        Long contactNumber = sc.nextLong();
         boolean checkContact = doctorRegistrationUtilImpl.validateContact(contactNumber);
 
         if(!checkContact) {
             do {
-                System.err.println("Invalid Contact Number! Enter valid contact number (only numbers))!");
                 System.out.println("Enter your contact number (902######)");
-                contactNumber = sc.nextLine().trim();
+                contactNumber = sc.nextLong();
                 checkContact = doctorRegistrationUtilImpl.validateContact(contactNumber);
             } while (!checkContact);
         }
@@ -210,7 +192,7 @@ public class DoctorRegistrationOutput {
 
         if(!checkCity) {
             do {
-                System.err.println("Invalid Last Name! Enter valid city (only alphabets and spaces))!");
+                System.err.println("Invalid city! Enter valid city (only alphabets and spaces))!");
                 System.out.println("Enter your city of residence");
                 city = sc.nextLine().trim();
                 checkCity = doctorRegistrationUtilImpl.validateCity(city);

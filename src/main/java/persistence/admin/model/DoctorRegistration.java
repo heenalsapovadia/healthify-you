@@ -25,7 +25,7 @@ public class DoctorRegistration {
     private String degree;
     private String specialization;
     private String bdate;
-    private String contactNumber;
+    private Long contactNumber;
     private String city;
     private String email;
     private String password;
@@ -58,7 +58,7 @@ public class DoctorRegistration {
         return bdate;
     }
 
-    public String getContactNumber() {
+    public Long getContactNumber() {
         return contactNumber;
     }
 
@@ -98,7 +98,7 @@ public class DoctorRegistration {
         this.bdate = bdate;
     }
 
-    public void setContactNumber(String contactNumber) {
+    public void setContactNumber(Long contactNumber) {
         this.contactNumber = contactNumber;
     }
 

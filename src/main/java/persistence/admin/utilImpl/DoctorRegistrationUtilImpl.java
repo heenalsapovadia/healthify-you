@@ -1,7 +1,10 @@
 package persistence.admin.utilImpl;
 
+import persistence.admin.dao.DoctorRegistrationDAO;
+import persistence.admin.daoImpl.DoctorRegistrationDAOImpl;
 import persistence.admin.util.DoctorRegistrationUtil;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,15 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
-
-    @Override
-    public boolean validateID(String doctorID) {
-        if(doctorID!=null && doctorID.startsWith("REGN")) {
-            return true;
-        } else{
-        return false;
-        }
-    }
 
     @Override
     public boolean validateFirstName(String fname) {
@@ -65,30 +59,28 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
 
     @Override
-    public boolean validateContact(String contact) {
-        boolean checkP = false;
-        if(contact!=null && !contact.equals("") && contact.startsWith("902")) {
-            String[] tempChar = contact.split("");
-            for(int i = 0; i < contact.length(); i++) {
-                if(Integer.valueOf(tempChar[i]) >=0 && Integer.valueOf(tempChar[i]) <=9) {
-                    checkP = true;
-                } else {
-                    checkP = false;
-                }
-            }
+    public boolean validateContact(Long contact) {
 
-            if(checkP) {
+        int length = (int) (Math.log10(contact) + 1);
+
+        if(length == 10) {
+            String temp = contact.toString();
+
+            if(temp.startsWith("902")) {
                 return true;
             } else {
+                System.err.println("The contact number should begin with 902");
                 return false;
             }
-        } else{
+        } else {
+            System.err.println("Contact number should be 10 digits long!");
             return false;
         }
     }
 
     @Override
     public boolean validateEmail(String email) {
+        DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
@@ -98,10 +90,21 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
 
         if(email!=null && !email.equals("")) {
             if(p.matcher(email).matches()) {
-                return true;
+                try {
+                    if(doctorRegistrationDAOImpl.checkDoctorExists(email)) {
+                        System.out.println("Doctor is registered with the system already!");
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             } else {
+                System.out.println("Invalid email address format! The email address should include @ and . ");
                 return false;
             }
+            return true;
         } else {
             return false;
         }
