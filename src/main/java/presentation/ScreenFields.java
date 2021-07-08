@@ -32,4 +32,12 @@ public class ScreenFields {
 	public static final String exit = "Exit";
 	public static final String selection = "Please enter your selection below:";
 	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
+
+	public static final String appointmentId = "Appointment ID";
+	public static final String medicineNumber = "Number of medicines to prescribe";
+	public static final String medicineName = "Medicine Name";
+	public static final String morningDose = "Morning Dose";
+	public static final String afternoonDose = "Afternoon Dose";
+	public static final String eveningDose = "Evening Dose";
+	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
 }

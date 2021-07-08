@@ -6,6 +6,8 @@ import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.CommonConstants;
+import presentation.CommonErrors;
+import presentation.ScreenFields;
 import presentation.ScreenTitles;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class DoctorMenuOutput {
         System.out.println();
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Appointment ID : ");
+        System.out.print(ScreenFields.appointmentId + CommonConstants.commonTextSeparator);
         int appointmentId = sc.nextInt();
 
         /*
@@ -38,8 +40,8 @@ public class DoctorMenuOutput {
         Appointment validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
 
         while(validAppointment==null){
-            System.out.println("INVALID Appointment Id entered, Please try again...");
-            System.out.print("Appointment ID : ");
+            System.out.println(CommonErrors.invalidAppointmentId);
+            System.out.print(ScreenFields.appointmentId + CommonConstants.commonTextSeparator);
             appointmentId = sc.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
         }
@@ -49,7 +51,7 @@ public class DoctorMenuOutput {
          */
         int patient_id = validAppointment.getPatient_id();
 
-        System.out.print("Number of medicines to prescribe : ");
+        System.out.print(ScreenFields.medicineNumber + CommonConstants.commonTextSeparator);
         int medicineNumber = sc.nextInt();
         List<Prescription> prescriptionList = new ArrayList<>();
 
@@ -57,13 +59,13 @@ public class DoctorMenuOutput {
         Take user input for all medicines
          */
         while(medicineNumber>0){
-            System.out.print("Medicine Name : ");
+            System.out.print(ScreenFields.medicineName + CommonConstants.commonTextSeparator);
             String medicineName = sc.next();
-            System.out.print("Morning : ");
+            System.out.print(ScreenFields.morningDose + CommonConstants.commonTextSeparator);
             int morning = sc.nextInt();
-            System.out.print("Afternoon : ");
+            System.out.print(ScreenFields.afternoonDose + CommonConstants.commonTextSeparator);
             int afternoon = sc.nextInt();
-            System.out.print("Evening : ");
+            System.out.print(ScreenFields.eveningDose + CommonConstants.commonTextSeparator);
             int evening = sc.nextInt();
 
             Prescription prescription = new Prescription();
@@ -88,6 +90,6 @@ public class DoctorMenuOutput {
         PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
         prescriptionDAO.insertPrescription(prescriptionList);
 
-        System.out.println("Medicines prescribed successfully!");
+        System.out.println(ScreenFields.medicinePrescribeMessage);
     }
 }
