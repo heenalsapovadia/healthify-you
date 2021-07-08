@@ -20,21 +20,26 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 
 	@Override
 	public String ValidateContact(long Contact) {
-		 String contactregex = "^(902?)\\d{6}$";  
-		 Pattern pattern = Pattern.compile(contactregex);  
-		 Matcher matcher = pattern.matcher(Contact+"");  
-		 if(matcher.matches()==false){
-		
-			 return "The contact is invalid.Please enter a contact number"; 
-		 }
+		 int length = (int) (Math.log10(Contact) + 1);
+		 if(length == 10) {
+	            String temp = Contact+"";
+	            System.out.println(temp);
+	            if(temp.startsWith("902")) {
+	                return null;
+	            } else {
+	                return "The contact number should begin with 902";
+	            }
+	        } else {
+	            return "Contact number should be 10 digits long!";
+	        }
 
-		return null;
 	}
     @Override
 	public String ValidateEmail(String email) {
 		 String emailregex = "^[A-Za-z0-9+_.-]+@(.+)$";  
 		 Pattern pattern = Pattern.compile(emailregex);  
 		 Matcher matcher = pattern.matcher(email);  
+		 
 		 if(matcher.matches()==false){
 		
 			 return "The email ID is invalid.Please enter a valid email address"; 
