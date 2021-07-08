@@ -21,10 +21,10 @@ public class UserLogin{
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
 		System.out.println();
-		System.out.print(ScreenFields.enterEmailId);
+		System.out.print(ScreenFields.emailInput);
         Scanner sc = new Scanner(System.in);
         String userId = sc.next();
-        System.out.print(ScreenFields.enterPassword);
+        System.out.print(ScreenFields.passwordInput);
         String password = sc.next();
         int length= password.length();
         String hidden = "";
@@ -36,8 +36,8 @@ public class UserLogin{
         l.setUserEmail(userId);
         
         System.out.println();
-        System.out.println(ScreenFields.EmailId+userId);
-        System.out.println(ScreenFields.Password+hidden);
+        System.out.println(ScreenFields.emailIdOutput+"="+userId);
+        System.out.println(ScreenFields.passwordOutput+"="+hidden);
         System.out.println();
         System.out.println();
 		int sel;
