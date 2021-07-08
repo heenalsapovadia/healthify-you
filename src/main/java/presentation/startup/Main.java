@@ -1,14 +1,9 @@
 package presentation.startup;
 
-import persistence.admin.model.DoctorRegistration;
-import presentation.admin.DoctorRegistrationOutput;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import presentation.doctor.DoctorMenuOutput;
 
 public class Main {
 
@@ -16,9 +11,12 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		/* Used for Testing. Refer this while making connections in all features. */
-//		System.gc();
+		DatabaseConnection.loadDatabaseConnection();
 		Connection conn = DatabaseConnection.getConnection();
-
+		if(conn == null) {
+			LOGGER.log(Level.SEVERE, "Could not establish connection with database.");
+			System.exit(0);
+		}
 		try {
 			if(conn.isValid(2000)) {
 				LOGGER.log(Level.INFO, "Connection Successful!");
@@ -26,17 +24,5 @@ public class Main {
 		} catch (SQLException e) {
 			LOGGER.log(Level.INFO, e.toString());
 		}
-		/*
-        Take user input for login or signup
-         */
-
-        /*
-        Load the appropriate user logged in
-         */
-
-        /*
-        For doctor medicine prescription
-         */
-        DoctorMenuOutput.prescribeMedication();
 	}
 }
