@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import presentation.CommonConstants;
+import presentation.CommonErrors;
+import presentation.ScreenFields;
 import presentation.ScreenTitles;
 
 public class InvoiceOutput {
@@ -19,18 +21,18 @@ public class InvoiceOutput {
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
 		System.out.println();
-		System.out.println("1. Search pharmaceutical supplies by date");
-		System.out.println("2. Exit");
-		System.out.println("Please enter your selection below:");
+		System.out.println("1. "+ScreenFields.pharmSuppliesByDate);
+		System.out.println("2. "+ScreenFields.exit);
+		System.out.println(ScreenFields.selection);
 		Scanner sc = new Scanner(System.in);
 		int sel = sc.nextInt();
 		switch(sel) {
 			case 1:
 				try {
-					System.out.println("Please enter a date (yyyy/mm/dd):");
+					System.out.println(ScreenFields.dateInput);
 					Date date = Date.valueOf(sc.next());
 					if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
-						System.out.println("Date greater than today!");
+						System.err.println(CommonErrors.greaterDate);
 					}
 					else {
 						System.out.println("Loading all receipts for month "+(date.getYear()+1900)+"/"+(date.getMonth()+1)+"/"+date.getDate());
@@ -40,11 +42,13 @@ public class InvoiceOutput {
 					}
 				}
 				catch (IllegalArgumentException | InterruptedException e) {
-					LOGGER.log(Level.SEVERE, "Invalid date format!");
+					System.err.println(CommonErrors.invalidDateFormat);
 				}
 				break;
-			case 2:
-				System.exit(0);
+			case 2: {
+				sc.close();
+				return;
+			}
 		}
 		sc.close();
 	}

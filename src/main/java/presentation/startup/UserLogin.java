@@ -1,17 +1,17 @@
 package presentation.startup;
 import java.util.Scanner;
-
 import persistence.startup.dao.UserLoginDAO;
 import persistence.startup.daoImpl.UserLoginDAOImpl;
+import persistence.startup.model.Login;
 import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
 import presentation.CommonConstants;
 import presentation.ScreenTitles;
-import presentation.patient.PatientMenuOutput;
-import presentation.patient.RegisterPatient;
+import presentation.patient.RegisterPatientOutput;
+
 
 public class UserLogin{
-	public boolean Login(){
+	public boolean LoginUser(){
 	
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
@@ -30,6 +30,10 @@ public class UserLogin{
         for(int i=0;i<length;i++){
         	hidden+="*";
         }
+        Login l = new Login();
+        l.setUserPassword(password);
+        l.setUserEmail(userId);
+        
         System.out.println();
         System.out.println("Email : "+userId);
         System.out.println("Password : "+hidden);
@@ -57,12 +61,12 @@ public class UserLogin{
 				 }
 				 else{
 					 UserLoginDAO dao= new UserLoginDAOImpl();
-					 System.out.println(dao.GetuserDetails(userId, password));
+					 System.out.println(dao.GetuserDetails(l));
 					 break;
 					 }
 				
 			case 2:
-			    RegisterPatient obj= new RegisterPatient();
+			    RegisterPatientOutput obj= new RegisterPatientOutput();
 			    obj.RegisterPatient(); 
 				break;
 			case 3:

@@ -1,5 +1,7 @@
 package persistence.patient.dao;
 
+import persistence.patient.model.Patient;
+
 public interface RegistrationDAO {
-    public String addPatientDetails( String name, String DOB, double contact, String gender, String city, String email, String password, String type);
+    public String addPatientDetails( Patient p);
 }
