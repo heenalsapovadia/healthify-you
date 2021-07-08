@@ -6,6 +6,7 @@ import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.CommonConstants;
+import presentation.CommonErrors;
 import presentation.ScreenFields;
 import presentation.ScreenTitles;
 
@@ -39,7 +40,7 @@ public class DoctorMenuOutput {
         Appointment validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
 
         while(validAppointment==null){
-            System.out.println("INVALID Appointment Id entered, Please try again...");
+            System.out.println(CommonErrors.invalidAppointmentId);
             System.out.print(ScreenFields.appointmentId + CommonConstants.commonTextSeparator);
             appointmentId = sc.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
