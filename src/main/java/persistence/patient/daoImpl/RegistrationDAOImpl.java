@@ -13,8 +13,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 
 	@Override
 	public String addPatientDetails(String name, String DOB, double contact, String gender, String city, String email, String password, String type) {
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection conn = databaseConnection.loadDatabaseConnection();
+		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement preparedStatement;
 		SHA_Hash sha= new SHA_Hash();
 		String HashedPassword= sha.getSHA(password);
