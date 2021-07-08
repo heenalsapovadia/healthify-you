@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import persistence.patient.dao.RegistrationDAO;
 import persistence.patient.daoImpl.RegistrationDAOImpl;
+import persistence.patient.model.Patient;
 import persistence.patient.util.RegistrationUtil;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
 import persistence.startup.dao.UserLoginDAO;
@@ -14,7 +15,8 @@ import presentation.CommonConstants;
 import presentation.ScreenTitles;
 import presentation.startup.UserLogin;
 
-public class RegisterPatient {
+public class RegisterPatientOutput {
+	
 	public boolean RegisterPatient(){
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
@@ -34,9 +36,16 @@ public class RegisterPatient {
         for(int i=0;i<length;i++){
         	hidden+="*";
         }
+        if(userId.endsWith("healthifyyou.com")) {
+    		System.out.println("You are not allowed to Register !");
+    		return false;
+    	}
+        Patient p= new Patient();
+        p.setPassword(password);
+        p.setPatientEmail(userId);
         System.out.println();
-        System.out.println("Enter email : "+userId);
-        System.out.println("Enter password : "+hidden);
+        System.out.println("Email : "+userId);
+        System.out.println("Password : "+hidden);
         System.out.println();
         System.out.println();
 		while(true){
@@ -48,6 +57,7 @@ public class RegisterPatient {
 			switch(sel){
 			case 1:
 				 RegistrationUtil util= new RegistrationUtilImpl();
+				 
 				 if(util.ValidateEmail(userId)!=null){
 					 System.out.println(util.ValidateEmail(userId));
 					 break;
@@ -74,13 +84,19 @@ public class RegisterPatient {
 				    	String lname= sc.next();
 				    	System.out.println("Enter your DOB (YYYY/MM/DD)");
 				    	String DOB= sc.next();
+				    	p.setPatientDob(DOB);
 				    	System.out.println("Enter your Contact number");
 				    	long contact= sc.nextLong();
+				    	p.setPatientContact(contact);
 				    	System.out.println("Enter your City of residence");
 				    	String city= sc.next();
+				    	p.setPatientAddress(city);
 				    	System.out.println("Enter your Gender");
 				    	String gender= sc.next();
-                        
+				    	p.setPatientGender(gender);
+                        p.setPatientType("P");
+                        String name= fname+" "+lname;
+	    	        	p.setPatientName(name);
 				    	System.out.println("Select one of the below options :");
 						System.out.println("1. Confirm to proceed to register");
 						System.out.println("2. Go Back");
@@ -105,8 +121,7 @@ public class RegisterPatient {
 				    	        }
 				    	        else{
 				    	        	RegistrationDAO dao= new RegistrationDAOImpl();
-				    	        	String name= fname+" "+lname;
-				    	        	System.out.println(dao.addPatientDetails(name, DOB, contact, gender, city, userId, password, "P"));
+				    	        	System.out.println(dao.addPatientDetails(p));
 				    	        
 				    	        	break;
 				    	        }
@@ -118,7 +133,7 @@ public class RegisterPatient {
 				
 			case 2:
 			    UserLogin obj= new UserLogin();
-			    obj.Login();
+			    obj.LoginUser();
 				break;
 		
 			case 3:
