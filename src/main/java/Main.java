@@ -1,24 +1,18 @@
-package presentation.startup;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-
+	
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-
-	public static void main(String[] args) throws SQLException {
+	
+	public static void main(String[] args) {
 		/* Used for Testing. Refer this while making connections in all features. */
-		DatabaseConnection.loadDatabaseConnection();
-		Connection conn = DatabaseConnection.getConnection();
-		if(conn == null) {
-			LOGGER.log(Level.SEVERE, "Could not establish connection with database.");
-			System.exit(0);
-		}
+		DatabaseConnection dbConnObject = new DatabaseConnection();
+		Connection conn = dbConnObject.loadDatabaseConnection("database.properties");
 		try {
-			if(conn.isValid(2000)) {
+			if(conn.isValid(500)) {
 				LOGGER.log(Level.INFO, "Connection Successful!");
 			}
 		} catch (SQLException e) {
