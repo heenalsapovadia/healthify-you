@@ -15,7 +15,7 @@ public class ScreenFields {
 	
 	public static final String receiptNo = "Receipt No.";
 	public static final String pharmaName = "Pharma Name";
-	public static final String address = "Aaddress";
+	public static final String address = "Address";
 	public static final String contact = "Contact No.";
 	public static final String dateTime = "Date/Time";
 	public static final String mop = "Payment Mode";
