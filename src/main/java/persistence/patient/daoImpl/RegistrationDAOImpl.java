@@ -13,10 +13,8 @@ import presentation.startup.SHA_Hash;
 public class RegistrationDAOImpl implements RegistrationDAO{
 
 	@Override
-	public String addPatientDetails(Patient p) {
-		
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection conn = databaseConnection.loadDatabaseConnection();
+	public String addPatientDetails(String name, String DOB, double contact, String gender, String city, String email, String password, String type) {
+		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement preparedStatement;
 		SHA_Hash sha= new SHA_Hash();
 		String HashedPassword= sha.getSHA(p.getPassword());

@@ -15,9 +15,8 @@ import presentation.startup.SHA_Hash;
 public class UserLoginDAOImpl implements UserLoginDAO {
 
 	@Override
-	public String GetuserDetails(Login l) {
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection conn = databaseConnection.loadDatabaseConnection();
+	public String GetuserDetails(String userId,String password) {
+		Connection conn = DatabaseConnection.getConnection();
 		SHA_Hash sha= new SHA_Hash();
 		ResultSet resultSet = null;
 		String query = "SELECT * FROM UserCredentials WHERE User_Id = ?";
