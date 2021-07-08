@@ -15,7 +15,7 @@ import presentation.startup.SHA_Hash;
 public class UserLoginDAOImpl implements UserLoginDAO {
 
 	@Override
-	public String GetuserDetails(String userId,String password) {
+	public String GetuserDetails(Login l) {
 		Connection conn = DatabaseConnection.getConnection();
 		SHA_Hash sha= new SHA_Hash();
 		ResultSet resultSet = null;

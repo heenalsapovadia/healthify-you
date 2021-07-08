@@ -11,6 +11,7 @@ package presentation;
  */
 public class ScreenTitles {
 	
+	
 	private ScreenTitles() {}
 	
 	public static final String pharmaInvoice = "Pharmaceutical Supplies Receipt";
