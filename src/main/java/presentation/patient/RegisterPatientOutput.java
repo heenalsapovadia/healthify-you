@@ -12,6 +12,7 @@ import persistence.startup.daoImpl.UserLoginDAOImpl;
 import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
 import presentation.CommonConstants;
+import presentation.ScreenFields;
 import presentation.ScreenTitles;
 import presentation.startup.UserLogin;
 
@@ -27,9 +28,9 @@ public class RegisterPatientOutput {
 		System.out.println();
 		Scanner sc = new Scanner(System.in);
 		int sel;
-		System.out.print("Enter email : ");
+		System.out.print(ScreenFields.enterEmailId);
         String userId = sc.next();
-        System.out.print("Enter password : ");
+        System.out.print(ScreenFields.enterPassword);
         String password = sc.next();
         int length= password.length();
         String hidden = "";
@@ -44,8 +45,8 @@ public class RegisterPatientOutput {
         p.setPassword(password);
         p.setPatientEmail(userId);
         System.out.println();
-        System.out.println("Email : "+userId);
-        System.out.println("Password : "+hidden);
+        System.out.println(ScreenFields.EmailId+"= "+userId);
+        System.out.println(ScreenFields.Password+"= "+hidden);
         System.out.println();
         System.out.println();
 		while(true){
@@ -101,7 +102,7 @@ public class RegisterPatientOutput {
 						System.out.println("1. Confirm to proceed to register");
 						System.out.println("2. Go Back");
 						System.out.println();
-					 	System.out.println("Please enter your selection below:");
+					 	System.out.println(ScreenFields.selection+": ");
 				    	int sel2= sc.nextInt();
 				    	
 				    	switch(sel2){
@@ -137,7 +138,7 @@ public class RegisterPatientOutput {
 				break;
 		
 			case 3:
-				System.out.println("EXIT!");
+				System.out.println(ScreenFields.exit);
 				return false;
 			
 	    	}

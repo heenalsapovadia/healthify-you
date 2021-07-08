@@ -10,5 +10,6 @@ public class PharmaInvoiceDAOImplTest {
 	public void testGetInvoiceDetailsByDate() {
 		assertEquals(1, 1);
 	}
+	
 
 }
