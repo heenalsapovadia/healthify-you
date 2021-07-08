@@ -13,6 +13,7 @@ public class ScreenFields {
 	
 	private ScreenFields() {}
 	
+	/* Pharma invoice screen fields */
 	public static final String receiptNo = "Receipt No.";
 	public static final String pharmaName = "Pharma Name";
 	public static final String address = "Address";
@@ -25,4 +26,10 @@ public class ScreenFields {
 	public static final String total = "Total Amount";
 	public static final String grandTotal = "Grand Total";
 	public static final String descriptionExtras = "(Name, Dosage, Manufacturer)";
+	
+	/* Invoice screen fields */
+	public static final String pharmSuppliesByDate = "Search pharmaceutical supplies by date";
+	public static final String exit = "Exit";
+	public static final String selection = "Please enter your selection below:";
+	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
 }

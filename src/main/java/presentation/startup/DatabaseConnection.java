@@ -1,4 +1,5 @@
 package presentation.startup;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,29 +12,30 @@ import java.util.logging.Logger;
 public class DatabaseConnection {
 	
 	private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
-	private static Connection connection;
+	private static Connection connection = null;
 	
-	public void loadDatabaseConnection() {
-		try (InputStream resourceStream = this.getClass().getClassLoader().getResourceAsStream("database.properties")){
-			Properties prop = new Properties();
-			prop.load(resourceStream);
-			String databaseType = prop.getProperty("databaseType");
-			String driver = prop.getProperty("driver");
-			String url = prop.getProperty("url")+prop.getProperty(databaseType+"Db");
-			String user = prop.getProperty(databaseType+"User");
-			String password = prop.getProperty(databaseType+"Password");
-			Class.forName(driver).newInstance();
-			connection = DriverManager.getConnection(url, user, password);
-		}
-		catch(IOException | SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			LOGGER.log(Level.INFO, "Exception in creating database connection!\n{0}", e.toString());
+	private DatabaseConnection() {}
+	
+	public static void loadDatabaseConnection() {
+		if(connection == null) {
+			try (InputStream resourceStream = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties")){
+				Properties prop = new Properties();
+				prop.load(resourceStream);
+				String databaseType = prop.getProperty("databaseType");
+				String driver = prop.getProperty("driver");
+				String url = prop.getProperty("url")+prop.getProperty(databaseType+"Db");
+				String user = prop.getProperty(databaseType+"User");
+				String password = prop.getProperty(databaseType+"Password");
+				Class.forName(driver).newInstance();
+				connection = DriverManager.getConnection(url, user, password);
+			}
+			catch(IOException | SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+				LOGGER.log(Level.SEVERE, "Exception in creating database connection!\n{0}", e.toString());
+			}
 		}
 	}
-
-	public static Connection getConnection(){
-		if(connection == null) {
-			new DatabaseConnection().loadDatabaseConnection();
-		}
+	
+	public static Connection getConnection() {
 		return connection;
 	}
 }
