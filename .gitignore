@@ -1,5 +1,4 @@
 # Editor specific files
-/src/main/java/presentation/startup/SHA_Hash.java
 
 #IntelliJ
 .idea
@@ -10,4 +9,3 @@ healthifyyou.iml
 .project
 .settings
 .metadata
-/target/
