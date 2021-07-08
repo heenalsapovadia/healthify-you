@@ -10,14 +10,13 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 
     @Override
     public int updateDoctorDetails(DoctorRegistration doc) throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
         Statement statement = conn.createStatement();
 
         try {
             /* insert ignore use to avoid violation of primary key constraint if the data for that key already exists in the database */
             /* inserts registration details into the doctors table of the database */
-            statement.executeUpdate("insert ignore into doctors(first_name, last_name, joining_date, degree, specialization, birth_date, contact_number, city, email, password) values (\"" + doc.getFirstName() + "\"" + ", \"" + doc.getLastName() + "\"" + ", \"" + doc.getJoiningDate() + "\"" + ", \"" + doc.getDegree() + "\"" + ", \"" + doc.getSpecialization() + "\"" + ", \"" + doc.getBirthDate() + "\"" + ", \"" + doc.getContactNumber() + "\"" + ", \"" + doc.getCity() + "\"" + ", \"" + doc.getEmail() + "\"" + ", \"" + doc.getPassword() + "\");");
+            statement.executeUpdate("insert ignore into doctors(first_name, last_name, joining_date, degree, specialization, birth_date, contact_number, city, email) values (\"" + doc.getFirstName() + "\"" + ", \"" + doc.getLastName() + "\"" + ", \"" + doc.getJoiningDate() + "\"" + ", \"" + doc.getDegree() + "\"" + ", \"" + doc.getSpecialization() + "\"" + ", \"" + doc.getBirthDate() + "\"" + ", \"" + doc.getContactNumber() + "\"" + ", \"" + doc.getCity() + "\"" + ", \"" + doc.getEmail() + "\");");
             statement.executeUpdate("insert ignore into UserCredentials values (\"" + doc.getEmail() + "\"" + ", \"" + doc.getPassword() + "\"" + ", 'D');");
 
             return 0;
@@ -31,8 +30,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
     @Override
     public boolean checkDoctorExists(String email) throws SQLException {
 
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection conn = databaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
         Statement statement = conn.createStatement();
         ResultSet rS = null;
 

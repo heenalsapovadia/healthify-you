@@ -21,8 +21,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	@Override
 	public Map<String, List<PharmaInvoice>> getInvoiceDetailsByDate(Date date) {
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection conn = databaseConnection.loadDatabaseConnection();
+		Connection conn = DatabaseConnection.getConnection();
 		ResultSet rs = null;
 		Map<String, List<PharmaInvoice>> invoicesMap = new HashMap<>();
 		StringBuilder sql = new StringBuilder();

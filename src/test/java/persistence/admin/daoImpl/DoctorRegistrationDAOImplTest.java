@@ -16,6 +16,7 @@ public class DoctorRegistrationDAOImplTest {
     public void updateDoctorDetails() throws SQLException {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
         DoctorRegistration doc = new DoctorRegistration();
+        DatabaseConnection.loadDatabaseConnection();
 
         doc.setFirstName("Karolina");
         doc.setLastName("Blix");
@@ -33,15 +34,17 @@ public class DoctorRegistrationDAOImplTest {
     @Test
     public void checkDoctorExists() throws SQLException {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
-        assertTrue(doctorRegistrationDAOImpl.checkDoctorExists("karolina@healthifyyou.com"));
+        DatabaseConnection.loadDatabaseConnection();
 
+        assertTrue(doctorRegistrationDAOImpl.checkDoctorExists("karolina@healthifyyou.com"));
     }
 
     @Test
     public void checkDoctorNotExists() throws SQLException {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
-        assertFalse(doctorRegistrationDAOImpl.checkDoctorExists("karolina123456@healthifyyou.com"));
+        DatabaseConnection.loadDatabaseConnection();
 
+        assertFalse(doctorRegistrationDAOImpl.checkDoctorExists("karolina123456@healthifyyou.com"));
     }
 
 

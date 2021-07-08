@@ -197,6 +197,8 @@ public class DoctorRegistrationUtilImplTest {
 
     @Test
     public void validateCorrectEmail() {
+        DatabaseConnection.loadDatabaseConnection();
+
         String email1 = "karolina12@healthifyyou.com";
         String email2 = "karolina_blix@healthifyyou.com";
         DoctorRegistrationUtilImpl doc = new DoctorRegistrationUtilImpl();
@@ -208,6 +210,8 @@ public class DoctorRegistrationUtilImplTest {
 
     @Test
     public void validateIncorrectEmail() {
+        DatabaseConnection.loadDatabaseConnection();
+
         String email1 = "karolina12@gmail.com";
         String email2 = "karolinahealthifyyou.com";
         String email3 = "karolinahealthifyyoucom";
