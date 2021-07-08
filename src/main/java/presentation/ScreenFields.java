@@ -25,4 +25,12 @@ public class ScreenFields {
 	public static final String total = "Total Amount";
 	public static final String grandTotal = "Grand Total";
 	public static final String descriptionExtras = "(Name, Dosage, Manufacturer)";
+
+	public static final String appointmentId = "Appointment ID";
+	public static final String medicineNumber = "Number of medicines to prescribe";
+	public static final String medicineName = "Medicine Name";
+	public static final String morningDose = "Morning Dose";
+	public static final String afternoonDose = "Afternoon Dose";
+	public static final String eveningDose = "Evening Dose";
+	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
 }
