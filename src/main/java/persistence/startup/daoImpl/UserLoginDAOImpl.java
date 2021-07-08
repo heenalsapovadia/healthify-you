@@ -8,13 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import persistence.startup.dao.UserLoginDAO;
+import persistence.startup.model.Login;
 import presentation.startup.DatabaseConnection;
 import presentation.startup.SHA_Hash;
 
 public class UserLoginDAOImpl implements UserLoginDAO {
 
 	@Override
-	public String GetuserDetails(String userId,String password) {
+	public String GetuserDetails(Login l) {
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection conn = databaseConnection.loadDatabaseConnection();
 		SHA_Hash sha= new SHA_Hash();
@@ -26,15 +27,16 @@ public class UserLoginDAOImpl implements UserLoginDAO {
             
                 try {
 					preparedStatement = conn.prepareStatement(query);
-				    preparedStatement.setString(1, userId);
+				    preparedStatement.setString(1, l.getUserEmail());
                     resultSet = preparedStatement.executeQuery();
                     if(resultSet.first()) {
                     	String pwd = resultSet.getObject(2).toString();
                         String userType = resultSet.getObject(3).toString();
-                        String hashedpassword=sha.getSHA(password);
+                        String hashedpassword=sha.getSHA(l.getUserPassword());
                         if(!hashedpassword.equals(pwd))
                         	return "Incorrect Password!";
                         else
+                        	
                         	return "Successfully logged in " ;
                     	
                     }

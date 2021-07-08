@@ -1,7 +1,9 @@
 package persistence.startup.dao;
 
+import persistence.startup.model.Login;
+
 public interface UserLoginDAO {
-   public String GetuserDetails (String userID, String password);
+   public String GetuserDetails (Login l);
 	   
    
 }
