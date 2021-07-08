@@ -40,4 +40,17 @@ public class ScreenFields {
 	public static final String afternoonDose = "Afternoon Dose";
 	public static final String eveningDose = "Evening Dose";
 	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
+
+	/* Doctor registration screen fields */
+	public static final String emailInput = "Enter your email address";
+	public static final String firstNameInput = "Enter your first name";
+	public static final String lastNameInput = "Enter your first name";
+	public static final String passwordInput = "Enter your password! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
+	public static final String joiningDateInput = "Enter your joining date (YYYY-MM-DD)";
+	public static final String degreeInput = "Enter your graduation degree";
+	public static final String specializationInput = "Enter your specialization (if any, NA if not applicable)";
+	public static final String birthDateInput = "Enter your birth date (YYYY-MM-DD)";
+	public static final String contactInput = "Enter your contact number (902######)";
+	public static final String cityInput = "Enter your city of residence";
+
 }

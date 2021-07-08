@@ -16,4 +16,7 @@ public class CommonErrors {
 	public static final String greaterDate = "Date greater than today!";
 
 	public static final String invalidAppointmentId = "INVALID Appointment Id entered, Please try again...";
+
+	public static final String emailError = "Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)";
+
 }

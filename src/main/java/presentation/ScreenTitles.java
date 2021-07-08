@@ -31,4 +31,9 @@ public class ScreenTitles {
 	
 	/* Patient Registration screen title */
 	public static final String registration= "Registration for patients of the hospital";
+
+	/* Patient Registration screen title */
+	public static final String doctorRegistration= "Registration for doctors of the hospital";
+
+
 }
