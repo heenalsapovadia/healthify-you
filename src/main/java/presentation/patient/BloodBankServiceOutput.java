@@ -6,8 +6,11 @@ import persistence.doctor.model.Appointment;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import persistence.patient.dao.RegistrationDAO;
 import persistence.patient.daoImpl.RegistrationDAOImpl;
+import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
+import persistence.patient.util.BloodBankServiceUtil;
 import persistence.patient.util.RegistrationUtil;
+import persistence.patient.utilImpl.BloodBankUtilImpl;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
 import persistence.startup.dao.UserLoginDAO;
 import persistence.startup.daoImpl.UserLoginDAOImpl;
@@ -44,46 +47,52 @@ public class BloodBankServiceOutput  {
             switch (userSelection) {
 
                 case 1:
-//                    // if (user is new)
-//                {
-//                    // if user is new register them
-//                    System.out.println("Checking Eligibility.....");
-//                    System.out.println("\n\n");
-//                    System.out.println("Eligible");
-//                    System.out.println("\n\n");
-//                    // System.out.println("Your Token is:" + random generated token);
-//                    System.out.println("\n\n");
-//                    System.out.println("We operate on Tuesday and Sundays. Visit anytime!");
-//                    return;
-//                }
+                    // if user is new register them
+                    BloodBankService bbservice = new BloodBankService();
+                    BloodBankServiceUtil  bbserviceutil = new BloodBankUtilImpl();
 
-//                // else(user is eligible)
-//                {
-//                    // check user eligibility
-//                    //if ((user previous donation date minimum 6 months) |(report = normal))
-////                    {
-////                        //System.out.println("Checking Eligibility.....");
-////
-////                    }
-//                  }
-                    //else{
-//                    System.out.println("Checking Eligibility.....");
-//                    System.out.println("\n\n");
-//                    System.out.println("Eligible");
-//                    System.out.println("\n\n");
-//                    //System.out.println("Your Token is:" + random generated token);
-//                    System.out.println("\n\n");
-//                    System.out.println("We operate on Tuesday and Sundays. Visit anytime!");
-//                    return;
-//                    }
+                    if (bbservice.getPatientId() == Integer.parseInt("new"))
+                    {
+                        System.out.println("Checking Eligibility.....");
+                        System.out.println("\n\n");
+                        System.out.println("Eligible");
+                        System.out.println("\n\n");
+                        System.out.println("Your Token is:" + "random generated token");
+                        System.out.println("\n\n");
+                        System.out.println("We operate on Tuesday and Sundays. Visit anytime!");
+                        return;
+                    }
+                     else if (bbservice.getPatientId() == Integer.parseInt("exists"))
+                    {
+                     //check user eligibility
+                        //if ((user previous donation date minimum 6 months) |(report = normal))
+                        String normal = bbserviceutil.validatePatientReport("normal");
+                        if(bbserviceutil.validateDate(true)) // OR report = normal..
+                        {
+                            System.out.println("Checking Eligibility.....");
+                            System.out.println("\n\n");
+                            System.out.println("Eligible");
+                            System.out.println("\n\n");
+                            System.out.println("Your Token is:" + "random generated token");
+                            System.out.println("\n\n");
+                            System.out.println("We operate on Tuesday and Sundays. Visit anytime!");
+                            return;
+                        }
+                    }
+                    else{
+                    System.out.println("Checking Eligibility.....");
+                    System.out.println("\n\n");
+                    System.out.println(" Not Eligible");
+                    System.out.println("\n\n");
+                    return;
+                    }
 
-                // case 2:
-                // calling database class
-                // if(no records found)
-//                {
-//                    System.out.println("No donation records found:");
-//
-//                }
+                case 2:
+                // calling database class and checking if donation records exits then display previous records
+
+                case 3:
+                    System.out.println("EXIT!");
+                    return;
             }
             }
         }
