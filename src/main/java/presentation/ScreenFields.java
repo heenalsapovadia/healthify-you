@@ -52,5 +52,9 @@ public class ScreenFields {
 	public static final String birthDateInput = "Enter your birth date (YYYY-MM-DD)";
 	public static final String contactInput = "Enter your contact number (902######)";
 	public static final String cityInput = "Enter your city of residence";
-
+	
+    /* Login screen fields */
+	public static final String emailIdOutput= "Email-ID";
+	public static final String passwordOutput= "Password";
+	public static final String gender= "Enter your Gender (M/F/O)";
 }
