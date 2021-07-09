@@ -1,9 +1,28 @@
 package persistence.doctor.utilImpl;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
+import presentation.startup.DatabaseConnection;
 
-public class PrescriptionValidationUtilImplTest extends TestCase {
+public class PrescriptionValidationUtilImplTest {
 
-    public void testValidateAppointmentId() {
+    @Test
+    public void testValidateAppointmentId_Valid() {
+        DatabaseConnection.loadDatabaseConnection();
+
+        // set current doctor
+
+        PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();
+        Assert.assertNotNull(prescriptionValidationUtil.validateAppointmentId(12));
+    }
+
+    @Test
+    public void testValidateAppointmentId_Invalid() {
+        DatabaseConnection.loadDatabaseConnection();
+
+        // set current doctor
+
+        PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();
+        Assert.assertNull(prescriptionValidationUtil.validateAppointmentId(13));
     }
 }
