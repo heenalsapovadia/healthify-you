@@ -16,7 +16,27 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
         Statement statement = conn.createStatement();
         ResultSet rS = null;
 
-        return null;
+        String sql = "select doctor_id from doctor_symptoms where symptom = \"" +symptom+ "\"" + ";";
+
+        try {
+            /* retrieves doctor list for the symptoms */
+            rS = statement.executeQuery(sql);
+
+            ArrayList<Integer> doctorIDList = new ArrayList<>();
+            while (rS.next()) {
+                doctorIDList.add(rS.getInt("doctor_id"));
+            }
+
+            for(Integer i : doctorIDList) {
+                System.out.println(i);
+            }
+
+            return doctorIDList;
+
+        } catch (SQLException se) {
+            return null;
+        }
+
     }
 
 }
