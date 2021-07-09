@@ -5,6 +5,7 @@
 .idea
 /target
 healthifyyou.iml
+.DS_Store
 
 #Eclipse
 .classpath
