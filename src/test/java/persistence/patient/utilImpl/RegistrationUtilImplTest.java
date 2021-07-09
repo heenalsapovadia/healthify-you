@@ -10,13 +10,13 @@ public class RegistrationUtilImplTest {
 
 	@Test
 	public void testValidateCorrectDate() {
-		String date1 = "1997/09/12";
+		String date1 = "1997-09-12";
 		RegistrationUtilImpl register = new RegistrationUtilImpl();
 	    assertEquals(null, register.ValidateDate(date1));
 	}
 	@Test
 	public void testValidateIncorrectDate() {
-		String date1 = "1995-09-12";
+		String date1 = "1995/09/12";
 	    String date2 = "12-09-2019";
 	    String date3 = "12-09/2019";
 	    String date4 = "12/092019";

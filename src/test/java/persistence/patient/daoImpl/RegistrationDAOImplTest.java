@@ -44,6 +44,7 @@ public class RegistrationDAOImplTest {
 	public void testErrorInRegistration() {
 		Patient obj = new Patient();
 		RegistrationDAOImpl dao = new RegistrationDAOImpl();
+		DatabaseConnection.loadDatabaseConnection();
 		obj.setPatientName(PatientName);
 		obj.setPatientDob(PatientDob);
 		obj.setPatientContact(PatientContact);

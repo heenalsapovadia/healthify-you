@@ -7,10 +7,10 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 
 	@Override
 	public String ValidateDate(String Date) {
-		 String dateregex = "^[0-9]{4}/(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])$";  
+		 String dateregex = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";  
 		 Pattern pattern = Pattern.compile(dateregex);  
 		 Matcher matcher = pattern.matcher(Date);  
-		 if(matcher.matches()==false){
+		 if(matcher.matches()==false || Date == null || Date ==""){
 		
 			 return "The DOB is invalid.Please enter a valid DOB"; 
 		 }
@@ -39,7 +39,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 		 Pattern pattern = Pattern.compile(emailregex);  
 		 Matcher matcher = pattern.matcher(email);  
 		 
-		 if(matcher.matches()==false){
+		 if(matcher.matches()==false || email==null || email==""){
 		
 			 return "The email ID is invalid.Please enter a valid email address"; 
 		 }
@@ -55,7 +55,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 	                + "(?=\\S+$).{8,20}$";
 		  Pattern pattern = Pattern.compile(passwordregex);  
 		  Matcher matcher = pattern.matcher(password);  
-		  if(matcher.matches()==false){
+		  if(matcher.matches()==false || password==null || password==""){
 			
 			return "The password is invalid. Please enter a valid password"; 
 		  }
