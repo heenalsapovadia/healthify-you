@@ -25,7 +25,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 		ResultSet rs = null;
 		Map<String, List<PharmaInvoice>> invoicesMap = new HashMap<>();
 		StringBuilder sql = new StringBuilder();
-		sql.append("select * from pharma_supplies where pharma_bill_date = ?");
+		sql.append("select * from pharma_supplies where pharma_bill_date = ? order by pharma_billing_id asc");
 		try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
 			ps.setDate(1, date);
 			rs = ps.executeQuery();
