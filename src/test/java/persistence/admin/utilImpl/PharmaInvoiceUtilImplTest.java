@@ -1,0 +1,28 @@
+package persistence.admin.utilImpl;
+
+import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.Test;
+import persistence.admin.util.PharmaInvoiceUtil;
+
+public class PharmaInvoiceUtilImplTest {
+
+	@Test
+	public void testCalculateTotalAmount() {
+		PharmaInvoiceUtil util = new PharmaInvoiceUtilImpl();
+		double calculatedValue = util.calculateTotalAmount(155.76, 3);
+		assertEquals(467.28, calculatedValue, 0);
+	}
+
+	@Test
+	public void testCalculateGrandTotalAmount() {
+		PharmaInvoiceUtil util = new PharmaInvoiceUtilImpl();
+		List<Double> prices = new ArrayList<>();
+		prices.add(467.28);
+		prices.add(500.00);
+		double calculatedValue = util.calculateGrandTotalAmount(prices); 
+		assertEquals(967.28, calculatedValue, 0);
+	}
+
+}

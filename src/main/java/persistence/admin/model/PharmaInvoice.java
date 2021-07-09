@@ -18,14 +18,11 @@ public class PharmaInvoice {
 	private String pharmaAddress;
 	private String pharmaContact;
 	private String paymentMode;
-	private String createdOn;
 	private String itemName;
 	private String itemDosage;
 	private String itemManufacturer;
 	private int itemQuantity;
 	private double itemUnitPrice;
-	private String totalAmount;
-	private String grandTotal;
 	private Date date;
 	private Time time;
 	
@@ -59,12 +56,6 @@ public class PharmaInvoice {
 	public void setPaymentMode(String paymentMode) {
 		this.paymentMode = paymentMode;
 	}
-	public String getCreatedOn() {
-		return createdOn;
-	}
-	public void setCreatedOn(String createdOn) {
-		this.createdOn = createdOn;
-	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -95,18 +86,6 @@ public class PharmaInvoice {
 	public void setItemUnitPrice(double unitPrice) {
 		this.itemUnitPrice = unitPrice;
 	}
-	public String getTotalAmount() {
-		return totalAmount;
-	}
-	public void setTotalAmount(String totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-	public String getGrandTotal() {
-		return grandTotal;
-	}
-	public void setGrandTotal(String grandTotal) {
-		this.grandTotal = grandTotal;
-	}
 	public Date getDate() {
 		return date;
 	}
@@ -118,5 +97,31 @@ public class PharmaInvoice {
 	}
 	public void setTime(Time time) {
 		this.time = time;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj)
+			return true;
+		if(obj == null || getClass() != obj.getClass())
+			return false;
+		PharmaInvoice invoice = (PharmaInvoice) obj;
+		return compareAllFields(invoice);
+	}
+	
+	public boolean compareAllFields(PharmaInvoice invoice) {
+		return 
+				this.invoiceId == invoice.invoiceId && 
+				this.pharmaName.equals(invoice.pharmaName) &&
+				this.pharmaAddress.equals(invoice.pharmaAddress) &&
+				this.pharmaContact.equals(invoice.pharmaContact) &&
+				this.paymentMode.equals(invoice.paymentMode) &&
+				this.itemName.equals(invoice.itemName) &&
+				this.itemDosage.equals(invoice.itemDosage) &&
+				this.itemManufacturer.equals(invoice.itemManufacturer) &&
+				this.itemQuantity == invoice.itemQuantity &&
+				this.itemUnitPrice == invoice.itemUnitPrice &&
+				this.date.equals(invoice.date) &&
+				this.time.equals(invoice.time);
 	}
 }
