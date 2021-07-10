@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface BloodBankServiceDAO {
     void insertBloodBankServiceDetails(List<BloodBankService> bloodBankServiceList);
+
 }
