@@ -57,7 +57,16 @@ public class ScreenFields {
 	public static final String emailIdOutput= "Email-ID";
 	public static final String passwordOutput= "Password";
 	public static final String gender= "Enter your Gender (M/F/O)";
+	public static final String getInput = "Enter your details below";
+	public static final String goBack = "Go back";
+	public static final String proceed ="Continue";
+	public static final String contactBeginWith = "The contact number should begin with 902";
+	public static final String contactLength = "Contact number should be 10 digits long!";
 
+	/*Immunization screenFields*/
+	public static final String month = "Month";
+	public static final String slots = "Slots assigned";
+	
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
 	public static final String selectionOption1= "1. Select the symptoms for recommendation";
@@ -70,5 +79,6 @@ public class ScreenFields {
 	public static final String symptomOption5= "5. Digestive issues";
 	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
 	public static final String recommendationInput= "Enter the number of recommendations";
-
+    
+	
 }
