@@ -119,4 +119,20 @@ public class DoctorRecommendationUtilImplTest {
 
     }
 
+    /* Recommendations - without ties of frequencies at the boundary and support 0 */
+    @Test
+    public void getDoctorRecommendations_CF4() {
+
+        DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
+        DatabaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
+
+        ArrayList<String> doctorIDList = new ArrayList<>();
+        doctorIDList.add("Samiksha Salgaonkar");
+
+        /* numRec is 1 */
+        assertEquals(doctorIDList, doctorRecommendationUtil.getDoctorRecommendations("Cough", 0, 1));
+
+    }
+
 }
