@@ -27,4 +27,21 @@ public class DoctorRecommendationUtilImplTest {
 
     }
 
+    @Test
+    public void getDoctorRecommendations_IV2() {
+
+        /* Input validations for numRec */
+        /* Incorrect inputs */
+
+        DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
+
+        /* numRec is 0 */
+        assertEquals(null, doctorRecommendationUtil.getDoctorRecommendations("Cough", 2, 0));
+
+        /* numRec is a negative number */
+        assertEquals(null, doctorRecommendationUtil.getDoctorRecommendations("Cough", 2, -4));
+
+    }
+
+
 }
