@@ -43,5 +43,19 @@ public class DoctorRecommendationUtilImplTest {
 
     }
 
+    @Test
+    public void getDoctorRecommendations_IV3() {
+
+        /* Input validations for support */
+        /* Incorrect inputs */
+
+        DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
+
+        /* support is a negative number */
+        assertEquals(null, doctorRecommendationUtil.getDoctorRecommendations("Cough", -2, 4));
+
+    }
+
+
 
 }
