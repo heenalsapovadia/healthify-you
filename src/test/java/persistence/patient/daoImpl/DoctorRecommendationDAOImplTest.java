@@ -140,4 +140,27 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /* Control Flow test cases for getDoctorName() method start here */
+
+    /* Test case for single doctor_id */
+    @Test
+    public void getDoctorName_CF1() {
+
+        /* Control Flow for passed parameter */
+
+        DatabaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
+        DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
+        ArrayList<Integer> doctorIDList = new ArrayList<>();
+
+        doctorIDList.add(2);
+
+        ArrayList<String> doctorList = new ArrayList<>();
+        doctorList.add("Samiksha Salgaonkar");
+
+        /* recf is an arraylist of doctor_id */
+        assertEquals(doctorList, doctorRecommendationDAOImpl.getDoctorName(doctorIDList));
+
+    }
+
 }
