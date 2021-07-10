@@ -163,4 +163,31 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /* Test case for multiple doctor_id(s) */
+    @Test
+    public void getDoctorName_CF2() {
+
+        /* Control Flow for passed parameter */
+
+        DatabaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
+        DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
+        ArrayList<Integer> doctorIDList = new ArrayList<>();
+
+        doctorIDList.add(2);
+        doctorIDList.add(3);
+        doctorIDList.add(4);
+        doctorIDList.add(6);
+
+        ArrayList<String> doctorList = new ArrayList<>();
+        doctorList.add("Samiksha Salgaonkar");
+        doctorList.add("heenal sapovadia");
+        doctorList.add("Karolina Blix");
+        doctorList.add("christine hanstrom");
+
+        /* recf is an arraylist of doctor_id */
+        assertEquals(doctorList, doctorRecommendationDAOImpl.getDoctorName(doctorIDList));
+
+    }
+
 }
