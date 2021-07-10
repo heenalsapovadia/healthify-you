@@ -1,6 +1,11 @@
 package persistence.patient.utilImpl;
 
 import org.junit.Test;
+import presentation.startup.DatabaseConnection;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class DoctorRecommendationUtilImplTest {
@@ -57,5 +62,25 @@ public class DoctorRecommendationUtilImplTest {
     }
 
 
+    /* Control Flow test cases start here */
+
+    /* Recommendations - without any ties of frequencies at the boundary */
+    @Test
+    public void getDoctorRecommendations_CF1() {
+
+        DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
+        DatabaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
+
+        ArrayList<String> doctorIDList = new ArrayList<>();
+        doctorIDList.add("Samiksha Salgaonkar");
+        doctorIDList.add("heenal sapovadia");
+        doctorIDList.add("Karolina Blix");
+        doctorIDList.add("christine hanstrom");
+
+        /* numRec is 4 */
+        assertEquals(doctorIDList, doctorRecommendationUtil.getDoctorRecommendations("Cough", 2, 4));
+
+    }
 
 }
