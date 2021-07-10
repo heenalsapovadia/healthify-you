@@ -39,4 +39,18 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
 
     }
 
+    @Override
+    public ArrayList<String> getDoctorName(ArrayList<Integer> recf) {
+
+        if(recf == null) {
+            return null;
+        }
+
+        if(recf != null && recf.size() == 0) {
+            return null;
+        }
+
+        return null;
+    }
+
 }
