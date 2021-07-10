@@ -50,7 +50,47 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
             return null;
         }
 
-        return null;
+        String inClause = "";
+        int size = recf.size();
+        for(int i =0; i < size; i++) {
+            if(i <= size-2) {
+                inClause = inClause + recf.get(i) + ",";
+            } else {
+                inClause = inClause + recf.get(i);
+            }
+        }
+
+        System.out.println(inClause);
+
+        Connection conn = DatabaseConnection.getConnection();
+        Statement statement = null;
+        try {
+            statement = conn.createStatement();
+        } catch (SQLException throwables) {
+            System.err.println("Database connection failed!");
+            return null;
+        }
+        ResultSet rS = null;
+
+        String sql = "select first_name, last_name from doctors where doctor_id in (" +inClause+ ");";
+        System.out.println(sql);
+
+        try {
+            /* retrieves doctor list for the symptoms */
+            rS = statement.executeQuery(sql);
+
+            ArrayList<String> doctorList = new ArrayList<>();
+            while (rS.next()) {
+                String name = "";
+                name = rS.getString("first_name") + " " +rS.getString("last_name");
+                doctorList.add(name);
+            }
+
+            return doctorList;
+
+        } catch (SQLException se) {
+            return null;
+        }
     }
 
 }
