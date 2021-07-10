@@ -83,4 +83,22 @@ public class DoctorRecommendationUtilImplTest {
 
     }
 
+    /* Recommendations - with ties of frequencies at the boundary (numRec includes the tied entries) */
+    @Test
+    public void getDoctorRecommendations_CF2() {
+
+        DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
+        DatabaseConnection.loadDatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection();
+
+        ArrayList<String> doctorIDList = new ArrayList<>();
+        doctorIDList.add("Samiksha Salgaonkar");
+        doctorIDList.add("heenal sapovadia");
+        doctorIDList.add("Karolina Blix");
+
+        /* numRec is 3 */
+        assertEquals(doctorIDList, doctorRecommendationUtil.getDoctorRecommendations("Cough", 2, 3));
+
+    }
+
 }
