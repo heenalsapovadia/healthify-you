@@ -27,10 +27,6 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
                 doctorIDList.add(rS.getInt("doctor_id"));
             }
 
-            for(Integer i : doctorIDList) {
-                System.out.println(i);
-            }
-
             return doctorIDList;
 
         } catch (SQLException se) {
@@ -60,8 +56,6 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
             }
         }
 
-        System.out.println(inClause);
-
         Connection conn = DatabaseConnection.getConnection();
         Statement statement = null;
         try {
@@ -73,7 +67,6 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
         ResultSet rS = null;
 
         String sql = "select first_name, last_name from doctors where doctor_id in (" +inClause+ ");";
-        System.out.println(sql);
 
         try {
             /* retrieves doctor list for the symptoms */
