@@ -38,4 +38,6 @@ public class ScreenTitles {
 	/* Doctor Registration screen title */
 	public static final String doctorRecommendation= "Recommendations for Doctor based on symptoms";
 
+	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
+
 }
