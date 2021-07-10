@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import persistence.doctor.model.Doctor;
 import persistence.startup.dao.UserLoginDAO;
 import persistence.startup.model.Login;
+import persistence.startup.util.UserUtil;
+import persistence.startup.utilImpl.UserUtilImpl;
 import presentation.startup.DatabaseConnection;
 import presentation.startup.SHA_Hash;
 
@@ -34,9 +37,11 @@ public class UserLoginDAOImpl implements UserLoginDAO {
                         String hashedpassword=sha.getSHA(l.getUserPassword());
                         if(!hashedpassword.equals(pwd))
                         	return "Incorrect Password!";
-                        else
-                        	
-                        	return "Successfully logged in!" ;
+                        else {
+							UserUtil userUtil = new UserUtilImpl();
+							userUtil.loadUser(l.getUserEmail(), userType);
+							return "Successfully logged in!";
+						}
                     	
                     }
                     else{

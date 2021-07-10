@@ -1,5 +1,7 @@
 package persistence.doctor.model;
 
+import persistence.doctor.daoImpl.DoctorDAOImpl;
+
 import java.util.Date;
 
 public class Doctor {
@@ -10,9 +12,24 @@ public class Doctor {
     String degree;
     String specialization;
     Date birth_date;
-    int contact_number;
+    String contact_number;
     String city;
     String email;
+
+    private static Doctor doctor;
+
+    private Doctor(){}
+
+    public static Doctor getDoctor(){
+        return doctor;
+    }
+
+    public static void setDoctor(String email){
+        doctor = new Doctor();
+        doctor.setEmail(email);
+        DoctorDAOImpl doctorDAO = new DoctorDAOImpl();
+        doctor = doctorDAO.getDoctor(doctor);
+    }
 
     public int getDoctor_id() {
         return doctor_id;
@@ -70,11 +87,11 @@ public class Doctor {
         this.birth_date = birth_date;
     }
 
-    public int getContact_number() {
+    public String getContact_number() {
         return contact_number;
     }
 
-    public void setContact_number(int contact_number) {
+    public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
     }
 
