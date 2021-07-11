@@ -6,6 +6,7 @@ import persistence.startup.model.Login;
 import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
 import presentation.CommonConstants;
+import presentation.ScreenFields;
 import presentation.ScreenTitles;
 import presentation.patient.RegisterPatientOutput;
 
@@ -20,10 +21,10 @@ public class UserLogin{
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
 		System.out.println();
-		System.out.print("Enter email : ");
+		System.out.print(ScreenFields.emailInput);
         Scanner sc = new Scanner(System.in);
         String userId = sc.next();
-        System.out.print("Enter password : ");
+        System.out.print(ScreenFields.passwordInput);
         String password = sc.next();
         int length= password.length();
         String hidden = "";
@@ -35,17 +36,17 @@ public class UserLogin{
         l.setUserEmail(userId);
         
         System.out.println();
-        System.out.println("Email : "+userId);
-        System.out.println("Password : "+hidden);
+        System.out.println(ScreenFields.emailIdOutput+"="+userId);
+        System.out.println(ScreenFields.passwordOutput+"="+hidden);
         System.out.println();
         System.out.println();
 		int sel;
 		while(true){
-			System.out.println("1. Continue");
+			System.out.println("1. "+ScreenFields.proceed);
 			System.out.println("2. Patient Sign Up");
-			System.out.println("3. Exit");
+			System.out.println("3. " +ScreenFields.exit);
 		
-			System.out.println("Please enter your selection below:");
+			System.out.println(ScreenFields.selection);
 			sel = sc.nextInt();
 			switch(sel){
 			case 1:
@@ -70,7 +71,7 @@ public class UserLogin{
 			    obj.RegisterPatient(); 
 				break;
 			case 3:
-				System.out.print("EXIT!");
+				System.out.print(ScreenFields.exit);
 				return false;
 			
 	    	}

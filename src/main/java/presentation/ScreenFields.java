@@ -52,5 +52,33 @@ public class ScreenFields {
 	public static final String birthDateInput = "Enter your birth date (YYYY-MM-DD)";
 	public static final String contactInput = "Enter your contact number (902######)";
 	public static final String cityInput = "Enter your city of residence";
+	
+    /* Login screen fields */
+	public static final String emailIdOutput= "Email-ID";
+	public static final String passwordOutput= "Password";
+	public static final String gender= "Enter your Gender (M/F/O)";
+	public static final String getInput = "Enter your details below";
+	public static final String goBack = "Go back";
+	public static final String proceed ="Continue";
+	public static final String contactBeginWith = "The contact number should begin with 902";
+	public static final String contactLength = "Contact number should be 10 digits long!";
 
+	/*Immunization screenFields*/
+	public static final String month = "Month";
+	public static final String slots = "Slots assigned";
+	
+	/* Doctor recommendation screen fields */
+	public static final String selectionField= "Make selection from the options below:\n";
+	public static final String selectionOption1= "1. Select the symptoms for recommendation";
+	public static final String selectionOption2= "2. Exit";
+	public static final String symptomSelectionField= "Select one of the options below:";
+	public static final String symptomOption1= "1. Cough";
+	public static final String symptomOption2= "2. Cold";
+	public static final String symptomOption3= "3. Fever";
+	public static final String symptomOption4= "4. Nausea";
+	public static final String symptomOption5= "5. Digestive issues";
+	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
+	public static final String recommendationInput= "Enter the number of recommendations";
+    
+	
 }

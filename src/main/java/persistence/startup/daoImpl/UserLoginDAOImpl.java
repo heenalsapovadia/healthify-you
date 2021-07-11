@@ -36,7 +36,7 @@ public class UserLoginDAOImpl implements UserLoginDAO {
                         	return "Incorrect Password!";
                         else
                         	
-                        	return "Successfully logged in " ;
+                        	return "Successfully logged in!" ;
                     	
                     }
                     else{
