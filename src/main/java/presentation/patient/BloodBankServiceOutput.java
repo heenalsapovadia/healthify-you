@@ -48,6 +48,13 @@ public class BloodBankServiceOutput  {
                         // Check eligibility
                         Boolean donatedInLastSixMonths = false;
                         for (BloodBankService service : donations) {
+                            int m1 = service.getDate().getYear() * 12 + service.getDate().getMonth();
+                            Date currentDate = new Date();
+                            int m2 = currentDate.getYear() * 12 + currentDate.getMonth();
+                            // if greater than 6 months register for blood donation
+                            if(m2 - m1 +1 <= 6){
+                                donatedInLastSixMonths = true;
+                            }
                         }
                         if (!donatedInLastSixMonths) {
                             return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);

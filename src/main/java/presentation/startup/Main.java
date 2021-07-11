@@ -24,10 +24,10 @@ public class Main {
 		}
 		try {
 			if(conn.isValid(2000)) {
+				LOGGER.log(Level.INFO, "Connection Successful!");
 
 				// testing the dummy code in main for BloodBankDonation implementation
 				// Dummy code start
-				LOGGER.log(Level.INFO, "Connection Successful!");
 				RegistrationDAOImpl registrationImplementation = new RegistrationDAOImpl();
 				Patient currentPatient = new Patient();
 				currentPatient.setPatientName("Saloni Ray");
@@ -39,6 +39,7 @@ public class Main {
 				registrationImplementation.addPatientDetails(currentPatient);
 				BloodBankServiceOutput bank = new BloodBankServiceOutput();
 				bank.bloodBankService(currentPatient, "B+");
+
 				// Dummy code end
 				////
 			}
