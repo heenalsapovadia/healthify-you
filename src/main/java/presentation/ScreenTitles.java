@@ -40,4 +40,6 @@ public class ScreenTitles {
 
 	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
 
+	public static final String bloodBankService = "Register for Blood Donation";
+
 }

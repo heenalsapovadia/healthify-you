@@ -12,6 +12,7 @@ public interface BloodBankServiceUtil {
     // to check if the report of the patient is normal
     public String validatePatientReport(String s);
 
-    //public String getRandomStringForDonationId();
     // above method for generating token
+    public String getRandomStringForDonationId();
+
 }
