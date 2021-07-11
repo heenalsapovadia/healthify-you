@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class BloodBankService {
 
-    private int patientId;
-    private int DonationId;
+    private String patientId;
+    private String DonationId;
     private String BloodGrp;
     private Date date;
 
-    public int getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public int getDonationId() {
+    public String getDonationId() {
         return DonationId;
     }
 
-    public void setDonationId(int donationId) {
+    public void setDonationId(String donationId) {
         DonationId = donationId;
     }
 
@@ -40,5 +40,4 @@ public class BloodBankService {
     public void setDate(Date date) {
         this.date = date;
     }
-
 }

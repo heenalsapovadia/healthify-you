@@ -1,9 +1,12 @@
 package persistence.patient.dao;
 import persistence.patient.model.BloodBankService;
+import persistence.patient.model.Patient;
 
 import java.util.List;
 
 public interface BloodBankServiceDAO {
-    void insertBloodBankServiceDetails(List<BloodBankService> bloodBankServiceList);
+    void insertBloodBankServiceDetails(BloodBankService bloodBankService);
+
+    List<BloodBankService> getAllBloodDonationsForPatient(Patient patient);
 
 }

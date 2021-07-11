@@ -2,7 +2,9 @@ package persistence.patient.utilImpl;
 
 import persistence.patient.util.BloodBankServiceUtil;
 
-public class BloodBankUtilImpl implements BloodBankServiceUtil {
+import java.security.SecureRandom;
+
+public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
 
 
     @Override
