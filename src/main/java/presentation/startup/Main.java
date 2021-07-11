@@ -28,17 +28,17 @@ public class Main {
 
 				// testing the dummy code in main for BloodBankDonation implementation
 				// Dummy code start
-				RegistrationDAOImpl registrationImplementation = new RegistrationDAOImpl();
-				Patient currentPatient = new Patient();
-				currentPatient.setPatientName("Saloni Ray");
-				currentPatient.setPatientAddress("India");
-				currentPatient.setPatientDob("08201996");
-				currentPatient.setPatientGender("f");
-				currentPatient.setPassword("parrrot88");
-				currentPatient.setPatientEmail("salonimr");
-				registrationImplementation.addPatientDetails(currentPatient);
-				BloodBankServiceOutput bank = new BloodBankServiceOutput();
-				bank.bloodBankService(currentPatient, "B+");
+//				RegistrationDAOImpl registrationImplementation = new RegistrationDAOImpl();
+//				Patient currentPatient = new Patient();
+//				currentPatient.setPatientName("Saloni Ray");
+//				currentPatient.setPatientAddress("India");
+//				currentPatient.setPatientDob("08201996");
+//				currentPatient.setPatientGender("f");
+//				currentPatient.setPassword("parrrot88");
+//				currentPatient.setPatientEmail("salonimr");
+//				registrationImplementation.addPatientDetails(currentPatient);
+//				BloodBankServiceOutput bank = new BloodBankServiceOutput();
+//				bank.bloodBankService(currentPatient, "B+");
 
 				// Dummy code end
 				////
