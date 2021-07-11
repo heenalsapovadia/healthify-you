@@ -20,4 +20,6 @@ public class CommonErrors {
 	public static final String invalidSelection = "Invalid Selection! Enter a valid value!";
 	public static final String errorMessage= "Error Occured";
 
+	public static final String invalidCheckUpId = "Invalid Lab CheckUp Id, Enter Again";
+
 }

@@ -33,6 +33,7 @@ public class ScreenFields {
 	public static final String selection = "Please enter your selection below:";
 	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
 
+	/* Medicine Prescription fields */
 	public static final String appointmentId = "Appointment ID";
 	public static final String medicineNumber = "Number of medicines to prescribe";
 	public static final String medicineName = "Medicine Name";
@@ -71,4 +72,9 @@ public class ScreenFields {
 	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
 	public static final String recommendationInput= "Enter the number of recommendations";
 
+	/* Lab Test Booking fields */
+	public static final String enterOption = "Enter your option";
+	public static final String viewDetails = "View more details";
+	public static final String backToBooking = "Go back to booking";
+	public static final String checkId = "Enter the health check number";
 }
