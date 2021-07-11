@@ -37,10 +37,7 @@ public class InvoiceOutput {
 						parseDateInput(sc);
 					}
 					break;
-					case 2: {
-						sc.close();
-						return;
-					}
+					case 2: {} break;
 				}
 			}
 			catch (IllegalArgumentException | InterruptedException e) {
@@ -51,8 +48,6 @@ public class InvoiceOutput {
 			}
 		}
 		while(sel != 2);
-		if(sc != null)
-			sc.close();
 	}
 	
 	private void parseDateInput(Scanner sc) throws InterruptedException, IllegalArgumentException {

@@ -39,5 +39,11 @@ public class ScreenTitles {
 	public static final String doctorRecommendation= "Recommendations for Doctor based on symptoms";
 
 	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
+	
+	/* Main Screen Title */
+	public static final String mainScreen = "Main Menu";
+	
+	/* Admin Dashboard Title */
+	public static final String adminDashboard = "Admin Dashboard";
 
 }
