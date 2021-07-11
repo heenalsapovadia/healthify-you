@@ -8,6 +8,7 @@ import persistence.patient.utilImpl.DoctorRecommendationUtilImpl;
 import presentation.CommonConstants;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static presentation.CommonErrors.emailError;
@@ -73,9 +74,20 @@ public class DoctorRecommendationOutput {
                 System.out.println(recommendationInput);
                 numRec = sc1.nextInt();
 
+                ArrayList<String> doctorList = new ArrayList<>();
                 DoctorRecommendationUtilImpl doctorRecommendationUtilImpl = new DoctorRecommendationUtilImpl();
-                doctorRecommendationUtilImpl.getDoctorRecommendations(symptom, support, numRec);
+                doctorList = doctorRecommendationUtilImpl.getDoctorRecommendations(symptom, support, numRec);
 
+                if(doctorList != null){
+
+                    System.out.println();
+                    System.out.println("You may visit the following doctor(s) for :" +symptom);
+
+                    for(String doctorName : doctorList) {
+                        System.out.println(doctorName);
+                    }
+
+                }
 
             } else if (choice == 2) {
                 System.out.println("Thank you for using our service!");
