@@ -1,7 +1,10 @@
 package presentation.startup;
 
 import persistence.patient.daoImpl.BloodBankServiceDAOimpl;
+import persistence.patient.daoImpl.RegistrationDAOImpl;
 import persistence.patient.model.BloodBankService;
+import persistence.patient.model.Patient;
+import presentation.patient.BloodBankServiceOutput;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -21,7 +24,23 @@ public class Main {
 		}
 		try {
 			if(conn.isValid(2000)) {
+
+				// testing the dummy code in main for BloodBankDonation implementation
+				// Dummy code start
 				LOGGER.log(Level.INFO, "Connection Successful!");
+				RegistrationDAOImpl registrationImplementation = new RegistrationDAOImpl();
+				Patient currentPatient = new Patient();
+				currentPatient.setPatientName("Saloni Ray");
+				currentPatient.setPatientAddress("India");
+				currentPatient.setPatientDob("08201996");
+				currentPatient.setPatientGender("f");
+				currentPatient.setPassword("parrrot88");
+				currentPatient.setPatientEmail("salonimr");
+				registrationImplementation.addPatientDetails(currentPatient);
+				BloodBankServiceOutput bank = new BloodBankServiceOutput();
+				bank.bloodBankService(currentPatient, "B+");
+				// Dummy code end
+				////
 			}
 		} catch (SQLException e) {
 			LOGGER.log(Level.INFO, e.toString());

@@ -2,6 +2,9 @@ package presentation.patient;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import persistence.admin.util.BloodBankRecommendationUtil;
+import persistence.admin.utilImpl.BloodBankRecommendationUtilImpl;
 import persistence.patient.daoImpl.BloodBankServiceDAOimpl;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
@@ -38,17 +41,16 @@ public class BloodBankServiceOutput  {
                     List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
                     if (donations.size() == 0) {
                         System.out.println("No Previous Donations for Patient!");
-                        System.out.println("Registering Patient! Below Token Provided for the New Registration");
-                        // if user is new register them
-                        //return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
+                        System.out.println("Registering Patient! Below Token Provided for the New Registration:");
+                        //need to generate token
+                        return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
                     } else {
                         // Check eligibility
                         Boolean donatedInLastSixMonths = false;
                         for (BloodBankService service : donations) {
-
                         }
                         if (!donatedInLastSixMonths) {
-                            //return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
+                            return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
                         } else {
                             System.out.println("Patient has already Donated in last 6 months and is not eligible.");
                             return null;
@@ -72,7 +74,17 @@ public class BloodBankServiceOutput  {
         }
     }
 
-//    public static void registerPatientForBloodDonation(BloodBankServiceDAOimpl bloodBankDatabase, Patient patient, String bloodGroup) {
-//
-//    }
+    public static String registerPatientForBloodDonation(BloodBankServiceDAOimpl bloodBankDatabase, Patient patient, String bloodGroup) {
+        BloodBankService bbservice = new BloodBankService();
+        BloodBankRecommendationUtilImpl serviceUtil = new BloodBankRecommendationUtilImpl();
+        String donationId = serviceUtil.getRandomStringForDonationId();
+        bbservice.setBloodGrp(bloodGroup);
+        bbservice.setPatientId(patient.getPatientEmail());
+        Date d1 = new Date();
+        bbservice.setDate(d1);
+        bbservice.setDonationId(donationId);
+        bloodBankDatabase.insertBloodBankServiceDetails(bbservice);
+        System.out.println("Patient Donation Id - \" + donationId");
+        return donationId;
+    }
 }
