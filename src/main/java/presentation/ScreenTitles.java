@@ -46,4 +46,6 @@ public class ScreenTitles {
 	/* Admin Dashboard Title */
 	public static final String adminDashboard = "Admin Dashboard";
 
+	public static final String bloodBankService = "Register for Blood Bank";
+
 }
