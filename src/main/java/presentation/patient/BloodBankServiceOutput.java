@@ -37,29 +37,33 @@ public class BloodBankServiceOutput  {
             switch (userSelection) {
                 case 1: {
                     BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
+                    BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
                     List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
+                    BloodBankServiceUtilImpl service1 = new BloodBankServiceUtilImpl();
                     if (donations.size() == 0) {
-                        System.out.println("No previous donations found for the Patient!");
-                        System.out.println("Registering Patient! Below Token Provided for the New Registration:");
-                        //need to generate token
+                        System.out.println("Checking Eligibility....");
+                        System.out.println("Eligible...No previous donations found for the Patient!");
+                        System.out.println("Registering Patient!");
+                        System.out.println("Your Token is: " + bloodBankServiceUtil.getTokenIdForDonation() );
+                        System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
                         return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
                     } else {
                         // Check eligibility
                         Boolean donatedInLastSixMonths = false;
-                        for (BloodBankService service : donations) {
+                        for ( BloodBankService service : donations ) {
                             int m1 = service.getDate().getYear() * 12 + service.getDate().getMonth();
                             Date currentDate = new Date();
                             int m2 = currentDate.getYear() * 12 + currentDate.getMonth();
                             // if greater than 6 months register for blood donation
-                            if(m2 - m1 +1 <= 6){
+                            if (m2 - m1 + 1 <= 6) {
                                 donatedInLastSixMonths = true;
                             }
-                        }
-                        if (!donatedInLastSixMonths) {
-                            return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
-                        } else {
-                            System.out.println("Patient has already Donated in last 6 months and is not eligible.");
-                            break;
+                            if (!donatedInLastSixMonths) {
+                                return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
+                            } else {
+                                System.out.println("Patient has already Donated in last 6 months and is not eligible.");
+                                break;
+                            }
                         }
                     }
                 }
@@ -68,7 +72,9 @@ public class BloodBankServiceOutput  {
                     BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
                     List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
                     for (BloodBankService service : donations) {
-                        System.out.println("Patient Id - " + service.getPatientId() + " - Donation Id - " + service.getDonationId() + " - Data - " + service.getDate() + " - Blood group - " + service.getBloodGrp());
+                        System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab +  CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar +"Blood group" +CommonConstants.singleTab);
+                        System.out.println(service.getPatientId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab +CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
+
                     }
                     break;
                 }
@@ -90,7 +96,6 @@ public class BloodBankServiceOutput  {
         bbservice.setDate(d1);
         bbservice.setDonationId(donationId);
         bloodBankDatabase.insertBloodBankServiceDetails(bbservice);
-        System.out.println("Patient Donation Id - \" + donationId");
         return donationId;
     }
 }
