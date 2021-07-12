@@ -81,6 +81,7 @@ public class ApplicationOutput {
 			System.exit(0);
 		}
 		else {
+			System.err.println(CommonErrors.invalidSelection);
 			isLoggedIn = loadMainScreenContent();
 		}
 		return isLoggedIn;
