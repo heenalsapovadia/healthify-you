@@ -2,9 +2,7 @@ package presentation.admin;
 
 import java.sql.Date;
 import java.util.Calendar;
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import presentation.CommonConstants;
 import presentation.CommonErrors;
@@ -30,6 +28,7 @@ public class InvoiceOutput {
 				case 1: parseDateInput(new Scanner(System.in));
 						break;
 				case 2: return;
+				default: System.err.println(CommonErrors.invalidSelection);
 			}
 		}
 		while(sel != 2);
@@ -44,7 +43,6 @@ public class InvoiceOutput {
 			sel = sc.nextInt();
 		else {
 			System.err.println(CommonErrors.invalidSelection);
-			sc = new Scanner(System.in);
 			sel = loadScreenOptions(new Scanner(System.in));
 		}
 		return sel;
@@ -67,6 +65,7 @@ public class InvoiceOutput {
 		}
 		catch(IllegalArgumentException e) {
 			System.err.println(CommonErrors.invalidDateFormat);
+			parseDateInput(new Scanner(System.in));
 		}
 	}
 }
