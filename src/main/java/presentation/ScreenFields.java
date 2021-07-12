@@ -88,4 +88,7 @@ public class ScreenFields {
 	public static final String getInvoices = "Get Invoices";
 	public static final String getRecommendations = "Check recommendations for blood bank management";
 	public static final String registerDoctor = "Registration of accounts for doctors";
+	public static final String logout = "Logout";
+	public static final String logoutMessage = "You are being logged out!";
+	public static final String applicationTerminationMessage = "The application will now stop!";
 }

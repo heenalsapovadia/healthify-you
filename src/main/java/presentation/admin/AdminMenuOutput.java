@@ -27,7 +27,7 @@ private AdminMenuOutput() {}
 			System.out.println("1. "+ScreenFields.getInvoices);
 			System.out.println("2. "+ScreenFields.getRecommendations);
 			System.out.println("3. "+ScreenFields.registerDoctor);
-			System.out.println("4. "+ScreenFields.exit);
+			System.out.println("4. "+ScreenFields.logout);
 			System.out.println(ScreenFields.selection);
 			sc = new Scanner(System.in);
 			sel = sc.nextInt();
@@ -45,10 +45,13 @@ private AdminMenuOutput() {}
 				displayOutput();
 			}
 			else if(sel == 4) {
+				System.out.println(ScreenFields.logoutMessage);
+				System.out.println(ScreenFields.applicationTerminationMessage);
 				sc.close();
 				System.exit(0);
 			}
 			else {
+				System.out.println(CommonErrors.invalidSelection);
 				displayOutput();
 			}
 		}

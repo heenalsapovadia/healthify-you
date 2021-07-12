@@ -8,36 +8,37 @@ package persistence.admin.model;
  *
  */
 public class Admin {
-	private static String email;
-	private static String password;
+	private String email;
+	private String password;
+	
+	private static Admin admin;
 	
 	private Admin() {}
 	
-	private static class AdminHelper {
-		private static final Admin instance = new Admin();
+	public static void setAdmin(String email) {
+		if(admin == null) {
+			admin = new Admin();
+			admin.setEmail(email);
+		}
 	}
 	
 	public static Admin getAdmin() {
-		return AdminHelper.instance;
-	}
-	
-	public static void setAdmin(String email) {
-		Admin.setEmail(email);
+		return admin;
 	}
 
-	public static String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public static void setEmail(String email) {
-		Admin.email = email;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public static String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public static void setPassword(String password) {
-		Admin.password = password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

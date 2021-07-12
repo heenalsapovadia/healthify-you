@@ -3,7 +3,6 @@
  */
 package presentation.startup;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import persistence.admin.model.Admin;
 import persistence.doctor.model.Doctor;
@@ -16,6 +15,12 @@ import presentation.admin.AdminMenuOutput;
 import presentation.patient.RegisterPatientOutput;
 
 /**
+ * <pre>
+ * This class controls the application flow.
+ * User objects are instantiated and used throughout
+ * the application.
+ * </pre>
+ * 
  * @author Gurleen Saluja
  *
  */
@@ -23,12 +28,12 @@ public class ApplicationOutput {
 	
 	private ApplicationOutput() {}
 	
-	private static class ApplicationOutputHelper {
-		private static final ApplicationOutput instance = new ApplicationOutput();
-	}
+	private static ApplicationOutput applicationOutput;
 	
 	public static ApplicationOutput getInstance() {
-		return ApplicationOutputHelper.instance;
+		if(applicationOutput == null)
+			return new ApplicationOutput();
+		return applicationOutput;
 	}
 	
 	void displayOutput() {
@@ -53,44 +58,47 @@ public class ApplicationOutput {
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
 		System.out.println();
-		System.out.println(CommonConstants.titleSpace+ScreenTitles.adminDashboard+CommonConstants.titleSpace);
+		System.out.println(CommonConstants.titleSpace+ScreenTitles.mainScreen+CommonConstants.titleSpace);
 		for(int i=0; i<100; i++)
 			System.out.print(CommonConstants.headingChar);
 		System.out.println();
 	}
 	
 	private boolean loadMainScreenContent() {
-		int sel = -1;
 		boolean isLoggedIn = false;
-		Scanner sc = null;
-		try {
-			System.out.println("1. "+ScreenFields.login);
-			System.out.println("2. "+ScreenFields.signUp);
-			System.out.println("3. "+ScreenFields.exit);
-			System.out.println(ScreenFields.selection);
-			sc = new Scanner(System.in);
-			sel = sc.nextInt();
-			if(sel == 1) {
-				UserLogin userLogin = new UserLogin();
-				userLogin.LoginUser();
-				isLoggedIn = true;
-			}
-			else if(sel == 2) {
-				RegisterPatientOutput registerPatient = new RegisterPatientOutput();
-				registerPatient.RegisterPatient();
-				isLoggedIn = false;
-			}
-			else if(sel == 3) {
-				System.exit(0);
-			}
-			else {
-				isLoggedIn = loadMainScreenContent();
-			}
+		int sel = loadScreenOptions();
+		if(sel == 1) {
+			UserLogin userLogin = new UserLogin();
+			userLogin.LoginUser();
+			isLoggedIn = true;
 		}
-		catch(InputMismatchException e) {
-			System.err.println(CommonErrors.invalidSelection);
+		else if(sel == 2) {
+			RegisterPatientOutput registerPatient = new RegisterPatientOutput();
+			registerPatient.RegisterPatient();
+			isLoggedIn = false;
+		}
+		else if(sel == 3) {
+			System.exit(0);
+		}
+		else {
 			isLoggedIn = loadMainScreenContent();
 		}
 		return isLoggedIn;
+	}
+	
+	private int loadScreenOptions() {
+		int sel = -1;
+		System.out.println("1. "+ScreenFields.login);
+		System.out.println("2. "+ScreenFields.signUp);
+		System.out.println("3. "+ScreenFields.exit);
+		System.out.println(ScreenFields.selection);
+		Scanner sc = new Scanner(System.in);
+		if(sc.hasNextInt())
+			sel = sc.nextInt();
+		else {
+			System.out.println(CommonErrors.invalidSelection);
+			sel = loadScreenOptions();
+		}
+		return sel;
 	}
 }
