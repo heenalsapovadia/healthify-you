@@ -28,6 +28,8 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         return sb.toString();
     }
 
+    public int validateBloodReport(){return 0;}
+
     @Override
     public boolean validateDate(boolean b) {
          return false;
