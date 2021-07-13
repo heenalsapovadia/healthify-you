@@ -2,7 +2,7 @@ package persistence.startup.utilImpl;
 
 import persistence.admin.model.Admin;
 import persistence.doctor.model.Doctor;
-//import persistence.patient.model.Patient;
+import persistence.patient.model.Patient;
 import persistence.startup.util.UserUtil;
 
 public class UserUtilImpl implements UserUtil {
@@ -14,7 +14,7 @@ public class UserUtilImpl implements UserUtil {
                 Doctor.setDoctor(email);
                 break;
             case "P":
-//                Patient.setPatient(email);
+                Patient.setPatient(email);
                 break;
             case "A":
                 Admin.setAdmin(email);

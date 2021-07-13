@@ -13,6 +13,7 @@ import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
+import presentation.patient.PatientMenuOutput;
 import presentation.patient.RegisterPatientOutput;
 
 /**
@@ -48,11 +49,10 @@ public class ApplicationOutput {
 		else if(Doctor.getDoctor() != null) {
 			//load doctor dashboard				
 		}
-		/*
-		 * else if(Patient.getInstance() != null) { 
-		 * //load patient dashboard 
-		 * }
-		 */
+		else if(Patient.getPatient() != null) { 
+			PatientMenuOutput patientMenuOutput = PatientMenuOutput.getInstance();
+			patientMenuOutput.displayOutput();
+		} 
 	}
 	
 	private void loadMainScreenContent(PrintToConsole consoleObj) {

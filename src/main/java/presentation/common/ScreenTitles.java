@@ -49,5 +49,7 @@ public class ScreenTitles {
 	public static final String doctorDashboard = "Doctor Dashboard";
 
 	public static final String bloodBankService = "Register for Blood Bank";
-
+	
+	/* Patient Dashboard Title */
+	public static final String patientDashboard = "Patient Dashboard";
 }
