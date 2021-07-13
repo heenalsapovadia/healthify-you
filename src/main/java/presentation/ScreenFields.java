@@ -91,4 +91,8 @@ public class ScreenFields {
 	public static final String logout = "Logout";
 	public static final String logoutMessage = "You are being logged out!";
 	public static final String applicationTerminationMessage = "The application will now stop!";
+
+	/* Doctor Dashboard Fields */
+	public static final String prescribeMedicine = "Prescribe medication";
+	public static final String viewAppointment = "View appointments";
 }

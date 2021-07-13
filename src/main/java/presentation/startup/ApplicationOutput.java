@@ -12,6 +12,7 @@ import presentation.CommonErrors;
 import presentation.ScreenFields;
 import presentation.ScreenTitles;
 import presentation.admin.AdminMenuOutput;
+import presentation.doctor.DoctorMenuOutput;
 import presentation.patient.RegisterPatientOutput;
 
 /**
@@ -32,7 +33,7 @@ public class ApplicationOutput {
 	
 	public static ApplicationOutput getInstance() {
 		if(applicationOutput == null)
-			return new ApplicationOutput();
+			applicationOutput = new ApplicationOutput();
 		return applicationOutput;
 	}
 	
@@ -44,7 +45,9 @@ public class ApplicationOutput {
 				adminMenuOutput.displayOutput();
 			}
 			else if(Doctor.getDoctor() != null) {
-				//load doctor dashboard				
+				//load doctor dashboard
+				DoctorMenuOutput doctorMenuOutput = DoctorMenuOutput.getInstance();
+				doctorMenuOutput.displayOutput();
 			}
 			/*
 			 * else if(Patient.getInstance() != null) { 
