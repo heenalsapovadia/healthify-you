@@ -47,7 +47,6 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 				preparedStatement.setDouble(6, p.getPatientContact());
 				preparedStatement.execute();
 				return "Successfully Registered";
-				
 			}
 			else{
 				return "User details already exist";
@@ -56,7 +55,6 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 			
 			e.printStackTrace();
 		}
-        
 		return CommonErrors.errorMessage;
 	}
 

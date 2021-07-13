@@ -1,10 +1,13 @@
 package presentation.patient;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
+import persistence.patient.daoImpl.RegistrationDAOImpl;
 import persistence.patient.model.BloodBankService;
+import persistence.patient.model.BloodTestReport;
 import persistence.patient.model.Patient;
 import persistence.patient.utilImpl.BloodBankServiceUtilImpl;
 import presentation.CommonConstants;
@@ -12,9 +15,10 @@ import presentation.ScreenTitles;
 
 public class BloodBankServiceOutput  {
 
-    public static String bloodBankService(Patient patient, String bloodGroup) {
+    public static String bloodBankService(Patient patient) {
         Scanner sc = new Scanner(System.in);
         int userSelection;
+        String bloodGroupInput;
         for ( int i = 0; i < 100; i++ )
             System.out.print(CommonConstants.headingChar);
         System.out.println();
@@ -29,24 +33,36 @@ public class BloodBankServiceOutput  {
         // check if report is normal - will input json format inorder to extract normal reports..
 
         while(true)  {
-            System.out.println("1. Registration for Blood Donation");
+            System.out.println("1. Register for Blood Donation");
             System.out.println("2. My Donations");
             System.out.println("3. Exit");
             System.out.println("Please enter your selection below:");
             userSelection = sc.nextInt();
             switch (userSelection) {
                 case 1: {
+                    // checking for one instance of blood test report...
+//                    BloodBankService bloodreport = new BloodBankService();
+//                    List<BloodTestReport> bloodTests = bloodreport.getBloodTests();
+//                    for (BloodTestReport test : bloodTests) {
+//                        if (test.getHemoglobinValue() < 5) {
+//                            System.out.println("Patient has low hemoglobin, so not eligible");
+//                            return null;
+//                        }
+//                    }
                     BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
                     BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
                     List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
                     BloodBankServiceUtilImpl service1 = new BloodBankServiceUtilImpl();
+                    Scanner sc1 = new Scanner(System.in);
+                    bloodGroupInput = sc1.nextLine();
                     if (donations.size() == 0) {
                         System.out.println("Checking Eligibility....");
                         System.out.println("Eligible...No previous donations found for the Patient!");
+//                        System.out.println("Please enter you blood group:-" + bloodGroupInput );
                         System.out.println("Registering Patient!");
                         System.out.println("Your Token is: " + bloodBankServiceUtil.getTokenIdForDonation() );
                         System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
-                        return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
+                        return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroupInput);
                     } else {
                         // Check eligibility
                         Boolean donatedInLastSixMonths = false;
@@ -59,7 +75,7 @@ public class BloodBankServiceOutput  {
                                 donatedInLastSixMonths = true;
                             }
                             if (!donatedInLastSixMonths) {
-                                return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroup);
+                                return registerPatientForBloodDonation(bloodBankDatabase, patient,bloodGroupInput);
                             } else {
                                 System.out.println("Patient has already Donated in last 6 months and is not eligible.");
                                 break;
@@ -86,15 +102,20 @@ public class BloodBankServiceOutput  {
         }
     }
 
-    public static String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient, String bloodGroup) {
+    public static String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient, String bloodGroupInput) {
         BloodBankService bbservice = new BloodBankService();
         BloodBankServiceUtilImpl serviceUtil = new BloodBankServiceUtilImpl();
+        BloodTestReport bloodTestReport = new BloodTestReport();
         String donationId = serviceUtil.getRandomStringForDonationId();
-        bbservice.setBloodGrp(bloodGroup);
+        bbservice.setBloodGrp(bloodGroupInput);
+        // since no patient id yet in Patient model validating through patient email
         bbservice.setPatientId(patient.getPatientEmail());
         Date d1 = new Date();
         bbservice.setDate(d1);
         bbservice.setDonationId(donationId);
+//        List<BloodTestReport> tests = new ArrayList<BloodTestReport>();
+//        BloodTestReport bloodTest = new BloodTestReport();
+//        bloodTest.setHemoglobinValue(4);
         bloodBankDatabase.insertBloodBankServiceDetails(bbservice);
         return donationId;
     }
