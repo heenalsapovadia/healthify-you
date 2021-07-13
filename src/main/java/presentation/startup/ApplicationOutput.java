@@ -33,7 +33,7 @@ public class ApplicationOutput {
 	
 	public static ApplicationOutput getInstance() {
 		if(applicationOutput == null)
-			return new ApplicationOutput();
+			applicationOutput = new ApplicationOutput();
 		return applicationOutput;
 	}
 	
