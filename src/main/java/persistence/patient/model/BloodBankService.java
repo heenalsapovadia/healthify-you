@@ -1,36 +1,38 @@
 package persistence.patient.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class BloodBankService {
-
     private String patientId;
-    private String DonationId;
-    private String BloodGrp;
+    private String donationId;
+    private String bloodGrp;
     private Date date;
+    private int bloodDonationPoints;
+    private static List<BloodTestReport> bloodtests;
+
 
     public String getPatientId() {
         return patientId;
     }
-
     public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
     public String getDonationId() {
-        return DonationId;
+        return donationId;
     }
 
     public void setDonationId(String donationId) {
-        DonationId = donationId;
+        this.donationId = donationId;
     }
 
     public String getBloodGrp() {
-        return BloodGrp;
+        return bloodGrp;
     }
 
     public void setBloodGrp(String bloodGrp) {
-        BloodGrp = bloodGrp;
+        this.bloodGrp = bloodGrp;
     }
 
     public Date getDate() {
@@ -39,5 +41,21 @@ public class BloodBankService {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getBloodDonationPoints() {
+        return bloodDonationPoints;
+    }
+
+    public void setBloodDonationPoints(int bloodDonationPoints) {
+        this.bloodDonationPoints = bloodDonationPoints;
+    }
+
+    // Added BloodTestReport methods
+    public List<BloodTestReport> getBloodTests() {
+        return bloodtests;
+    }
+    public void setBloodTests(List<BloodTestReport> tests) {
+        bloodtests = tests;
     }
 }
