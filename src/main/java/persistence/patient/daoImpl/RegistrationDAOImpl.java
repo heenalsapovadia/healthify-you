@@ -7,7 +7,7 @@ import persistence.patient.dao.RegistrationDAO;
 import persistence.patient.model.Patient;
 import persistence.patient.util.RegistrationUtil;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
-import presentation.CommonErrors;
+import presentation.common.CommonErrors;
 import presentation.startup.DatabaseConnection;
 import presentation.startup.SHA_Hash;
 

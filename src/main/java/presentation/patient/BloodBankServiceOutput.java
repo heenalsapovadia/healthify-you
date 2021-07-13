@@ -7,8 +7,8 @@ import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 import persistence.patient.utilImpl.BloodBankServiceUtilImpl;
-import presentation.CommonConstants;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.ScreenTitles;
 
 public class BloodBankServiceOutput  {
 

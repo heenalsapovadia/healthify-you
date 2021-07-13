@@ -1,10 +1,11 @@
 package presentation.admin;
 
 import java.util.Scanner;
-import presentation.CommonConstants;
-import presentation.CommonErrors;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+
+import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 
 public class AdminMenuOutput {
 	
