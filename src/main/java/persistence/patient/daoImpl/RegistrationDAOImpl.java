@@ -7,6 +7,7 @@ import persistence.patient.dao.RegistrationDAO;
 import persistence.patient.model.Patient;
 import persistence.patient.util.RegistrationUtil;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
+import presentation.CommonErrors;
 import presentation.startup.DatabaseConnection;
 import presentation.startup.SHA_Hash;
 
@@ -23,9 +24,13 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 		String query = "SELECT * FROM UserCredentials WHERE User_Id = ?";
 		try {
 			preparedStatement = conn.prepareStatement(query);
+			if(p.getPatientEmail()==null){
+				return CommonErrors.errorMessage;
+			}
 			preparedStatement.setString(1, p.getPatientEmail());
 			resultSet = preparedStatement.executeQuery();
 			if(!resultSet.next()){
+				
 				String sql = "insert into UserCredentials(User_Id, User_Password, User_Type) values (?,?,?)"; 
 				String sql2= "insert into patients (patient_name, patient_gender,patient_dob,patient_email,patient_address,patient_contact) values (?,?,?,?,?,?)";
 				preparedStatement=conn.prepareStatement(sql);
@@ -52,7 +57,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 			e.printStackTrace();
 		}
         
-		return "Error occured";
+		return CommonErrors.errorMessage;
 	}
 
 }

@@ -17,12 +17,7 @@ public class Main {
 			LOGGER.log(Level.SEVERE, "Could not establish connection with database.");
 			System.exit(0);
 		}
-		try {
-			if(conn.isValid(2000)) {
-				LOGGER.log(Level.INFO, "Connection Successful!");
-			}
-		} catch (SQLException e) {
-			LOGGER.log(Level.INFO, e.toString());
-		}
+		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
+		applicationOutput.displayOutput();
 	}
 }

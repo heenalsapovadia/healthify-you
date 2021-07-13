@@ -32,8 +32,20 @@ public class ScreenTitles {
 	/* Patient Registration screen title */
 	public static final String registration= "Registration for patients of the hospital";
 
-	/* Patient Registration screen title */
+	/* Doctor Registration screen title */
 	public static final String doctorRegistration= "Registration for doctors of the hospital";
 
+	/* Doctor Registration screen title */
+	public static final String doctorRecommendation= "Recommendations for Doctor based on symptoms";
+
+	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
+	
+	/* Main Screen Title */
+	public static final String mainScreen = "Main Menu";
+	
+	/* Admin Dashboard Title */
+	public static final String adminDashboard = "Admin Dashboard";
+
+	public static final String bloodBankService = "Register for Blood Bank";
 
 }
