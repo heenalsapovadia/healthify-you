@@ -41,7 +41,7 @@ public class RegisterPatientOutput {
     		System.out.println("You are not allowed to Register !");
     		return false;
     	}
-        Patient p= new Patient();
+        Patient p= Patient.getPatient();
         p.setPassword(password);
         p.setPatientEmail(userId);
         p.setPatientType("P");
