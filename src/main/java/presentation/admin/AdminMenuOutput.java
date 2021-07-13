@@ -1,12 +1,20 @@
 package presentation.admin;
 
-import java.util.Scanner;
-
-import presentation.common.CommonConstants;
+import java.util.ArrayList;
+import java.util.List;
 import presentation.common.CommonErrors;
+import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
 
+/**
+ * <pre>
+ * Loads admin dashboard in the application.
+ * </pre>
+ * 
+ * @author Gurleen Saluja
+ *
+ */
 public class AdminMenuOutput {
 	
 private AdminMenuOutput() {}
@@ -20,37 +28,27 @@ private AdminMenuOutput() {}
 	}
 	
 	public void displayOutput() {
-		loadHeader();
-		loadScreenOptions(new Scanner(System.in));
+		PrintToConsole consoleObj = PrintToConsole.getInstance();
+		consoleObj.printHeader(ScreenTitles.adminDashboard);
+		loadScreenOptions(consoleObj);
 	}
 	
-	private void loadHeader() {
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
-		System.out.println(CommonConstants.titleSpace+ScreenTitles.adminDashboard+CommonConstants.titleSpace);
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
+	private List<String> getSelectionOptions() {
+		List<String> selectionOptions = new ArrayList<>();
+		selectionOptions.add(ScreenFields.getInvoices);
+		selectionOptions.add(ScreenFields.getRecommendations);
+		selectionOptions.add(ScreenFields.registerDoctor);
+		selectionOptions.add(ScreenFields.logout);
+		return selectionOptions;
 	}
 	
-	private int loadScreenOptions(Scanner sc) {
-		int sel = -1;
-		System.out.println("1. "+ScreenFields.getInvoices);
-		System.out.println("2. "+ScreenFields.getRecommendations);
-		System.out.println("3. "+ScreenFields.registerDoctor);
-		System.out.println("4. "+ScreenFields.logout);
-		System.out.println(ScreenFields.selection);
-		if(sc.hasNextInt())
-			sel = sc.nextInt();
-		else {
-			System.err.println(CommonErrors.invalidSelection);
-			sel = loadScreenOptions(new Scanner(System.in));
-		}
+	private int loadScreenOptions(PrintToConsole consoleObj) {
+		List<String> selectionOptions = getSelectionOptions();
+		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
 			InvoiceOutput invoiceOutput = new InvoiceOutput();
 			invoiceOutput.displayInvoice();
-			sel = loadScreenOptions(new Scanner(System.in));
+			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 2) {
 			//add code for blood bank output here
@@ -58,17 +56,16 @@ private AdminMenuOutput() {}
 		else if(sel == 3) {
 			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
 			doctorRegistrationOutput.registerDoctor();
-			sel = loadScreenOptions(new Scanner(System.in));
+			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 4) {
 			System.out.println(ScreenFields.logoutMessage);
 			System.out.println(ScreenFields.applicationTerminationMessage);
-			sc.close();
 			System.exit(0);
 		}
 		else {
-			System.out.println(CommonErrors.invalidSelection);
-			sel = loadScreenOptions(new Scanner(System.in));
+			consoleObj.printError(CommonErrors.invalidSelection);
+			sel = loadScreenOptions(consoleObj);
 		}
 		return sel;
 	}
