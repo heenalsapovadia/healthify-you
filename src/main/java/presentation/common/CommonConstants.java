@@ -21,5 +21,9 @@ public class CommonConstants {
 	public static final String commonTextSeparator = mediumSpace+":"+mediumSpace;
 	public static final String commaDelimiter = ",";
 	public static final String subheading =" :: ";
+<<<<<<< HEAD:src/main/java/presentation/common/CommonConstants.java
 	public static final String period = ".";
+=======
+	public static final String verticleBar = "|";
+>>>>>>> aed441a50a90d468134b50a2413280c1643d82ab:src/main/java/presentation/CommonConstants.java
 }

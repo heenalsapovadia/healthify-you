@@ -1,6 +1,8 @@
 package persistence.patient.model;
 
 
+import java.util.List;
+
 public class Patient {
 
     private static String PatientName;
@@ -60,7 +62,5 @@ public class Patient {
     public  void setPatientType(String patientType) {
         PatientType = patientType;
     }
-
-
 
 }

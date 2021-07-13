@@ -42,16 +42,16 @@ public class ScreenFields {
 	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
 
 	/* Doctor registration screen fields */
-	public static final String emailInput = "Enter your email address";
-	public static final String firstNameInput = "Enter your first name";
-	public static final String lastNameInput = "Enter your first name";
-	public static final String passwordInput = "Enter your password! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
-	public static final String joiningDateInput = "Enter your joining date (YYYY-MM-DD)";
-	public static final String degreeInput = "Enter your graduation degree";
-	public static final String specializationInput = "Enter your specialization (if any, NA if not applicable)";
-	public static final String birthDateInput = "Enter your birth date (YYYY-MM-DD)";
-	public static final String contactInput = "Enter your contact number (902######)";
-	public static final String cityInput = "Enter your city of residence";
+	public static final String emailInput = "Enter doctor's email address";
+	public static final String firstNameInput = "Enter doctor's first name";
+	public static final String lastNameInput = "Enter doctor's last name";
+	public static final String passwordInput = "Enter password for doctor's account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
+	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
+	public static final String degreeInput = "Enter doctor's graduation degree";
+	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
+	public static final String birthDateInput = "Enter doctor's birth date (YYYY-MM-DD)";
+	public static final String contactInput = "Enter doctor's contact number (902#######)";
+	public static final String cityInput = "Enter doctor's city of residence";
 	
     /* Login screen fields */
 	public static final String emailIdOutput= "Email-ID";
