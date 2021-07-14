@@ -22,7 +22,7 @@ public class RegistrationDAOImplTest {
 	/*Test when user is already Registered*/    
 	@Test
 	public void testExistingUserRegistration() {
-		Patient obj = new Patient();
+		Patient obj = Patient.getPatient();
 		RegistrationDAOImpl dao = new RegistrationDAOImpl();
 		DatabaseConnection.loadDatabaseConnection();
 		obj.setPatientName(PatientName);
@@ -42,7 +42,7 @@ public class RegistrationDAOImplTest {
 	/* Test when an error occurs in Registration */
 	@Test
 	public void testErrorInRegistration() {
-		Patient obj = new Patient();
+		Patient obj = Patient.getPatient();
 		RegistrationDAOImpl dao = new RegistrationDAOImpl();
 		DatabaseConnection.loadDatabaseConnection();
 		obj.setPatientName(PatientName);

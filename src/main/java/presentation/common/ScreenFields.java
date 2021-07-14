@@ -95,4 +95,10 @@ public class ScreenFields {
 	/* Doctor Dashboard Fields */
 	public static final String prescribeMedicine = "Prescribe medication";
 	public static final String viewAppointment = "View appointments";
+	
+	/* Patient Dashboard Fields */
+	public static final String book = "Make a Booking";
+	public static final String invoices = "Invoices";
+	public static final String requestMedication = "Request Medication";
+	public static final String vouchers = "Redeemable Vouchers";
 }
