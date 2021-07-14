@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import persistence.startup.util.UserLoginUtil;
-import presentation.CommonErrors;
+import presentation.common.CommonErrors;
 
 public class UserLoginUtilImpl implements UserLoginUtil{
 

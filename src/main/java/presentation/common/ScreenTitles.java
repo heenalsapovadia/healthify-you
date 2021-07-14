@@ -1,4 +1,4 @@
-package presentation;
+package presentation.common;
 
 /**
  * <pre>
@@ -45,7 +45,11 @@ public class ScreenTitles {
 	
 	/* Admin Dashboard Title */
 	public static final String adminDashboard = "Admin Dashboard";
+	/* Doctor Dashboard Title */
+	public static final String doctorDashboard = "Doctor Dashboard";
 
 	public static final String bloodBankService = "Register for Blood Bank";
-
+	
+	/* Patient Dashboard Title */
+	public static final String patientDashboard = "Patient Dashboard";
 }

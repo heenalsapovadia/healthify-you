@@ -1,4 +1,4 @@
-package presentation;
+package presentation.common;
 
 /**
  * <pre>
@@ -21,5 +21,5 @@ public class CommonErrors {
 	public static final String invalidPassword = "Password is invalid! Enter a valid password";
 	public static final String invalidName = "Invalid name. Contains characters other than alphabets";
 	public static final String invalidCity = "Invalid city. Contains characters other than alphabets";
-
+	public static final String invalidDisplay = "No option set to display";
 }

@@ -1,54 +1,35 @@
 package presentation.admin;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
-import presentation.CommonConstants;
-import presentation.CommonErrors;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonErrors;
+import presentation.common.PrintToConsole;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 
 public class InvoiceOutput {
 	
-	private static final Logger LOGGER = Logger.getLogger(InvoiceOutput.class.getName());
-	
 	public void displayInvoice(){
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
-		System.out.println(CommonConstants.titleSpace+ScreenTitles.invoice+CommonConstants.titleSpace);
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
+		PrintToConsole consoleObj = PrintToConsole.getInstance();
+		consoleObj.printHeader(ScreenTitles.invoice);
+		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
-			sel = loadScreenOptions(new Scanner(System.in));
+			sel = consoleObj.printSelection(selectionOptions);
 			switch(sel) {
-				case 1: parseDateInput(new Scanner(System.in));
+				case 1: parseDateInput(consoleObj, new Scanner(System.in));
 						break;
 				case 2: return;
-				default: System.err.println(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.invalidSelection);
 			}
 		}
 		while(sel != 2);
 	}
 	
-	private int loadScreenOptions(Scanner sc) {
-		int sel = -1;
-		System.out.println("1. "+ScreenFields.pharmSuppliesByDate);
-		System.out.println("2. "+ScreenFields.exit);
-		System.out.println(ScreenFields.selection);
-		if(sc.hasNextInt())
-			sel = sc.nextInt();
-		else {
-			System.err.println(CommonErrors.invalidSelection);
-			sel = loadScreenOptions(new Scanner(System.in));
-		}
-		return sel;
-	}
-	
-	private void parseDateInput(Scanner sc) {
+	private void parseDateInput(PrintToConsole consoleObj, Scanner sc) {
 		System.out.println(ScreenFields.dateInput);
 		try {
 			Date date = Date.valueOf(sc.next());
@@ -64,8 +45,15 @@ public class InvoiceOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			System.err.println(CommonErrors.invalidDateFormat);
-			parseDateInput(new Scanner(System.in));
+			consoleObj.printError(CommonErrors.invalidDateFormat);
+			parseDateInput(consoleObj, new Scanner(System.in));
 		}
+	}
+	
+	private List<String> getSelectionOptions() {
+		List<String> selectionOptions = new ArrayList<>();
+		selectionOptions.add(ScreenFields.pharmSuppliesByDate);
+		selectionOptions.add(ScreenFields.exit);
+		return selectionOptions;
 	}
 }

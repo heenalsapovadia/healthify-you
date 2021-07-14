@@ -5,25 +5,17 @@ import persistence.admin.model.DoctorRegistration;
 import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
 import persistence.patient.util.DoctorRecommendationUtil;
 import persistence.patient.utilImpl.DoctorRecommendationUtilImpl;
-import presentation.CommonConstants;
+import presentation.common.CommonConstants;
+
+import static presentation.common.CommonErrors.emailError;
+import static presentation.common.ScreenFields.*;
+import static presentation.common.ScreenTitles.doctorRecommendation;
+import static presentation.common.ScreenTitles.doctorRegistration;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static presentation.CommonErrors.emailError;
-import static presentation.ScreenFields.*;
-import static presentation.ScreenTitles.doctorRecommendation;
-import static presentation.ScreenTitles.doctorRegistration;
-
-/**
- * <pre>
- * Output class for doctor recommendation
- * </pre>
- *
- * @author Samiksha Salgaonkar
- *
- **/
 
 public class DoctorRecommendationOutput {
 

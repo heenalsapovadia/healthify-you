@@ -2,8 +2,8 @@ package persistence.patient.utilImpl;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import persistence.patient.util.RegistrationUtil;
-import presentation.CommonErrors;
-import presentation.ScreenFields;
+import presentation.common.CommonErrors;
+import presentation.common.ScreenFields;
 
 public class RegistrationUtilImpl implements RegistrationUtil {
 
