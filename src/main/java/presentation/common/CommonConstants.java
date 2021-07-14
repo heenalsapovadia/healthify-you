@@ -1,4 +1,4 @@
-package presentation;
+package presentation.common;
 
 /**
  * <pre>
@@ -21,5 +21,6 @@ public class CommonConstants {
 	public static final String commonTextSeparator = mediumSpace+":"+mediumSpace;
 	public static final String commaDelimiter = ",";
 	public static final String subheading =" :: ";
+	public static final String period = ".";
 	public static final String verticleBar = "|";
 }

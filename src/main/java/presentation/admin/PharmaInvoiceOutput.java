@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import persistence.admin.dao.PharmaInvoiceDAO;
 import persistence.admin.daoImpl.PharmaInvoiceDAOImpl;
 import persistence.admin.model.PaymentMode;
 import persistence.admin.model.PharmaInvoice;
 import persistence.admin.util.PharmaInvoiceUtil;
 import persistence.admin.utilImpl.PharmaInvoiceUtilImpl;
-import presentation.CommonConstants;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.PrintToConsole;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 
 /**
  * <pre>
@@ -25,8 +25,6 @@ import presentation.ScreenTitles;
  *
  */
 public class PharmaInvoiceOutput {
-	
-	private static final Logger LOGGER = Logger.getLogger(PharmaInvoiceOutput.class.getName());
 	
 	/**
 	 * <pre>
@@ -40,10 +38,11 @@ public class PharmaInvoiceOutput {
 		PharmaInvoiceDAO invoiceDAO = new PharmaInvoiceDAOImpl();
 		Map<String, List<PharmaInvoice>> invoicesMap = invoiceDAO.getInvoiceDetailsByDate(date);
 		List<Double> pricesList;
-		loadScreenHeader();
+		PrintToConsole consoleObj = PrintToConsole.getInstance();
+		consoleObj.printHeader(ScreenTitles.pharmaInvoice);
 		if(invoicesMap != null && !invoicesMap.isEmpty()) {
 			for(Map.Entry<String, List<PharmaInvoice>> entry: invoicesMap.entrySet()) {
-				loadTableHeader(entry.getValue().get(0), fetchAllReceipts(entry.getValue()));
+				loadTableHeader(consoleObj, entry.getValue().get(0), fetchAllReceipts(entry.getValue()));
 				pricesList = new ArrayList<>();
 				for(PharmaInvoice invoice: entry.getValue()) {
 					Double totalPrice = invoiceUtil.calculateTotalAmount(invoice.getItemUnitPrice(), invoice.getItemQuantity());
@@ -56,14 +55,10 @@ public class PharmaInvoiceOutput {
 							+ totalPrice+CommonConstants.singleSpace);
 					pricesList.add(totalPrice);
 				}
-				for(int i=0; i<100; i++)
-					System.out.print(CommonConstants.headingChar);
-				System.out.println();
+				consoleObj.printLineSeparator();
 				Double grandTotal = invoiceUtil.calculateGrandTotalAmount(pricesList);
 				System.out.println(ScreenFields.grandTotal+CommonConstants.commonTextSeparator+grandTotal);
-				for(int i=0; i<100; i++)
-					System.out.print(CommonConstants.headingChar);
-				System.out.println();
+				consoleObj.printLineSeparator();
 			}
 		}
 	}
@@ -76,16 +71,6 @@ public class PharmaInvoiceOutput {
 		return receiptList;
 	}
 	
-	private void loadScreenHeader() {
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
-		System.out.println(CommonConstants.titleSpace+ScreenTitles.pharmaInvoice+CommonConstants.titleSpace);
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
-	}
-	
 	/**
 	 * <pre>
 	 * Loads common header on the screen.
@@ -93,13 +78,14 @@ public class PharmaInvoiceOutput {
 	 * 
 	 * @param invoice
 	 */
-	private void loadTableHeader(PharmaInvoice invoice, List<Integer> receiptList) {
+	private void loadTableHeader(PrintToConsole consoleObj, PharmaInvoice invoice, List<Integer> receiptList) {
 		Iterator<Integer> itr = receiptList.iterator();
 		System.out.print(ScreenFields.receiptNo+CommonConstants.commonTextSeparator);
 		while(itr.hasNext()) {
 			System.out.print(itr.next());
-			if(itr.hasNext())
+			if(itr.hasNext()) {
 				System.out.print(CommonConstants.commaDelimiter+CommonConstants.singleSpace);
+			}
 		}
 		System.out.println();
 		System.out.println(ScreenFields.pharmaName+CommonConstants.commonTextSeparator+invoice.getPharmaName());
@@ -107,16 +93,12 @@ public class PharmaInvoiceOutput {
 		System.out.println(ScreenFields.mop+CommonConstants.commonTextSeparator+PaymentMode.getMop(invoice.getPaymentMode()).toString());
 		System.out.println(ScreenFields.dateTime+CommonConstants.commonTextSeparator+invoice.getDate()+CommonConstants.commaDelimiter+CommonConstants.singleSpace+invoice.getTime());
 		System.out.println(ScreenFields.contact+CommonConstants.commonTextSeparator+invoice.getPharmaContact());
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
+		consoleObj.printLineSeparator();
 		System.out.println(
 				ScreenFields.description+CommonConstants.singleSpace+ScreenFields.descriptionExtras+CommonConstants.singleTab
 				+ ScreenFields.quantity+CommonConstants.singleTab
 				+ ScreenFields.unitprice+CommonConstants.singleTab
 				+ ScreenFields.total+CommonConstants.singleTab);
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
+		consoleObj.printLineSeparator();
 	}
 }

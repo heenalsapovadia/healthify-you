@@ -5,10 +5,10 @@ import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
-import presentation.CommonConstants;
-import presentation.CommonErrors;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 
 import java.util.ArrayList;
 import java.util.List;
