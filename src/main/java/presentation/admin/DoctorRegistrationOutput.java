@@ -12,6 +12,14 @@ import static presentation.CommonErrors.emailError;
 import static presentation.ScreenFields.*;
 import static presentation.ScreenTitles.doctorRegistration;
 
+/**
+ * <pre>
+ * Output class for doctor registration
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
 
 public class DoctorRegistrationOutput {
 

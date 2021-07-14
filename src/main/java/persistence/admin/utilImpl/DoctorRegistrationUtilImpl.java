@@ -11,6 +11,15 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <pre>
+ * Util class for doctor registration
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
+
 public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
 
     @Override

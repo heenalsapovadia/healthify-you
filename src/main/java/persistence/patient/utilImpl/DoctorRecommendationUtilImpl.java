@@ -1,12 +1,23 @@
 package persistence.patient.utilImpl;
 
+import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
 import persistence.patient.daoImpl.DoctorRecommendationDAOImpl;
+import persistence.patient.util.DoctorRecommendationUtil;
 
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class DoctorRecommendationUtilImpl {
+/**
+ * <pre>
+ * Utility class for doctor recommendation
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ */
+
+public class DoctorRecommendationUtilImpl implements DoctorRecommendationUtil {
 
     public ArrayList<String> getDoctorRecommendations(String symptom, int support, int numRec) {
 

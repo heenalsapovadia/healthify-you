@@ -1,5 +1,14 @@
 package persistence.admin.util;
 
+/**
+ * <pre>
+ * Util interface for doctor registration
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
+
 public interface DoctorRegistrationUtil {
 
     public boolean validateFirstName(String fname);

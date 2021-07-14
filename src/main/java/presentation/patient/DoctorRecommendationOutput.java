@@ -16,6 +16,14 @@ import static presentation.ScreenFields.*;
 import static presentation.ScreenTitles.doctorRecommendation;
 import static presentation.ScreenTitles.doctorRegistration;
 
+/**
+ * <pre>
+ * Output class for doctor recommendation
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
 
 public class DoctorRecommendationOutput {
 

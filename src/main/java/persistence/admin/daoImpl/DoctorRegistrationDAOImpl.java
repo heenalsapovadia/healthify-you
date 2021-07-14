@@ -5,6 +5,14 @@ import presentation.startup.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * <pre>
+ * DAO class for doctor registration
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
 
 public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 

@@ -8,6 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * <pre>
+ * DAO class for doctor recommendation
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
+
 public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
 
     @Override
