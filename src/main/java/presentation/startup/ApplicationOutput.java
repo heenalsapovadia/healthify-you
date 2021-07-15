@@ -3,15 +3,17 @@
  */
 package presentation.startup;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import persistence.admin.model.Admin;
 import persistence.doctor.model.Doctor;
 import persistence.patient.model.Patient;
-import presentation.CommonConstants;
-import presentation.CommonErrors;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
 import presentation.admin.AdminMenuOutput;
+import presentation.common.CommonErrors;
+import presentation.common.PrintToConsole;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
+import presentation.patient.PatientMenuOutput;
 import presentation.patient.RegisterPatientOutput;
 
 /**
@@ -32,74 +34,52 @@ public class ApplicationOutput {
 	
 	public static ApplicationOutput getInstance() {
 		if(applicationOutput == null)
-			return new ApplicationOutput();
+			applicationOutput = new ApplicationOutput();
 		return applicationOutput;
 	}
 	
 	void displayOutput() {
-		loadMainScreenHeader();
-		if(loadMainScreenContent()) {
-			if(Admin.getAdmin() != null) {
-				AdminMenuOutput adminMenuOutput = AdminMenuOutput.getInstance();
-				adminMenuOutput.displayOutput();
-			}
-			else if(Doctor.getDoctor() != null) {
-				//load doctor dashboard				
-			}
-			/*
-			 * else if(Patient.getInstance() != null) { 
-			 * //load patient dashboard 
-			 * }
-			 */
+		PrintToConsole consoleObj = PrintToConsole.getInstance();
+		consoleObj.printHeader(ScreenTitles.mainScreen);
+		loadMainScreenContent(consoleObj);
+		if(Admin.getAdmin() != null) {
+			AdminMenuOutput adminMenuOutput = AdminMenuOutput.getInstance();
+			adminMenuOutput.displayOutput();
 		}
+		else if(Doctor.getDoctor() != null) {
+			//load doctor dashboard				
+		}
+		else if(Patient.getPatient() != null) { 
+			PatientMenuOutput patientMenuOutput = PatientMenuOutput.getInstance();
+			patientMenuOutput.displayOutput();
+		} 
 	}
 	
-	private void loadMainScreenHeader() {
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
-		System.out.println(CommonConstants.titleSpace+ScreenTitles.mainScreen+CommonConstants.titleSpace);
-		for(int i=0; i<100; i++)
-			System.out.print(CommonConstants.headingChar);
-		System.out.println();
-	}
-	
-	private boolean loadMainScreenContent() {
-		boolean isLoggedIn = false;
-		int sel = loadScreenOptions();
+	private void loadMainScreenContent(PrintToConsole consoleObj) {
+		List<String> selectionOptions = getSelectionOptions();
+		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
 			UserLogin userLogin = new UserLogin();
 			userLogin.LoginUser();
-			isLoggedIn = true;
 		}
 		else if(sel == 2) {
 			RegisterPatientOutput registerPatient = new RegisterPatientOutput();
 			registerPatient.RegisterPatient();
-			isLoggedIn = false;
 		}
 		else if(sel == 3) {
 			System.exit(0);
 		}
 		else {
-			System.err.println(CommonErrors.invalidSelection);
-			isLoggedIn = loadMainScreenContent();
+			consoleObj.printError(CommonErrors.invalidSelection);
+			loadMainScreenContent(consoleObj);
 		}
-		return isLoggedIn;
 	}
 	
-	private int loadScreenOptions() {
-		int sel = -1;
-		System.out.println("1. "+ScreenFields.login);
-		System.out.println("2. "+ScreenFields.signUp);
-		System.out.println("3. "+ScreenFields.exit);
-		System.out.println(ScreenFields.selection);
-		Scanner sc = new Scanner(System.in);
-		if(sc.hasNextInt())
-			sel = sc.nextInt();
-		else {
-			System.out.println(CommonErrors.invalidSelection);
-			sel = loadScreenOptions();
-		}
-		return sel;
+	private List<String> getSelectionOptions() {
+		List<String> selectionOptions = new ArrayList<>();
+		selectionOptions.add(ScreenFields.login);
+		selectionOptions.add(ScreenFields.signUp);
+		selectionOptions.add(ScreenFields.exit);
+		return selectionOptions;
 	}
 }

@@ -11,9 +11,9 @@ import persistence.startup.dao.UserLoginDAO;
 import persistence.startup.daoImpl.UserLoginDAOImpl;
 import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
-import presentation.CommonConstants;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 import presentation.startup.UserLogin;
 
 public class RegisterPatientOutput {
@@ -41,7 +41,7 @@ public class RegisterPatientOutput {
     		System.out.println("You are not allowed to Register !");
     		return false;
     	}
-        Patient p= new Patient();
+        Patient p= Patient.getPatient();
         p.setPassword(password);
         p.setPatientEmail(userId);
         p.setPatientType("P");

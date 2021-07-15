@@ -3,14 +3,14 @@ package presentation.admin;
 import persistence.admin.daoImpl.DoctorRegistrationDAOImpl;
 import persistence.admin.model.DoctorRegistration;
 import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
-import presentation.CommonConstants;
+import presentation.common.CommonConstants;
+
+import static presentation.common.CommonErrors.emailError;
+import static presentation.common.ScreenFields.*;
+import static presentation.common.ScreenTitles.doctorRegistration;
 
 import java.sql.SQLException;
 import java.util.Scanner;
-
-import static presentation.CommonErrors.emailError;
-import static presentation.ScreenFields.*;
-import static presentation.ScreenTitles.doctorRegistration;
 
 
 public class DoctorRegistrationOutput {
