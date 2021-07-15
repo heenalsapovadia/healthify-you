@@ -2,6 +2,8 @@ package persistence.patient.utilImpl;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import persistence.patient.util.RegistrationUtil;
+import presentation.common.CommonErrors;
+import presentation.common.ScreenFields;
 
 public class RegistrationUtilImpl implements RegistrationUtil {
 
@@ -12,7 +14,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 		 Matcher matcher = pattern.matcher(Date);  
 		 if(matcher.matches()==false || Date == null || Date ==""){
 		
-			 return "The DOB is invalid.Please enter a valid DOB"; 
+			 return CommonErrors.invalidDateFormat; 
 		 }
 
 		return null;
@@ -26,10 +28,11 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 	            if(temp.startsWith("902") && !temp.matches("^[ a-zA-Z]*$")) {
 	                return null;
 	            } else {
-	                return "The contact number should begin with 902";
+	                return ScreenFields.contactBeginWith;
 	            }
 	        } else {
-	            return "Contact number should be 10 digits long!";
+	            return ScreenFields.contactLength;
+	            		
 	        }
 
 	}
@@ -41,7 +44,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 		 
 		 if(matcher.matches()==false || email==null || email==""){
 		
-			 return "The email ID is invalid.Please enter a valid email address"; 
+			 return CommonErrors.emailError; 
 		 }
 
 		return null;
@@ -57,7 +60,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 		  Matcher matcher = pattern.matcher(password);  
 		  if(matcher.matches()==false || password==null || password==""){
 			
-			return "The password is invalid. Please enter a valid password"; 
+			return CommonErrors.invalidPassword; 
 		  }
 		return null;
 		
@@ -70,7 +73,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 		  Matcher matcher = pattern.matcher(name);  
 		  if(matcher.matches()==false || name==null || name==""){
 			
-			return "Contains characters other than alphabets. Please retry"; 
+			return CommonErrors.invalidName; 
 		  }
 		return null;
 	}
@@ -81,7 +84,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 		Pattern pattern = Pattern.compile(cityregex);
 		Matcher matcher = pattern.matcher(city); 
 		if(city==null || city.equals("") || matcher.matches()==false ) {
-          return "Incorrect City name";
+          return CommonErrors.invalidCity;
         }
 		return null;
 	}

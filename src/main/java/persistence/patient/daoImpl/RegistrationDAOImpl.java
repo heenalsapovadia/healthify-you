@@ -7,7 +7,7 @@ import persistence.patient.dao.RegistrationDAO;
 import persistence.patient.model.Patient;
 import persistence.patient.util.RegistrationUtil;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
-import presentation.CommonErrors;
+import presentation.common.CommonErrors;
 import presentation.startup.DatabaseConnection;
 import presentation.startup.SHA_Hash;
 
@@ -47,7 +47,6 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 				preparedStatement.setDouble(6, p.getPatientContact());
 				preparedStatement.execute();
 				return "Successfully Registered";
-				
 			}
 			else{
 				return "User details already exist";
@@ -56,7 +55,6 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 			
 			e.printStackTrace();
 		}
-        
 		return CommonErrors.errorMessage;
 	}
 

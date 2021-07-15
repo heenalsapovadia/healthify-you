@@ -5,15 +5,16 @@ import persistence.admin.model.DoctorRegistration;
 import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
 import persistence.patient.util.DoctorRecommendationUtil;
 import persistence.patient.utilImpl.DoctorRecommendationUtilImpl;
-import presentation.CommonConstants;
+import presentation.common.CommonConstants;
+
+import static presentation.common.CommonErrors.emailError;
+import static presentation.common.ScreenFields.*;
+import static presentation.common.ScreenTitles.doctorRecommendation;
+import static presentation.common.ScreenTitles.doctorRegistration;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
-
-import static presentation.CommonErrors.emailError;
-import static presentation.ScreenFields.*;
-import static presentation.ScreenTitles.doctorRecommendation;
-import static presentation.ScreenTitles.doctorRegistration;
 
 
 public class DoctorRecommendationOutput {
@@ -73,9 +74,20 @@ public class DoctorRecommendationOutput {
                 System.out.println(recommendationInput);
                 numRec = sc1.nextInt();
 
+                ArrayList<String> doctorList = new ArrayList<>();
                 DoctorRecommendationUtilImpl doctorRecommendationUtilImpl = new DoctorRecommendationUtilImpl();
-                doctorRecommendationUtilImpl.getDoctorRecommendations(symptom, support, numRec);
+                doctorList = doctorRecommendationUtilImpl.getDoctorRecommendations(symptom, support, numRec);
 
+                if(doctorList != null){
+
+                    System.out.println();
+                    System.out.println("You may visit the following doctor(s) for :" +symptom);
+
+                    for(String doctorName : doctorList) {
+                        System.out.println(doctorName);
+                    }
+
+                }
 
             } else if (choice == 2) {
                 System.out.println("Thank you for using our service!");

@@ -1,4 +1,4 @@
-package presentation;
+package presentation.common;
 
 /**
  * <pre>
@@ -43,21 +43,30 @@ public class ScreenFields {
 	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
 
 	/* Doctor registration screen fields */
-	public static final String emailInput = "Enter your email address";
-	public static final String firstNameInput = "Enter your first name";
-	public static final String lastNameInput = "Enter your first name";
-	public static final String passwordInput = "Enter your password! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
-	public static final String joiningDateInput = "Enter your joining date (YYYY-MM-DD)";
-	public static final String degreeInput = "Enter your graduation degree";
-	public static final String specializationInput = "Enter your specialization (if any, NA if not applicable)";
-	public static final String birthDateInput = "Enter your birth date (YYYY-MM-DD)";
-	public static final String contactInput = "Enter your contact number (902######)";
-	public static final String cityInput = "Enter your city of residence";
+	public static final String emailInput = "Enter doctor's email address";
+	public static final String firstNameInput = "Enter doctor's first name";
+	public static final String lastNameInput = "Enter doctor's last name";
+	public static final String passwordInput = "Enter password for doctor's account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
+	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
+	public static final String degreeInput = "Enter doctor's graduation degree";
+	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
+	public static final String birthDateInput = "Enter doctor's birth date (YYYY-MM-DD)";
+	public static final String contactInput = "Enter doctor's contact number (902#######)";
+	public static final String cityInput = "Enter doctor's city of residence";
 	
     /* Login screen fields */
 	public static final String emailIdOutput= "Email-ID";
 	public static final String passwordOutput= "Password";
 	public static final String gender= "Enter your Gender (M/F/O)";
+	public static final String getInput = "Enter your details below";
+	public static final String goBack = "Go back";
+	public static final String proceed ="Continue";
+	public static final String contactBeginWith = "The contact number should begin with 902";
+	public static final String contactLength = "Contact number should be 10 digits long!";
+
+	/*Immunization screenFields*/
+	public static final String month = "Month";
+	public static final String slots = "Slots assigned";
 
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
@@ -71,6 +80,28 @@ public class ScreenFields {
 	public static final String symptomOption5= "5. Digestive issues";
 	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
 	public static final String recommendationInput= "Enter the number of recommendations";
+
+	/* Main Menu Fields */
+	public static final String login = "Login";
+	public static final String signUp = "Sign Up";
+
+	/* Admin Dashboard Fields */
+	public static final String getInvoices = "Get Invoices";
+	public static final String getRecommendations = "Check recommendations for blood bank management";
+	public static final String registerDoctor = "Registration of accounts for doctors";
+	public static final String logout = "Logout";
+	public static final String logoutMessage = "You are being logged out!";
+	public static final String applicationTerminationMessage = "The application will now stop!";
+
+	/* Doctor Dashboard Fields */
+	public static final String prescribeMedicine = "Prescribe medication";
+	public static final String viewAppointment = "View appointments";
+
+	/* Patient Dashboard Fields */
+	public static final String book = "Make a Booking";
+	public static final String invoices = "Invoices";
+	public static final String requestMedication = "Request Medication";
+	public static final String vouchers = "Redeemable Vouchers";
 
 	/* Lab Test Booking fields */
 	public static final String enterOption = "Enter your option";

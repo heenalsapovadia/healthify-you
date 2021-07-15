@@ -11,9 +11,9 @@ import persistence.startup.dao.UserLoginDAO;
 import persistence.startup.daoImpl.UserLoginDAOImpl;
 import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
-import presentation.CommonConstants;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 import presentation.startup.UserLogin;
 
 public class RegisterPatientOutput {
@@ -41,7 +41,7 @@ public class RegisterPatientOutput {
     		System.out.println("You are not allowed to Register !");
     		return false;
     	}
-        Patient p= new Patient();
+        Patient p= Patient.getPatient();
         p.setPassword(password);
         p.setPatientEmail(userId);
         p.setPatientType("P");
@@ -51,10 +51,10 @@ public class RegisterPatientOutput {
         System.out.println();
         System.out.println();
 		while(true){
-			System.out.println("1. Continue");
+			System.out.println("1. " +ScreenFields.proceed);
 			System.out.println("2. Login");
-			System.out.println("3. Exit");
-		 	System.out.println("Please enter your selection below:");
+			System.out.println("3. " +ScreenFields.exit);
+		 	System.out.println(ScreenFields.getInput+":");
 			sel = sc.nextInt();
 			switch(sel){
 			case 1:
@@ -79,7 +79,7 @@ public class RegisterPatientOutput {
 						System.out.println();
 					 	System.out.println(CommonConstants.mediumSpace+CommonConstants.subheading+ScreenTitles.registration+CommonConstants.subheading+CommonConstants.titleSpace);
 					    System.out.println();
-					    System.out.println("Please fill the details below :");
+					    System.out.println(ScreenFields.getInput);
 					    System.out.println(ScreenFields.firstNameInput);
 				    	String fname= sc.next();		
 				    	System.out.println(ScreenFields.lastNameInput);
@@ -99,9 +99,9 @@ public class RegisterPatientOutput {
                         p.setPatientType("P");
                         String name= fname+" "+lname;
 	    	        	p.setPatientName(name);
-				    	System.out.println("Select one of the below options :");
+				    	System.out.println(ScreenFields.selection);
 						System.out.println("1. Confirm to proceed to register");
-						System.out.println("2. Go Back");
+						System.out.println("2." +ScreenFields.goBack);
 						System.out.println();
 					 	System.out.println(ScreenFields.selection+": ");
 				    	int sel2= sc.nextInt();
@@ -131,7 +131,7 @@ public class RegisterPatientOutput {
 				    	        
 				    	        	break;
 				    	        }
-				    	case 2:System.out.println("Return");
+				    	case 2:System.out.println(ScreenFields.goBack);
 				    		break;
 				    	}
 					    break;

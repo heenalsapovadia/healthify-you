@@ -1,4 +1,4 @@
-package presentation;
+package presentation.common;
 
 /**
  * <pre>
@@ -37,6 +37,22 @@ public class ScreenTitles {
 
 	/* Doctor Registration screen title */
 	public static final String doctorRecommendation= "Recommendations for Doctor based on symptoms";
+
+	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
+
+	/* Main Screen Title */
+	public static final String mainScreen = "Main Menu";
+
+	/* Admin Dashboard Title */
+	public static final String adminDashboard = "Admin Dashboard";
+
+	/* Doctor Dashboard Title */
+	public static final String doctorDashboard = "Doctor Dashboard";
+
+	/* Patient Dashboard Title */
+	public static final String patientDashboard = "Patient Dashboard";
+
+	public static final String bloodBankService = "Register for Blood Bank";
 
 	/* Lab Test Booking screen titles */
 	public static final String bookATest = "Book a Health Check/Lab Test";

@@ -5,9 +5,9 @@ import persistence.startup.daoImpl.UserLoginDAOImpl;
 import persistence.startup.model.Login;
 import persistence.startup.util.UserLoginUtil;
 import persistence.startup.utilImpl.UserLoginUtilImpl;
-import presentation.CommonConstants;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 import presentation.patient.RegisterPatientOutput;
 
 
@@ -42,9 +42,9 @@ public class UserLogin{
         System.out.println();
 		int sel;
 		while(true){
-			System.out.println("1. Continue");
+			System.out.println("1. "+ScreenFields.proceed);
 			System.out.println("2. Patient Sign Up");
-			System.out.println("3. Exit");
+			System.out.println("3. " +ScreenFields.exit);
 		
 			System.out.println(ScreenFields.selection);
 			sel = sc.nextInt();

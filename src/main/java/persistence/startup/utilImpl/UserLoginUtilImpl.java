@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import persistence.startup.util.UserLoginUtil;
+import presentation.common.CommonErrors;
 
 public class UserLoginUtilImpl implements UserLoginUtil{
 
@@ -21,7 +22,7 @@ public class UserLoginUtilImpl implements UserLoginUtil{
 		 Matcher matcher = pattern.matcher(email);  
 		 if(matcher.matches()==false){
 		
-			 return "The email ID is invalid.Please enter a valid email address"; 
+			 return CommonErrors.emailError; 
 		 }
 
 		return null;
@@ -37,7 +38,7 @@ public class UserLoginUtilImpl implements UserLoginUtil{
 	     Matcher matcher = pattern.matcher(password);  
 		 if(matcher.matches()==false){
 		
-			 return "The password is invalid. Please enter a valid password"; 
+			 return CommonErrors.invalidPassword; 
 		 }
 		return null;
 	}
