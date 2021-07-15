@@ -1,6 +1,7 @@
 package presentation.patient;
 
 import persistence.patient.model.LabCheck;
+import persistence.patient.model.LabCheckBooking;
 import persistence.patient.util.LabCheckBookingUtil;
 import persistence.patient.util.LabCheckUtil;
 import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
@@ -54,7 +55,7 @@ public class LabTestBookingOutput {
                 makeBooking();
                 break;
             case 4:
-                // view bookings code
+                viewBookings();
                 break;
             case 5:
                 break;
@@ -100,6 +101,17 @@ public class LabTestBookingOutput {
 
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
         labCheckBookingUtil.makeBooking(healthCheckId, bookingdate);
+    }
+
+    public void viewBookings(){
+        consoleObj.printError(ScreenTitles.previousBookings);
+
+        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
+        List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
+        System.out.println("Appointment ID | HealthCheck ID | Date");
+        for(LabCheckBooking labCheckBooking : labCheckBookingList){
+            System.out.println(labCheckBooking.getAppointment_id()+CommonConstants.verticleBar+labCheckBooking.getHealthcheck_id()+CommonConstants.verticleBar+labCheckBooking.getBooked_for_date());
+        }
     }
 
     private int inputHealthCheckId(Scanner sc){

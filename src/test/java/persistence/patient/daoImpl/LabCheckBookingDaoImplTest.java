@@ -3,6 +3,8 @@ package persistence.patient.daoImpl;
 import org.junit.Test;
 import persistence.patient.dao.LabCheckBookingDao;
 import persistence.patient.model.LabCheckBooking;
+import persistence.patient.util.LabCheckBookingUtil;
+import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
 
 import java.sql.Date;
 import java.util.List;
@@ -13,26 +15,30 @@ public class LabCheckBookingDaoImplTest {
 
     @Test
     public void insertBooking() {
-        Date today = new Date(System.currentTimeMillis());
+        Date date = Date.valueOf("2021-05-21");
 
-        // set patient id
-        //dummy
-        int patient_id = 12;
         LabCheckBooking labCheckBooking = new LabCheckBooking();
-        // set the booking
+        labCheckBooking.setPatient_id(1);
+        labCheckBooking.setHealthcheck_id(2);
+        labCheckBooking.setBooked_for_date(date);
 
         LabCheckBookingDao labCheckBookingDao = new LabCheckBookingDaoImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);
-        assertEquals(labCheckBookingDao.getBookingByDate(today).get(0), labCheckBooking);
+        assertNotNull(labCheckBookingDao.getBookingByDate(date));
     }
 
     @Test
     public void getAllBookings() {
-        // set patient id
-        //dummy
-        int patient_id = 12;
+        LabCheckBooking labCheckBooking = new LabCheckBooking();
+        labCheckBooking.setPatient_id(1);
+        labCheckBooking.setHealthcheck_id(2);
+        labCheckBooking.setBooked_for_date(Date.valueOf("2021-05-21"));
+
         LabCheckBookingDao labCheckBookingDao = new LabCheckBookingDaoImpl();
-        List<LabCheckBooking> labCheckBookingList = labCheckBookingDao.getAllBookings();
-        assertTrue(labCheckBookingList.size()>0); // need to be modified for zero bookings
+        labCheckBookingDao.insertBooking(labCheckBooking);
+
+        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
+        List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
+        assertTrue(labCheckBookingList.size() > 0);
     }
 }

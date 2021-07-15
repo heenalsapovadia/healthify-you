@@ -36,6 +36,7 @@ public class LabCheckBookingUtilImpl implements LabCheckBookingUtil {
 
     @Override
     public List<LabCheckBooking> fetchBookings() {
-        return null;
+        LabCheckBookingDao labCheckBookingDao = new LabCheckBookingDaoImpl();
+        return labCheckBookingDao.getAllBookings();
     }
 }
