@@ -3,9 +3,9 @@ package presentation.patient;
 import persistence.patient.model.LabCheck;
 import persistence.patient.util.LabCheckUtil;
 import persistence.patient.utilImpl.LabCheckUtilImpl;
-import presentation.CommonConstants;
-import presentation.ScreenFields;
-import presentation.ScreenTitles;
+import presentation.common.CommonConstants;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
 
 import java.util.List;
 import java.util.Scanner;

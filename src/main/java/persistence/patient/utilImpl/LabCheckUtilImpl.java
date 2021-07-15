@@ -4,9 +4,9 @@ import persistence.patient.dao.LabCheckDao;
 import persistence.patient.daoImpl.LabCheckDaoImpl;
 import persistence.patient.model.LabCheck;
 import persistence.patient.util.LabCheckUtil;
-import presentation.CommonConstants;
-import presentation.CommonErrors;
-import presentation.ScreenFields;
+import presentation.common.CommonConstants;
+import presentation.common.ScreenFields;
+import presentation.common.CommonErrors;
 
 import java.util.HashMap;
 import java.util.List;
