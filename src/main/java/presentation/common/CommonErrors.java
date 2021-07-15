@@ -26,5 +26,6 @@ public class CommonErrors {
 	public static final String invalidDisplay = "No option set to display";
 
 	public static final String invalidCheckUpId = "Invalid Lab CheckUp Id, Enter Again";
+	public static final String smallerDate = "Date smaller than today!";
 
 }

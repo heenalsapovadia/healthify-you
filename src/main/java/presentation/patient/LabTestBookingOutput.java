@@ -1,16 +1,19 @@
 package presentation.patient;
 
 import persistence.patient.model.LabCheck;
+import persistence.patient.util.LabCheckBookingUtil;
 import persistence.patient.util.LabCheckUtil;
+import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
 import persistence.patient.utilImpl.LabCheckUtilImpl;
-import presentation.common.CommonConstants;
-import presentation.common.ScreenFields;
-import presentation.common.ScreenTitles;
+import presentation.common.*;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class LabTestBookingOutput {
+
+    PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     public void dashboard(){
         /*
@@ -40,13 +43,20 @@ public class LabTestBookingOutput {
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
 
-        LabTestBookingOutput labTestBookingOutput = new LabTestBookingOutput();
-
         switch (option){
             case 1:
-                labTestBookingOutput.viewPlans();
+                viewPlans();
                 break;
             case 2:
+                // call recommendation method
+                break;
+            case 3:
+                makeBooking();
+                break;
+            case 4:
+                // view bookings code
+                break;
+            case 5:
                 break;
         }
 
@@ -57,13 +67,7 @@ public class LabTestBookingOutput {
         /*
         View Plans title
          */
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
-        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+ ScreenTitles.availablePlans+CommonConstants.titleSpace);
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
+        consoleObj.printHeader(ScreenTitles.availablePlans);
 
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
         List<LabCheck> labCheckList = labCheckUtil.fetchLabCheckPlans();
@@ -80,6 +84,55 @@ public class LabTestBookingOutput {
                     break;
                 case 2:
                     return;
+            }
+        }
+    }
+
+    public void makeBooking(){
+        consoleObj.printHeader(ScreenTitles.makeBooking);
+
+        int healthCheckId;
+        Date bookingdate;
+        Scanner sc = new Scanner(System.in);
+
+        healthCheckId = inputHealthCheckId(sc);
+        bookingdate = inputBookingDate(sc);
+
+        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
+        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate);
+    }
+
+    private int inputHealthCheckId(Scanner sc){
+        int healthCheckId;
+        System.out.print(ScreenFields.checkId+ CommonConstants.commonTextSeparator);
+
+        while(true) {
+            if (sc.hasNextInt()) {
+                healthCheckId = sc.nextInt();
+                if (healthCheckId < 1 || healthCheckId > 10)
+                    consoleObj.printError(CommonErrors.invalidCheckUpId);
+                else
+                    return healthCheckId;
+            } else
+                consoleObj.printError(CommonErrors.invalidSelection);
+        }
+    }
+
+    private Date inputBookingDate(Scanner sc){
+        Date bookingdate;
+        System.out.print(ScreenFields.dateInput+CommonConstants.commonTextSeparator);
+
+        while(true) {
+            try {
+                bookingdate = Date.valueOf(sc.next());
+                if(bookingdate.compareTo(new Date(System.currentTimeMillis())) < 0) {
+                    consoleObj.printError(CommonErrors.smallerDate);
+                }
+                else
+                    return bookingdate;
+            }
+            catch(IllegalArgumentException e) {
+                consoleObj.printError(CommonErrors.invalidDateFormat);
             }
         }
     }
