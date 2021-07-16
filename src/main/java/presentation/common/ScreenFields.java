@@ -108,4 +108,5 @@ public class ScreenFields {
 	public static final String viewDetails = "View more details";
 	public static final String backToBooking = "Go back to booking";
 	public static final String checkId = "Enter the health check number";
+	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
 }

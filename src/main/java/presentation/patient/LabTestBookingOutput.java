@@ -3,14 +3,18 @@ package presentation.patient;
 import persistence.patient.model.LabCheck;
 import persistence.patient.model.LabCheckBooking;
 import persistence.patient.util.LabCheckBookingUtil;
+import persistence.patient.util.LabCheckRecommendationUtil;
 import persistence.patient.util.LabCheckUtil;
 import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
+import persistence.patient.utilImpl.LabCheckRecommendationUtilImpl;
 import persistence.patient.utilImpl.LabCheckUtilImpl;
 import presentation.common.*;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class LabTestBookingOutput {
 
@@ -49,7 +53,7 @@ public class LabTestBookingOutput {
                 viewPlans();
                 break;
             case 2:
-                // call recommendation method
+                getRecommendations();
                 break;
             case 3:
                 makeBooking();
@@ -104,13 +108,30 @@ public class LabTestBookingOutput {
     }
 
     public void viewBookings(){
-        consoleObj.printError(ScreenTitles.previousBookings);
+        consoleObj.printHeader(ScreenTitles.previousBookings);
 
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
         List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
         System.out.println("Appointment ID | HealthCheck ID | Date");
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
             System.out.println(labCheckBooking.getAppointment_id()+CommonConstants.verticleBar+labCheckBooking.getHealthcheck_id()+CommonConstants.verticleBar+labCheckBooking.getBooked_for_date());
+        }
+    }
+
+    public void getRecommendations(){
+        consoleObj.printHeader(ScreenTitles.labTestRecommendation);
+        LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
+        List<LabCheck> ageBasedRecommendationList = labCheckRecommendationUtil.ageBasedRecommendation();
+        List<LabCheck> genderBasedRecommendationList = labCheckRecommendationUtil.genderBasedRecommendation();
+        Set<LabCheck> labCheckSet = new HashSet<>();
+        for(LabCheck labCheck : ageBasedRecommendationList)
+            labCheckSet.add(labCheck);
+        for(LabCheck labCheck : genderBasedRecommendationList)
+            labCheckSet.add(labCheck);
+        System.out.println(ScreenFields.labCheckRecommendation+CommonConstants.commonTextSeparator);
+
+        for(LabCheck labCheck : labCheckSet){
+            System.out.println(labCheck.getCheckup_id()+CommonConstants.commonTextSeparator+labCheck.getCheckup_name());
         }
     }
 
