@@ -6,26 +6,27 @@ import persistence.patient.daoImpl.PatientDAOImpl;
 public class Patient {
 
 	private int patientId;
-	private String PatientName;
-	private String PatientGender;
-	private String PatientDob;
-	private String PatientEmail;
-	private String PatientAddress;
-	private long PatientContact;
-	private String Password;
-	private String PatientType;
+	private String patientName;
+	private String patientGender;
+	private String patientDob;
+	private String patientEmail;
+	private String patientAddress;
+	private long patientContact;
+	private String password;
+	private String patientType;
 	
 	private Patient() {}
   
 	private static Patient patient;
   
-	public static void setPatient(String email) {
+	public static Patient setPatient(String email) {
 		if(patient == null) {
 			patient = new Patient();
 			patient.setPatientEmail(email);
 			PatientDAO patientDAO = new PatientDAOImpl();
 			patient = patientDAO.getPatient(patient);
 		}
+    return patient;
 	}
 	
 	public static Patient getPatient() {
@@ -39,52 +40,52 @@ public class Patient {
 		this.patientId = patientId;
 	}
 	public String getPatientName() {
-		return PatientName;
+		return patientName;
 	}
 	public void setPatientName(String patientName) {
-		PatientName = patientName;
+		this.patientName = patientName;
 	}
 	public String getPatientGender() {
-		return PatientGender;
+		return patientGender;
 	}
 	public void setPatientGender(String patientGender) {
-		PatientGender = patientGender;
+		this.patientGender = patientGender;
 	}
 	public String getPatientDob() {
-		return PatientDob;
+		return patientDob;
 	}
 	public void setPatientDob(String patientDob) {
-		PatientDob = patientDob;
+		this.patientDob = patientDob;
 	}
 	public String getPatientEmail() {
-		return PatientEmail;
+		return patientEmail;
 	}
 	public void setPatientEmail(String patientEmail) {
-		PatientEmail = patientEmail;
+		this.patientEmail = patientEmail;
 	}
 	public String getPatientAddress() {
-		return PatientAddress;
+		return patientAddress;
 	}
 	public void setPatientAddress(String patientAddress) {
-		PatientAddress = patientAddress;
+		this.patientAddress = patientAddress;
 	}
 	public long getPatientContact() {
-		return PatientContact;
+		return patientContact;
 	}
 	public void setPatientContact(long patientContact) {
-		PatientContact = patientContact;
+		this.patientContact = patientContact;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 	public String getPatientType() {
-		return PatientType;
+		return patientType;
 	}
 	public void setPatientType(String patientType) {
-		PatientType = patientType;
+		this.patientType = patientType;
 	}
 
 }

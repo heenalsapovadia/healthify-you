@@ -19,7 +19,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement preparedStatement;
 		SHA_Hash sha= new SHA_Hash();
-		String HashedPassword= sha.getSHA(p.getPassword());
+		String hashedPassword= sha.getSHA(p.getPassword());
 		ResultSet resultSet = null;
 		String query = "SELECT * FROM UserCredentials WHERE User_Id = ?";
 		try {
@@ -35,7 +35,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 				String sql2= "insert into patients (patient_name, patient_gender,patient_dob,patient_email,patient_address,patient_contact) values (?,?,?,?,?,?)";
 				preparedStatement=conn.prepareStatement(sql);
 				preparedStatement.setString(1, p.getPatientEmail());
-				preparedStatement.setString(2, HashedPassword);
+				preparedStatement.setString(2, hashedPassword);
 				preparedStatement.setString(3, p.getPatientType());
 				preparedStatement.execute();
 				preparedStatement=conn.prepareStatement(sql2);
