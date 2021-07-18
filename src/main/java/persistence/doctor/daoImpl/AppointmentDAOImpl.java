@@ -2,6 +2,7 @@ package persistence.doctor.daoImpl;
 
 import persistence.doctor.dao.AppointmentDAO;
 import persistence.doctor.model.Appointment;
+import persistence.doctor.model.Doctor;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.Connection;
@@ -19,8 +20,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     public Appointment validateAppointmentId(Appointment appointment) {
         Connection conn = DatabaseConnection.getConnection();
 
-        // Dummy ID, needs to be replaced with current Logged In Doctor's ID
-        int doctor_id = 123;
+        int doctor_id = Doctor.getDoctor().getDoctor_id();
 
         String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ? AND doctor_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import persistence.doctor.dao.AppointmentDAO;
 import persistence.doctor.model.Appointment;
+import persistence.doctor.model.Doctor;
 import presentation.startup.DatabaseConnection;
 
 public class AppointmentDAOImplTest {
@@ -16,16 +17,17 @@ public class AppointmentDAOImplTest {
         DatabaseConnection.loadDatabaseConnection();
 
         Appointment appointment = new Appointment();
-        appointment.setAppointment_id(12);
+        appointment.setAppointment_id(17);
 
         //Set current doctor's id
+        Doctor.setDoctor("biswa.roy@healthifyyou.com");
+        int doctor_id = Doctor.getDoctor().getDoctor_id();
+
 
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
         appointment = appointmentDAO.validateAppointmentId(appointment);
 
-        //Set current doctor's id
-        int doctor_id = 12; // dummy, NEEDS to be FIXED
-
+        Assert.assertNotNull(appointment);
         Assert.assertEquals(doctor_id, appointment.getDoctor_id());
     }
 
@@ -37,6 +39,7 @@ public class AppointmentDAOImplTest {
         appointment.setAppointment_id(12);
 
         //Set current doctor's id
+        Doctor.setDoctor("biswa.roy@healthifyyou.com");
 
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
 
