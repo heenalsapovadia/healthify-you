@@ -75,7 +75,6 @@ public class RegisterPatientOutput {
         print.printMethodReturns(util.validatePassword(password));
         break;
       } else {
-        print.printLineSeparator();
         print.printHeader(ScreenTitles.signUp);
         print.printSubHeading(ScreenTitles.registration);
         print.printScreenFields(ScreenFields.getInput);
@@ -162,7 +161,7 @@ public class RegisterPatientOutput {
       case 1:
         RegistrationDAO dao = new RegistrationDAOImpl();
         print.printMethodReturns(dao.addPatientDetails(p));
-        break;
+        return false;
 
       case 2:
         print.printScreenFields(ScreenFields.goBack);

@@ -55,7 +55,7 @@ public class UserLogin {
           print.printMethodReturns(dao.getuserDetails(l));
           if (dao.getuserDetails(l).equals(CommonErrors.userPasswordUnmatch)
                   || dao.getuserDetails(l).equals(CommonErrors.userIDInvalid)) {
-            
+
             List<String> selectionOptions2 = Arrays.asList("Retry", "Sign-Up", "Exit");
             int sel2 = print.printSelection(selectionOptions2);
             if (sel2 == 1) {
@@ -69,14 +69,13 @@ public class UserLogin {
               return false;
             }
           } else if (dao.getuserDetails(l).equals(ScreenFields.successLogin)) {
-              return false;
+            return false;
           }
-        }
-        else {
-          if(util.validateEmail(userId) != null) {
+        } else {
+          if (util.validateEmail(userId) != null) {
             print.printMethodReturns(util.validateEmail(userId));
           }
-          if(util.validatePassword(password) != null) {
+          if (util.validatePassword(password) != null) {
             print.printMethodReturns(util.validatePassword(password));
           }
           List<String> selectionOptions2 = Arrays.asList("Retry", "Sign-Up", "Exit");
@@ -99,8 +98,8 @@ public class UserLogin {
         RegisterPatientOutput obj = new RegisterPatientOutput();
         obj.registerPatient();
         break;
+        
       case 3:
-
         print.printScreenFields(ScreenFields.exit);
         return false;
 
