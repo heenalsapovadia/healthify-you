@@ -54,7 +54,8 @@ public class RegisterPatientOutput {
       print.printScreenFields(CommonErrors.invalidRegistration);
       return false;
     }
-    Patient p = Patient.setPatient(userId);
+    Patient.setPatient(userId);
+    Patient p = Patient.getPatient();
     p.setPassword(password);
     p.setPatientEmail(userId);
     p.setPatientType("P");

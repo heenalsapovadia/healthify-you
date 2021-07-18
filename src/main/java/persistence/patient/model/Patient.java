@@ -19,14 +19,13 @@ public class Patient {
   
 	private static Patient patient;
   
-	public static Patient setPatient(String email) {
+	public static void setPatient(String email) {
 		if(patient == null) {
 			patient = new Patient();
 			patient.setPatientEmail(email);
 			PatientDAO patientDAO = new PatientDAOImpl();
 			patient = patientDAO.getPatient(patient);
 		}
-    return patient;
 	}
 	
 	public static Patient getPatient() {

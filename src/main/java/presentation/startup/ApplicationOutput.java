@@ -64,6 +64,7 @@ public class ApplicationOutput {
 		else if(sel == 2) {
 			RegisterPatientOutput registerPatient = new RegisterPatientOutput();
 			registerPatient.registerPatient();
+			loadMainScreenContent(consoleObj);
 		}
 		else if(sel == 3) {
 			System.exit(0);
