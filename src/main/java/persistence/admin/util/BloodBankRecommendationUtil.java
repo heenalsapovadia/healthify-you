@@ -1,5 +1,7 @@
 package persistence.admin.util;
 
+import java.util.*;
+
 /**
  * <pre>
  * Perform operations for recommending blood group based on order history
@@ -12,5 +14,6 @@ package persistence.admin.util;
 public interface BloodBankRecommendationUtil {
 
     public boolean validateDate(String date);
+    public List<String> getBloodGroupList(String startDate, String endDate, int numRec);
 
 }
