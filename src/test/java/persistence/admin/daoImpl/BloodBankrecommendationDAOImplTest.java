@@ -26,4 +26,15 @@ public class BloodBankrecommendationDAOImplTest {
 
   }
 
+  @Test
+  public void fetchBloodGroupList2() throws SQLException {
+    BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
+    DatabaseConnection.loadDatabaseConnection();
+
+    ArrayList<String> bloodGroupList = new ArrayList<>();
+
+    assertEquals(bloodGroupList, bloodBankRecommendationDAOImpl.fetchBloodGroupList("2020-01-19", "2020-07-19"));
+
+  }
+
 }
