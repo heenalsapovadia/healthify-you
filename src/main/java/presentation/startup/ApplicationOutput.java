@@ -1,6 +1,3 @@
-/**
- * 
- */
 package presentation.startup;
 
 import java.util.ArrayList;
@@ -24,7 +21,7 @@ import presentation.patient.RegisterPatientOutput;
  * the application.
  * </pre>
  * 
- * @author Gurleen Saluja
+ * @author G12
  *
  */
 public class ApplicationOutput {
@@ -62,11 +59,12 @@ public class ApplicationOutput {
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
 			UserLogin userLogin = new UserLogin();
-			userLogin.LoginUser();
+			userLogin.loginUser();
 		}
 		else if(sel == 2) {
 			RegisterPatientOutput registerPatient = new RegisterPatientOutput();
-			registerPatient.RegisterPatient();
+			registerPatient.registerPatient();
+			loadMainScreenContent(consoleObj);
 		}
 		else if(sel == 3) {
 			System.exit(0);
