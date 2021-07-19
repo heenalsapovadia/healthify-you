@@ -38,7 +38,8 @@ buildStep:
     - /target
   script:
     - mvn clean install
-    - mvn clean package
+    - mvn clean compile assembly:single
+    #- mvn clean package
     #mvn clean compile
 
 testStep:
