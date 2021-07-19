@@ -5,10 +5,7 @@ import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
-import presentation.common.CommonConstants;
-import presentation.common.CommonErrors;
-import presentation.common.ScreenFields;
-import presentation.common.ScreenTitles;
+import presentation.common.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +13,10 @@ import java.util.Scanner;
 
 public class PrescribeMedicineOutput {
 
-    public void prescribeMedication(){
+    PrintToConsole consoleObj = PrintToConsole.getInstance();
 
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
-        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+ ScreenTitles.prescription+CommonConstants.titleSpace);
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
+    public void prescribeMedication(){
+        consoleObj.printHeader(ScreenTitles.prescription);
 
         Scanner sc = new Scanner(System.in);
         System.out.print(ScreenFields.appointmentId + CommonConstants.commonTextSeparator);

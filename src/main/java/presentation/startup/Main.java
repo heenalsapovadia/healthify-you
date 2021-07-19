@@ -1,5 +1,7 @@
 package presentation.startup;
 
+import presentation.doctor.DoctorMenuOutput;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		/* Used for Testing. Refer this while making connections in all features. */
+		System.gc();
 		DatabaseConnection.loadDatabaseConnection();
 		Connection conn = DatabaseConnection.getConnection();
 		if(conn == null) {
@@ -19,6 +22,7 @@ public class Main {
 			System.exit(0);
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
-		applicationOutput.displayOutput();
+//		applicationOutput.displayOutput();
+		DoctorMenuOutput.getInstance().displayOutput();
 	}
 }

@@ -5,15 +5,13 @@ import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
-import presentation.common.CommonConstants;
-import presentation.common.CommonErrors;
-import presentation.common.ScreenFields;
-import presentation.common.ScreenTitles;
+import presentation.common.*;
 import presentation.admin.DoctorRegistrationOutput;
 import presentation.admin.InvoiceOutput;
 import presentation.startup.ApplicationOutput;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -21,6 +19,7 @@ import java.util.logging.Logger;
 public class DoctorMenuOutput {
 
     private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
+    PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     private DoctorMenuOutput(){}
 
@@ -33,43 +32,26 @@ public class DoctorMenuOutput {
     }
 
     public void displayOutput() {
-        loadHeader();
+        consoleObj.printHeader(ScreenTitles.doctorDashboard);
         loadScreenOptions(new Scanner(System.in));
     }
 
-    private void loadHeader() {
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
-        System.out.println(CommonConstants.titleSpace+ScreenTitles.doctorDashboard+CommonConstants.titleSpace);
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
-    }
-
     private int loadScreenOptions(Scanner sc) {
-        int sel = -1;
-        System.out.println("1. "+ScreenFields.prescribeMedicine);
-        System.out.println("2. "+ScreenFields.viewAppointment);
-        System.out.println("3. "+ScreenFields.logout);
-        System.out.println(ScreenFields.selection);
-        if(sc.hasNextInt())
-            sel = sc.nextInt();
-        else {
-            System.err.println(CommonErrors.invalidSelection);
-            sel = loadScreenOptions(new Scanner(System.in));
-        }
-        if(sel == 1) {
+        List<String> selectionOptions = Arrays.asList(ScreenFields.prescribeMedicine, ScreenFields.viewAppointment,
+                ScreenFields.logout);
+        int option = consoleObj.printSelection(selectionOptions);
+
+        if(option == 1) {
             System.out.println("Prescribing medssss");
 
             PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
             prescribeMedicineOutput.prescribeMedication();
 
         }
-        else if(sel == 2) {
+        else if(option == 2) {
             //add code for View Appointment for Doctor here
         }
-        else if(sel == 3) {
+        else if(option == 3) {
             System.out.println(ScreenFields.logoutMessage);
             System.out.println(ScreenFields.applicationTerminationMessage);
             sc.close();
@@ -77,9 +59,9 @@ public class DoctorMenuOutput {
         }
         else {
             System.out.println(CommonErrors.invalidSelection);
-            sel = loadScreenOptions(new Scanner(System.in));
+            option = loadScreenOptions(new Scanner(System.in));
         }
-        return sel;
+        return option;
     }
 
 }

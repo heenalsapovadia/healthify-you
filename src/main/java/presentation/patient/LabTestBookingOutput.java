@@ -10,11 +10,9 @@ import persistence.patient.utilImpl.LabCheckRecommendationUtilImpl;
 import persistence.patient.utilImpl.LabCheckUtilImpl;
 import presentation.common.*;
 
+import java.sql.Array;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class LabTestBookingOutput {
 
@@ -29,19 +27,10 @@ public class LabTestBookingOutput {
         /*
         Dashboard main options list
          */
-        System.out.println();
-        System.out.println("1. "+ScreenTitles.availablePlans);
-        System.out.println("2. "+ScreenTitles.labTestRecommendation);
-        System.out.println("3. "+ScreenTitles.makeBooking);
-        System.out.println("4. "+ScreenTitles.previousBookings);
-        System.out.println("5. "+ ScreenFields.exit);
+        List<String> selectionOptions = Arrays.asList(ScreenTitles.availablePlans, ScreenTitles.labTestRecommendation,
+                ScreenTitles.makeBooking, ScreenTitles.previousBookings, ScreenFields.exit);
 
-        /*
-        User input
-         */
-        System.out.print(ScreenFields.enterOption+CommonConstants.commonTextSeparator);
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
+        int option = consoleObj.printSelection(selectionOptions);
 
         switch (option){
             case 1:
