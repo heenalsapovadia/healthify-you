@@ -1,4 +1,11 @@
 package persistence.admin.utilImpl;
 
-public class BloodBankRecommendationUtilImpl {
+import persistence.admin.util.BloodBankRecommendationUtil;
+
+public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationUtil {
+
+  public boolean validateDate(String date) {
+    return true;
+  }
+
 }

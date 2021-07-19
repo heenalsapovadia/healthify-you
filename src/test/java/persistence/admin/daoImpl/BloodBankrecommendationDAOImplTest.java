@@ -1,7 +1,6 @@
 package persistence.admin.daoImpl;
 
 import org.junit.Test;
-import persistence.patient.daoImpl.BloodBankRecommendationDAOImpl;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
 * <pre>
-* Perform operations for fetching blood group list based on order history from database
+* Perform tests for fetching blood group list based on order history from database
 * </pre>
 *
 * @author Samiksha Salgaonkar
