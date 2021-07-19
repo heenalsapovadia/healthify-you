@@ -24,12 +24,7 @@ public class LabTestBookingOutput {
         /*
         Dashboard title
          */
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
-        System.out.println();
-        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+ ScreenTitles.bookATest+CommonConstants.titleSpace);
-        for(int i=0; i<100; i++)
-            System.out.print(CommonConstants.headingChar);
+        consoleObj.printHeader(ScreenTitles.bookATest);
 
         /*
         Dashboard main options list
