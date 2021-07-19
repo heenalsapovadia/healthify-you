@@ -10,6 +10,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+* <pre>
+* Perform tests for fetching data for doctor recommendation based on symptoms
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
+
 public class DoctorRecommendationDAOImplTest {
 
     @Test

@@ -9,6 +9,15 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+* <pre>
+* Perform operations for fetching blood group list based on order history from database
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
+
 public class BloodBankrecommendationDAOImplTest {
 
   @Test
