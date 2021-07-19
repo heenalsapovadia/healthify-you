@@ -28,4 +28,15 @@ public class BloodBankRecommendationUtilImplTest {
     assertEquals(null, bloodBankRecommendationUtil.getBloodGroupList("2021-08-19", "2021-07-19", 8));
 
   }
+
+  /* Input Validation 2: numRec is 0 */
+  @Test
+  public void getBloodGroupList_IV2() {
+    DatabaseConnection.loadDatabaseConnection();
+    BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
+
+    assertEquals(null, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 0));
+
+  }
+
 }
