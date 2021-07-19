@@ -49,4 +49,14 @@ public class BloodBankRecommendationUtilImplTest {
 
   }
 
+  /* Input Validation 4: numRec is greater than 8 */
+  @Test
+  public void getBloodGroupList_IV4() {
+    DatabaseConnection.loadDatabaseConnection();
+    BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
+
+    assertEquals(null, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 9));
+
+  }
+  
 }
