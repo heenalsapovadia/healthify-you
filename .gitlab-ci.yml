@@ -37,7 +37,8 @@ buildStep:
     paths:
     - /target
   script:
-    mvn clean install
+    - mvn clean install
+    - mvn clean package
     #mvn clean compile
 
 testStep:
