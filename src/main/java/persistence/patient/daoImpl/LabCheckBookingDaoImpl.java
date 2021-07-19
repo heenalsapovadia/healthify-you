@@ -1,11 +1,8 @@
 package persistence.patient.daoImpl;
 
-import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.patient.dao.LabCheckBookingDao;
-import persistence.patient.model.LabCheck;
 import persistence.patient.model.LabCheckBooking;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

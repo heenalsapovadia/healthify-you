@@ -1,10 +1,8 @@
 package persistence.patient.daoImpl;
 
-import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.patient.dao.LabCheckDao;
 import persistence.patient.model.LabCheck;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
