@@ -7,7 +7,6 @@ import persistence.patient.util.LabCheckBookingUtil;
 import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
 import java.sql.Date;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class LabCheckBookingDAOImplTest {
