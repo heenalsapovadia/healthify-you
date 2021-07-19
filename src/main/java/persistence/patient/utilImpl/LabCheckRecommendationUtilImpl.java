@@ -1,7 +1,7 @@
 package persistence.patient.utilImpl;
 
-import persistence.patient.dao.LabCheckDao;
-import persistence.patient.daoImpl.LabCheckDaoImpl;
+import persistence.patient.dao.LabCheckDAO;
+import persistence.patient.daoImpl.LabCheckDAOImpl;
 import persistence.patient.model.LabCheck;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckRecommendationUtil;
@@ -48,7 +48,7 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
     }
 
     private void setLabCheckMap(){
-        LabCheckDao labCheckDao = new LabCheckDaoImpl();
+        LabCheckDAO labCheckDao = new LabCheckDAOImpl();
         List<LabCheck> labCheckList = labCheckDao.getAvailablePlans();
         labCheckMap = new HashMap<>();
         for(LabCheck labCheck : labCheckList)

@@ -1,7 +1,7 @@
 package persistence.patient.utilImpl;
 
-import persistence.patient.dao.LabCheckDao;
-import persistence.patient.daoImpl.LabCheckDaoImpl;
+import persistence.patient.dao.LabCheckDAO;
+import persistence.patient.daoImpl.LabCheckDAOImpl;
 import persistence.patient.model.LabCheck;
 import persistence.patient.util.LabCheckUtil;
 import presentation.common.CommonConstants;
@@ -16,7 +16,7 @@ public class LabCheckUtilImpl implements LabCheckUtil {
 
     @Override
     public List<LabCheck> fetchLabCheckPlans() {
-        LabCheckDao labCheckDao = new LabCheckDaoImpl();
+        LabCheckDAO labCheckDao = new LabCheckDAOImpl();
         List<LabCheck> labCheckList = labCheckDao.getAvailablePlans();
         labCheckMap = new HashMap<>();
         for(LabCheck labCheck : labCheckList)

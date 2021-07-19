@@ -1,7 +1,7 @@
 package persistence.patient.utilImpl;
 
-import persistence.patient.dao.LabCheckBookingDao;
-import persistence.patient.daoImpl.LabCheckBookingDaoImpl;
+import persistence.patient.dao.LabCheckBookingDAO;
+import persistence.patient.daoImpl.LabCheckBookingDAOImpl;
 import persistence.patient.model.LabCheckBooking;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckBookingUtil;
@@ -23,13 +23,13 @@ public class LabCheckBookingUtilImpl implements LabCheckBookingUtil {
         labCheckBooking.setHealthcheck_id(healthCheckId);
         labCheckBooking.setBooked_for_date(bookingDate);
 
-        LabCheckBookingDao labCheckBookingDao = new LabCheckBookingDaoImpl();
+        LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);
     }
 
     @Override
     public List<LabCheckBooking> fetchBookings() {
-        LabCheckBookingDao labCheckBookingDao = new LabCheckBookingDaoImpl();
+        LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         return labCheckBookingDao.getAllBookings();
     }
 }

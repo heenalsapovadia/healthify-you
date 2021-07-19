@@ -4,7 +4,6 @@ import org.junit.Test;
 import persistence.patient.model.LabCheck;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckRecommendationUtil;
-
 import java.util.HashMap;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package persistence.patient.daoImpl;
 
-import persistence.patient.dao.LabCheckDao;
+import persistence.patient.dao.LabCheckDAO;
 import persistence.patient.model.LabCheck;
 import presentation.startup.DatabaseConnection;
 import java.sql.Connection;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LabCheckDaoImpl implements LabCheckDao {
-    private static final Logger LOGGER = Logger.getLogger(LabCheckDaoImpl.class.getName());
+public class LabCheckDAOImpl implements LabCheckDAO {
+    private static final Logger LOGGER = Logger.getLogger(LabCheckDAOImpl.class.getName());
 
     /*
     Fetch all the plans from database

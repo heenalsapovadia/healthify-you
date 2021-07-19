@@ -1,6 +1,6 @@
 package persistence.patient.daoImpl;
 
-import persistence.patient.dao.LabCheckBookingDao;
+import persistence.patient.dao.LabCheckBookingDAO;
 import persistence.patient.model.LabCheckBooking;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LabCheckBookingDaoImpl implements LabCheckBookingDao {
-    private static final Logger LOGGER = Logger.getLogger(LabCheckBookingDaoImpl.class.getName());
+public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
+    private static final Logger LOGGER = Logger.getLogger(LabCheckBookingDAOImpl.class.getName());
 
     @Override
     public void insertBooking(LabCheckBooking booking) {
