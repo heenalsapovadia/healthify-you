@@ -1,6 +1,8 @@
 package presentation.startup;
 
 import presentation.doctor.DoctorMenuOutput;
+import presentation.patient.LabTestBookingOutput;
+import presentation.patient.PatientMenuOutput;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,7 +16,6 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		/* Used for Testing. Refer this while making connections in all features. */
-		System.gc();
 		DatabaseConnection.loadDatabaseConnection();
 		Connection conn = DatabaseConnection.getConnection();
 		if(conn == null) {
@@ -22,7 +23,6 @@ public class Main {
 			System.exit(0);
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
-//		applicationOutput.displayOutput();
-		DoctorMenuOutput.getInstance().displayOutput();
+		applicationOutput.displayOutput();
 	}
 }
