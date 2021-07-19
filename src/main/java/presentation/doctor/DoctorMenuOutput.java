@@ -33,20 +33,24 @@ public class DoctorMenuOutput {
 
     public void displayOutput() {
         consoleObj.printHeader(ScreenTitles.doctorDashboard);
-        loadScreenOptions(new Scanner(System.in));
+        loadScreenOptions();
     }
 
-    private int loadScreenOptions(Scanner sc) {
-        List<String> selectionOptions = Arrays.asList(ScreenFields.prescribeMedicine, ScreenFields.viewAppointment,
-                ScreenFields.logout);
+    private List<String> getSelectionOptions() {
+        List<String> selectionOptions = new ArrayList<>();
+        selectionOptions.add(ScreenFields.prescribeMedicine);
+        selectionOptions.add(ScreenFields.viewAppointment);
+        selectionOptions.add(ScreenFields.logout);
+        return selectionOptions;
+    }
+
+    private int loadScreenOptions() {
+        List<String> selectionOptions = getSelectionOptions();
         int option = consoleObj.printSelection(selectionOptions);
 
         if(option == 1) {
-            System.out.println("Prescribing medssss");
-
             PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
             prescribeMedicineOutput.prescribeMedication();
-
         }
         else if(option == 2) {
             //add code for View Appointment for Doctor here
@@ -54,12 +58,11 @@ public class DoctorMenuOutput {
         else if(option == 3) {
             System.out.println(ScreenFields.logoutMessage);
             System.out.println(ScreenFields.applicationTerminationMessage);
-            sc.close();
             System.exit(0);
         }
         else {
-            System.out.println(CommonErrors.invalidSelection);
-            option = loadScreenOptions(new Scanner(System.in));
+            consoleObj.printError(CommonErrors.invalidSelection);
+            option = loadScreenOptions();
         }
         return option;
     }

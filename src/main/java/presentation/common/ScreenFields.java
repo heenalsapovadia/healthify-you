@@ -6,7 +6,7 @@ package presentation.common;
  * within the scope of the application.
  * </pre>
  * 
- * @author Gurleen Saluja
+ * @author G12
  *
  */
 public class ScreenFields {
@@ -42,28 +42,31 @@ public class ScreenFields {
 	public static final String eveningDose = "Evening Dose";
 	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
 
-	/* Doctor registration screen fields */
-	public static final String emailInput = "Enter doctor's email address";
-	public static final String firstNameInput = "Enter doctor's first name";
-	public static final String lastNameInput = "Enter doctor's last name";
-	public static final String passwordInput = "Enter password for doctor's account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
+	/* Registration screen fields */
+	public static final String emailInput = "Enter email address";
+	public static final String firstNameInput = "Enter first name";
+	public static final String lastNameInput = "Enter last name";
+	public static final String passwordInput = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
 	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
 	public static final String degreeInput = "Enter doctor's graduation degree";
 	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
-	public static final String birthDateInput = "Enter doctor's birth date (YYYY-MM-DD)";
-	public static final String contactInput = "Enter doctor's contact number (902#######)";
-	public static final String cityInput = "Enter doctor's city of residence";
+	public static final String birthDateInput = "Enter birth date (YYYY-MM-DD)";
+	public static final String contactInput = "Enter contact number (902#######)";
+	public static final String cityInput = "Enter city of residence";
 	
     /* Login screen fields */
+	public static final String userEmailInput = "Enter your email address";
+	public static final String userPasswordInput = "Enter your password";
 	public static final String emailIdOutput= "Email-ID";
 	public static final String passwordOutput= "Password";
 	public static final String gender= "Enter your Gender (M/F/O)";
 	public static final String getInput = "Enter your details below";
 	public static final String goBack = "Go back";
-	public static final String proceed ="Continue";
+	public static final String proceed ="Confirm to proceed";
 	public static final String contactBeginWith = "The contact number should begin with 902";
 	public static final String contactLength = "Contact number should be 10 digits long!";
-
+    public static final String successLogin = "Successfully logged in!";
+    
 	/*Immunization screenFields*/
 	public static final String month = "Month";
 	public static final String slots = "Slots assigned";

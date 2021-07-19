@@ -1,6 +1,3 @@
-/**
- * 
- */
 package presentation.startup;
 
 import java.util.ArrayList;
@@ -13,6 +10,7 @@ import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
+import presentation.doctor.DoctorMenuOutput;
 import presentation.patient.PatientMenuOutput;
 import presentation.patient.RegisterPatientOutput;
 
@@ -23,7 +21,7 @@ import presentation.patient.RegisterPatientOutput;
  * the application.
  * </pre>
  * 
- * @author Gurleen Saluja
+ * @author G12
  *
  */
 public class ApplicationOutput {
@@ -47,7 +45,8 @@ public class ApplicationOutput {
 			adminMenuOutput.displayOutput();
 		}
 		else if(Doctor.getDoctor() != null) {
-			//load doctor dashboard				
+			DoctorMenuOutput doctorMenuOutput = DoctorMenuOutput.getInstance();
+			doctorMenuOutput.displayOutput();
 		}
 		else if(Patient.getPatient() != null) { 
 			PatientMenuOutput patientMenuOutput = PatientMenuOutput.getInstance();
@@ -60,11 +59,12 @@ public class ApplicationOutput {
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
 			UserLogin userLogin = new UserLogin();
-			userLogin.LoginUser();
+			userLogin.loginUser();
 		}
 		else if(sel == 2) {
 			RegisterPatientOutput registerPatient = new RegisterPatientOutput();
-			registerPatient.RegisterPatient();
+			registerPatient.registerPatient();
+			loadMainScreenContent(consoleObj);
 		}
 		else if(sel == 3) {
 			System.exit(0);
