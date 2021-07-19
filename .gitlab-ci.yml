@@ -65,7 +65,7 @@ deployTest:
   environment:
     name: Production
   only:
-    - master
+    - release-1
 
 deployProd:
   stage: deploy
