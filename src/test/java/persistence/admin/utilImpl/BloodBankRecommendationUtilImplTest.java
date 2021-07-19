@@ -103,4 +103,18 @@ public class BloodBankRecommendationUtilImplTest {
 
   }
 
+  /* Control Flow 4: numRec is a number containing tying elements */
+  @Test
+  public void getBloodGroupList_CF4() {
+    DatabaseConnection.loadDatabaseConnection();
+    BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
+    List<String> list = new ArrayList();
+    list.add("A+");
+    list.add("AB+");
+    list.add("O+");
+
+    assertEquals(list, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 3));
+
+  }
+
 }
