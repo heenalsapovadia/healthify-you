@@ -58,5 +58,18 @@ public class BloodBankRecommendationUtilImplTest {
     assertEquals(null, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 9));
 
   }
-  
+
+  /* Control Flow test cases start here */
+
+  /* Control Flow 1: numRec is a non-tying number at the boundary */
+  @Test
+  public void getBloodGroupList() {
+    DatabaseConnection.loadDatabaseConnection();
+    BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
+    List<String> list = bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 4);
+
+    System.out.println(list);
+
+  }
+
 }
