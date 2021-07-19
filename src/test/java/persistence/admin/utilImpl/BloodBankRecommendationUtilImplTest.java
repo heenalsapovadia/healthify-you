@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import presentation.startup.DatabaseConnection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,12 +64,29 @@ public class BloodBankRecommendationUtilImplTest {
 
   /* Control Flow 1: numRec is a non-tying number at the boundary */
   @Test
-  public void getBloodGroupList() {
+  public void getBloodGroupList_CF1() {
     DatabaseConnection.loadDatabaseConnection();
     BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
-    List<String> list = bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 4);
+    List<String> list = new ArrayList();
+    list.add("A+");
+    list.add("AB+");
+    list.add("O+");
+    list.add("B+");
 
-    System.out.println(list);
+    assertEquals(list, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 4));
+
+  }
+
+  /* Control Flow 2: numRec is a tying number at the boundary */
+  @Test
+  public void getBloodGroupList_CF2() {
+    DatabaseConnection.loadDatabaseConnection();
+    BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
+    List<String> list = new ArrayList();
+    list.add("A+");
+    list.add("AB+");
+
+    assertEquals(list, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", 1));
 
   }
 
