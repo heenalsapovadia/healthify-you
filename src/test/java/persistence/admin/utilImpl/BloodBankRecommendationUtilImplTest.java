@@ -39,4 +39,14 @@ public class BloodBankRecommendationUtilImplTest {
 
   }
 
+  /* Input Validation 3: numRec is any negative integer */
+  @Test
+  public void getBloodGroupList_IV3() {
+    DatabaseConnection.loadDatabaseConnection();
+    BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
+
+    assertEquals(null, bloodBankRecommendationUtil.getBloodGroupList("2021-01-19", "2021-07-19", -1));
+
+  }
+
 }
