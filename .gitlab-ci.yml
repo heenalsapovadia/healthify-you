@@ -37,7 +37,8 @@ buildStep:
     paths:
     - /target
   script:
-    mvn clean install
+    - mvn clean install
+    - mvn clean package
     #mvn clean compile
 
 testStep:
@@ -65,7 +66,7 @@ deployTest:
   environment:
     name: Production
   only:
-    - master
+    - release-1
 
 deployProd:
   stage: deploy
