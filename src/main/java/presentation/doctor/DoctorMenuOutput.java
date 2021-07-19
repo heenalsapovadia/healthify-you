@@ -1,19 +1,8 @@
 package presentation.doctor;
 
-import persistence.doctor.dao.PrescriptionDAO;
-import persistence.doctor.daoImpl.PrescriptionDAOImpl;
-import persistence.doctor.model.Appointment;
-import persistence.doctor.model.Prescription;
-import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
-import presentation.admin.DoctorRegistrationOutput;
-import presentation.admin.InvoiceOutput;
-import presentation.startup.ApplicationOutput;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class DoctorMenuOutput {

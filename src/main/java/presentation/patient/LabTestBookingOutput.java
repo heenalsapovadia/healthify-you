@@ -1,16 +1,9 @@
 package presentation.patient;
 
-import persistence.patient.model.LabCheck;
-import persistence.patient.model.LabCheckBooking;
-import persistence.patient.util.LabCheckBookingUtil;
-import persistence.patient.util.LabCheckRecommendationUtil;
-import persistence.patient.util.LabCheckUtil;
-import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
-import persistence.patient.utilImpl.LabCheckRecommendationUtilImpl;
-import persistence.patient.utilImpl.LabCheckUtilImpl;
+import persistence.patient.model.*;
+import persistence.patient.util.*;
+import persistence.patient.utilImpl.*;
 import presentation.common.*;
-
-import java.sql.Array;
 import java.sql.Date;
 import java.util.*;
 

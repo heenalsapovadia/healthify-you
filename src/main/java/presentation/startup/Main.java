@@ -1,12 +1,7 @@
 package presentation.startup;
 
-import presentation.doctor.DoctorMenuOutput;
-import presentation.patient.LabTestBookingOutput;
-import presentation.patient.PatientMenuOutput;
-
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

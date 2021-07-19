@@ -5,7 +5,6 @@ import persistence.patient.daoImpl.LabCheckDaoImpl;
 import persistence.patient.model.LabCheck;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckRecommendationUtil;
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;

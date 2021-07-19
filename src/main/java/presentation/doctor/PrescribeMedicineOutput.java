@@ -6,7 +6,6 @@ import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

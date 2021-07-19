@@ -7,7 +7,6 @@ import persistence.patient.util.LabCheckUtil;
 import presentation.common.CommonConstants;
 import presentation.common.ScreenFields;
 import presentation.common.CommonErrors;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;

@@ -5,16 +5,9 @@ import persistence.patient.daoImpl.LabCheckBookingDaoImpl;
 import persistence.patient.model.LabCheckBooking;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckBookingUtil;
-import presentation.admin.PharmaInvoiceOutput;
-import presentation.common.CommonConstants;
-import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
-import presentation.common.ScreenFields;
-
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Scanner;
 
 public class LabCheckBookingUtilImpl implements LabCheckBookingUtil {
     /*
