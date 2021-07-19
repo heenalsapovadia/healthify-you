@@ -1,0 +1,29 @@
+package persistence.admin.daoImpl;
+
+import org.junit.Test;
+import persistence.patient.daoImpl.BloodBankRecommendationDAOImpl;
+import presentation.startup.DatabaseConnection;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+
+public class BloodBankrecommendationDAOImplTest {
+
+  @Test
+  public void fetchBloodGroupList() throws SQLException {
+    BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
+    DatabaseConnection.loadDatabaseConnection();
+
+    ArrayList<String> bloodGroupList = new ArrayList<>();
+    bloodGroupList.add("A+");
+    bloodGroupList.add("AB+");
+    bloodGroupList.add("O+");
+    bloodGroupList.add("B+");
+
+    assertEquals(bloodGroupList, bloodBankRecommendationDAOImpl.fetchBloodGroupList("2021-01-19", "2021-07-19"));
+
+  }
+
+}

@@ -12,6 +12,14 @@ import static presentation.common.ScreenTitles.doctorRegistration;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * <pre>
+ * Output class for doctor registration
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
 
 public class DoctorRegistrationOutput {
 

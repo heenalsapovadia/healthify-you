@@ -16,6 +16,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * <pre>
+ * Output class for doctor recommendation
+ * </pre>
+ *
+ * @author Samiksha Salgaonkar
+ *
+ **/
 
 public class DoctorRecommendationOutput {
 
