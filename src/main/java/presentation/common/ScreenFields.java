@@ -33,6 +33,7 @@ public class ScreenFields {
 	public static final String selection = "Please enter your selection below:";
 	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
 
+	/* Medicine Prescription fields */
 	public static final String appointmentId = "Appointment ID";
 	public static final String medicineNumber = "Number of medicines to prescribe";
 	public static final String medicineName = "Medicine Name";
@@ -86,11 +87,11 @@ public class ScreenFields {
 	public static final String symptomOption5= "5. Digestive issues";
 	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
 	public static final String recommendationInput= "Enter the number of recommendations";
-    
+
 	/* Main Menu Fields */
 	public static final String login = "Login";
 	public static final String signUp = "Sign Up";
-	
+
 	/* Admin Dashboard Fields */
 	public static final String getInvoices = "Get Invoices";
 	public static final String getRecommendations = "Check recommendations for blood bank management";
@@ -102,10 +103,41 @@ public class ScreenFields {
 	/* Doctor Dashboard Fields */
 	public static final String prescribeMedicine = "Prescribe medication";
 	public static final String viewAppointment = "View appointments";
-	
+
 	/* Patient Dashboard Fields */
 	public static final String book = "Make a Booking";
 	public static final String invoices = "Invoices";
 	public static final String requestMedication = "Request Medication";
 	public static final String vouchers = "Redeemable Vouchers";
+
+	/* Lab Test Booking fields */
+	public static final String enterOption = "Enter your option";
+	public static final String viewDetails = "View more details";
+	public static final String backToBooking = "Go back to booking";
+	public static final String checkId = "Enter the health check number";
+	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
+
+	/* Booking Dashboard  Booking fields */
+	public static final String appointmentWithDoctor = "Book an appointment with doctor";
+	public static final String bookLabTest = "Book a Lab Test/Health Check Up";
+	public static final String bookImmunization = "Book am Immunization";
+	public static final String bookBloodBankService = "Book a Blood Bank service";
+	public static final String yourBloodGroup = "Please enter your blood group:";
+
+	/* Blood Bank Registration fields */
+	public static final String registerPatientForBloodDonation = "1. Register for Blood Donation";
+	public static final String viewDonationHistory = "2. My Donations";
+	public static final String enterYourSelection = "Please enter your selection below:";
+	public static final String checkingEligibility = "Checking Eligibility....";
+	public static final String patientIsEligible = "Eligible...No previous donations found for the Patient!";
+	public static final String registeringPatient = "Registering Patient!";
+	public static final String tokenGenerated = "Your Token is: ";
+	public static final String donationDate = "Donation Date: ";
+	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
+	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
+
+
+
+
+
 }

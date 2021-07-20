@@ -26,4 +26,7 @@ public class CommonErrors {
 	public static final String userPasswordUnmatch = "Incorrect Password!";
 	public static final String invalidRegistration = "You are not allowed to Register !";
 	public static final String invalidWeekday = "Slots can only be assigned on the weekend. Come back again on the weekend !";
+	public static final String invalidCheckUpId = "Invalid Lab CheckUp Id, Enter Again";
+	public static final String smallerDate = "Date smaller than today!";
+
 }
