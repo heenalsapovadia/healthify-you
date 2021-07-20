@@ -33,6 +33,7 @@ public class ScreenFields {
 	public static final String selection = "Please enter your selection below:";
 	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
 
+	/* Medicine Prescription fields */
 	public static final String appointmentId = "Appointment ID";
 	public static final String medicineNumber = "Number of medicines to prescribe";
 	public static final String medicineName = "Medicine Name";
@@ -69,7 +70,7 @@ public class ScreenFields {
 	/*Immunization screenFields*/
 	public static final String month = "Month";
 	public static final String slots = "Slots assigned";
-	
+
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
 	public static final String selectionOption1= "1. Select the symptoms for recommendation";
@@ -82,11 +83,11 @@ public class ScreenFields {
 	public static final String symptomOption5= "5. Digestive issues";
 	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
 	public static final String recommendationInput= "Enter the number of recommendations";
-    
+
 	/* Main Menu Fields */
 	public static final String login = "Login";
 	public static final String signUp = "Sign Up";
-	
+
 	/* Admin Dashboard Fields */
 	public static final String getInvoices = "Get Invoices";
 	public static final String getRecommendations = "Check recommendations for blood bank management";
@@ -98,10 +99,17 @@ public class ScreenFields {
 	/* Doctor Dashboard Fields */
 	public static final String prescribeMedicine = "Prescribe medication";
 	public static final String viewAppointment = "View appointments";
-	
+
 	/* Patient Dashboard Fields */
 	public static final String book = "Make a Booking";
 	public static final String invoices = "Invoices";
 	public static final String requestMedication = "Request Medication";
 	public static final String vouchers = "Redeemable Vouchers";
+
+	/* Lab Test Booking fields */
+	public static final String enterOption = "Enter your option";
+	public static final String viewDetails = "View more details";
+	public static final String backToBooking = "Go back to booking";
+	public static final String checkId = "Enter the health check number";
+	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
 }

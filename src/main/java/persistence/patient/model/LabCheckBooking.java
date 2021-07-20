@@ -1,12 +1,11 @@
-package persistence.doctor.model;
+package persistence.patient.model;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class Appointment {
+public class LabCheckBooking {
     int appointment_id;
     int patient_id;
-    int doctor_id;
-    Date booked_on_date;
+    int healthcheck_id;
     Date booked_for_date;
     Date rescheduled_date;
     int billing_id;
@@ -27,20 +26,12 @@ public class Appointment {
         this.patient_id = patient_id;
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getHealthcheck_id() {
+        return healthcheck_id;
     }
 
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
-    }
-
-    public Date getBooked_on_date() {
-        return booked_on_date;
-    }
-
-    public void setBooked_on_date(Date booked_on_date) {
-        this.booked_on_date = booked_on_date;
+    public void setHealthcheck_id(int healthcheck_id) {
+        this.healthcheck_id = healthcheck_id;
     }
 
     public Date getBooked_for_date() {
