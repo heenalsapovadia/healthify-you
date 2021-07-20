@@ -64,7 +64,7 @@ public class ImmunizationSlotOutput {
   }
 
   public void immunizationSlotAssign() {
-    
+
     ImmunizationSlotDAOImpl dao = new ImmunizationSlotDAOImpl();
     ImmunizationSlotUtilImpl util = new ImmunizationSlotUtilImpl();
     int updatedChoice = 0;
@@ -89,11 +89,11 @@ public class ImmunizationSlotOutput {
 
     }
     if (choice == 2) {
-      //Dashboard immunization
-     
+      ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
+      immunizationdashboard.displayOutput();
+
     }
 
-    
   }
 
 }
