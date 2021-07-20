@@ -2,6 +2,8 @@ package presentation.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import persistence.patient.model.Patient;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
@@ -44,6 +46,8 @@ public class PatientMenuOutput {
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
 			//make a booking
+			BookingDashboard bookingDashboard = new BookingDashboard();
+			bookingDashboard.displayOutput();
 		}
 		else if(sel == 2) {
 			//invoices

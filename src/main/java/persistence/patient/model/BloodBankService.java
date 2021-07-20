@@ -4,18 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 public class BloodBankService {
-    private String patientId;
+    private int patientId;
     private String donationId;
     private String bloodGrp;
     private Date date;
-    private int bloodDonationPoints;
     private static List<BloodTestReport> bloodtests;
 
 
-    public String getPatientId() {
+    public int getPatientId() {
         return patientId;
     }
-    public void setPatientId(String patientId) {
+    public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
 
@@ -41,14 +40,6 @@ public class BloodBankService {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public int getBloodDonationPoints() {
-        return bloodDonationPoints;
-    }
-
-    public void setBloodDonationPoints(int bloodDonationPoints) {
-        this.bloodDonationPoints = bloodDonationPoints;
     }
 
     // Added BloodTestReport methods
