@@ -2,6 +2,7 @@
 
 #IntelliJ
 .idea
+/target
 healthifyyou.iml
 
 #Eclipse
@@ -9,3 +10,4 @@ healthifyyou.iml
 .project
 .settings
 .metadata
+/target/
