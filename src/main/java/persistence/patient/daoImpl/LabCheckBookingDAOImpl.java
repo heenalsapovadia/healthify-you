@@ -16,7 +16,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
     public void insertBooking(LabCheckBooking booking) {
         Connection conn = DatabaseConnection.getConnection();
 
-        String sql = "INSERT INTO checkup_appointments(patient_id, healthcheck_id, booked_for_date) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO labcheck_appointments(patient_id, healthcheck_id, booked_for_date) VALUES(?,?,?,?,?)";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, booking.getPatient_id());
             ps.setInt(2, booking.getHealthcheck_id());
