@@ -63,4 +63,6 @@ public class ScreenTitles {
 	public static final String labTestRecommendation = "Recommendations for Health Check/Lab Test";
 	public static final String makeBooking = "Make a booking for Checkup";
 	public static final String previousBookings = "View Previous Bookings";
+
+
 }
