@@ -3,12 +3,12 @@ package persistence.common.reports.model;
 import java.sql.Date;
 
 public class Liver {
-    int alt;
-    int ast;
-    int alp;
-    float albumin;
-    float bilirubin;
-    Date date;
+    private int alt;
+    private int ast;
+    private int alp;
+    private float albumin;
+    private float bilirubin;
+    private Date date;
 
     public Date getDate() {
         return date;

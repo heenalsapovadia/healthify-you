@@ -8,7 +8,6 @@ import persistence.common.jsonUtil.utilImpl.JsonPatientReportParserImpl;
 import persistence.common.reports.model.*;
 import persistence.common.reports.util.PatientReportValidationUtil;
 import persistence.patient.model.Patient;
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
@@ -17,15 +16,15 @@ import java.util.Map;
 
 public class PatientReportValidationUtilImpl implements PatientReportValidationUtil {
 
-    JsonIdealReportParser jsonIdealReportParser = new JsonIdealReportParserImpl();
+    private JsonIdealReportParser jsonIdealReportParser = new JsonIdealReportParserImpl();
 
-    JsonPatientReportParser jsonPatientReportParser = new JsonPatientReportParserImpl();
+    private JsonPatientReportParser jsonPatientReportParser = new JsonPatientReportParserImpl();
 
-    ReportsValidationUtilImpl reportsValidationUtilImpl = new ReportsValidationUtilImpl();
+    private ReportsValidationUtilImpl reportsValidationUtilImpl = new ReportsValidationUtilImpl();
 
-    Map idealReports;
+    private Map idealReports;
 
-    Map patientReports;
+    private Map patientReports;
 
     public PatientReportValidationUtilImpl(){
         try {

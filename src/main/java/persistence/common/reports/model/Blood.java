@@ -3,8 +3,8 @@ package persistence.common.reports.model;
 import java.sql.Date;
 
 public class Blood {
-    CBC cbcPanel;
-    Date date;
+    private CBC cbcPanel;
+    private Date date;
 
     public Date getDate() {
         return date;

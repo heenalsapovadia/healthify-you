@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import persistence.common.jsonUtil.util.JsonPatientReportParser;
 import persistence.common.reports.model.*;
-
 import java.io.File;
 import java.io.FileReader;
 import java.sql.Date;
@@ -15,9 +14,9 @@ import java.util.Map;
 
 public class JsonPatientReportParserImpl implements JsonPatientReportParser {
 
-    String pathToResources;
+    private String pathToResources;
 
-    String fileName;
+    private String fileName;
 
     public JsonPatientReportParserImpl(){
         pathToResources = "src/main/resources";

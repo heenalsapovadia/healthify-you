@@ -3,8 +3,8 @@ package persistence.common.reports.model;
 import java.sql.Date;
 
 public class Vision {
-    String acuity;
-    Date date;
+    private String acuity;
+    private Date date;
 
     public Date getDate() {
         return date;

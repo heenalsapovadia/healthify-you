@@ -3,9 +3,9 @@ package persistence.common.reports.model;
 import java.sql.Date;
 
 public class Kidney {
-    float creatinine;
-    int bun;
-    Date date;
+    private float creatinine;
+    private int bun;
+    private Date date;
 
     public Date getDate() {
         return date;

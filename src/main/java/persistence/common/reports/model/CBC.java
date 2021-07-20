@@ -1,11 +1,11 @@
 package persistence.common.reports.model;
 
 public class CBC {
-    float rbc;
-    int wbc;
-    int platelets;
-    float haemoglobin;
-    float hematocrit;
+    private float rbc;
+    private int wbc;
+    private int platelets;
+    private float haemoglobin;
+    private float hematocrit;
 
     public float getRbc() {
         return rbc;
