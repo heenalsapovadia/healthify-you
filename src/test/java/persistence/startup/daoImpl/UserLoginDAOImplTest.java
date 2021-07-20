@@ -51,7 +51,7 @@ public class UserLoginDAOImplTest {
     DatabaseConnection.loadDatabaseConnection();
     obj.setUserEmail(userEmail2);
     obj.setUserPassword(userPassword1);
-    String output = "User Id NOT found! Please Register first";
+    String output = "User ID not found! Please Sign up first";
     UserLoginDAOImpl dao = new UserLoginDAOImpl();
     assertEquals(output, dao.getuserDetails(obj));
   }
