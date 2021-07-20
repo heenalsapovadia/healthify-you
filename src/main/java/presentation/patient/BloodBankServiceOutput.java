@@ -69,6 +69,10 @@ public class BloodBankServiceOutput  {
                         // Check eligibility
                         Boolean donatedInLastSixMonths = false;
                         for ( BloodBankService service : donations ) {
+                            if(bloodGroupInput != service.getBloodGrp()){
+                                System.out.println("Wrong blood group entered. Please enter again to view donation history.");
+                            }
+                            bloodGroupInput = sc1.nextLine();
                             int m1 = service.getDate().getYear() * 12 + service.getDate().getMonth();
                             Date currentDate = new Date();
                             int m2 = currentDate.getYear() * 12 + currentDate.getMonth();
@@ -90,9 +94,8 @@ public class BloodBankServiceOutput  {
                     BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
                     List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
                     for (BloodBankService service : donations) {
-                        System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab +  CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar +"Blood group" +CommonConstants.singleTab);
-                        System.out.println(service.getPatientId() + CommonConstants.singleTab  + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab +CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
-
+                     System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + "Blood group" + CommonConstants.singleTab);
+                     System.out.println(service.getPatientId() + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
                     }
                     break;
                 }

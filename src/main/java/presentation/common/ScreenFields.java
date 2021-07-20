@@ -112,4 +112,10 @@ public class ScreenFields {
 	public static final String backToBooking = "Go back to booking";
 	public static final String checkId = "Enter the health check number";
 	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
+
+	/* Booking Dashboard  Booking fields */
+	public static final String bookingOption1 = "Book an appointment with doctor";
+	public static final String bookingOption2 = "Book a Lab Test/Health Check Up";
+	public static final String bookingOption3 = "Book am Immunization";
+	public static final String bookingOption4 = "Book a Blood Bank service";
 }
