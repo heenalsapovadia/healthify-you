@@ -1,10 +1,12 @@
 package persistence.admin.dao;
 
+import persistence.admin.daoImpl.BloodBankRecommendationDAOImpl;
+
 import java.sql.SQLException;
-import java.util.LinkedHashMap;
+import java.util.List;
 
 public interface BloodBankRecommendationDAO {
 
-  public LinkedHashMap<String, Integer> fetchBloodGroupList(String startDate, String endDate) throws SQLException;
+  public List<BloodBankRecommendationDAOImpl.Order> fetchBloodGroupList(String bloodGroup) throws SQLException;
 
 }

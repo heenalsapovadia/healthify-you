@@ -13,7 +13,6 @@ import java.util.*;
 
 public interface BloodBankRecommendationUtil {
 
-    public boolean validateDate(String date);
-    public List<String> getBloodGroupList(String startDate, String endDate, int numRec);
+    public HashSet<ArrayList<String>> getBloodGroupList(String bloodGroup, int numRec);
 
 }

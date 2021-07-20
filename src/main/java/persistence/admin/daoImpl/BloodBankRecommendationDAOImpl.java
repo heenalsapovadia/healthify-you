@@ -7,37 +7,70 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDAO {
 
+    public class Order {
+      public int orderNumber;
+      public String bloodGroup;
+
+      Order(int orderNumber, String bloodGroup) {
+        this.orderNumber = orderNumber;
+        this.bloodGroup = bloodGroup;
+      }
+    }
+
     @Override
-    public LinkedHashMap<String, Integer> fetchBloodGroupList(String startDate, String endDate) throws SQLException {
+    public List<Order> fetchBloodGroupList(String bloodGroup) throws SQLException {
 
         Connection conn = DatabaseConnection.getConnection();
         Statement statement = conn.createStatement();
         ResultSet rS = null;
 
-        String sql = "select sum(quantity) as sum_quantity, blood_group from blood_bank_orders where order_date between \"" + startDate + "\" and \"" + endDate +"\" group by blood_group order by sum_quantity desc, blood_group;";
+        String sql = "select * from blood_bank_orders where blood_group = \"" + bloodGroup + "\";";
 
         try {
             /* retrieves blood group list for the symptoms */
             rS = statement.executeQuery(sql);
+            Set<Integer> orderNumberSet = new HashSet<>();
 
-            LinkedHashMap<String, Integer> bloodGroupList = new LinkedHashMap<String, Integer>();
-            while (rS.next()) {
-              bloodGroupList.put(rS.getString("blood_group"), rS.getInt("sum_quantity"));
-            }
-
-            if(bloodGroupList.isEmpty()) {
-                System.out.println("Nothing to recommend!");
-                return bloodGroupList;
+            if(!rS.next()) {
+                System.err.println("Nothing was ordered for the mentioned blood group!");
+                return null;
             } else {
-                return bloodGroupList;
+                do {
+                  orderNumberSet.add(rS.getInt("order_number"));
+                } while (rS.next());
             }
+
+            String inClause = "";
+            int sizeCheck = 0;
+            for(Integer i : orderNumberSet) {
+              if(sizeCheck < (orderNumberSet.size()-1)) {
+                inClause = inClause + i + " ,";
+                sizeCheck++;
+              } else {
+                  inClause = inClause + i;
+              }
+            }
+
+            String sql2 = "select * from blood_bank_orders where order_number in (" + inClause+ ");";
+
+            rS = statement.executeQuery(sql2);
+
+            List<Order> orders = new ArrayList<Order>();
+            if(!rS.next()) {
+              System.err.println("Nothing was ordered for the mentioned blood group!");
+              return null;
+            } else {
+                do {
+                    Order o = new Order(rS.getInt("order_number"), rS.getString("blood_group"));
+                    orders.add(o);
+                } while(rS.next());
+            }
+
+            return orders;
 
         } catch (SQLException se) {
             return null;
