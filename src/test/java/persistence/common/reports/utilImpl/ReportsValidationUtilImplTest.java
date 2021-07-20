@@ -16,7 +16,7 @@ public class ReportsValidationUtilImplTest {
         Blood bloodReport = new Blood();
         CBC cbcReport = new CBC();
         cbcReport.setRbc((float) 4.5);
-        cbcReport.setWbc(36000);
+        cbcReport.setWbc(3600);
         cbcReport.setPlatelets(210000);
         cbcReport.setHaemoglobin((float) 15);
         cbcReport.setHematocrit((float) 39.1);

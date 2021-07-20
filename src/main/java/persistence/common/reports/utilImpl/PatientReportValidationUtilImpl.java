@@ -7,6 +7,7 @@ import persistence.common.jsonUtil.utilImpl.JsonIdealReportParserImpl;
 import persistence.common.jsonUtil.utilImpl.JsonPatientReportParserImpl;
 import persistence.common.reports.model.*;
 import persistence.common.reports.util.PatientReportValidationUtil;
+import persistence.patient.model.Patient;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -26,10 +27,10 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
 
     Map patientReports;
 
-    PatientReportValidationUtilImpl(){
+    public PatientReportValidationUtilImpl(){
         try {
             idealReports = jsonIdealReportParser.parseIdealReports();
-            patientReports = jsonPatientReportParser.getPatientReport(1);
+            patientReports = jsonPatientReportParser.getPatientReport(Patient.getPatient().getPatientId());
         }
         catch (Exception e){
             System.out.println("Exception in JSON parsing : "+e.getMessage());

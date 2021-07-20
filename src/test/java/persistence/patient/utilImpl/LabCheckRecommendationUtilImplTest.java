@@ -65,4 +65,21 @@ public class LabCheckRecommendationUtilImplTest {
         assertTrue(labCheckHashMap.containsKey(2));
         assertTrue(labCheckHashMap.containsKey(5));
     }
+
+    @Test
+    public void historyBasedRecommendation() {
+        Patient.setPatient("ronnie@gma.com");
+
+        LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
+        List<LabCheck> labCheckList = labCheckRecommendationUtil.historyBasedRecommendation();
+
+        HashMap<Integer, LabCheck> labCheckHashMap = new HashMap();
+        for(LabCheck labCheck : labCheckList)
+            labCheckHashMap.put(labCheck.getCheckup_id(), labCheck);
+
+        assertTrue(labCheckHashMap.containsKey(7));
+        assertTrue(labCheckHashMap.containsKey(8));
+        assertTrue(labCheckHashMap.containsKey(9));
+        assertTrue(labCheckHashMap.containsKey(10));
+    }
 }

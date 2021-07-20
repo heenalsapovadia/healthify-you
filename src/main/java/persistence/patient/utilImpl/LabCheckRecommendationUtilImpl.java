@@ -1,5 +1,7 @@
 package persistence.patient.utilImpl;
 
+import persistence.common.reports.util.PatientReportValidationUtil;
+import persistence.common.reports.utilImpl.PatientReportValidationUtilImpl;
 import persistence.patient.dao.LabCheckDAO;
 import persistence.patient.daoImpl.LabCheckDAOImpl;
 import persistence.patient.model.LabCheck;
@@ -44,6 +46,25 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
             recommendations.add(labCheckMap.get(2));
             recommendations.add(labCheckMap.get(5));
         }
+        return recommendations;
+    }
+
+    @Override
+    public List<LabCheck> historyBasedRecommendation(){
+        List<LabCheck> recommendations = new ArrayList<>();
+
+        PatientReportValidationUtil patientReportValidationUtil = new PatientReportValidationUtilImpl();
+
+        boolean bloodIsNormal = patientReportValidationUtil.validateBloodReports();
+        boolean kidneyIsNormal = patientReportValidationUtil.validateKidneyReports();
+        boolean liverIsNormal = patientReportValidationUtil.validateLiverReports();
+        boolean visionIsNormal = patientReportValidationUtil.validateEyeReports();
+
+        if(!bloodIsNormal) recommendations.add(labCheckMap.get(7));
+        if(!kidneyIsNormal) recommendations.add(labCheckMap.get(9));
+        if(!liverIsNormal) recommendations.add(labCheckMap.get(8));
+        if(!visionIsNormal) recommendations.add(labCheckMap.get(10));
+
         return recommendations;
     }
 
