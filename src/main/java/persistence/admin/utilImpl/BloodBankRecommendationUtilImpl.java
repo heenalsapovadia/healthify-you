@@ -2,11 +2,19 @@ package persistence.admin.utilImpl;
 
 import persistence.admin.daoImpl.BloodBankRecommendationDAOImpl;
 import persistence.admin.util.BloodBankRecommendationUtil;
-import presentation.startup.DatabaseConnection;
 
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+/**
+* <pre>
+* Util class for blood bank recommendation
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+**/
 
 public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationUtil {
 

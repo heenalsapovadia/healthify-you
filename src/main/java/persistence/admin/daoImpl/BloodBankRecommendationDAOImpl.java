@@ -9,6 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+/**
+* <pre>
+* DAOImpl class for blood bank recommendation
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+**/
+
 public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDAO {
 
     public class Order {
