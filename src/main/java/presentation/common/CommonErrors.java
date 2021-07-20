@@ -25,4 +25,5 @@ public class CommonErrors {
 	public static final String userIDInvalid = "User ID not found! Please Sign up first";
 	public static final String userPasswordUnmatch = "Incorrect Password!";
 	public static final String invalidRegistration = "You are not allowed to Register !";
+	public static final String invalidWeekday = "Slots can only be assigned on the weekend. Come back again on the weekend !";
 }

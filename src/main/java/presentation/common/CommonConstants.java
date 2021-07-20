@@ -23,4 +23,5 @@ public class CommonConstants {
 	public static final String subheading =" :: ";
 	public static final String period = ".";
 	public static final String verticleBar = "|";
+	public static final String horizontalDash = "-";
 }

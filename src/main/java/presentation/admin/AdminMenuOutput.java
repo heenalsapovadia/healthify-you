@@ -53,11 +53,13 @@ private AdminMenuOutput() {}
 		else if(sel == 2) {
 			//add code for blood bank output here
 		}
+		
 		else if(sel == 3) {
 			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
 			doctorRegistrationOutput.registerDoctor();
 			sel = loadScreenOptions(consoleObj);
 		}
+
 		else if(sel == 4) {
 			System.out.println(ScreenFields.logoutMessage);
 			System.out.println(ScreenFields.applicationTerminationMessage);

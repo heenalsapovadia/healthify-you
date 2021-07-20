@@ -69,6 +69,10 @@ public class ScreenFields {
 	/*Immunization screenFields*/
 	public static final String month = "Month";
 	public static final String slots = "Slots assigned";
+	public static final String immunizationmanagement = "Immunization Management";
+	public static final String slotmanagement = "Slot Management";
+	public static final String vaccinationstats = "Check immunization statistics";
+	public static final String slotsassigned = "Slots successfully assigned";
 	
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";

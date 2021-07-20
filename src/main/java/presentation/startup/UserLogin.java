@@ -60,7 +60,7 @@ public class UserLogin {
             int sel2 = print.printSelection(selectionOptions2);
             if (sel2 == 1) {
               loginUser();
-              break;
+              return false;
             } else if (sel2 == 2) {
               RegisterPatientOutput obj = new RegisterPatientOutput();
               obj.registerPatient();
