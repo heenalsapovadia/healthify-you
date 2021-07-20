@@ -64,5 +64,6 @@ public class ScreenTitles {
 	public static final String makeBooking = "Make a booking for Checkup";
 	public static final String previousBookings = "View Previous Bookings";
 
-
+	/* Payment screen titles */
+	public static final String paymentInterface = "Proceed to Pay";
 }
