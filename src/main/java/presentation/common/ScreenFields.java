@@ -6,7 +6,7 @@ package presentation.common;
  * within the scope of the application.
  * </pre>
  * 
- * @author Gurleen Saluja
+ * @author G12
  *
  */
 public class ScreenFields {
@@ -33,6 +33,7 @@ public class ScreenFields {
 	public static final String selection = "Please enter your selection below:";
 	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
 
+	/* Medicine Prescription fields */
 	public static final String appointmentId = "Appointment ID";
 	public static final String medicineNumber = "Number of medicines to prescribe";
 	public static final String medicineName = "Medicine Name";
@@ -41,32 +42,35 @@ public class ScreenFields {
 	public static final String eveningDose = "Evening Dose";
 	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
 
-	/* Doctor registration screen fields */
-	public static final String emailInput = "Enter doctor's email address";
-	public static final String firstNameInput = "Enter doctor's first name";
-	public static final String lastNameInput = "Enter doctor's last name";
-	public static final String passwordInput = "Enter password for doctor's account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
+	/* Registration screen fields */
+	public static final String emailInput = "Enter email address";
+	public static final String firstNameInput = "Enter first name";
+	public static final String lastNameInput = "Enter last name";
+	public static final String passwordInput = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
 	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
 	public static final String degreeInput = "Enter doctor's graduation degree";
 	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
-	public static final String birthDateInput = "Enter doctor's birth date (YYYY-MM-DD)";
-	public static final String contactInput = "Enter doctor's contact number (902#######)";
-	public static final String cityInput = "Enter doctor's city of residence";
+	public static final String birthDateInput = "Enter birth date (YYYY-MM-DD)";
+	public static final String contactInput = "Enter contact number (902#######)";
+	public static final String cityInput = "Enter city of residence";
 	
     /* Login screen fields */
+	public static final String userEmailInput = "Enter your email address";
+	public static final String userPasswordInput = "Enter your password";
 	public static final String emailIdOutput= "Email-ID";
 	public static final String passwordOutput= "Password";
 	public static final String gender= "Enter your Gender (M/F/O)";
 	public static final String getInput = "Enter your details below";
 	public static final String goBack = "Go back";
-	public static final String proceed ="Continue";
+	public static final String proceed ="Confirm to proceed";
 	public static final String contactBeginWith = "The contact number should begin with 902";
 	public static final String contactLength = "Contact number should be 10 digits long!";
-
+    public static final String successLogin = "Successfully logged in!";
+    
 	/*Immunization screenFields*/
 	public static final String month = "Month";
 	public static final String slots = "Slots assigned";
-	
+
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
 	public static final String selectionOption1= "1. Select the symptoms for recommendation";
@@ -79,11 +83,11 @@ public class ScreenFields {
 	public static final String symptomOption5= "5. Digestive issues";
 	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
 	public static final String recommendationInput= "Enter the number of recommendations";
-    
+
 	/* Main Menu Fields */
 	public static final String login = "Login";
 	public static final String signUp = "Sign Up";
-	
+
 	/* Admin Dashboard Fields */
 	public static final String getInvoices = "Get Invoices";
 	public static final String getRecommendations = "Check recommendations for blood bank management";
@@ -95,10 +99,41 @@ public class ScreenFields {
 	/* Doctor Dashboard Fields */
 	public static final String prescribeMedicine = "Prescribe medication";
 	public static final String viewAppointment = "View appointments";
-	
+
 	/* Patient Dashboard Fields */
 	public static final String book = "Make a Booking";
 	public static final String invoices = "Invoices";
 	public static final String requestMedication = "Request Medication";
 	public static final String vouchers = "Redeemable Vouchers";
+
+	/* Lab Test Booking fields */
+	public static final String enterOption = "Enter your option";
+	public static final String viewDetails = "View more details";
+	public static final String backToBooking = "Go back to booking";
+	public static final String checkId = "Enter the health check number";
+	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
+
+	/* Booking Dashboard  Booking fields */
+	public static final String appointmentWithDoctor = "Book an appointment with doctor";
+	public static final String bookLabTest = "Book a Lab Test/Health Check Up";
+	public static final String bookImmunization = "Book am Immunization";
+	public static final String bookBloodBankService = "Book a Blood Bank service";
+	public static final String yourBloodGroup = "Please enter your blood group:";
+
+	/* Blood Bank Registration fields */
+	public static final String registerPatientForBloodDonation = "1. Register for Blood Donation";
+	public static final String viewDonationHistory = "2. My Donations";
+	public static final String enterYourSelection = "Please enter your selection below:";
+	public static final String checkingEligibility = "Checking Eligibility....";
+	public static final String patientIsEligible = "Eligible...No previous donations found for the Patient!";
+	public static final String registeringPatient = "Registering Patient!";
+	public static final String tokenGenerated = "Your Token is: ";
+	public static final String donationDate = "Donation Date: ";
+	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
+	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
+
+
+
+
+
 }

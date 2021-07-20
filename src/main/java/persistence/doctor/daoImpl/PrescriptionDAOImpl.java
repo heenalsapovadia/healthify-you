@@ -1,11 +1,8 @@
 package persistence.doctor.daoImpl;
 
-import persistence.admin.daoImpl.PharmaInvoiceDAOImpl;
 import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.model.Prescription;
 import presentation.startup.DatabaseConnection;
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

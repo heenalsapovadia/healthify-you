@@ -6,7 +6,7 @@ package presentation.common;
  * required throughout the application.
  * </pre>
  * 
- * @author Gurleen Saluja
+ * @author G12
  *
  */
 public class CommonConstants {

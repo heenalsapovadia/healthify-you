@@ -6,7 +6,7 @@ package presentation.common;
  * throughout the application.
  * </pre>
  * 
- * @author Gurleen Saluja
+ * @author G12
  *
  */
 public class CommonErrors {
@@ -22,4 +22,10 @@ public class CommonErrors {
 	public static final String invalidName = "Invalid name. Contains characters other than alphabets";
 	public static final String invalidCity = "Invalid city. Contains characters other than alphabets";
 	public static final String invalidDisplay = "No option set to display";
+	public static final String userIDInvalid = "User ID not found! Please Sign up first";
+	public static final String userPasswordUnmatch = "Incorrect Password!";
+	public static final String invalidRegistration = "You are not allowed to Register !";
+	public static final String invalidCheckUpId = "Invalid Lab CheckUp Id, Enter Again";
+	public static final String smallerDate = "Date smaller than today!";
+
 }

@@ -1,18 +1,8 @@
 package presentation.doctor;
 
-import persistence.doctor.dao.PrescriptionDAO;
-import persistence.doctor.daoImpl.PrescriptionDAOImpl;
-import persistence.doctor.model.Appointment;
-import persistence.doctor.model.Prescription;
-import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
-import presentation.admin.DoctorRegistrationOutput;
-import presentation.admin.InvoiceOutput;
-import presentation.startup.ApplicationOutput;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class DoctorMenuOutput {
@@ -45,25 +35,25 @@ public class DoctorMenuOutput {
 
     private int loadScreenOptions() {
         List<String> selectionOptions = getSelectionOptions();
-        int sel = consoleObj.printSelection(selectionOptions);
+        int option = consoleObj.printSelection(selectionOptions);
 
-        if(sel == 1) {
+        if(option == 1) {
             PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
             prescribeMedicineOutput.prescribeMedication();
         }
-        else if(sel == 2) {
+        else if(option == 2) {
             //add code for View Appointment for Doctor here
         }
-        else if(sel == 3) {
+        else if(option == 3) {
             System.out.println(ScreenFields.logoutMessage);
             System.out.println(ScreenFields.applicationTerminationMessage);
             System.exit(0);
         }
         else {
             consoleObj.printError(CommonErrors.invalidSelection);
-            sel = loadScreenOptions();
+            option = loadScreenOptions();
         }
-        return sel;
+        return option;
     }
 
 }
