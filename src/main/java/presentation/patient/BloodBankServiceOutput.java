@@ -33,7 +33,7 @@ public class BloodBankServiceOutput  {
         // check if report is normal - will input json format inorder to extract normal reports..
 
         while(true)  {
-            System.out.println("1. Register for Blood Donation");
+            System.out.println("1. Register for Blood Donation and enter your Blood group");
             System.out.println("2. My Donations");
             System.out.println("3. Exit");
             System.out.println("Please enter your selection below:");
@@ -45,7 +45,7 @@ public class BloodBankServiceOutput  {
 //                    List<BloodTestReport> bloodTests = bloodreport.getBloodTests();
 //                    for (BloodTestReport test : bloodTests) {
 //                        if (test.getHemoglobinValue() < 5) {
-//                            System.out.println("Patient has low hemoglobin, so not eligible");
+//                            System.out.println("Patient has low hemoglobin, so not eligible");@
 //                            return null;
 //                        }
 //                    }
@@ -61,8 +61,10 @@ public class BloodBankServiceOutput  {
 //                        System.out.println("Please enter you blood group:-" + bloodGroupInput );
                         System.out.println("Registering Patient!");
                         System.out.println("Your Token is: " + bloodBankServiceUtil.getTokenIdForDonation() );
+                        System.out.println("Donation Date: " + java.time.LocalDate.now());
                         System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
                         return registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroupInput);
+
                     } else {
                         // Check eligibility
                         Boolean donatedInLastSixMonths = false;
@@ -89,7 +91,7 @@ public class BloodBankServiceOutput  {
                     List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
                     for (BloodBankService service : donations) {
                         System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab +  CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar +"Blood group" +CommonConstants.singleTab);
-                        System.out.println(service.getPatientId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab +CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
+                        System.out.println(service.getPatientId() + CommonConstants.singleTab  + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab +CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
 
                     }
                     break;
@@ -109,7 +111,7 @@ public class BloodBankServiceOutput  {
         String donationId = serviceUtil.getRandomStringForDonationId();
         bbservice.setBloodGrp(bloodGroupInput);
         // since no patient id yet in Patient model validating through patient email
-        bbservice.setPatientId(patient.getPatientEmail());
+        bbservice.setPatientId(patient.getPatientId());
         Date d1 = new Date();
         bbservice.setDate(d1);
         bbservice.setDonationId(donationId);

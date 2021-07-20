@@ -2,6 +2,8 @@ package presentation.patient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import persistence.patient.model.Patient;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
