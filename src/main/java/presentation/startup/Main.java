@@ -19,6 +19,7 @@ public class Main {
 			System.exit(0);
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
-		applicationOutput.displayOutput();
+		applicationOutput.displayOutput();		
 	}
+	
 }

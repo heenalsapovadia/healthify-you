@@ -74,11 +74,18 @@ public class ScreenFields {
 	public static final String slotmanagement = "Slot Management";
 	public static final String vaccinationstats = "Check immunization statistics";
 	public static final String slotsassigned = "Slots successfully assigned";
+	public static final String availablevaccines = "Vaccines available";
+	public static final String doses = "Doses administered";
+	public static final String agegroup= "Age group";
+	public static final String vaccinename = "Name of Vaccine";
+	public static final String elibilitycheck = "Eligibility check ...";
+	public static final String success = "Success";
+	public static final String fail = "Fail";
 	public static final String mostDemandedVaccine = "Most Demanded Vaccine";
 	public static final String mostVaccinatedAge = "Most vaccinated Age Group";
 	public static final String mostVaccinatedGender = "Most vaccinated Gender";
 	public static final String mostVaccinatedArea = "Most vaccinated Area";
-	
+
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
 	public static final String selectionOption1= "1. Select the symptoms for recommendation";
@@ -124,7 +131,7 @@ public class ScreenFields {
 	/* Booking Dashboard  Booking fields */
 	public static final String appointmentWithDoctor = "Book an appointment with doctor";
 	public static final String bookLabTest = "Book a Lab Test/Health Check Up";
-	public static final String bookImmunization = "Book am Immunization";
+	public static final String bookImmunization = "Book an Immunization";
 	public static final String bookBloodBankService = "Book a Blood Bank service";
 	public static final String yourBloodGroup = "Please enter your blood group:";
 

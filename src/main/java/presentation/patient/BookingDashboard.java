@@ -42,7 +42,8 @@ public class BookingDashboard {
             // Book a Lab Test/Health Check up
         }
         else if(sel == 3) {
-            //Book an Immunization
+          ImmunizationBookingOutput obj = new ImmunizationBookingOutput();
+          obj.immunizationBooking();
         }
         else if(sel == 4) {
             //Book a blood bank service - blood donation
