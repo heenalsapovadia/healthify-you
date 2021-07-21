@@ -1,32 +1,30 @@
 package persistence.common.paymentInterface.modelPaymentInterface;
 
 public class PaymentCardDetails {
-    int cardNumber;
+    Long cardNumber;
+    String expirtyDate;
+    Long cvvNumber;
 
-    public int getExpirtyDate() {
+    public String getExpirtyDate() {
         return expirtyDate;
     }
 
-    public void setExpirtyDate(int expirtyDate) {
+    public void setExpirtyDate(String expirtyDate) {
         this.expirtyDate = expirtyDate;
     }
 
-    public int getCvvNumber() {
+    public Long getCvvNumber() {
         return cvvNumber;
     }
 
-    public void setCvvNumber(int cvvNumber) {
-        this.cvvNumber = cvvNumber;
-    }
+    public void setCvvNumber(Long cvvNumber) {
+        this.cvvNumber = cvvNumber; }
 
-    int expirtyDate;
-    int cvvNumber;
-
-    public int getCardNumber() {
+    public Long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCardNumber(Long cardNumber) {
+        this.cvvNumber = cardNumber;
     }
 }
