@@ -66,5 +66,8 @@ public class ScreenTitles {
 
 	/* Blood Bank recommendation screen titles */
 	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
+	
+	/* Book an Immunization */
+	public static final String bookImmunization = "Immunization booking";
 
 }
