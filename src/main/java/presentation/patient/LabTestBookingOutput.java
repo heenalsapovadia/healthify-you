@@ -77,6 +77,16 @@ public class LabTestBookingOutput {
         healthCheckId = inputHealthCheckId(sc);
         bookingdate = inputBookingDate(sc);
 
+        List<String> options = Arrays.asList("Continue For Payment", "Exit");
+        int option = consoleObj.printSelection(options);
+        switch (option) {
+            case 1:
+                // Call Payment screen code
+                break;
+            case 2:
+                return;
+        }
+
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
         labCheckBookingUtil.makeBooking(healthCheckId, bookingdate);
     }

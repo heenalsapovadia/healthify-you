@@ -34,6 +34,7 @@ public class LabCheckUtilImpl implements LabCheckUtil {
             checkup_id = sc.nextInt();
         }
         System.out.println("Details of "+labCheckMap.get(checkup_id).getCheckup_name());
-        System.out.println(labCheckMap.get(checkup_id).getDescription());
+        System.out.println("Description : "+labCheckMap.get(checkup_id).getDescription());
+        System.out.println("Charges : "+labCheckMap.get(checkup_id).getCharges());
     }
 }

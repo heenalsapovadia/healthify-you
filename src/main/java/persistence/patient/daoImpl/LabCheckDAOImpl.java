@@ -32,6 +32,7 @@ public class LabCheckDAOImpl implements LabCheckDAO {
                 labCheck.setCheckup_name(rs.getString("checkup_name"));
                 labCheck.setCheckup_type(rs.getString("checkup_type"));
                 labCheck.setDescription(rs.getString("description"));
+                labCheck.setCharges(rs.getDouble("charges"));
                 labCheckList.add(labCheck);
             }
             return labCheckList;
