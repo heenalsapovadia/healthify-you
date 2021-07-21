@@ -15,8 +15,9 @@ public class LabCheckBookingUtilImplTest {
     public void makeBooking() {
         int healthCheckId = 2;
         Date bookingdate = Date.valueOf("2021-07-30");
+        int billingId = 123;
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate);
+        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate, billingId);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         assertNotNull(labCheckBookingDao.getBookingByDate(bookingdate));
@@ -28,6 +29,7 @@ public class LabCheckBookingUtilImplTest {
         labCheckBooking.setPatient_id(1);
         labCheckBooking.setHealthcheck_id(2);
         labCheckBooking.setBooked_for_date(Date.valueOf("2021-05-21"));
+        labCheckBooking.setBilling_id(123);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);

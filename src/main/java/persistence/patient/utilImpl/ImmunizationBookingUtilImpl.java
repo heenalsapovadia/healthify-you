@@ -20,18 +20,17 @@ import presentation.common.PrintToConsole;
  */
 public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
-
   PrintToConsole print = PrintToConsole.getInstance();
-  
+
   @Override
   public boolean vaccineEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap) {
     Patient patient = Patient.getPatient();
     String dob = patient.getPatientDob();
     int patientId = patient.getPatientId();
     int patientAge = getAge(dob);
-    if(checkAge(patientAge, ageGroup)!=false ) {
-      if(checkLastDate(vaccineId, patientId, vaccineGap)!=false) {
-        if(checkDoses(doses, vaccineId, patientId)!=false) {
+    if (checkAge(patientAge, ageGroup) != false) {
+      if (checkLastDate(vaccineId, patientId, vaccineGap) != false) {
+        if (checkDoses(doses, vaccineId, patientId) != false) {
           return true;
         }
       }
@@ -75,13 +74,14 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
   private boolean checkAge(int patientage, String agegroup) {
     String[] agerange = agegroup.split(" to ");
-    int leftrange = (int)Integer.parseInt(agerange[0]);
-    int rightrange = (int)Integer.parseInt(agerange[0]);
-          
+
+    double leftrange = Double.parseDouble(agerange[0]);
+    double rightrange = Double.parseDouble(agerange[1]);
     if (patientage >= leftrange && patientage <= rightrange) {
       return true;
+    } else {
+      print.printScreenFields("Your age ( " + patientage + " years ) is not eligible for this vaccine");
     }
-    print.printScreenFields("Your age ( "+ patientage+" years ) is not eligible for this vaccine");
     return false;
 
   }
@@ -90,7 +90,7 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
     ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
     ArrayList<String> appointmentsdates = new ArrayList<>(dao.getAppointments(vaccineId, patientId));
-    if(appointmentsdates.size()==0) {
+    if (appointmentsdates.size() == 0) {
       return true;
     }
     String pattern = "yyyy-MM-dd";
@@ -99,10 +99,9 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
     String recentDate = Collections.max(appointmentsdates);
     if (getAge(recentDate) >= vaccineGap) {
       return true;
-    }
-    else {
-       int days = vaccineGap-getAge(recentDate);
-       print.printScreenFields("Come back after" + days + "days");
+    } else {
+      int days = vaccineGap - getAge(recentDate);
+      print.printScreenFields("Come back after" + days + "days");
     }
     return false;
 
