@@ -69,5 +69,6 @@ public class ScreenTitles {
 
 	/* Vaccination Demand Stats titles */
 	public static final String vaccineStats = "Immunization Statistics";
+	public static final String covidAnalysis = "Covid Vaccine Shots Analysis";
 
 }
