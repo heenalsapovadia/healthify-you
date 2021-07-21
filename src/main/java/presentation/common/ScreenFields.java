@@ -11,7 +11,7 @@ package presentation.common;
  */
 public class ScreenFields {
 	
-	private ScreenFields() {}
+  private ScreenFields() {}
 	
 	/* Pharma invoice screen fields */
 	public static final String receiptNo = "Receipt No.";
@@ -147,5 +147,8 @@ public class ScreenFields {
 
 
 
+	/* Blood Bank recommendation screen fields */
+	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
+	public static final String numRecInput = "Please enter the number of recommendations";
 
 }

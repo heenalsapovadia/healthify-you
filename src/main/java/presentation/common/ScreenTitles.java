@@ -66,4 +66,7 @@ public class ScreenTitles {
 
 	/* Payment screen titles */
 	public static final String paymentInterface = "Proceed to Pay";
+	/* Blood Bank recommendation screen titles */
+	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
+
 }
