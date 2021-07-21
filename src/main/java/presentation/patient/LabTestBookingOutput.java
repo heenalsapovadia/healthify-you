@@ -84,12 +84,13 @@ public class LabTestBookingOutput {
 
         List<String> options = Arrays.asList("Continue For Payment", "Exit");
         int option = consoleObj.printSelection(options);
+        int billingId = 0;
         switch (option) {
             case 1:
                 // Call Payment screen code
                 PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
                 //dummy billing id
-                int billingId = 1;
+                billingId = 1;
 //                int billingId = paymentInterfaceOutput.processPayment("L", healthCheckCharges); // BilingCat, Amount
                 break;
             case 2:
@@ -97,7 +98,7 @@ public class LabTestBookingOutput {
         }
 
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate);
+        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate, billingId);
     }
 
     public void viewBookings(){
