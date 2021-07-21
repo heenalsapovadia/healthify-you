@@ -8,13 +8,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * <pre>
- * Model class for doctor registration
- * </pre>
- *
- * @author Samiksha Salgaonkar
- *
- */
+* <pre>
+* Model class for doctor registration
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
 
 public class DoctorRegistration {
 

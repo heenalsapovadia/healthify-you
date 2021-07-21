@@ -6,6 +6,15 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+* <pre>
+* Perform operations for recommending doctor based on symptoms
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
+
 public class DoctorRecommendationUtilImpl {
 
     public ArrayList<String> getDoctorRecommendations(String symptom, int support, int numRec) {

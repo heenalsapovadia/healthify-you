@@ -1,4 +1,5 @@
 package persistence.patient.daoImpl;
+
 import persistence.patient.dao.DoctorRecommendationDAO;
 import presentation.startup.DatabaseConnection;
 
@@ -7,6 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+/**
+* <pre>
+* Perform operations for fetching data from database for doctor recommendation
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
 
 public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
 
