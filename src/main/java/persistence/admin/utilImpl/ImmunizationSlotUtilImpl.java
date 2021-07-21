@@ -44,7 +44,7 @@ public class ImmunizationSlotUtilImpl implements ImmunizationSlotUtil {
     Queue<Integer> localcopy = new LinkedList<>(doctors);
     ImmunizationSlotDAOImpl dao = new ImmunizationSlotDAOImpl();
 
-    int index = dao.getLastDoctorAssigned();
+    int index = dao.getDoctorAssigned("Friday","01:00:00 pm");
     localcopy = rearrange(index, localcopy);
 
     for (Map.Entry<String, ArrayList<Integer>> entry : assign.entrySet()) {

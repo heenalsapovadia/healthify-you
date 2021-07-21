@@ -76,11 +76,11 @@ public class ScreenFields {
 	public static final String slotsassigned = "Slots successfully assigned";
 	public static final String availablevaccines = "Vaccines available";
 	public static final String doses = "Doses administered";
-	public static final String agegroup= "Age group";
+	public static final String agegroup= "Age group in years";
 	public static final String vaccinename = "Name of Vaccine";
 	public static final String elibilitycheck = "Eligibility check ...";
 	public static final String success = "Success";
-	public static final String fail = "Fail";
+	public static final String fail = "Eligibility Fail";
 	public static final String mostDemandedVaccine = "Most Demanded Vaccine";
 	public static final String mostVaccinatedAge = "Most vaccinated Age Group";
 	public static final String mostVaccinatedGender = "Most vaccinated Gender";
@@ -147,14 +147,14 @@ public class ScreenFields {
 	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
 	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
 
-       /* Payment Interface fields */
-		public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
-        public static final String expirydate = "Enter expiry date(mm/yy): ";
-        public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
-        public static final String checkoutAmount = "Checkout Amount: ";
-        public static final String redeemVoucher = "Reedemable Voucher: ";
-        public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
-	    public static final String paymentExit = "2. Exit: ";
+    /* Payment Interface fields */
+    public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
+    public static final String expirydate = "Enter expiry date(mm/yy): ";
+    public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
+    public static final String checkoutAmount = "Checkout Amount: ";
+    public static final String redeemVoucher = "Reedemable Voucher: ";
+    public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
+	public static final String paymentExit = "2. Exit: ";
 
 
 

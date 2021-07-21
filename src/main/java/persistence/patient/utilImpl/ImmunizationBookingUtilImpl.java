@@ -43,7 +43,7 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
     ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
     ArrayList<String> appointmentsdates = new ArrayList<>(dao.getAppointments(vaccineId, patientId));
     if (appointmentsdates.size() > doses) {
-      print.printScreenFields("You have exceeded the dose limit");
+      print.printScreenFields("You have exceeded the dose limit of "+doses);
       return false;
     }
     return true;
@@ -74,7 +74,6 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
   private boolean checkAge(int patientage, String agegroup) {
     String[] agerange = agegroup.split(" to ");
-
     double leftrange = Double.parseDouble(agerange[0]);
     double rightrange = Double.parseDouble(agerange[1]);
     if (patientage >= leftrange && patientage <= rightrange) {
@@ -90,12 +89,9 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
     ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
     ArrayList<String> appointmentsdates = new ArrayList<>(dao.getAppointments(vaccineId, patientId));
-    if (appointmentsdates.size() == 0) {
+    if (appointmentsdates.isEmpty()) {
       return true;
     }
-    String pattern = "yyyy-MM-dd";
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-    String date = simpleDateFormat.format(new Date());
     String recentDate = Collections.max(appointmentsdates);
     if (getAge(recentDate) >= vaccineGap) {
       return true;

@@ -71,6 +71,7 @@ public class ScreenTitles {
 	
 	/* Book an Immunization */
 	public static final String bookImmunization = "Immunization booking";
+	public static final String vaccines= "Vaccines Available";
 
 	/* Vaccination Demand Stats titles */
 	public static final String vaccineStats = "Immunization Statistics";

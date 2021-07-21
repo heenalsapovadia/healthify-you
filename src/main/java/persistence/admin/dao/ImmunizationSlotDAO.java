@@ -16,5 +16,5 @@ public interface ImmunizationSlotDAO {
   
   public void updateSlotsInDatabase(LinkedHashMap<String, ArrayList<Integer>> updatedRecords);
   
-  public int getLastDoctorAssigned();
+
 }

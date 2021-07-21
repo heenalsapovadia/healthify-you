@@ -48,6 +48,7 @@ public class PatientMenuOutput {
 			//make a booking
 			BookingDashboard bookingDashboard = new BookingDashboard();
 			bookingDashboard.displayOutput();
+			loadScreenOptions(consoleObj);
 		}
 		else if(sel == 2) {
 			//invoices

@@ -1,6 +1,5 @@
 package persistence.patient.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,13 +8,15 @@ import java.util.List;
  */
 
 public interface ImmunizationBookingDAO {
-  
-    public List<String> getVaccineStock();
-    public List<String> getVaccineDetail(String vaccineName);
-    /**
-     * @param vaccineId
-     * @param patientId
-     * @return
-     */
-    ArrayList<String> getAppointments(int vaccineId, int patientId);
+
+  public List<String> getVaccineStock();
+
+  public List<String> getVaccineDetail(String vaccineName);
+
+  public List<String> getAppointments(int vaccineId, int patientId);
+
+  public List<String> getSlots();
+
+  public boolean assignPatientinDatabase(String slotChosen, int vaccineId);
+
 }
