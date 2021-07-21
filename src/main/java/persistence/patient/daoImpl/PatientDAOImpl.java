@@ -7,9 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import persistence.patient.dao.PatientDAO;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
@@ -49,4 +49,18 @@ public class PatientDAOImpl implements PatientDAO {
 		return patient;
 	}
 
+	@Override
+	public void updateVouchersForPatients(String voucherId, Timestamp datetime, int patientId) {
+		Connection conn = DatabaseConnection.getConnection();
+		String sql = "update patients set voucher_id = ?, voucher_credit_date = ? where patient_id = ?";
+		try (PreparedStatement ps = conn.prepareStatement(sql)){
+			ps.setString(1, voucherId);
+			ps.setTimestamp(2, datetime);
+			ps.setInt(3, patientId);
+			ps.executeUpdate();
+		}
+		catch(SQLException e) {
+			LOGGER.log(Level.SEVERE, e.toString());
+		}
+	}
 }

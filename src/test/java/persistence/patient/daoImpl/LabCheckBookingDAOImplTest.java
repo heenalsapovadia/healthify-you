@@ -19,6 +19,7 @@ public class LabCheckBookingDAOImplTest {
         labCheckBooking.setPatient_id(1);
         labCheckBooking.setHealthcheck_id(2);
         labCheckBooking.setBooked_for_date(date);
+        labCheckBooking.setBilling_id(123);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);
@@ -31,6 +32,7 @@ public class LabCheckBookingDAOImplTest {
         labCheckBooking.setPatient_id(1);
         labCheckBooking.setHealthcheck_id(2);
         labCheckBooking.setBooked_for_date(Date.valueOf("2021-05-21"));
+        labCheckBooking.setBilling_id(123);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);

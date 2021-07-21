@@ -3,6 +3,7 @@
  */
 package persistence.patient.dao;
 
+import java.sql.Timestamp;
 import persistence.patient.model.Patient;
 
 /**
@@ -23,4 +24,6 @@ public interface PatientDAO {
 	 * @return
 	 */
 	public Patient getPatient(Patient patient);
+	
+	public void updateVouchersForPatients(String voucherId, Timestamp datetime, int patientId);
 }

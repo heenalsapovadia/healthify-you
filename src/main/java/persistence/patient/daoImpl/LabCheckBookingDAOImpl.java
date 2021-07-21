@@ -16,11 +16,12 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
     public void insertBooking(LabCheckBooking booking) {
         Connection conn = DatabaseConnection.getConnection();
 
-        String sql = "INSERT INTO labcheck_appointments(patient_id, healthcheck_id, booked_for_date) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO labcheck_appointments(patient_id, healthcheck_id, booked_for_date, billing_id) VALUES(?,?,?,?)";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, booking.getPatient_id());
             ps.setInt(2, booking.getHealthcheck_id());
             ps.setDate(3, booking.getBooked_for_date());
+            ps.setInt(4, booking.getBilling_id());
 
             ps.executeUpdate();
         }
