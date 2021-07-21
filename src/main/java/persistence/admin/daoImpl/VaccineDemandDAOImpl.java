@@ -19,7 +19,7 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
     @Override
     public List<Map<String, Object>> getVaccinationData(){
         Connection conn = DatabaseConnection.getConnection();
-        List<Map<String, Object>> records = new ArrayList<>();
+        List<Map<String, Object>> dataRecords = new ArrayList<>();
 
         String sql = "SELECT appointment_id, Vaccine.patient_id, doctor_id, booked_for_date,\n" +
                 "vaccine_id, vaccine_name, administered_age_group, patient_gender, patient_dob, patient_address\n" +
@@ -35,26 +35,26 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Map<String, Object> record = new HashMap<>();
-                record.put("appointmentId", rs.getInt("appointment_id"));
-                record.put("patientId", rs.getInt("patient_id"));
-                record.put("doctorId", rs.getInt("doctor_id"));
-                record.put("date", rs.getDate("booked_for_date"));
-                record.put("vaccineId", rs.getInt("vaccine_id"));
-                record.put("gender", rs.getString("patient_gender"));
-                record.put("dob", rs.getDate("patient_dob"));
-                record.put("area", rs.getString("patient_address"));
-                record.put("vaccineName", rs.getString("vaccine_name"));
-                record.put("ageGroup", rs.getString("administered_age_group"));
+                Map<String, Object> dataRecord = new HashMap<>();
+                dataRecord.put("appointmentId", rs.getInt("appointment_id"));
+                dataRecord.put("patientId", rs.getInt("patient_id"));
+                dataRecord.put("doctorId", rs.getInt("doctor_id"));
+                dataRecord.put("date", rs.getDate("booked_for_date"));
+                dataRecord.put("vaccineId", rs.getInt("vaccine_id"));
+                dataRecord.put("gender", rs.getString("patient_gender"));
+                dataRecord.put("dob", rs.getDate("patient_dob"));
+                dataRecord.put("area", rs.getString("patient_address"));
+                dataRecord.put("vaccineName", rs.getString("vaccine_name"));
+                dataRecord.put("ageGroup", rs.getString("administered_age_group"));
 
-                records.add(record);
+                dataRecords.add(dataRecord);
             }
-            return records;
+            return dataRecords;
         }
         catch (SQLException e){
             LOGGER.log(Level.SEVERE, e.toString());
             System.out.println("SQL ERROR:"+e.getMessage());
         }
-        return null;
+        return dataRecords;
     }
 }
