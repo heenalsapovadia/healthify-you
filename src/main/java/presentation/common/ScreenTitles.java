@@ -72,5 +72,8 @@ public class ScreenTitles {
 	/* Vaccination Demand Stats titles */
 	public static final String vaccineStats = "Immunization Statistics";
 	public static final String covidAnalysis = "Covid Vaccine Shots Analysis";
+	
+	/* Redeemable Vocuhers */
+	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
 }
