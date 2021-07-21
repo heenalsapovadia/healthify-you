@@ -1,6 +1,6 @@
 package persistence.common.paymentInterface.daoImpl;
-import persistence.common.model.PaymentInterface;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;

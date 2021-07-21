@@ -1,4 +1,4 @@
-package persistence.common.model;
+package persistence.common.paymentInterface.modelPaymentInterface;
 
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 

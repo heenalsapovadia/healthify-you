@@ -1,6 +1,6 @@
-package persistence.common.dao;
+package persistence.common.paymentInterface.dao;
 
-import persistence.common.model.PaymentInterface;
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
 
 import java.util.List;
