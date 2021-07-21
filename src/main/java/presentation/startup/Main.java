@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import presentation.admin.ImmunizationSlotOutput;
+import presentation.patient.ImmunizationBookingOutput;
+
 public class Main {
 
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
@@ -17,7 +20,11 @@ public class Main {
 			LOGGER.log(Level.SEVERE, "Could not establish connection with database.");
 			System.exit(0);
 		}
-		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
-		applicationOutput.displayOutput();
+//		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
+//		applicationOutput.displayOutput();
+		ImmunizationBookingOutput obj = new ImmunizationBookingOutput();
+		obj.immunizationBooking();
+		
 	}
+	
 }
