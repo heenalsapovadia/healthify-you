@@ -13,5 +13,12 @@ public interface PaymentInterfaceUtil {
                         PaymentCardDetails paymentCardDetails,
                         int voucherAmount,
                         int checkoutAmount);
-    }
 
+
+    public String validateCreditCardNumber(Long creditCardNumber);
+
+    public String validateExpiryDate(String Date);
+
+    public String validateCvv(Long cvvNumber);
+
+}
