@@ -1,10 +1,11 @@
 package persistence.patient.model;
 
 public class LabCheck {
-    int checkup_id;
-    String checkup_name;
-    String checkup_type;
-    String description;
+    private int checkup_id;
+    private String checkup_name;
+    private String checkup_type;
+    private String description;
+    private double charges;
 
     public int getCheckup_id() {
         return checkup_id;
@@ -36,5 +37,13 @@ public class LabCheck {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getCharges() {
+        return charges;
+    }
+
+    public void setCharges(double charges) {
+        this.charges = charges;
     }
 }

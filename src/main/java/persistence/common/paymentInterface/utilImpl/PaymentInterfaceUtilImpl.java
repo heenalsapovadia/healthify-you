@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class PaymentInterfaceUtilImpl {
     private PaymentInterfaceDAOImpl paymentPersistence = new PaymentInterfaceDAOImpl();
 
-    public void processPayment(Patient patient,
+    public int processPayment(Patient patient,
                                Prescription prescription,
                                PaymentBillingCategory billingCategory,
                                PaymentCardDetails paymentCardDetails,
@@ -45,7 +45,7 @@ public class PaymentInterfaceUtilImpl {
         paymentDetails.setStatusOfPayment(PaymentInterface.status.valueOf(statusOfPayment));
 
         paymentDetails.setVoucher_redemption_date(d1);
-        paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
+        return paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
 
     }
 

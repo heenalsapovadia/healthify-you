@@ -74,6 +74,10 @@ public class ScreenFields {
 	public static final String slotmanagement = "Slot Management";
 	public static final String vaccinationstats = "Check immunization statistics";
 	public static final String slotsassigned = "Slots successfully assigned";
+	public static final String mostDemandedVaccine = "Most Demanded Vaccine";
+	public static final String mostVaccinatedAge = "Most vaccinated Age Group";
+	public static final String mostVaccinatedGender = "Most vaccinated Gender";
+	public static final String mostVaccinatedArea = "Most vaccinated Area";
 	
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
@@ -136,19 +140,22 @@ public class ScreenFields {
 	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
 	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
 
-       /* Payment Interface fields */
-		public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
-        public static final String expirydate = "Enter expiry date(mm/yy): ";
-        public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
-        public static final String checkoutAmount = "Checkout Amount: ";
-        public static final String redeemVoucher = "Reedemable Voucher: ";
-        public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
-	    public static final String paymentExit = "2. Exit: ";
-
-
+	/* Payment Interface fields */
+	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
+    public static final String expirydate = "Enter expiry date(mm/yy): ";
+    public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
+    public static final String checkoutAmount = "Checkout Amount: ";
+    public static final String redeemVoucher = "Reedemable Voucher: ";
+    public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
+    public static final String paymentExit = "2. Exit: ";
 
 	/* Blood Bank recommendation screen fields */
 	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
 	public static final String numRecInput = "Please enter the number of recommendations";
 
+	/* Redeemable Voucher Fields */
+	public static final String VIEW_VOUCHER = "View Redeemable Vouchers";
+	public static final String POINTS_AVAILABLE = "Points Available";
+	public static final String POINTS_REDEEMED = "Points Redeemed";
+	
 }
