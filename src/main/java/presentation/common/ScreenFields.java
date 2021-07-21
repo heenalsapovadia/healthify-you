@@ -11,7 +11,7 @@ package presentation.common;
  */
 public class ScreenFields {
 	
-	private ScreenFields() {}
+  private ScreenFields() {}
 	
 	/* Pharma invoice screen fields */
 	public static final String receiptNo = "Receipt No.";
