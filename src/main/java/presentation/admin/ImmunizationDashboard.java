@@ -46,6 +46,8 @@ public class ImmunizationDashboard {
       slotoutput.immunizationSlotAssign();
     } else if (sel == 2) {
       // vaccination stat
+      ImmunizationStatsOutput immunizationStatsOutput = new ImmunizationStatsOutput();
+
     } else {
       consoleObj.printError(CommonErrors.invalidSelection);
       sel = loadScreenOptions();
