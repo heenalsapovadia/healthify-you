@@ -64,5 +64,7 @@ public class ScreenTitles {
 	public static final String makeBooking = "Make a booking for Checkup";
 	public static final String previousBookings = "View Previous Bookings";
 
+	/* Blood Bank recommendation screen titles */
+	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
 
 }
