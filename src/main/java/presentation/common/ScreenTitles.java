@@ -73,4 +73,8 @@ public class ScreenTitles {
 	public static final String vaccineStats = "Immunization Statistics";
 	public static final String covidAnalysis = "Covid Vaccine Shots Analysis";
 
+	/* Doctor Appointment Booking titles */
+	public static final String doctorAppointment = "Doctor Appointment Bookings";
+	public static final String bookAppointment = "Book an appointment";
+	public static final String rescheduleAppointment = "Reschedule an appointment";
 }
