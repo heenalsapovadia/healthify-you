@@ -27,7 +27,7 @@ import presentation.startup.DatabaseConnection;
 public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
 
   Connection conn = DatabaseConnection.getConnection();
-  
+
   @Override
   public int getLastDoctorAssigned() {
     ResultSet resultSet = null;
@@ -40,7 +40,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
       if (resultSet.first()) {
         doctorId = resultSet.getInt("doctor_assigned");
       }
-      
+
     } catch (SQLException e) {
       e.getLocalizedMessage();
     }
@@ -91,15 +91,19 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
 
   }
 
-  private int dateTimeComparator(String slot, String currentTime, String currentDate, String date , int doctor) {
-    
-    if (slot.endsWith("am") && currentTime.toLowerCase().endsWith("am")
-            || slot.endsWith("pm") && currentTime.toLowerCase().endsWith("pm")) {
-      if ((currentTime.toLowerCase()).compareTo(slot) > 0 && date.compareTo(currentDate) <= 0) {
+  private int dateTimeComparator(String slot, String currentTime, String currentDate, String date, int doctor) {
+
+    if (date.compareTo(currentDate) < 0) {
+      doctor = 0;
+    } else {
+      if (slot.endsWith("am") && currentTime.toLowerCase().endsWith("am")
+              || slot.endsWith("pm") && currentTime.toLowerCase().endsWith("pm")) {
+        if ((currentTime.toLowerCase()).compareTo(slot) > 0 && date.compareTo(currentDate) == 0) {
+          doctor = 0;
+        }
+      } else if (slot.endsWith("am") && currentTime.toLowerCase().endsWith("pm") && date.compareTo(currentDate) == 0) {
         doctor = 0;
       }
-    } else if (slot.endsWith("am") && currentTime.toLowerCase().endsWith("pm") && date.compareTo(currentDate) <= 0) {
-      doctor = 0;
     }
     return doctor;
 
@@ -124,7 +128,8 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
         String currentDate = dateFormatter.format(now.getTime());
         String currentTime = timeFormatter.format(new Date());
         if (updateChoice == 0) {
-          doctor = dateTimeComparator(slot, currentTime, currentDate, date , doctor);
+          doctor = dateTimeComparator(slot, currentTime, currentDate, date, doctor);
+
         }
         String weekday = resultSet.getString("weekday");
         if (doctorsPerDay.containsKey(weekday)) {
@@ -142,7 +147,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
     }
     return doctorsPerDay;
   }
-  
+
   @Override
   public void updateSlotsInDatabase(LinkedHashMap<String, ArrayList<Integer>> updatedRecords) {
     CurrentWeekdays week = new CurrentWeekdays();
