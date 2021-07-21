@@ -90,7 +90,7 @@ public class LabTestBookingOutput {
                 PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
                 //dummy billing id
                 int billingId = 1;
-//                int billingId = paymentInterfaceOutput.processPayment(); // BilingCat, Amount
+//                int billingId = paymentInterfaceOutput.processPayment("L", healthCheckCharges); // BilingCat, Amount
                 break;
             case 2:
                 return;

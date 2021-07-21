@@ -21,6 +21,7 @@ public class PaymentInterfaceOutput {
         return PaymentInterfaceOutput.PaymentInterfaceOutputHelper.instance;
     }
 
+    // modify argumnts to (BillingCategory, Amount)
     public int processPayment(Patient patient,
                                Prescription prescription,
                                PaymentBillingCategory billingCategory,
