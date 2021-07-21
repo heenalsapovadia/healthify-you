@@ -1,7 +1,6 @@
-package persistence.common.daoImpl;
-
-
+package persistence.common.paymentInterface.daoImpl;
 import persistence.common.model.PaymentInterface;
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;
@@ -19,9 +18,9 @@ public class PaymentInterfaceDAOImpl {
             ps.setInt(1, paymentInterface.getBilling_id());
             ps.setInt(2, paymentInterface.getPatient_id());
             ps.setInt(3, paymentInterface.getPrescription_id());
-            ps.setInt(4, paymentInterface.getVoucher_id());
+            ps.setString(4, paymentInterface.getVoucher_id());
             ps.setDate(5, (Date) paymentInterface.getBilling_date());
-            ps.setString(6, paymentInterface.getBilling_category());
+            ps.setString(6, String.valueOf(paymentInterface.getBill_category()));
             ps.setDouble(7, paymentInterface.getBill_amount());
             ps.setString(8, String.valueOf(paymentInterface.getCurrentPaymentMode()));
             ps.setDouble(9, paymentInterface.getDiscount());
@@ -36,7 +35,7 @@ public class PaymentInterfaceDAOImpl {
 
     public List<PaymentInterface> getAllPaymentInterfaceDetails(Patient patient) {
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "SELECT * FROM payment_billing where patient_id='" + patient.getPatientId() + "'";
+        String sql = "SELECT * FROM payment_billing where patient_id=" + patient.getPatientId();
         try {
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(sql);
@@ -46,9 +45,9 @@ public class PaymentInterfaceDAOImpl {
                 fetchedService.setBilling_id(result.getInt(1));
                 fetchedService.setPatient_id(result.getInt(2));
                 fetchedService.setPrescription_id(result.getInt(3));
-                fetchedService.setVoucher_id(result.getInt(4));
+                fetchedService.setVoucher_id(result.getString(4));
                 fetchedService.setBilling_date(result.getDate(5));
-                fetchedService.setBilling_category(result.getString(6));
+                fetchedService.setBill_category(PaymentBillingCategory.valueOf(result.getString(6)));
                 fetchedService.setBill_amount(result.getDouble(7));
                 fetchedService.setCurrentPaymentMode(PaymentInterface.payment_mode.valueOf(result.getString(8)));
                 fetchedService.setDiscount(result.getDouble(9));

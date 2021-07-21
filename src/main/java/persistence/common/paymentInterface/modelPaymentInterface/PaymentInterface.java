@@ -1,5 +1,7 @@
 package persistence.common.model;
 
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
+
 import java.util.Date;
 import java.util.List;
 
@@ -7,9 +9,9 @@ public class PaymentInterface {
     private int billing_id;
     private int patient_id;
     private int prescription_id;
-    private int voucher_id;
+    private String voucher_id;
     private Date billing_date;
-    private String billing_category;
+    public static PaymentBillingCategory bill_category;
     private double bill_amount;
     public enum payment_mode{C,CC,DC};
     public payment_mode currentPaymentMode;
@@ -60,11 +62,11 @@ public class PaymentInterface {
         this.prescription_id = prescription_id;
     }
 
-    public int getVoucher_id() {
+    public String getVoucher_id() {
         return voucher_id;
     }
 
-    public void setVoucher_id(int voucher_id) {
+    public void setVoucher_id(String voucher_id) {
         this.voucher_id = voucher_id;
     }
 
@@ -76,12 +78,12 @@ public class PaymentInterface {
         this.billing_date = billing_date;
     }
 
-    public String getBilling_category() {
-        return billing_category;
+    public PaymentBillingCategory getBill_category() {
+        return bill_category;
     }
 
-    public void setBilling_category(String billing_category) {
-        this.billing_category = billing_category;
+    public void setBill_category(PaymentBillingCategory bill_category) {
+        this.bill_category = bill_category;
     }
 
     public double getBill_amount() {
