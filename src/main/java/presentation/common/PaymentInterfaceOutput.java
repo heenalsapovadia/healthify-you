@@ -21,13 +21,13 @@ public class PaymentInterfaceOutput {
         return PaymentInterfaceOutput.PaymentInterfaceOutputHelper.instance;
     }
 
-    public void processPayment(Patient patient,
+    public int processPayment(Patient patient,
                                Prescription prescription,
                                PaymentBillingCategory billingCategory,
                                int checkoutAmount) {
         PrintToConsole consoleObj = PrintToConsole.getInstance();
         consoleObj.printHeader(ScreenTitles.paymentInterface);
-        loadScreenOptions(consoleObj, patient, prescription, billingCategory, checkoutAmount);
+        return loadScreenOptions(consoleObj, patient, prescription, billingCategory, checkoutAmount);
     }
 
     private int loadScreenOptions(PrintToConsole consoleObj,
@@ -81,7 +81,7 @@ public class PaymentInterfaceOutput {
         System.out.println(ScreenFields.paymentExit);
         int sel = sc.nextInt();
         if(sel == 1) {
-            paymentUtil.processPayment(patient, prescription, billingCategory, cardDetails, voucherId, checkoutAmount);
+            return paymentUtil.processPayment(patient, prescription, billingCategory, cardDetails, voucherId, checkoutAmount);
         }
         else if(sel == 2) {
             System.out.println(ScreenFields.logoutMessage);

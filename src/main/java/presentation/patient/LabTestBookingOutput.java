@@ -72,16 +72,25 @@ public class LabTestBookingOutput {
 
         int healthCheckId;
         Date bookingdate;
+
+        LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
+        Map<Integer, LabCheck> labCheckMap = labCheckUtil.fetchLabCheckMap();
+
         Scanner sc = new Scanner(System.in);
 
         healthCheckId = inputHealthCheckId(sc);
         bookingdate = inputBookingDate(sc);
+        double healthCheckCharges = labCheckMap.get("charges").getCharges();
 
         List<String> options = Arrays.asList("Continue For Payment", "Exit");
         int option = consoleObj.printSelection(options);
         switch (option) {
             case 1:
                 // Call Payment screen code
+                PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
+                //dummy billing id
+                int billingId = 1;
+//                int billingId = paymentInterfaceOutput.processPayment(); // BilingCat, Amount
                 break;
             case 2:
                 return;

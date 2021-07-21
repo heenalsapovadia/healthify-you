@@ -3,6 +3,8 @@ import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingC
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
+
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +13,11 @@ import java.util.logging.Logger;
 public class PaymentInterfaceDAOImpl {
     private static final Logger LOGGER = Logger.getLogger(PaymentInterfaceDAOImpl.class.getName());
 
-    public void insertPaymentInterfaceDetails(PaymentInterface paymentInterface) {
+    public int insertPaymentInterfaceDetails(PaymentInterface paymentInterface) {
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "INSERT into payment_billing(billing_id, patient_id,prescription_id,voucher_id,billing_date,billing_category,bill_amount,payment_mode,discount,created_on,status,voucher_redemption_date)" + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT into payment_billing(patient_id,prescription_id,voucher_id,billing_date,billing_category,bill_amount,payment_mode,discount,created_on,status,voucher_redemption_date)" + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         try ( PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, paymentInterface.getBilling_id());
+//            ps.setInt(1, paymentInterface.getBilling_id());
             ps.setInt(2, paymentInterface.getPatient_id());
             ps.setInt(3, paymentInterface.getPrescription_id());
             ps.setString(4, paymentInterface.getVoucher_id());
@@ -27,10 +29,15 @@ public class PaymentInterfaceDAOImpl {
             ps.setDate(10, (Date) paymentInterface.getCreated_on());
             ps.setString(8, String.valueOf(paymentInterface.getStatusOfPayment()));
             ps.setDate(10, (Date) paymentInterface.getVoucher_redemption_date());
-            ps.executeUpdate();
+//            ps.executeUpdate();
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt("billing_id");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return 0;
     }
 
     public List<PaymentInterface> getAllPaymentInterfaceDetails(Patient patient) {

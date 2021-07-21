@@ -9,10 +9,11 @@ import presentation.common.ScreenFields;
 import presentation.common.CommonErrors;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class LabCheckUtilImpl implements LabCheckUtil {
-    HashMap<Integer, LabCheck> labCheckMap;
+    Map<Integer, LabCheck> labCheckMap;
 
     @Override
     public List<LabCheck> fetchLabCheckPlans() {
@@ -36,5 +37,10 @@ public class LabCheckUtilImpl implements LabCheckUtil {
         System.out.println("Details of "+labCheckMap.get(checkup_id).getCheckup_name());
         System.out.println("Description : "+labCheckMap.get(checkup_id).getDescription());
         System.out.println("Charges : "+labCheckMap.get(checkup_id).getCharges());
+    }
+
+    @Override
+    public Map<Integer, LabCheck> fetchLabCheckMap(){
+        return labCheckMap;
     }
 }
