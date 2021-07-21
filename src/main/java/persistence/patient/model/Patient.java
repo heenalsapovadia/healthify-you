@@ -14,7 +14,7 @@ public class Patient {
 	private long patientContact;
 	private String password;
 	private String patientType;
-	
+
 	private Patient() {}
   
 	private static Patient patient;
