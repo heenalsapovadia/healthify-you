@@ -74,6 +74,10 @@ public class ScreenFields {
 	public static final String slotmanagement = "Slot Management";
 	public static final String vaccinationstats = "Check immunization statistics";
 	public static final String slotsassigned = "Slots successfully assigned";
+	public static final String mostDemandedVaccine = "Most Demanded Vaccine";
+	public static final String mostVaccinatedAge = "Most vaccinated Age Group";
+	public static final String mostVaccinatedGender = "Most vaccinated Gender";
+	public static final String mostVaccinatedArea = "Most vaccinated Area";
 	
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";

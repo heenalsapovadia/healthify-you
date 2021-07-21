@@ -69,4 +69,8 @@ public class ScreenTitles {
 	/* Blood Bank recommendation screen titles */
 	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
 
+	/* Vaccination Demand Stats titles */
+	public static final String vaccineStats = "Immunization Statistics";
+	public static final String covidAnalysis = "Covid Vaccine Shots Analysis";
+
 }
