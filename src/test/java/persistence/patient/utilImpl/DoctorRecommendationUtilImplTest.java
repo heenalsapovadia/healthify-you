@@ -8,6 +8,15 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+/**
+* <pre>
+* Perform tests for recommending doctor based on symptoms
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
+
 public class DoctorRecommendationUtilImplTest {
 
     /* Input validation test cases start here */

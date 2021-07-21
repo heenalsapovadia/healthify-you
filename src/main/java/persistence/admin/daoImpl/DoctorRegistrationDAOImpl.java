@@ -5,6 +5,14 @@ import presentation.startup.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+* <pre>
+* Perform operations for registering doctor in the system in the database
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
 
 public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 

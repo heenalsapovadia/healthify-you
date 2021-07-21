@@ -10,6 +10,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+* <pre>
+* Perform tests for registering doctor in the database of system
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
+
 public class DoctorRegistrationDAOImplTest {
 
     @Test

@@ -56,17 +56,14 @@ public class LabTestBookingOutput {
         for(LabCheck labCheck : labCheckList){
             System.out.println(""+labCheck.getCheckup_id()+CommonConstants.commonTextSeparator+labCheck.getCheckup_name());
         }
-        while(true) {
-            System.out.println("1. "+ScreenFields.viewDetails);
-            System.out.println("2. "+ScreenFields.backToBooking);
-            int option = sc.nextInt();
-            switch (option){
-                case 1:
-                    labCheckUtil.fetchDetails();
-                    break;
-                case 2:
-                    return;
-            }
+        List<String> selectionOptions = Arrays.asList(ScreenFields.viewDetails, ScreenFields.backToBooking);
+        int option = consoleObj.printSelection(selectionOptions);
+        switch (option){
+            case 1:
+                labCheckUtil.fetchDetails();
+                break;
+            case 2:
+                return;
         }
     }
 
@@ -98,18 +95,22 @@ public class LabTestBookingOutput {
     public void getRecommendations(){
         consoleObj.printHeader(ScreenTitles.labTestRecommendation);
         LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
+
         List<LabCheck> ageBasedRecommendationList = labCheckRecommendationUtil.ageBasedRecommendation();
         List<LabCheck> genderBasedRecommendationList = labCheckRecommendationUtil.genderBasedRecommendation();
+        List<LabCheck> historyBasedRecommendationList = labCheckRecommendationUtil.historyBasedRecommendation();
+
         Set<LabCheck> labCheckSet = new HashSet<>();
         for(LabCheck labCheck : ageBasedRecommendationList)
             labCheckSet.add(labCheck);
         for(LabCheck labCheck : genderBasedRecommendationList)
             labCheckSet.add(labCheck);
+        for(LabCheck labCheck : historyBasedRecommendationList)
+            labCheckSet.add(labCheck);
         System.out.println(ScreenFields.labCheckRecommendation+CommonConstants.commonTextSeparator);
 
-        for(LabCheck labCheck : labCheckSet){
+        for(LabCheck labCheck : labCheckSet)
             System.out.println(labCheck.getCheckup_id()+CommonConstants.commonTextSeparator+labCheck.getCheckup_name());
-        }
     }
 
     private int inputHealthCheckId(Scanner sc){

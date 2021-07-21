@@ -1,5 +1,14 @@
 package persistence.admin.util;
 
+/**
+* <pre>
+* Perform operations for registering doctor in the system
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
+
 public interface DoctorRegistrationUtil {
 
     public boolean validateFirstName(String fname);

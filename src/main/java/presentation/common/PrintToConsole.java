@@ -95,4 +95,13 @@ public class PrintToConsole {
   public void printSingleNewLine() {
     System.out.println();
   }
+  public void printScreenFieldsSameLine(String field) {
+    System.out.print(field);
+  }
+  public void printHorizontalLine() {
+    for (int i = 0; i < 70; i++) {
+      System.out.print(CommonConstants.horizontalDash);
+    }
+    System.out.println();
+  }
 }

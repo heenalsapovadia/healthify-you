@@ -32,11 +32,11 @@ public class UserLoginUtilImplTest {
     String email4 = "sofia@yahoo..com";
     String email5 = " sofia@gmailcom";
     UserLoginUtilImpl login = new UserLoginUtilImpl();
-    assertEquals("The email ID is invalid.Please enter a valid email address", login.validateEmail(email1));
-    assertEquals("The email ID is invalid.Please enter a valid email address", login.validateEmail(email2));
-    assertEquals("The email ID is invalid.Please enter a valid email address", login.validateEmail(email3));
-    assertEquals("The email ID is invalid.Please enter a valid email address", login.validateEmail(email4));
-    assertEquals("The email ID is invalid.Please enter a valid email address", login.validateEmail(email5));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email1));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email2));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email3));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email4));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email5));
 
   }
 
@@ -62,11 +62,11 @@ public class UserLoginUtilImplTest {
     String password4 = "sofia1234@";
     String password5 = "SofiaVargeres12345678901@";
     UserLoginUtilImpl login = new UserLoginUtilImpl();
-    assertEquals("The password is invalid. Please enter a valid password", login.validatePassword(password1));
-    assertEquals("The password is invalid. Please enter a valid password", login.validatePassword(password2));
-    assertEquals("The password is invalid. Please enter a valid password", login.validatePassword(password3));
-    assertEquals("The password is invalid. Please enter a valid password", login.validatePassword(password4));
-    assertEquals("The password is invalid. Please enter a valid password", login.validatePassword(password5));
+    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password1));
+    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password2));
+    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password3));
+    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password4));
+    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password5));
 
   }
 

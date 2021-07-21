@@ -11,7 +11,7 @@ package presentation.common;
  */
 public class ScreenFields {
 	
-	private ScreenFields() {}
+  private ScreenFields() {}
 	
 	/* Pharma invoice screen fields */
 	public static final String receiptNo = "Receipt No.";
@@ -70,7 +70,11 @@ public class ScreenFields {
 	/*Immunization screenFields*/
 	public static final String month = "Month";
 	public static final String slots = "Slots assigned";
-
+	public static final String immunizationmanagement = "Immunization Management";
+	public static final String slotmanagement = "Slot Management";
+	public static final String vaccinationstats = "Check immunization statistics";
+	public static final String slotsassigned = "Slots successfully assigned";
+	
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
 	public static final String selectionOption1= "1. Select the symptoms for recommendation";
@@ -132,8 +136,8 @@ public class ScreenFields {
 	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
 	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
 
-
-
-
+	/* Blood Bank recommendation screen fields */
+	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
+	public static final String numRecInput = "Please enter the number of recommendations";
 
 }
