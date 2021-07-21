@@ -23,7 +23,9 @@ public class ImmunizationStatsOutput {
                 + CommonConstants.commonTextSeparator
                 + vaccineDemandStatsUtil.mostVaccinatedBy("vaccineName"));
         System.out.println(ScreenFields.mostVaccinatedAge
-                + CommonConstants.commonTextSeparator
+                + CommonConstants.singleTab
+                + ":"
+                + CommonConstants.mediumSpace
                 + vaccineDemandStatsUtil.mostVaccinatedBy("ageGroup"));
         System.out.println(ScreenFields.mostVaccinatedGender
                 + CommonConstants.commonTextSeparator
@@ -32,17 +34,25 @@ public class ImmunizationStatsOutput {
                 + CommonConstants.commonTextSeparator
                 + vaccineDemandStatsUtil.mostVaccinatedBy("area"));
 
+        consoleObj.printDoubleNewlines();
+
         covidAnalysis();
+
+        consoleObj.printDoubleNewlines();
 
         dosesAdministered();
     }
 
     public void covidAnalysis(){
         Map<String, Integer> covidAnalysis = vaccineDemandStatsUtil.covidVaccineDistribution();
-        consoleObj.printDoubleNewlines();
+
         System.out.println(ScreenTitles.covidAnalysis);
-        for(Map.Entry<String, Integer> entry : covidAnalysis.entrySet()){
-            System.out.println(entry.getKey() + CommonConstants.commonTextSeparator + entry.getValue());
+        if(covidAnalysis.isEmpty())
+            System.out.println("No data available for Covid Shot analysis");
+        else {
+            for (Map.Entry<String, Integer> entry : covidAnalysis.entrySet()) {
+                System.out.println(entry.getKey() + CommonConstants.commonTextSeparator + entry.getValue());
+            }
         }
     }
 
@@ -59,7 +69,7 @@ public class ImmunizationStatsOutput {
                 if(sc.hasNextInt()) {
                     months = sc.nextInt();
                     int doses = vaccineDemandStatsUtil.dosesAdministered(months);
-                    System.out.println("Doses administeres in the last " + months
+                    System.out.println("Doses administered in the last " + months + " months"
                             + CommonConstants.commonTextSeparator
                             + doses);
                 }

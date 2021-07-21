@@ -22,13 +22,13 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
         List<Map<String, Object>> dataRecords = new ArrayList<>();
 
         String sql = "SELECT appointment_id, Vaccine.patient_id, doctor_id, booked_for_date,\n" +
-                "vaccine_id, vaccine_name, administered_age_group, patient_gender, patient_dob, patient_address\n" +
+                "vaccine_id, vaccine_name, age_group_in_years, patient_gender, patient_dob, patient_address\n" +
                 "FROM\n" +
                 "(SELECT appointment_id, patient_id, doctor_id, booked_for_date,\n" +
-                "vaccine_id, vaccine_name, administered_age_group\n" +
+                "Vacc.vaccine_id, vaccine_name, age_group_in_years\n" +
                 "FROM CSCI5308_12_DEVINT.immunization_appointments as ImmA \n" +
                 "join CSCI5308_12_DEVINT.vaccination_stock as Vacc\n" +
-                "where ImmA.vaccine_id = Vacc.vaccine_ref) AS Vaccine\n" +
+                "where ImmA.vaccine_id = Vacc.vaccine_id) AS Vaccine\n" +
                 "join CSCI5308_12_DEVINT.patients as Pat \n" +
                 "where Vaccine.patient_id = Pat.patient_id;";
 
@@ -45,7 +45,7 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
                 dataRecord.put("dob", rs.getDate("patient_dob"));
                 dataRecord.put("area", rs.getString("patient_address"));
                 dataRecord.put("vaccineName", rs.getString("vaccine_name"));
-                dataRecord.put("ageGroup", rs.getString("administered_age_group"));
+                dataRecord.put("ageGroup", rs.getString("age_group_in_years"));
 
                 dataRecords.add(dataRecord);
             }
