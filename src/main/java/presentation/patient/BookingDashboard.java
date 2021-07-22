@@ -41,7 +41,7 @@ public class BookingDashboard {
         else if(sel == 2) {
             LabTestBookingOutput labTestBookingOutput = new LabTestBookingOutput();
             //Patient patient = Patient.getPatient();
-            labTestBookingOutput.makeBooking();
+            labTestBookingOutput.dashboard();
         }
         else if(sel == 3) {
             //Book an Immunization
