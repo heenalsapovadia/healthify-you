@@ -51,7 +51,15 @@ public class ImmunizationStatsOutput {
             System.out.println("No data available for Covid Shot analysis");
         else {
             for (Map.Entry<String, Integer> entry : covidAnalysis.entrySet()) {
-                System.out.println(entry.getKey() + CommonConstants.commonTextSeparator + entry.getValue());
+                if(entry.getKey().equals("covishield")) System.out.println(entry.getKey()
+                        + CommonConstants.singleTab
+                        + ":"
+                        + CommonConstants.mediumSpace
+                        + entry.getValue());
+                else
+                    System.out.println(entry.getKey()
+                            + CommonConstants.commonTextSeparator
+                            + entry.getValue());
             }
         }
     }
