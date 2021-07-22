@@ -12,41 +12,40 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PaymentInterfaceUtilImpl {
     private PaymentInterfaceDAOImpl paymentPersistence = new PaymentInterfaceDAOImpl();
 
     public int processPayment(Patient patient,
-                               Prescription prescription,
-                               PaymentBillingCategory billingCategory,
-                               PaymentCardDetails paymentCardDetails,
-                               String voucherID,
-                               int checkoutAmount) {
+                              PaymentBillingCategory billingCategory,
+                              PaymentCardDetails paymentCardDetails,
+                              String voucherID,
+                              double remainingAmount) {
         PaymentInterface paymentDetails = new PaymentInterface();
         paymentDetails.setCurrentPaymentMode(persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface.payment_mode.C);
         paymentDetails.setStatusOfPayment(persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface.status.C);
         paymentDetails.setPatient_id(patient.getPatientId());
-        paymentDetails.setPrescription_id(prescription.getPrescription_id());
         paymentDetails.setVoucher_id(voucherID);
 
         Date d1 = new Date();
         paymentDetails.setBilling_date(d1);
 
         paymentDetails.setBill_category(billingCategory);
-        paymentDetails.setBill_amount(checkoutAmount);
+        paymentDetails.setBill_amount(remainingAmount);
 
-        String modeOfPayment = null;
-        paymentDetails.setCurrentPaymentMode(PaymentInterface.payment_mode.valueOf(modeOfPayment));
+        paymentDetails.setCurrentPaymentMode(PaymentInterface.payment_mode.CC);
 
         double discount = 0;
         paymentDetails.setDiscount(discount);
         paymentDetails.setCreated_on(d1);
 
-        String statusOfPayment = null;
-        paymentDetails.setStatusOfPayment(PaymentInterface.status.valueOf(statusOfPayment));
+        paymentDetails.setStatusOfPayment(PaymentInterface.status.C);
 
         paymentDetails.setVoucher_redemption_date(d1);
         return paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
-
     }
 
 

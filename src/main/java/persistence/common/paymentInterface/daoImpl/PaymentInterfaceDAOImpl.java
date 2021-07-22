@@ -12,11 +12,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
+
     private static final Logger LOGGER = Logger.getLogger(PaymentInterfaceDAOImpl.class.getName());
 
     public int insertPaymentInterfaceDetails(PaymentInterface paymentInterface) {
         Connection conn = DatabaseConnection.getConnection();
+
         int billingId = findMaxBillingId() + 1;
+
         String sql = "INSERT into payment_billing(billing_id,patient_id,voucher_id,billing_date,bill_category,bill_amount,payment_mode,discount,created_on,status,voucher_redemption_date)" + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         try ( PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, billingId);
@@ -57,6 +60,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
 
     public List<PaymentInterface> getAllPaymentInterfaceDetails(Patient patient) {
         Connection conn = DatabaseConnection.getConnection();
+
         String sql = "SELECT * FROM payment_billing where patient_id=" + patient.getPatientId();
         try {
             Statement statement = conn.createStatement();
@@ -87,6 +91,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
     @Override
     public int getVoucherRedemptionPoints(int patientId) {
         Connection conn = DatabaseConnection.getConnection();
+
         ResultSet rs = null;
         StringBuilder sql = new StringBuilder();
         sql.append("select sum(points) as pointSummation from vouchers where voucher_id in ");

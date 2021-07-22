@@ -3,9 +3,7 @@ package presentation.common;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentCardDetails;
 import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
-import persistence.doctor.model.Prescription;
 import persistence.patient.model.Patient;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,19 +21,17 @@ public class PaymentInterfaceOutput {
 
     // modify argumnts to (BillingCategory, Amount)
     public int processPayment(Patient patient,
-                               Prescription prescription,
-                               PaymentBillingCategory billingCategory,
-                               int checkoutAmount) {
+                              PaymentBillingCategory billingCategory,
+                              double checkoutAmount) {
         PrintToConsole consoleObj = PrintToConsole.getInstance();
         consoleObj.printHeader(ScreenTitles.paymentInterface);
-        return loadScreenOptions(consoleObj, patient, prescription, billingCategory, checkoutAmount);
+        return loadScreenOptions(consoleObj, patient, billingCategory, checkoutAmount);
     }
 
     private int loadScreenOptions(PrintToConsole consoleObj,
                                   Patient patient,
-                                  Prescription prescription,
                                   PaymentBillingCategory billingCategory,
-                                  int checkoutAmount) {
+                                  double checkoutAmount) {
         List<String> selectionOptions = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String redeemVoucherAmount;
@@ -76,13 +72,12 @@ public class PaymentInterfaceOutput {
         System.out.println(ScreenFields.checkoutAmount + checkoutAmount);
         System.out.println(ScreenFields.redeemVoucher);
         String voucherId = "XYZWS";
-        //System.out.println(voucher);
-        // for (String voucher: patient.getVoucher()) //
         System.out.println(ScreenFields.voucherId);
         System.out.println(ScreenFields.paymentExit);
         int sel = sc.nextInt();
         if(sel == 1) {
-            return paymentUtil.processPayment(patient, prescription, billingCategory, cardDetails, voucherId, checkoutAmount);
+            int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, voucherId , checkoutAmount);
+            System.out.println("Payment Successful with Billing ID - " + billingId);
         }
         else if(sel == 2) {
             System.out.println(ScreenFields.logoutMessage);
@@ -91,8 +86,9 @@ public class PaymentInterfaceOutput {
         }
         else {
             consoleObj.printError(CommonErrors.invalidSelection);
-            sel = loadScreenOptions(consoleObj, patient, prescription, billingCategory, checkoutAmount);
+            sel = loadScreenOptions(consoleObj, patient, billingCategory, checkoutAmount);
         }
+        System.out.println("\n");
         return sel;
     }
 }
