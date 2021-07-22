@@ -22,30 +22,30 @@ public class LabTestBookingOutput {
          */
         List<String> selectionOptions = Arrays.asList(ScreenTitles.availablePlans, ScreenTitles.labTestRecommendation,
                 ScreenTitles.makeBooking, ScreenTitles.previousBookings, ScreenFields.exit);
+        while(true) {
+            int option = consoleObj.printSelection(selectionOptions);
 
-        int option = consoleObj.printSelection(selectionOptions);
-
-        switch (option){
-            case 1:
-                viewPlans();
-                break;
-            case 2:
-                getRecommendations();
-                break;
-            case 3:
-                makeBooking();
-                break;
-            case 4:
-                viewBookings();
-                break;
-            case 5:
-                break;
+            switch (option) {
+                case 1:
+                    viewPlans();
+                    break;
+                case 2:
+                    getRecommendations();
+                    break;
+                case 3:
+                    makeBooking();
+                    break;
+                case 4:
+                    viewBookings();
+                    break;
+                case 5:
+                    return;
+            }
         }
 
     }
 
     public void viewPlans(){
-        Scanner sc = new Scanner(System.in);
         /*
         View Plans title
          */
@@ -80,9 +80,9 @@ public class LabTestBookingOutput {
 
         healthCheckId = inputHealthCheckId(sc);
         bookingdate = inputBookingDate(sc);
-        double healthCheckCharges = labCheckMap.get("charges").getCharges();
+        double healthCheckCharges = labCheckMap.get(healthCheckId).getCharges();
 
-        List<String> options = Arrays.asList("Continue For Payment", "Exit");
+        List<String> options = Arrays.asList("Continue For Payment", ScreenFields.exit);
         int option = consoleObj.printSelection(options);
         int billingId = 0;
         switch (option) {

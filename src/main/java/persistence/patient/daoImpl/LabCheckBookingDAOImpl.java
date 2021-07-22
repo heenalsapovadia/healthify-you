@@ -2,6 +2,7 @@ package persistence.patient.daoImpl;
 
 import persistence.patient.dao.LabCheckBookingDAO;
 import persistence.patient.model.LabCheckBooking;
+import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,8 +38,9 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
         Connection conn = DatabaseConnection.getConnection();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
-        String sql = "SELECT * FROM labcheck_appointments";
+        String sql = "SELECT * FROM labcheck_appointments WHERE patient_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, Patient.getPatient().getPatientId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 LabCheckBooking labCheckBooking = new LabCheckBooking();
