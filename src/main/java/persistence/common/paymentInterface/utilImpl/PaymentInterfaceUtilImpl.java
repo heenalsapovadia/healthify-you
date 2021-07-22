@@ -50,46 +50,4 @@ public class PaymentInterfaceUtilImpl {
         return paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
     }
 
-
-    public String validateCreditCardNumber(Long creditCardNumber) {
-        int length = (int) (Math.log10(creditCardNumber) + 1);
-        String result1 = "Should start with 512. Please enter again.";
-        String result2 = "Card number should be 12 digit long";
-        if (length == 12) {
-            String temp = creditCardNumber + "";
-            if (temp.startsWith("512") && !temp.matches("^[ a-zA-Z]*$")) {
-                return null;
-            } else {
-                return result1;
-            }
-        } else {
-            return result2;
-        }
-    }
-
-    public String validateExpiryDate(String Date) {
-        String dateregex = "^(1[0-2]|0[1-9]|\\d)\\/(20\\d{2}|19\\d{2}|0(?!0)\\d|[1-9]\\d)$\n";
-        Pattern pattern = Pattern.compile(dateregex);
-        Matcher matcher = pattern.matcher(valueOf(Date));
-        if (matcher.matches() == false || Date == null || Date == "") {
-            return CommonErrors.invalidDateFormat;
-        }
-        return null;
-    }
-
-    public String validateCvv(Long cvvNumber) {
-        int length = (int) (Math.log10(cvvNumber) + 1);
-        String result1 = "Should start with 9. Please enter again.";
-        String result2 = "Cvv number should be 3 digit long";
-        if (length == 3) {
-            String temp = cvvNumber + "";
-            if (temp.startsWith("9") && !temp.matches("^[ a-zA-Z]*$")) {
-                return null;
-            } else {
-                return result1;
-            }
-        } else {
-            return result2;
-        }
-    }
 }

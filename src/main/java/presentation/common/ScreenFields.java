@@ -142,7 +142,7 @@ public class ScreenFields {
 
 	/* Payment Interface fields */
 	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
-    public static final String expirydate = "Enter expiry date(mm/yy): ";
+    public static final String expirydate = "Enter expiry date(yyyy-mm): ";
     public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
     public static final String checkoutAmount = "Checkout Amount: ";
     public static final String redeemVoucher = "Reedemable Voucher: ";
