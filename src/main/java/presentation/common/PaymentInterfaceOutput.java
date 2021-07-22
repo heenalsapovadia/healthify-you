@@ -67,7 +67,7 @@ public class PaymentInterfaceOutput {
             // Without voucher
             PaymentInterface paymentInterface = new PaymentInterface();
             int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, "", checkoutAmount);
-            System.out.println("Payment Successful for" + billingCategory + billingId);
+            System.out.println("Payment Successful and billing id is: " + billingId);
             return billingId;
         }
         else if(sel == 2) {
@@ -80,13 +80,13 @@ public class PaymentInterfaceOutput {
                     remainingAmount = 0;
                 }
                 int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, "", remainingAmount);
-                System.out.println("Payment Successful for" + billingCategory + billingId);
+                System.out.println("Payment Successful and billing id is: " + billingId);
                 return billingId;
 
             } else {
                 System.out.println("Invalid Voucher");
                 int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, "", checkoutAmount);
-                System.out.println("Payment Successful for" + billingCategory + billingId);
+                System.out.println("Payment Successful and billing id is: " + billingId);
                 return billingId;
             }
         }

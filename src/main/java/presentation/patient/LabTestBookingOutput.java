@@ -87,6 +87,7 @@ public class LabTestBookingOutput {
 
         List<String> options = Arrays.asList("Continue For Payment", "Exit");
         int option = consoleObj.printSelection(options);
+
         int billingId = 0;
         switch (option) {
             case 1:
