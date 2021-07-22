@@ -1,5 +1,6 @@
 package presentation.patient;
 
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.patient.model.*;
 import persistence.patient.util.*;
 import persistence.patient.utilImpl.*;
@@ -72,13 +73,33 @@ public class LabTestBookingOutput {
 
         int healthCheckId;
         Date bookingdate;
+
+        LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
+        Map<Integer, LabCheck> labCheckMap = labCheckUtil.fetchLabCheckMap();
+
         Scanner sc = new Scanner(System.in);
 
         healthCheckId = inputHealthCheckId(sc);
         bookingdate = inputBookingDate(sc);
+        //double healthCheckCharges = labCheckMap.get("charges").getCharges();
+        double healthCheckCharges = 100;
+
+        List<String> options = Arrays.asList("Continue For Payment", "Exit");
+        int option = consoleObj.printSelection(options);
+
+        int billingId = 0;
+        switch (option) {
+            case 1:
+                // Call Payment Interface screen code
+                PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
+                billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.L, healthCheckCharges,"");
+                break;
+            case 2:
+                return;
+        }
 
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate);
+        labCheckBookingUtil.makeBooking(healthCheckId, bookingdate, billingId);
     }
 
     public void viewBookings(){

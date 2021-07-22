@@ -74,11 +74,18 @@ public class ScreenFields {
 	public static final String slotmanagement = "Slot Management";
 	public static final String vaccinationstats = "Check immunization statistics";
 	public static final String slotsassigned = "Slots successfully assigned";
+	public static final String availablevaccines = "Vaccines available";
+	public static final String doses = "Doses administered";
+	public static final String agegroup= "Age group in years";
+	public static final String vaccinename = "Name of Vaccine";
+	public static final String elibilitycheck = "Eligibility check ...";
+	public static final String success = "Success";
+	public static final String fail = "Eligibility Fail";
 	public static final String mostDemandedVaccine = "Most Demanded Vaccine";
 	public static final String mostVaccinatedAge = "Most vaccinated Age Group";
 	public static final String mostVaccinatedGender = "Most vaccinated Gender";
 	public static final String mostVaccinatedArea = "Most vaccinated Area";
-	
+
 	/* Doctor recommendation screen fields */
 	public static final String selectionField= "Make selection from the options below:\n";
 	public static final String selectionOption1= "1. Select the symptoms for recommendation";
@@ -124,7 +131,7 @@ public class ScreenFields {
 	/* Booking Dashboard  Booking fields */
 	public static final String appointmentWithDoctor = "Book an appointment with doctor";
 	public static final String bookLabTest = "Book a Lab Test/Health Check Up";
-	public static final String bookImmunization = "Book am Immunization";
+	public static final String bookImmunization = "Book an Immunization";
 	public static final String bookBloodBankService = "Book a Blood Bank service";
 	public static final String yourBloodGroup = "Please enter your blood group:";
 
@@ -140,19 +147,42 @@ public class ScreenFields {
 	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
 	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
 
-       /* Payment Interface fields */
-		public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
-        public static final String expirydate = "Enter expiry date(mm/yy): ";
-        public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
-        public static final String checkoutAmount = "Checkout Amount: ";
-        public static final String redeemVoucher = "Reedemable Voucher: ";
-        public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
-	    public static final String paymentExit = "2. Exit: ";
-
-
+	/* Payment Interface fields */
+	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
+    public static final String expirydate = "Enter expiry date(yyyy-mm): ";
+    public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
+    public static final String checkoutAmount = "Checkout Amount: ";
+    public static final String redeemVoucher = "Reedemable Voucher: ";
+	public static final String voucherIdOption1= "1. Enter 1 to proceed without voucher and make payment through Credit Card: ";
+	public static final String voucherIdOption2= "2. Enter 2 to proceed with voucher: ";
+	public static final String enterVoucherId= "Enter Voucher Id: ";
+    public static final String paymentExit = "2. Exit: ";
+    public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
+	//public static final String paymentExit = "2. Exit: ";
 
 	/* Blood Bank recommendation screen fields */
 	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
 	public static final String numRecInput = "Please enter the number of recommendations";
 
+	/* Redeemable Voucher Fields */
+	public static final String VIEW_VOUCHER = "View Redeemable Vouchers";
+	public static final String POINTS_AVAILABLE = "Points Available";
+	public static final String POINTS_REDEEMED = "Points Redeemed";
+	
+	/* View Reports Fields */
+	public static final String VIEW_REPORTS = "View Reports";
+	public static final String VIEW_REPORTS_BY_TEST = "View Reports by test";
+	public static final String VIEW_REPORTS_BY_DATE_RANGE = "View Reports by date range";
+	public static final String VIEW_REPORTS_BY_PARTICULAR_DATE = "View Reports by a particular date";
+	public static final String START_DATE = "Enter start date";
+	public static final String END_DATE = "Enter end date";
+	public static final String DATE = "Date";
+	public static final String DATE_OF_COLLECTION = "Date of Collection";
+	
+	/* View Reports by Test Fields */
+	public static final String BLOOD_TEST = "Blood Test";
+	public static final String KIDNEY_TEST = "Kidney Test";
+	public static final String LIVER_TEST = "Liver Test";
+	public static final String VISION_TEST = "Vision Test";
+	public static final String COVID_TEST = "Covid Test";
 }

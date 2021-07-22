@@ -68,9 +68,30 @@ public class ScreenTitles {
 	public static final String paymentInterface = "Proceed to Pay";
 	/* Blood Bank recommendation screen titles */
 	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
+	
+	/* Book an Immunization */
+	public static final String bookImmunization = "Immunization booking";
+	public static final String vaccines= "Vaccines Available";
 
 	/* Vaccination Demand Stats titles */
 	public static final String vaccineStats = "Immunization Statistics";
 	public static final String covidAnalysis = "Covid Vaccine Shots Analysis";
+	
+	/* Redeemable Vocuhers */
+	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
+	/* Doctor Appointment Booking titles */
+	public static final String doctorAppointment = "Doctor Appointment Bookings";
+	public static final String bookAppointment = "Book an appointment";
+	public static final String rescheduleAppointment = "Reschedule an appointment";
+	
+	/* View Reports */
+	public static final String VIEW_REPORTS = "View Reports";
+	public static final String VIEW_REPORTS_BY_TEST = "View Reports by Test";
+	public static final String REPORTS = "Reports";
+	public static final String VIEW_BLOOD_REPORTS = "Blood Test Report";
+	public static final String VIEW_KIDNEY_REPORTS = "Kidney Test Report";
+	public static final String VIEW_LIVER_REPORTS = "Liver Test Report";
+	public static final String VIEW_VISION_REPORTS = "Vision Test Report";
+	public static final String VIEW_COVID_REPORTS = "Covid Test Report";
 }

@@ -31,8 +31,8 @@ public class ImmunizationSlotOutput {
     print.printScreenFields(str);
     print.printSingleNewLine();
     print.printScreenFields(CommonConstants.mediumSpace + CommonConstants.verticleBar + CommonConstants.singleTab
-            + "Mon" + CommonConstants.singleTab + "Tues" + CommonConstants.singleTab + "Wed" + CommonConstants.singleTab
-            + "Thur" + CommonConstants.singleTab + "Fri" + CommonConstants.singleTab);
+            + "Monday" + CommonConstants.mediumSpace + "Tuesday" + CommonConstants.mediumSpace + "Wedneday" + CommonConstants.singleTab
+            + "Thursday" + CommonConstants.singleTab + "Friday" + CommonConstants.singleTab);
 
     print.printScreenFieldsSameLine(CommonConstants.mediumSpace + CommonConstants.verticleBar);
     CurrentWeekdays week = new CurrentWeekdays();
@@ -52,9 +52,9 @@ public class ImmunizationSlotOutput {
       for (Map.Entry<String, ArrayList<Integer>> entry : dao.getAssignedDoctors(updateChoice).entrySet()) {
         int docID = entry.getValue().get(i);
         if (docID == 0) {
-          print.printScreenFieldsSameLine("over" + CommonConstants.singleTab);
+          print.printScreenFieldsSameLine("over" + CommonConstants.mediumSpace);
         } else {
-          print.printScreenFieldsSameLine(entry.getValue().get(i) + CommonConstants.singleTab);
+          print.printScreenFieldsSameLine(entry.getValue().get(i) + CommonConstants.mediumSpace);
         }
       }
       print.printSingleNewLine();

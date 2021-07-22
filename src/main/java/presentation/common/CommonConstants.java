@@ -24,4 +24,7 @@ public class CommonConstants {
 	public static final String period = ".";
 	public static final String verticleBar = "|";
 	public static final String horizontalDash = "-";
+	public static final String ZERO = "0";
+	public static final String NEW_LINE = "\n";
+	public static final String DOUBLE_TAB = "\t\t";
 }

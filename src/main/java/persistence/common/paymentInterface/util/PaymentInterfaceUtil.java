@@ -7,12 +7,8 @@ import persistence.patient.model.Patient;
 
 public interface PaymentInterfaceUtil {
 
-    void processPayment(Patient patient,
-                        Prescription prescription,
-                        PaymentBillingCategory billingCategory,
-                        PaymentCardDetails paymentCardDetails,
-                        int voucherAmount,
-                        int checkoutAmount);
+    void processPayment(PaymentBillingCategory billingCategory,
+                        double checkoutAmount, String voucherId);
 
 
     public String validateCreditCardNumber(Long creditCardNumber);

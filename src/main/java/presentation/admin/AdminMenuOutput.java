@@ -52,7 +52,10 @@ public class AdminMenuOutput {
       invoiceOutput.displayInvoice();
       sel = loadScreenOptions(consoleObj);
     } else if (sel == 2) {
-      // add code for blood bank output here
+      BloodBankRecommendationOutput bloodBankRecommendationOutput = new BloodBankRecommendationOutput();
+      bloodBankRecommendationOutput.getBloodBankRecommendations();
+      sel = loadScreenOptions(consoleObj);
+
     }
 
     else if (sel == 3) {

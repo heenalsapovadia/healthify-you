@@ -28,5 +28,6 @@ public class CommonErrors {
 	public static final String invalidWeekday = "Slots can only be assigned on the weekend. Come back again on the weekend !";
 	public static final String invalidCheckUpId = "Invalid Lab CheckUp Id, Enter Again";
 	public static final String smallerDate = "Date smaller than today!";
+	public static final String NO_REPORTS = "No Reports Found";
 
 }
