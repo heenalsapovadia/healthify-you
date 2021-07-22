@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.String.valueOf;
+
 public class PaymentInterfaceUtilImpl {
     private PaymentInterfaceDAOImpl paymentPersistence = new PaymentInterfaceDAOImpl();
 
@@ -68,7 +70,7 @@ public class PaymentInterfaceUtilImpl {
     public String validateExpiryDate(String Date) {
         String dateregex = "^(1[0-2]|0[1-9]|\\d)\\/(20\\d{2}|19\\d{2}|0(?!0)\\d|[1-9]\\d)$\n";
         Pattern pattern = Pattern.compile(dateregex);
-        Matcher matcher = pattern.matcher(Date);
+        Matcher matcher = pattern.matcher(valueOf(Date));
         if (matcher.matches() == false || Date == null || Date == "") {
             return CommonErrors.invalidDateFormat;
         }

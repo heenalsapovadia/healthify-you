@@ -2,6 +2,7 @@ package presentation.common;
 
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentCardDetails;
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentCreditCardValidation;
 import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import persistence.patient.model.Patient;
 import java.util.ArrayList;
@@ -35,34 +36,14 @@ public class PaymentInterfaceOutput {
         List<String> selectionOptions = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String redeemVoucherAmount;
+
         // Credit card validation
-        Long cardNumber;
-        String expirtyDate;
-        Long cvvNumber;
-        System.out.println(ScreenFields.cardNumber);
-        cardNumber = sc.nextLong();
-        if(paymentUtil.validateCreditCardNumber(cardNumber) != null){
-            do {
-                System.out.println("Wrong credit card number. Please enter again");
-                cardNumber = sc.nextLong();
-            } while (paymentUtil.validateCreditCardNumber(cardNumber) != null);
-        }
-        System.out.println(ScreenFields.expirydate);
-        expirtyDate= sc.next();
-        if(paymentUtil.validateExpiryDate(expirtyDate) != null){
-            do {
-                System.out.println("Wrong date. Please enter again");
-                expirtyDate= sc.next();
-            } while (paymentUtil.validateCreditCardNumber(cardNumber) != null);
-        }
-        System.out.println(ScreenFields.cvvNumber);
-        cvvNumber = sc.nextLong();
-        if(paymentUtil.validateCvv(cvvNumber) != null){
-            do {
-                System.out.println("Wrong Cvv. Please start with 9 and make sure its 3 digit long.");
-                cvvNumber = sc.nextLong();
-            } while (paymentUtil.validateCreditCardNumber(cardNumber) != null);
-        }
+        Long cardNumber = null;
+        String expirtyDate = null;
+        Long cvvNumber = null;
+
+        PaymentCreditCardValidation paymentCreditCardValidation = new PaymentCreditCardValidation();
+        paymentCreditCardValidation.ValidateCC(cardNumber, expirtyDate, cvvNumber);
         PaymentCardDetails cardDetails = new PaymentCardDetails();
         cardDetails.setCardNumber(cardNumber);
         cardDetails.setCvvNumber(cvvNumber);
@@ -91,4 +72,6 @@ public class PaymentInterfaceOutput {
         System.out.println("\n");
         return sel;
     }
+
+
 }
