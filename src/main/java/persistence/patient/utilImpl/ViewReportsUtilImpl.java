@@ -102,11 +102,11 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 		StringBuilder output = null;
 		output = new StringBuilder();
 		for(Blood report: bloodReportsList) {
-			if(output.isEmpty()) {
+			if(output.toString().isEmpty()) {
 				bloodReportObj = report;
 				setBloodReportContent(output, report);
 			}
-			else if(!output.isEmpty() && bloodReportObj != null 
+			else if(!output.toString().isEmpty() && bloodReportObj != null 
 					&& report.getDate().toString().compareTo(bloodReportObj.getDate().toString()) > 0) {
 				output = new StringBuilder();
 				setBloodReportContent(output, report);
@@ -152,11 +152,11 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 		StringBuilder output = null;
 		output = new StringBuilder();
 		for(Kidney report: kidneyReportsList) {
-			if(output.isEmpty()) {
+			if(output.toString().isEmpty()) {
 				kidneyReportObj = report;
 				setKidneyReportContent(output, report);
 			}
-			else if(!output.isEmpty() && kidneyReportObj != null 
+			else if(!output.toString().isEmpty() && kidneyReportObj != null 
 					&& report.getDate().toString().compareTo(kidneyReportObj.getDate().toString()) > 0) {
 				output = new StringBuilder();
 				setKidneyReportContent(output, report);
@@ -196,11 +196,11 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 		StringBuilder output = null;
 		output = new StringBuilder();
 		for(Liver report: liverReportsList) {
-			if(output.isEmpty()) {
+			if(output.toString().isEmpty()) {
 				liverReportObj = report;
 				setLiverReportContent(output, report);
 			}
-			else if(!output.isEmpty() && liverReportObj != null 
+			else if(!output.toString().isEmpty() && liverReportObj != null 
 					&& report.getDate().toString().compareTo(liverReportObj.getDate().toString()) > 0) {
 				output = new StringBuilder();
 				setLiverReportContent(output, report);
@@ -243,11 +243,11 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 		StringBuilder output = null;
 		output = new StringBuilder();
 		for(Vision report: visionReportsList) {
-			if(output.isEmpty()) {
+			if(output.toString().isEmpty()) {
 				visionReportObj = report;
 				setVisionReportContent(output, report);
 			}
-			else if(!output.isEmpty() && visionReportObj != null 
+			else if(!output.toString().isEmpty() && visionReportObj != null 
 					&& report.getDate().toString().compareTo(visionReportObj.getDate().toString()) > 0) {
 				output = new StringBuilder();
 				setVisionReportContent(output, report);
@@ -286,11 +286,11 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 		StringBuilder output = null;
 		output = new StringBuilder();
 		for(Covid report: covidReportsList) {
-			if(output.isEmpty()) {
+			if(output.toString().isEmpty()) {
 				covidReportObj = report;
 				setCovidReportContent(output, report);
 			}
-			else if(!output.isEmpty() && covidReportObj != null 
+			else if(!output.toString().isEmpty() && covidReportObj != null 
 					&& report.getDate().toString().compareTo(covidReportObj.getDate().toString()) > 0) {
 				output = new StringBuilder();
 				setCovidReportContent(output, report);
