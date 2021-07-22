@@ -80,4 +80,9 @@ public class ScreenTitles {
 	/* Redeemable Vocuhers */
 	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
+	/* Request Medication */
+	public static final String REQUEST_MEDICATION = "Request Medication";
+
+
+
 }
