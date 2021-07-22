@@ -15,8 +15,9 @@ import persistence.patient.util.ImmunizationBookingUtil;
 import presentation.common.PrintToConsole;
 
 /**
- * @author Deeksha Sareen
- *
+ * @author Deeksha Sareen 
+ * This class contains methods responsible for checking
+ *         the eligibility of patient to receive the vaccine shot
  */
 public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
@@ -43,7 +44,7 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
     ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
     ArrayList<String> appointmentsdates = new ArrayList<>(dao.getAppointments(vaccineId, patientId));
     if (appointmentsdates.size() > doses) {
-      print.printScreenFields("You have exceeded the dose limit of "+doses);
+      print.printScreenFields("You have exceeded the dose limit of " + doses);
       return false;
     }
     return true;
@@ -51,6 +52,9 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
   }
 
   public int getAge(String dob) {
+    if (dob == null || dob.isEmpty()) {
+      return -1;
+    }
     String dateofbirth = dob;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     Date date;
@@ -97,7 +101,7 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
       return true;
     } else {
       int days = vaccineGap - getAge(recentDate);
-      print.printScreenFields("Come back after" + days + "days");
+      print.printScreenFields("Come back after " + days + " days");
     }
     return false;
 

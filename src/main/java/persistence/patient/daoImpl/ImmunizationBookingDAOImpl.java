@@ -15,10 +15,11 @@ import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 
 /**
- * @author Deeksha Sareen
+ * @author Deeksha Sareen : This class is responsible for interacting with the
+ *         database for facilitating booking of a vaccine.
  *
  */
-public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO,ImmunizationDoctorsDAO {
+public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, ImmunizationDoctorsDAO {
 
   Connection conn = DatabaseConnection.getConnection();
   ResultSet resultSet = null;
@@ -68,7 +69,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO,Immuni
     String sql = "SELECT * from immunization_appointments where patient_id = ? and vaccine_id = ?";
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setInt(1, patientId);
-      ps.setInt(1, vaccineId);
+      ps.setInt(2, vaccineId);
       resultSet = ps.executeQuery();
       if (resultSet.first() == false) {
         return appointmentdates;
@@ -113,7 +114,6 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO,Immuni
     return appointmentdates;
   }
 
-
   @Override
   public boolean assignPatientinDatabase(String slotChosen, int vaccineId) {
 
@@ -149,7 +149,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO,Immuni
     }
     return true;
   }
-  
+
   @Override
   public int getDoctorAssigned(String weekday, String slotTime) {
     ResultSet resultSet = null;
