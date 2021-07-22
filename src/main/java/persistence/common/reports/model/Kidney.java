@@ -6,6 +6,7 @@ public class Kidney {
     private float creatinine;
     private int bun;
     private Date date;
+    private Date dateOfCollection;
 
     public Date getDate() {
         return date;
@@ -30,4 +31,12 @@ public class Kidney {
     public void setBun(int bun) {
         this.bun = bun;
     }
+
+	public Date getDateOfCollection() {
+		return dateOfCollection;
+	}
+
+	public void setDateOfCollection(Date dateOfCollection) {
+		this.dateOfCollection = dateOfCollection;
+	}
 }

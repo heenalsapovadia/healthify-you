@@ -160,9 +160,6 @@ public class ScreenFields {
     public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
 	//public static final String paymentExit = "2. Exit: ";
 
-
-
-
 	/* Blood Bank recommendation screen fields */
 	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
 	public static final String numRecInput = "Please enter the number of recommendations";
@@ -172,4 +169,20 @@ public class ScreenFields {
 	public static final String POINTS_AVAILABLE = "Points Available";
 	public static final String POINTS_REDEEMED = "Points Redeemed";
 	
+	/* View Reports Fields */
+	public static final String VIEW_REPORTS = "View Reports";
+	public static final String VIEW_REPORTS_BY_TEST = "View Reports by test";
+	public static final String VIEW_REPORTS_BY_DATE_RANGE = "View Reports by date range";
+	public static final String VIEW_REPORTS_BY_PARTICULAR_DATE = "View Reports by a particular date";
+	public static final String START_DATE = "Enter start date";
+	public static final String END_DATE = "Enter end date";
+	public static final String DATE = "Date";
+	public static final String DATE_OF_COLLECTION = "Date of Collection";
+	
+	/* View Reports by Test Fields */
+	public static final String BLOOD_TEST = "Blood Test";
+	public static final String KIDNEY_TEST = "Kidney Test";
+	public static final String LIVER_TEST = "Liver Test";
+	public static final String VISION_TEST = "Vision Test";
+	public static final String COVID_TEST = "Covid Test";
 }
