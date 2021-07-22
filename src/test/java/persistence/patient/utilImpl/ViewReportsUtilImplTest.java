@@ -126,11 +126,6 @@ class ViewReportsUtilImplTest {
 				+ "Date		:		2021-05-21\n"
 				+ "Vision				:		20/40\n"
 				+ "";
-		for(byte b: actualReport.getBytes())
-			System.out.print(b+", ");
-		System.out.println();
-		for(byte b: expectedReport.getBytes())
-			System.out.print(b+", ");
 		assertEquals(expectedReport, actualReport);
 	}
 
