@@ -276,7 +276,7 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	
 	private void setVisionReportContent(StringBuilder output, Vision report) {
 		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.commonTextSeparator).append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
-		output.append(ScreenFields.DATE).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
 		output.append("Vision").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getAcuity()).append(CommonConstants.NEW_LINE);
 	}
 	
