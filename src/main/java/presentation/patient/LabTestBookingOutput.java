@@ -1,5 +1,6 @@
 package presentation.patient;
 
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.patient.model.*;
 import persistence.patient.util.*;
 import persistence.patient.utilImpl.*;
@@ -84,14 +85,13 @@ public class LabTestBookingOutput {
 
         List<String> options = Arrays.asList("Continue For Payment", ScreenFields.exit);
         int option = consoleObj.printSelection(options);
+
         int billingId = 0;
         switch (option) {
             case 1:
-                // Call Payment screen code
+                // Call Payment Interface screen code
                 PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
-                //dummy billing id
-                billingId = 1;
-//                int billingId = paymentInterfaceOutput.processPayment("L", healthCheckCharges); // BilingCat, Amount
+                billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.L, healthCheckCharges,"");
                 break;
             case 2:
                 return;

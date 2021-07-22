@@ -11,7 +11,8 @@ import presentation.common.ScreenTitles;
 import presentation.startup.ApplicationOutput;
 
 /**
- * @author Deeksha Sareen Dashboard for immunization management
+ * @author Deeksha Sareen 
+ * Dashboard for immunization management
  *
  */
 public class ImmunizationDashboard {

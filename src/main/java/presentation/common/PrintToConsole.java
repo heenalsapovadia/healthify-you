@@ -83,7 +83,7 @@ public class PrintToConsole {
   }
 
   public void printSubHeading(String subHeading) {
-    System.out.println(CommonConstants.mediumSpace + CommonConstants.subheading + subHeading
+    System.out.println(CommonConstants.titleSpace + CommonConstants.subheading + subHeading
             + CommonConstants.subheading + CommonConstants.titleSpace);
     System.out.println();
   }
@@ -99,9 +99,10 @@ public class PrintToConsole {
     System.out.print(field);
   }
   public void printHorizontalLine() {
-    for (int i = 0; i < 70; i++) {
+    for (int i = 0; i < 100; i++) {
       System.out.print(CommonConstants.horizontalDash);
     }
     System.out.println();
   }
+
 }

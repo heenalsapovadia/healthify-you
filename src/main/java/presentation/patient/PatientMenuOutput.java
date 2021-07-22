@@ -2,8 +2,6 @@ package presentation.patient;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import persistence.patient.model.Patient;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
@@ -48,6 +46,9 @@ public class PatientMenuOutput {
 			//make a booking
 			BookingDashboard bookingDashboard = new BookingDashboard();
 			bookingDashboard.displayOutput();
+			loadScreenOptions(consoleObj);
+			sel = loadScreenOptions(consoleObj);
+
 		}
 		else if(sel == 2) {
 			//invoices
@@ -56,7 +57,9 @@ public class PatientMenuOutput {
 			//request medication
 		}
 		else if(sel == 4) {
-			//redeemable voucher
+			RedeemableVoucherOutput redeemableVoucherOutput = new RedeemableVoucherOutput();
+			redeemableVoucherOutput.displayOutput();
+			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 5) {
 			System.out.println(ScreenFields.logoutMessage);

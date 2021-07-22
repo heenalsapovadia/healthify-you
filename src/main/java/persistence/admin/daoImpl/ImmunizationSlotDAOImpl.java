@@ -19,23 +19,24 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.logging.Level;
 
+import persistence.admin.dao.ImmunizationDoctorsDAO;
 import persistence.admin.dao.ImmunizationSlotDAO;
 import persistence.admin.util.CurrentWeekdays;
 import persistence.admin.utilImpl.ImmunizationSlotUtilImpl;
 import presentation.startup.DatabaseConnection;
 
-public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
+public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , ImmunizationDoctorsDAO{
 
   Connection conn = DatabaseConnection.getConnection();
 
   @Override
-  public int getLastDoctorAssigned() {
+  public int getDoctorAssigned(String weekday , String slotTime) {
     ResultSet resultSet = null;
     String sql = "SELECT doctor_assigned from immunization_slots WHERE weekday = ? and slot_time = ?";
     int doctorId = 0;
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
-      ps.setString(1, "Friday");
-      ps.setString(2, "01:00:00 pm");
+      ps.setString(1, weekday);
+      ps.setString(2, slotTime);
       resultSet = ps.executeQuery();
       if (resultSet.first()) {
         doctorId = resultSet.getInt("doctor_assigned");
@@ -123,7 +124,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
         int doctor = resultSet.getInt("doctor_assigned");
         String date = resultSet.getString("slot_date");
         SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss aa");
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar now = Calendar.getInstance();
         String currentDate = dateFormatter.format(now.getTime());
         String currentTime = timeFormatter.format(new Date());
@@ -159,7 +160,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
       String date = dates.get(i);
       int counter = 1;
       for (int slot : slots) {
-        String sql = "UPDATE immunization_slots SET doctor_assigned = ? , slot_date = ? where slot_time = ? and weekday = ?";
+        String sql = "UPDATE immunization_slots SET doctor_assigned = ? , slot_date = ?, patient_id = null where slot_time = ? and weekday = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
           ps.setInt(1, slot);
           ps.setString(2, date);
@@ -182,5 +183,6 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO {
       i++;
     }
   }
+
 
 }

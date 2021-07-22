@@ -1,9 +1,12 @@
 package persistence.patient.daoImpl;
+
 import persistence.patient.dao.BloodBankServiceDAO;
+import persistence.patient.dao.PatientDAO;
+import persistence.patient.dao.RedeemableVoucherDAO;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
+import persistence.patient.model.RedeemableVoucher;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,15 @@ public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
             ps.setInt(2, bloodBankService.getPatientId());
             ps.setString(3, bloodBankService.getBloodGrp());
             ps.setTimestamp(4,new Timestamp(System.currentTimeMillis()));
-            ps.executeUpdate();
+            if(ps.executeUpdate() > 0) {
+            	RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
+            	RedeemableVoucher voucher = voucherDAO.getVoucherByBloodGroup(bloodBankService.getBloodGrp());
+            	if(voucher != null) {
+            		PatientDAO patientDAO = new PatientDAOImpl();
+            		patientDAO.updateVouchersForPatients(voucher.getVoucherId(), new Timestamp(System.currentTimeMillis()), 
+            				bloodBankService.getPatientId());
+            	}
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
