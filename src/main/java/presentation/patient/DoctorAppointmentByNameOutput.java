@@ -2,6 +2,7 @@ package presentation.patient;
 
 import persistence.patient.daoImpl.DoctorAppointmentBookingByNameDAOImpl;
 import presentation.common.PrintToConsole;
+import presentation.startup.DatabaseConnection;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -17,13 +18,12 @@ public class DoctorAppointmentByNameOutput {
     String name = sc.nextLine();
 
     List<String> selectionOptions = new ArrayList<>();
-    selectionOptions.add("1. Search doctor");
-    selectionOptions.add("2. Exit");
+    selectionOptions.add("Search doctor");
+    selectionOptions.add("Exit");
     int choice = consoleObj.printSelection(selectionOptions);
 
     if(choice == 1) {
       consoleObj.printHeader("Search doctor");
-      consoleObj.printSubHeading("Doctors and Availability");
 
       DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAOImpl = new DoctorAppointmentBookingByNameDAOImpl();
       Map<Integer, String> doctorIdentifierList = doctorAppointmentBookingByNameDAOImpl.fetchDoctorIdentifier(name);
@@ -32,19 +32,29 @@ public class DoctorAppointmentByNameOutput {
         System.err.println("Not available!");
         return;
       } else {
+          consoleObj.printSubHeading("Doctors and Availability");
           System.out.println("Enter doctor identifier from the list given below");
           for(Integer i : doctorIdentifierList.keySet()) {
             System.out.println(i + ": " + doctorIdentifierList.get(i));
           }
           doctorID = sc.nextInt();
           if(!doctorIdentifierList.containsKey(doctorID)) {
-            System.err.println("Entered identifier not in the list!");
+            System.err.println("Entered doctor identifier not in the list!");
             return;
           } else {
-              doctorAppointmentBookingByNameDAOImpl.fetchDoctorAvailability(doctorID);
+              Map<Integer, List<String>> result = new HashMap<>();
+              result = doctorAppointmentBookingByNameDAOImpl.fetchDoctorAvailability(doctorID);
+              List<String> datesAvailable = result.get(doctorID);
+
+              System.out.println("Next dates available for the requested doctor are as given below:");
+              System.out.println(datesAvailable);
+
+              System.out.println("Please enter your choice from the dates mentioned above");
+              String appointmentDate = sc.nextLine().trim();
           }
       }
     }
   }
+
 }
 

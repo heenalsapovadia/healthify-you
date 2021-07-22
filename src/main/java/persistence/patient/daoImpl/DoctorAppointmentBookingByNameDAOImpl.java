@@ -3,6 +3,7 @@ package persistence.patient.daoImpl;
 import persistence.patient.dao.DoctorAppointmentBookingByNameDAO;
 import persistence.patient.util.DoctorAppointmentBookingByNameUtil;
 import persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl;
+import presentation.patient.DoctorAppointmentBookingOutput;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.Connection;
@@ -52,16 +53,40 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
   public Map<Integer, List<String>> fetchDoctorAvailability(int doctorID) throws SQLException {
 
     DoctorAppointmentBookingByNameUtilImpl doctorAppointmentBookingByNameUtilImpl = new DoctorAppointmentBookingByNameUtilImpl();
+    DoctorAppointmentBookingOutput doctorAppointmentBookingOutput = new DoctorAppointmentBookingOutput();
 
     if (!doctorAppointmentBookingByNameUtilImpl.validateID(doctorID)) {
       return null;
     } else {
-      List<String> datesAvailable = new ArrayList<>();
 
+      Connection conn = DatabaseConnection.getConnection();
+      Statement statement = conn.createStatement();
+      ResultSet rS = null;
 
-      Map<Integer, List<String>> doctorAvailability = new HashMap<>();
-      doctorAvailability.put(doctorID, datesAvailable);
-      return doctorAvailability;
+      String sql = "select * from doc_availability where doctor_id =";
+      List<String> daysAvailable = new ArrayList<>();
+      try {
+        /* retrieves doctor list for the symptoms */
+        rS = statement.executeQuery(sql + doctorID);
+
+        if (!rS.next()) {
+          return null;
+        } else {
+          do {
+            daysAvailable.add(rS.getString("weekday"));
+          } while (rS.next());
+        }
+
+        System.out.println(daysAvailable);
+
+        List<String> datesAvailable = new ArrayList<>();
+        datesAvailable = doctorAppointmentBookingOutput.datesGenerator(daysAvailable, 0);
+        Map<Integer, List<String>> doctorAvailability = new HashMap<>();
+        doctorAvailability.put(doctorID, datesAvailable);
+        return doctorAvailability;
+      } catch (SQLException se) {
+        return null;
+      }
     }
   }
 
