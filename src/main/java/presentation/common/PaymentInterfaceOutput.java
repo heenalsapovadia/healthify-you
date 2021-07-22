@@ -56,7 +56,9 @@ public class PaymentInterfaceOutput {
         System.out.println(ScreenFields.checkoutAmount + checkoutAmount);
         RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
         RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(Patient.getPatient().getPatientId());
-        System.out.println(ScreenFields.redeemVoucher+voucher.getVoucherId());
+        if(voucher!=null) {
+            System.out.println(ScreenFields.redeemVoucher + voucher.getVoucherId());
+        }
         System.out.println(ScreenFields.voucherIdOption1);
         System.out.println(ScreenFields.voucherIdOption2);
         System.out.println(ScreenFields.paymentExit);
@@ -66,13 +68,17 @@ public class PaymentInterfaceOutput {
         if(sel == 1) {
             // Without voucher
             PaymentInterface paymentInterface = new PaymentInterface();
-            int billingId = paymentUtil.processPayment(billingCategory ,cardDetails,checkoutAmount, "");
+            int billingId = paymentUtil.processPayment(billingCategory ,cardDetails, checkoutAmount, "");
             System.out.println("Payment Successful and billing id is: " + billingId);
             return billingId;
         }
 
         else if(sel == 2) {
             // With voucher
+            if(voucher == null) {
+                System.out.println("No Reedemable voucher available. Please enter your selection again.");
+                return 0;
+            }
             System.out.println(ScreenFields.enterVoucherId);
             String enteredVoucherId = sc.next();
             if (voucherDAO.getVoucherByPatient(Patient.getPatient().getPatientId()).getVoucherId().equals(enteredVoucherId)) {
