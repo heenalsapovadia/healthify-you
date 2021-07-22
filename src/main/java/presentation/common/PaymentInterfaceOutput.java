@@ -75,7 +75,7 @@ public class PaymentInterfaceOutput {
             // With voucher
             System.out.println(ScreenFields.enterVoucherId);
             String enteredVoucherId = sc.next();
-            if (voucherDAO.getVoucherByPatient(Patient.getPatient().getPatientId()).getVoucherId().equals(enteredVoucherId)) {
+            if (voucher.getVoucherId().equals(enteredVoucherId)) {
                 double remainingAmount = voucher.getPoints() - checkoutAmount;
                 if (remainingAmount < 0) {
                     remainingAmount = 0;
