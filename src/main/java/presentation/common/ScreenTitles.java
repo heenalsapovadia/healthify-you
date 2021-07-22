@@ -68,6 +68,10 @@ public class ScreenTitles {
 	public static final String paymentInterface = "Proceed to Pay";
 	/* Blood Bank recommendation screen titles */
 	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
+	
+	/* Book an Immunization */
+	public static final String bookImmunization = "Immunization booking";
+	public static final String vaccines= "Vaccines Available";
 
 	/* Vaccination Demand Stats titles */
 	public static final String vaccineStats = "Immunization Statistics";

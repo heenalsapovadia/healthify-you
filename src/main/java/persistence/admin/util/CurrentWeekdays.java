@@ -16,7 +16,7 @@ public class CurrentWeekdays {
 
   private ArrayList<String> getWeekdays(Calendar now) {
     ArrayList<String> dates = new ArrayList<>();
-    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     for (int i = 1; i < 6; i++) {
       dates.add(formatter.format(now.getTime()));
       now.add(Calendar.DAY_OF_YEAR, 1);

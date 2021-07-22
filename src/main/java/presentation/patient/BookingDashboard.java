@@ -29,6 +29,7 @@ public class BookingDashboard {
         selectionOptions.add(ScreenFields.bookLabTest);
         selectionOptions.add(ScreenFields.bookImmunization);
         selectionOptions.add(ScreenFields.bookBloodBankService);
+        selectionOptions.add(ScreenFields.goBack);
         return selectionOptions;
     }
 
@@ -44,7 +45,9 @@ public class BookingDashboard {
             labTestBookingOutput.dashboard();
         }
         else if(sel == 3) {
-            //Book an Immunization
+          ImmunizationBookingOutput obj = new ImmunizationBookingOutput();
+          obj.immunizationBooking();
+          sel = loadScreenOptions(consoleObj);
         }
         else if(sel == 4) {
             //Book a blood bank service - blood donation
@@ -55,9 +58,8 @@ public class BookingDashboard {
 
         }
         else if(sel == 5) {
-            System.out.println(ScreenFields.logoutMessage);
-            System.out.println(ScreenFields.applicationTerminationMessage);
-            System.exit(0);
+              PatientMenuOutput patientMenu = PatientMenuOutput.getInstance();
+              patientMenu.displayOutput();
         }
         else {
             consoleObj.printError(CommonErrors.invalidSelection);
