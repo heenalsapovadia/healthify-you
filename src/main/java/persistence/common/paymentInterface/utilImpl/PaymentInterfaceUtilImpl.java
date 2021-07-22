@@ -14,6 +14,7 @@ public class PaymentInterfaceUtilImpl {
     private PaymentInterfaceDAOImpl paymentPersistence = new PaymentInterfaceDAOImpl();
 
     public int processPayment(PaymentBillingCategory billingCategory,
+                              PaymentCardDetails cardDetails,
                               double remainingAmount, String voucherID) {
         PaymentInterface paymentDetails = new PaymentInterface();
         paymentDetails.setCurrentPaymentMode(persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface.payment_mode.C);
