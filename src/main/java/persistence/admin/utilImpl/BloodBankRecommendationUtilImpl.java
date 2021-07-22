@@ -78,10 +78,10 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
 
     }
 
-    TreeMap<ArrayList<String>, Integer> rec = new TreeMap<ArrayList<String>, Integer>();    /* map to store key and value pairs of list of blood groups ordered together and their frequencies respectively */
+    TreeMap<ArrayList<String>, Integer> rec = new TreeMap<>();    /* map to store key and value pairs of list of blood groups ordered together and their frequencies respectively */
     TreeMap<Integer, ArrayList<String>> groupMap = new TreeMap<>();
     TreeMap<Integer, Integer> groupFrequency = new TreeMap<>();
-    Map<Integer, Integer> groupSize = new TreeMap<Integer, Integer> ();
+    Map<Integer, Integer> groupSize = new TreeMap<>();
     int counter = 0;
     for(ArrayList<String> temp : bloodGroupList) {
       if(groupMap.containsValue(temp)) {
@@ -96,7 +96,7 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
 
     }
 
-    Map<Integer, List<Integer>> frequencyMap = new TreeMap<Integer, List<Integer>>();    /* map that groups blood group lists (s) of same frequencies with frequency as key and lists of blood group(s) as value */
+    Map<Integer, List<Integer>> frequencyMap = new TreeMap<>();    /* map that groups blood group lists (s) of same frequencies with frequency as key and lists of blood group(s) as value */
     frequencyMap = groupFrequency.keySet().stream().collect(Collectors.groupingBy(value -> groupFrequency.get(value)));
 
     TreeMap<Integer, List<Integer>> sortedFrequencyMap = new TreeMap<>(Collections.reverseOrder());
@@ -105,7 +105,7 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
     int recCount = 0;
     int bloodGroupSize = 0;
 
-    List<Integer> bloodGroups = new ArrayList<Integer>();    /* arraylist of recommendations to be returned to the main function */
+    List<Integer> bloodGroups = new ArrayList<>();    /* arraylist of recommendations to be returned to the main function */
     Iterator<Map.Entry<Integer, List<Integer>>> im = sortedFrequencyMap.entrySet().iterator();
     do {
       Map.Entry<Integer, List<Integer>> etr = im.next();
@@ -122,7 +122,6 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
       if(groupMap.containsKey(k)) {
         resultSet.add(groupMap.get(k));
       } else {
-          continue;
       }
     }
 
@@ -151,11 +150,7 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
     bloodGroupOptions.add("B-");
     bloodGroupOptions.add("O-");
 
-    if(!bloodGroupOptions.contains(bloodGroup)) {
-      return false;
-    } else {
-        return true;
-    }
+    return bloodGroupOptions.contains(bloodGroup);
   }
 
   public boolean validateNumRec(int numRec) {
