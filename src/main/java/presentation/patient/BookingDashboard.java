@@ -40,7 +40,9 @@ public class BookingDashboard {
             //Book an appointment with doctor
         }
         else if(sel == 2) {
-            // Book a Lab Test/Health Check up
+            LabTestBookingOutput labTestBookingOutput = new LabTestBookingOutput();
+            //Patient patient = Patient.getPatient();
+            labTestBookingOutput.dashboard();
         }
         else if(sel == 3) {
           ImmunizationBookingOutput obj = new ImmunizationBookingOutput();

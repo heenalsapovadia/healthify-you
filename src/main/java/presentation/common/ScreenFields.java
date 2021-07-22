@@ -149,12 +149,17 @@ public class ScreenFields {
 
 	/* Payment Interface fields */
 	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
-    public static final String expirydate = "Enter expiry date(mm/yy): ";
+    public static final String expirydate = "Enter expiry date(yyyy-mm): ";
     public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
     public static final String checkoutAmount = "Checkout Amount: ";
     public static final String redeemVoucher = "Reedemable Voucher: ";
+	public static final String voucherIdOption1= "1. Enter 1 to proceed without voucher and make payment through Credit Card: ";
+	public static final String voucherIdOption2= "2. Enter 2 to proceed with voucher: ";
+	public static final String enterVoucherId= "Enter Voucher Id: ";
+    public static final String paymentExit = "2. Exit: ";
     public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
-	public static final String paymentExit = "2. Exit: ";
+	//public static final String paymentExit = "2. Exit: ";
+
 
 
 
