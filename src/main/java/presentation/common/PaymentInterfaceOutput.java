@@ -3,13 +3,17 @@ package presentation.common;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentCardDetails;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentCreditCardValidation;
+import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import persistence.patient.model.Patient;
+import persistence.patient.model.RedeemableVoucher;
+import presentation.patient.RedeemableVoucherOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PaymentInterfaceOutput {
+
     private PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
 
     private static class PaymentInterfaceOutputHelper {
@@ -52,15 +56,41 @@ public class PaymentInterfaceOutput {
         // below is for redeem voucher and further process
         System.out.println(ScreenFields.checkoutAmount + checkoutAmount);
         System.out.println(ScreenFields.redeemVoucher);
-        String voucherId = "XYZWS";
-        System.out.println(ScreenFields.voucherId);
+        RedeemableVoucherOutput voucherOutput = new RedeemableVoucherOutput();
+        RedeemableVoucher voucher = voucherOutput.displayOutput();
+        System.out.println(ScreenFields.voucherIdOption1);
+        System.out.println(ScreenFields.voucherIdOption2);
         System.out.println(ScreenFields.paymentExit);
+
         int sel = sc.nextInt();
         if(sel == 1) {
-            int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, voucherId , checkoutAmount);
-            System.out.println("Payment Successful with Billing ID - " + billingId);
+            // Without voucher
+            PaymentInterface paymentInterface = new PaymentInterface();
+            int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, "", checkoutAmount);
+            System.out.println("Payment Successful for" + billingCategory + billingId);
+            return billingId;
         }
         else if(sel == 2) {
+            // With voucher
+            System.out.println(ScreenFields.enterVoucherId);
+            String enteredVoucherId = sc.next();
+            if (voucher.getVoucherId().equals(enteredVoucherId)) {
+                double remainingAmount = checkoutAmount - voucher.getPoints();
+                if (remainingAmount < 0 ) {
+                    remainingAmount = 0;
+                }
+                int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, "", remainingAmount);
+                System.out.println("Payment Successful for" + billingCategory + billingId);
+                return billingId;
+
+            } else {
+                System.out.println("Invalid Voucher");
+                int billingId = paymentUtil.processPayment(patient, billingCategory, cardDetails, "", checkoutAmount);
+                System.out.println("Payment Successful for" + billingCategory + billingId);
+                return billingId;
+            }
+        }
+        else if(sel == 3) {
             System.out.println(ScreenFields.logoutMessage);
             System.out.println(ScreenFields.applicationTerminationMessage);
             System.exit(0);
@@ -69,7 +99,6 @@ public class PaymentInterfaceOutput {
             consoleObj.printError(CommonErrors.invalidSelection);
             sel = loadScreenOptions(consoleObj, patient, billingCategory, checkoutAmount);
         }
-        System.out.println("\n");
         return sel;
     }
 

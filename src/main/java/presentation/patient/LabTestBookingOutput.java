@@ -92,10 +92,7 @@ public class LabTestBookingOutput {
             case 1:
                 // Call Payment Interface screen code
                 PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
-                paymentInterfaceOutput.processPayment(Patient.getPatient(), PaymentBillingCategory.L, healthCheckCharges);
-                //dummy billing id
-                billingId = 1;
-//                int billingId = paymentInterfaceOutput.processPayment("L", healthCheckCharges); // BilingCat, Amount
+                billingId = paymentInterfaceOutput.processPayment(Patient.getPatient(), PaymentBillingCategory.L, healthCheckCharges);
                 break;
             case 2:
                 return;
