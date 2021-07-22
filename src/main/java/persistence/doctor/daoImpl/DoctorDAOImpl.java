@@ -3,7 +3,6 @@ package persistence.doctor.daoImpl;
 import persistence.doctor.dao.DoctorDAO;
 import persistence.doctor.model.Doctor;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,5 +41,28 @@ public class DoctorDAOImpl implements DoctorDAO {
             System.out.println("SQL ERROR:"+e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public String getDoctorNameById(int doctorId){
+        Connection conn = DatabaseConnection.getConnection();
+        StringBuilder doctorName = new StringBuilder();
+
+        String sql = "SELECT * FROM doctors WHERE doctor_id = ?";
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, doctorId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                doctorName.append(rs.getString("first_name"));
+                doctorName.append(" ");
+                doctorName.append(rs.getString("last_name"));
+            }
+        }
+        catch (SQLException e){
+            LOGGER.log(Level.SEVERE, e.toString());
+            System.out.println("SQL ERROR:"+e.getMessage());
+        }
+        return doctorName.toString();
     }
 }
