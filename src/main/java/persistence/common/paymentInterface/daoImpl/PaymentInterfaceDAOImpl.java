@@ -1,16 +1,17 @@
 package persistence.common.paymentInterface.daoImpl;
+
+import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
-
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PaymentInterfaceDAOImpl {
+public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
     private static final Logger LOGGER = Logger.getLogger(PaymentInterfaceDAOImpl.class.getName());
 
     public int insertPaymentInterfaceDetails(PaymentInterface paymentInterface) {
@@ -69,4 +70,24 @@ public class PaymentInterfaceDAOImpl {
             return null;
         }
     }
+    
+    @Override
+	public int getVoucherRedemptionPoints(int patientId) {
+		Connection conn = DatabaseConnection.getConnection();
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("select sum(points) as pointSummation from vouchers where voucher_id in ");
+		sql.append("(select voucher_id from payment_billing where patient_id = ?)");
+		try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
+			ps.setInt(1, patientId);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("pointSummation");
+			}
+		}
+		catch(SQLException e) {
+			LOGGER.log(Level.SEVERE, e.toString());
+		}
+		return -1;
+	}
 }
