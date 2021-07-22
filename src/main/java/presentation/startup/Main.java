@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Main {
 
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
@@ -19,6 +18,9 @@ public class Main {
 			System.exit(0);
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
-		applicationOutput.displayOutput();
+		applicationOutput.displayOutput();		
+
+
 	}
+	
 }
