@@ -80,4 +80,8 @@ public class ScreenTitles {
 	/* Redeemable Vocuhers */
 	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
+	/* Doctor Appointment Booking titles */
+	public static final String doctorAppointment = "Doctor Appointment Bookings";
+	public static final String bookAppointment = "Book an appointment";
+	public static final String rescheduleAppointment = "Reschedule an appointment";
 }
