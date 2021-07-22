@@ -123,7 +123,7 @@ class ViewReportsUtilImplTest {
 		viewReportsUtil = new ViewReportsUtilImpl();
 		String actualReport = viewReportsUtil.getVisionReportByTest();
 		String expectedReport = "Date of Collection		:		2021-05-20\n"
-				+ "Date		:		2021-05-21\n"
+				+ "Date				:		2021-05-21\n"
 				+ "Vision				:		20/40\n"
 				+ "";
 		assertEquals(expectedReport, actualReport);
