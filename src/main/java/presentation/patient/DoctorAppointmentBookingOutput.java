@@ -1,6 +1,5 @@
 package presentation.patient;
 
-import jdk.vm.ci.meta.Local;
 import persistence.doctor.dao.AppointmentDAO;
 import persistence.doctor.dao.DoctorAvailabilityDAO;
 import persistence.doctor.daoImpl.AppointmentDAOImpl;
@@ -38,27 +37,46 @@ public class DoctorAppointmentBookingOutput {
 
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
         List<Appointment> appointmentList = appointmentDAO.fetchAppointmentsForPatient();
-
         Map<Integer, Appointment> appointmentMap = displayUpcomingAppointments(appointmentList);
         consoleObj.printSingleNewLine();
 
         int appointmentId = validateAppointmentIdToReschedule(appointmentMap);
         consoleObj.printSingleNewLine();
 
-        System.out.println("Appointment to be rescheduled : ");
+        System.out.println("Appointment to be rescheduled ------------------------ ");
         System.out.println("Appointment Id : "+appointmentId);
         System.out.println("Doctor Id : "+appointmentMap.get(appointmentId).getDoctor_id());
         System.out.println("Appointment Date : "+appointmentMap.get(appointmentId).getBooked_for_date());
+        Appointment appointmentToReschedule = appointmentMap.get(appointmentId);
         consoleObj.printSingleNewLine();
 
         Scanner sc = new Scanner(System.in);
-        Date rescheduleDate = doctorAvailability(appointmentMap.get(appointmentId).getDoctor_id());
+        List<String> daysAvailable = doctorAvailability(appointmentToReschedule.getDoctor_id());
+        List<String> datesOptions = datesGenerator(daysAvailable, 0);
+        System.out.println("Doctor is available on the following dates : ");
+        for(String availableDate : datesOptions){
+            if(availableDate.equals(appointmentToReschedule.getBooked_for_date().toString()))
+                datesOptions.remove(availableDate);
+            else
+                System.out.println(availableDate);
+        }
+        System.out.println("Do you want dates for the week after ?");
+        System.out.println("1. Yes\n2. No");
+        if(sc.hasNextInt()) {
+            int option = sc.nextInt();
+            if (option == 1) {
+                List<String> datesForNextWeek = datesGenerator(daysAvailable, 1);
+                datesOptions.addAll(datesForNextWeek);
+            }
+        }
+        int dateOption = consoleObj.printSelection(datesOptions);
+        Date rescheduleDate = Date.valueOf(datesOptions.get(dateOption));
         System.out.println("Rescheduling to Date"+CommonConstants.commonTextSeparator+rescheduleDate);
         consoleObj.printSingleNewLine();
 
-        appointmentMap.get(appointmentId).setRescheduled_date(rescheduleDate);
+        appointmentToReschedule.setRescheduled_date(rescheduleDate);
 
-        appointmentDAO.updateAppointment(appointmentMap.get(appointmentId));
+        appointmentDAO.updateAppointment(appointmentToReschedule);
     }
 
     public int validateAppointmentIdToReschedule(Map<Integer, Appointment> appointmentMap){
@@ -98,7 +116,14 @@ public class DoctorAppointmentBookingOutput {
         return appointmentMap;
     }
 
-    public Date doctorAvailability(int doctorId){
+    public List<String> doctorAvailability(int doctorId){
+        DoctorAvailabilityDAO doctorAvailabilityDAO = new DoctorAvailabilityDAOImpl();
+        List<String> daysAvailable = doctorAvailabilityDAO.getAvailabilityByDoctor(doctorId);
+
+        return daysAvailable;
+    }
+
+    public List<String> datesGenerator(List<String> daysAvailable, int weekNumber){
         Map<String, Integer> weekDaysMap = new HashMap();
         weekDaysMap.put("Mon", 1);
         weekDaysMap.put("Tue", 2);
@@ -108,20 +133,16 @@ public class DoctorAppointmentBookingOutput {
         weekDaysMap.put("Sat", 6);
         weekDaysMap.put("Sun", 7);
 
-        System.out.println("Doctor is available on the following days of week : ");
-        DoctorAvailabilityDAO doctorAvailabilityDAO = new DoctorAvailabilityDAOImpl();
-        List<String> daysAvailable = doctorAvailabilityDAO.getAvailabilityByDoctor(doctorId);
         LocalDate today = LocalDate.now();
         int dayToday = today.getDayOfWeek().getValue();
         List<String> daysOptions = new ArrayList<>();
         for(String day : daysAvailable) {
             int dayOfWeek = weekDaysMap.get(day);
-            int daysToAdd = (7 - (dayToday - dayOfWeek))%7 ;
+            int daysToAdd = (7 - (dayToday - dayOfWeek)) % 7 + 7*weekNumber;
             LocalDate date = today.plusDays(daysToAdd);
             System.out.println(day + CommonConstants.commonTextSeparator + date);
             daysOptions.add(date.toString());
         }
-        int option = consoleObj.printSelection(daysOptions);
-        return Date.valueOf(daysOptions.get(option));
+        return daysOptions;
     }
 }
