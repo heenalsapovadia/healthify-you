@@ -14,16 +14,12 @@ public class LabTestBookingOutput {
 
     public void dashboard(){
         /*
-        Dashboard title
-         */
-        consoleObj.printHeader(ScreenTitles.bookATest);
-
-        /*
         Dashboard main options list
          */
         List<String> selectionOptions = Arrays.asList(ScreenTitles.availablePlans, ScreenTitles.labTestRecommendation,
                 ScreenTitles.makeBooking, ScreenTitles.previousBookings, ScreenFields.exit);
         while(true) {
+            consoleObj.printHeader(ScreenTitles.bookATest);
             int option = consoleObj.printSelection(selectionOptions);
 
             switch (option) {
@@ -42,6 +38,7 @@ public class LabTestBookingOutput {
                 case 5:
                     return;
             }
+            consoleObj.printSingleNewLine();
         }
 
     }
@@ -127,8 +124,7 @@ public class LabTestBookingOutput {
             labCheckSet.add(labCheck);
         for(LabCheck labCheck : historyBasedRecommendationList)
             labCheckSet.add(labCheck);
-        System.out.println(ScreenFields.labCheckRecommendation+CommonConstants.commonTextSeparator);
-
+        System.out.println("------------ "+ScreenFields.labCheckRecommendation+" ------------");
         for(LabCheck labCheck : labCheckSet)
             System.out.println(labCheck.getCheckup_id()+CommonConstants.commonTextSeparator+labCheck.getCheckup_name());
     }
