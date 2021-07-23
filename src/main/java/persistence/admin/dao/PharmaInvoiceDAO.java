@@ -14,5 +14,7 @@ public interface PharmaInvoiceDAO {
 	 * @param date
 	 * @return map
 	 */
-	public Map<String, List<PharmaInvoice>> getInvoiceDetailsByDate(Date date);
+	Map<String, List<PharmaInvoice>> getInvoiceDetailsByDate(Date date);
+	
+	List<PharmaInvoice> getPharmaSupplies(List<String> medicineName); 
 }

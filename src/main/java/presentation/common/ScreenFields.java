@@ -184,4 +184,25 @@ public class ScreenFields {
 	public static final String LIVER_TEST = "Liver Test";
 	public static final String VISION_TEST = "Vision Test";
 	public static final String COVID_TEST = "Covid Test";
+	
+	/* Patient Invoice Fields */
+	public static final String APPT_BY_DATE = "Search appointment by date (yyyy-mm-dd)";
+	public static final String PHARMA_BY_DATE = "Search pharmacy receipt by date (yyyy-mm-dd)";
+	public static final String IMMUNIZATION_BY_DATE = "Search immunization appointment receipt by date (yyyy-mm-dd)";
+	public static final String LAB_TEST_BY_DATE = "Search laboratory test receipt by date (yyyy-mm-dd)";
+	public static final String APPOINTMENT_ID = "Appointment No.";
+	public static final String PRESCRIPTION_ID = "Prescription No.";
+	public static final String IMMUNIZATION_APPT_ID = "Immunization Appointment No.";
+	public static final String LAB_TEST_ID = "Laboratory Test No.";
+	public static final String BILL_ID = "Bill No.";
+	public static final String PATIENT_NAME = "Patient's Name";
+	public static final String AGE_SEX = "Age/Sex";
+	public static final String DOCTOR_NAME = "Doctor's Name";
+	public static final String DEPARTMENT = "Department";
+	public static final String BILL_AMT = "Bill Amount (CAD)";
+	public static final String AMOUNT = "Amount (CAD)";
+	public static final String CREATED_ON = "Created On";
+	public static final String EXPIRY_DATE = "Expiry Date";
+	public static final String VACCINE_NAME = "Vaccine Name";
+	public static final String LAB_TEST_NAME = "Laboratory Test Name";
 }

@@ -53,7 +53,9 @@ public class PatientMenuOutput {
 
 		}
 		else if(sel == 2) {
-			//invoices
+			InvoiceOutput invoiceOutput = new InvoiceOutput();
+			invoiceOutput.displayInvoice();
+			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 3) {
 			//request medication
