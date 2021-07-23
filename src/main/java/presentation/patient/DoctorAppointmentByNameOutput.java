@@ -145,11 +145,5 @@ public class DoctorAppointmentByNameOutput {
     }
   }
 
-    public static void main(String[] args) throws SQLException{
-        DatabaseConnection.loadDatabaseConnection();
-        DoctorAppointmentByNameOutput doctorAppointmentBookingByName = new DoctorAppointmentByNameOutput();
-        doctorAppointmentBookingByName.displayOutput();
-    }
-
 }
 
