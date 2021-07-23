@@ -70,10 +70,10 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
     @Override
     public boolean validateDate(String date, List<String> datesAvailable) {
         String regex = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(date);
-        if (date != null) {
-            if (!date.isEmpty()) {
+        if (date != null && datesAvailable != null) {
+            if (!date.isEmpty() && !datesAvailable.isEmpty()) {
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(date);
                 if (matcher.matches()) {
                     if (datesAvailable.contains(date)) {
                         return true;

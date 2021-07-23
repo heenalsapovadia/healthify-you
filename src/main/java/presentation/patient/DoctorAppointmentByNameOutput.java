@@ -29,7 +29,7 @@ public class DoctorAppointmentByNameOutput {
 
     List<String> selectionOptions = new ArrayList<>();
     selectionOptions.add("Search doctor");
-    selectionOptions.add("Exit");
+    selectionOptions.add("Logout");
     int choice = consoleObj.printSelection(selectionOptions);
 
     if(choice == 1) {
