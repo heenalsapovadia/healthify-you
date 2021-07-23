@@ -11,22 +11,28 @@ import persistence.patient.model.Patient;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class PatientReportValidationUtilImpl implements PatientReportValidationUtil {
 
-    private JsonIdealReportParser jsonIdealReportParser = new JsonIdealReportParserImpl();
+    private JsonIdealReportParser jsonIdealReportParser;
 
-    private JsonPatientReportParser jsonPatientReportParser = new JsonPatientReportParserImpl();
+    private JsonPatientReportParser jsonPatientReportParser;
 
-    private ReportsValidationUtilImpl reportsValidationUtilImpl = new ReportsValidationUtilImpl();
+    private ReportsValidationUtilImpl reportsValidationUtilImpl;
 
     private Map idealReports;
 
     private Map patientReports;
 
     public PatientReportValidationUtilImpl(){
+        jsonPatientReportParser = new JsonPatientReportParserImpl();
+        jsonIdealReportParser = new JsonIdealReportParserImpl();
+        reportsValidationUtilImpl = new ReportsValidationUtilImpl();
+        idealReports = new HashMap();
+        patientReports = new HashMap();
         try {
             idealReports = jsonIdealReportParser.parseIdealReports();
             patientReports = jsonPatientReportParser.getPatientReport(Patient.getPatient().getPatientId());
@@ -104,17 +110,18 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
     public boolean validateEyeReports(){
         JSONArray tests = (JSONArray) patientReports.get("tests");
         List<Vision> visionReportsList = jsonPatientReportParser.parseEyeReports((Map) tests.get(0));
-//        Map liverPanel = (Map) idealReports.get("LiverFunction");
         LocalDate today = LocalDate.now();
         boolean visionIsNormal = true;
+        boolean checkupInLastYear = false;
         for(Vision visionReport : visionReportsList){
             Date reportDate = visionReport.getDate();
             LocalDate reportDateLocal = reportDate.toLocalDate();
             int monthsgap = Period.between(reportDateLocal, today).getYears();
-            if(monthsgap >= 1){
+            if(monthsgap <= 1){
                 visionIsNormal = visionIsNormal && reportsValidationUtilImpl.validateEyeReport(visionReport);
+                checkupInLastYear = true;
             }
         }
-        return visionIsNormal;
+        return visionIsNormal && checkupInLastYear;
     }
 }

@@ -13,12 +13,18 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUtil {
-    HashMap<Integer, LabCheck> labCheckMap;
+    Map<Integer, LabCheck> labCheckMap;
+
+    public LabCheckRecommendationUtilImpl() {
+        labCheckMap = new HashMap<>();
+    }
+
     @Override
     public List<LabCheck> genderBasedRecommendation() {
-        if(labCheckMap == null)
+        if(labCheckMap.isEmpty())
             setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
         if(Patient.getPatient().getPatientGender().equals("F"))
@@ -28,7 +34,7 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
 
     @Override
     public List<LabCheck> ageBasedRecommendation() {
-        if(labCheckMap == null)
+        if(labCheckMap.isEmpty())
             setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
         Date dob = Date.valueOf(Patient.getPatient().getPatientDob());
@@ -51,6 +57,8 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
 
     @Override
     public List<LabCheck> historyBasedRecommendation(){
+        if(labCheckMap.isEmpty())
+            setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
 
         PatientReportValidationUtil patientReportValidationUtil = new PatientReportValidationUtilImpl();
