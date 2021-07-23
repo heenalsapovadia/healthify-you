@@ -49,7 +49,7 @@ public class ScreenFields {
 	public static final String passwordInput = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
 	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
 	public static final String degreeInput = "Enter doctor's graduation degree";
-	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
+	public static final String specializationInput = "Enter doctor's specialization (ENT Specialist | Cardiologist | Physician | Others)";
 	public static final String birthDateInput = "Enter birth date (YYYY-MM-DD)";
 	public static final String contactInput = "Enter contact number (902#######)";
 	public static final String cityInput = "Enter city of residence";
