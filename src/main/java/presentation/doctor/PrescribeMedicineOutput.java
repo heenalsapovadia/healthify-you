@@ -3,9 +3,13 @@ package presentation.doctor;
 import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
+import persistence.doctor.model.Doctor;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,10 +67,10 @@ public class PrescribeMedicineOutput {
             prescription.setAfternoon(afternoon);
             prescription.setEvening(evening);
             prescription.setPatient_id(patient_id);
+            prescription.setDate(Date.valueOf(LocalDate.now()));
 
-            //dummy, needs to be replaced with current logged in DOCTOR USER's details
-            prescription.setDoctor_id(123);
-            prescription.setDoctor_name("Test");
+            prescription.setDoctor_id(Doctor.getDoctor().getDoctor_id());
+            prescription.setDoctor_name(Doctor.getDoctor().getFirst_name()+" "+Doctor.getDoctor().getLast_name());
 
             prescriptionList.add(prescription);
             medicineNumber--;
