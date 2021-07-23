@@ -1,5 +1,6 @@
 package presentation.patient;
 
+import persistence.admin.model.PharmaInvoice;
 import persistence.doctor.model.Prescription;
 import persistence.patient.model.Patient;
 import presentation.common.CommonConstants;
@@ -10,8 +11,11 @@ import java.util.Scanner;
 public class RequestMedicationOutput {
 
     public static String RequestMedicationDetails() {
-        Prescription prescription1 =  new Prescription();
-        int prescriptionIndDatabase = prescription1.getPrescription_id();
+        Prescription prescriptionDatabase =  new Prescription();
+        int prescriptionIndDatabase = prescriptionDatabase.getPrescription_id();
+        PharmaInvoice pharmaInvoiceDatabase = new PharmaInvoice();
+        String medicineInPharmaSupplies = pharmaInvoiceDatabase.getItemName();
+
         Scanner sc = new Scanner(System.in);
         for ( int i = 0; i < 100; i++ )
             System.out.print(CommonConstants.headingChar);
@@ -31,9 +35,14 @@ public class RequestMedicationOutput {
         }
 
         int userSelection = 0;
+        System.out.println("1. View List of Medication Prescribed to the Patient");
         userSelection = sc.nextInt();
         if (userSelection == 1) {
-            System.out.println("Check/view medicine stock.");
+            if(prescriptionDatabase.getMedicine_name() == medicineInPharmaSupplies){
+                System.out.println(prescriptionDatabase.getMedicine_name());
+            }
+        }if (userSelection == 2) {
+                System.out.println("Check if medication is in Stock.");
         }
         if (userSelection == 2) {
             System.out.println("EXIT!");
