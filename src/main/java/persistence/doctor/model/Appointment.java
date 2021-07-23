@@ -1,15 +1,15 @@
 package persistence.doctor.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Appointment {
-    int appointment_id;
-    int patient_id;
-    int doctor_id;
-    Date booked_on_date;
-    Date booked_for_date;
-    Date rescheduled_date;
-    int billing_id;
+    private int appointment_id;
+    private int patient_id;
+    private int doctor_id;
+    private Date booked_on_date;
+    private Date booked_for_date;
+    private Date rescheduled_date;
+    private int billing_id;
 
     public int getAppointment_id() {
         return appointment_id;

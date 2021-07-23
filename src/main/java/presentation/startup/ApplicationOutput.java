@@ -1,5 +1,6 @@
 package presentation.startup;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import persistence.admin.model.Admin;
@@ -36,7 +37,7 @@ public class ApplicationOutput {
 		return applicationOutput;
 	}
 	
-	void displayOutput() {
+	void displayOutput() throws SQLException {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		consoleObj.printHeader(ScreenTitles.mainScreen);
 		loadMainScreenContent(consoleObj);

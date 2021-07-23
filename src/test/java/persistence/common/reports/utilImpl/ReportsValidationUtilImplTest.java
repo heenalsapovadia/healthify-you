@@ -3,9 +3,7 @@ package persistence.common.reports.utilImpl;
 import org.junit.Test;
 import persistence.common.reports.model.*;
 import persistence.common.reports.util.ReportsValidationUtil;
-
 import static org.junit.Assert.*;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReportsValidationUtilImplTest {
 

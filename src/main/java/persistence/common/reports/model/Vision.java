@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Vision {
     private String acuity;
     private Date date;
+    private Date dateOfCollection;
 
     public Date getDate() {
         return date;
@@ -21,4 +22,12 @@ public class Vision {
     public void setAcuity(String acuity) {
         this.acuity = acuity;
     }
+
+	public Date getDateOfCollection() {
+		return dateOfCollection;
+	}
+
+	public void setDateOfCollection(Date dateOfCollection) {
+		this.dateOfCollection = dateOfCollection;
+	}
 }

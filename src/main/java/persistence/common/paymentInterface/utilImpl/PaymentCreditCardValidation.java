@@ -1,4 +1,4 @@
-package persistence.common.paymentInterface.modelPaymentInterface;
+package persistence.common.paymentInterface.utilImpl;
 
 import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import presentation.common.CommonErrors;

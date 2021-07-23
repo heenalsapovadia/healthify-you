@@ -1,6 +1,7 @@
 package persistence.common.jsonUtil.util;
 
 import persistence.common.reports.model.Blood;
+import persistence.common.reports.model.Covid;
 import persistence.common.reports.model.Kidney;
 import persistence.common.reports.model.Liver;
 import persistence.common.reports.model.Vision;
@@ -18,4 +19,6 @@ public interface JsonPatientReportParser {
     List<Liver> parseLiverReports(Map tests);
 
     List<Vision> parseEyeReports(Map tests);
+    
+    List<Covid> parseCovidReports(Map tests);
 }

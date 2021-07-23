@@ -9,6 +9,7 @@ public class Liver {
     private float albumin;
     private float bilirubin;
     private Date date;
+    private Date dateOfCollection;
 
     public Date getDate() {
         return date;
@@ -57,4 +58,12 @@ public class Liver {
     public void setBilirubin(float bilirubin) {
         this.bilirubin = bilirubin;
     }
+
+	public Date getDateOfCollection() {
+		return dateOfCollection;
+	}
+
+	public void setDateOfCollection(Date dateOfCollection) {
+		this.dateOfCollection = dateOfCollection;
+	}
 }

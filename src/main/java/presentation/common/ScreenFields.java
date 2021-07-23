@@ -49,7 +49,7 @@ public class ScreenFields {
 	public static final String passwordInput = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
 	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
 	public static final String degreeInput = "Enter doctor's graduation degree";
-	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
+	public static final String specializationInput = "Enter doctor's specialization (ENT Specialist | Cardiologist | Physician | Others)";
 	public static final String birthDateInput = "Enter birth date (YYYY-MM-DD)";
 	public static final String contactInput = "Enter contact number (902#######)";
 	public static final String cityInput = "Enter city of residence";
@@ -153,15 +153,11 @@ public class ScreenFields {
     public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
     public static final String checkoutAmount = "Checkout Amount: ";
     public static final String redeemVoucher = "Reedemable Voucher: ";
-	public static final String voucherIdOption1= "1. Enter 1 to proceed without voucher and make payment through Credit Card: ";
-	public static final String voucherIdOption2= "2. Enter 2 to proceed with voucher: ";
+	public static final String voucherIdOption1= "1. Enter 1 to proceed without voucher and make payment through Credit Card. ";
+	public static final String voucherIdOption2= "2. Enter 2 to proceed with voucher. ";
 	public static final String enterVoucherId= "Enter Voucher Id: ";
-    public static final String paymentExit = "2. Exit: ";
+    public static final String paymentExit = "3. Exit: ";
     public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
-	//public static final String paymentExit = "2. Exit: ";
-
-
-
 
 	/* Blood Bank recommendation screen fields */
 	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
@@ -172,4 +168,20 @@ public class ScreenFields {
 	public static final String POINTS_AVAILABLE = "Points Available";
 	public static final String POINTS_REDEEMED = "Points Redeemed";
 	
+	/* View Reports Fields */
+	public static final String VIEW_REPORTS = "View Reports";
+	public static final String VIEW_REPORTS_BY_TEST = "View Reports by test";
+	public static final String VIEW_REPORTS_BY_DATE_RANGE = "View Reports by date range";
+	public static final String VIEW_REPORTS_BY_PARTICULAR_DATE = "View Reports by a particular date";
+	public static final String START_DATE = "Enter start date";
+	public static final String END_DATE = "Enter end date";
+	public static final String DATE = "Date";
+	public static final String DATE_OF_COLLECTION = "Date of Collection";
+	
+	/* View Reports by Test Fields */
+	public static final String BLOOD_TEST = "Blood Test";
+	public static final String KIDNEY_TEST = "Kidney Test";
+	public static final String LIVER_TEST = "Liver Test";
+	public static final String VISION_TEST = "Vision Test";
+	public static final String COVID_TEST = "Covid Test";
 }
