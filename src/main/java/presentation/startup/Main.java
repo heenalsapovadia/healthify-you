@@ -1,6 +1,9 @@
 package presentation.startup;
 
 
+import persistence.patient.model.Patient;
+import presentation.patient.RequestMedicationOutput;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;

@@ -34,35 +34,50 @@ public class RequestMedicationOutput {
             System.out.println("Enter Prescription ID:");
             int current_PrescriptionId = sc.nextInt();
 
-            List<Prescription> prescriptions = requestMedication.getPrescriptionDetails(current_PrescriptionId);
-            for (Prescription currentPrescription : prescriptions) {
-                System.out.println("Medicine Name: " + currentPrescription.getMedicine_name());
-                int totalDoseNeeded = currentPrescription.getMorning() + currentPrescription.getAfternoon() + currentPrescription.getEvening();
-                System.out.println("Medicine Dose: " + totalDoseNeeded);
 
-                PharmaInvoice invoice = requestMedication.getPharmaInvoice(currentPrescription.getMedicine_name());
-                int itemQuantityAvailable = invoice.getItemQuantity();
-                double unitPrice = invoice.getItemUnitPrice();
+        List<Prescription> prescriptions = requestMedication.getPrescriptionDetails(current_PrescriptionId);
+        for (Prescription currentPrescription : prescriptions) {
+            System.out.println("Medicine Name: " + currentPrescription.getMedicine_name());
+            int totalDoseNeeded = currentPrescription.getMorning() + currentPrescription.getAfternoon() + currentPrescription.getEvening();
+            System.out.println("Medicine Dose: " + totalDoseNeeded);
+            int medicinePrescirbedDays = currentPrescription.getDosage_days();
+            System.out.println("Dosage is for : " + medicinePrescirbedDays + " days");
+            int finalDoseAmount = totalDoseNeeded * medicinePrescirbedDays;
 
-                // enough quantity
-                if (totalDoseNeeded < itemQuantityAvailable) {
-                    int itemLeft = itemQuantityAvailable - totalDoseNeeded;
-                    if (itemLeft < 0) {
-                        itemLeft = 0;
-                    }
-                    double totalPrice = unitPrice  * totalDoseNeeded;
+            PharmaInvoice invoice = requestMedication.getPharmaInvoice(currentPrescription.getMedicine_name());
+//            if(!currentPrescription.getMedicine_name().equals(invoice)){
+//                System.out.println("Medicine not found in Pharmacy. Unable to proceed.");
+//                return null;
+//            }
+            int itemQuantityAvailable = invoice.getItemQuantity();
+            double unitPrice = invoice.getItemUnitPrice();
+
+            // enough quantity
+            if (finalDoseAmount < itemQuantityAvailable) {
+                int itemLeft = itemQuantityAvailable - finalDoseAmount;
+                if (itemLeft < 0) {
+                    itemLeft = 0;
+                }
+                    double totalPrice = unitPrice  * totalDoseNeeded * medicinePrescirbedDays;
                     System.out.println("Payment needed of amount " + totalPrice);
-                    System.out.println("Enough Doses of quantity " + totalDoseNeeded + "  - Number left in inventory after after this prescription " + itemLeft);
+                    System.out.println("Enough Doses of quantity availble in Stock " + finalDoseAmount + "  - Number left in inventory after after this prescription " + itemLeft);
                     requestMedication.updatePharmaInvoice(currentPrescription.getMedicine_name(), itemLeft);
 
+                    if(totalPrice==0.0){
+                        System.out.println("Checkout amount is not eligible for payment.");
+                        System.out.println("\n");
+                    }
+                    else {
                     PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
-                    int billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.M, totalPrice,"");
-                } else {
-                    System.out.println("Not Enough Doses Available" + " Patient needed " + totalDoseNeeded + " Inventory has " + itemQuantityAvailable);
-                }
+                    int billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.M, totalPrice, "");
+                    }
             }
-            return null;
+            else {
+                System.out.println("Not Enough Doses Available" + " Patient needed " + totalDoseNeeded + " Inventory has " + itemQuantityAvailable);
+            }
         }
+        return null;
+    }
 }
 
 

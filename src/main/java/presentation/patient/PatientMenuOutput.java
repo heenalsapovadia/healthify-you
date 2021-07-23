@@ -55,6 +55,8 @@ public class PatientMenuOutput {
 		}
 		else if(sel == 3) {
 			//request medication
+			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
+			requestMedicationDetails.requestMedicationDetails();
 		}
 		else if(sel == 4) {
 			RedeemableVoucherOutput redeemableVoucherOutput = new RedeemableVoucherOutput();
