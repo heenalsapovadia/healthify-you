@@ -49,7 +49,7 @@ public class ScreenFields {
 	public static final String passwordInput = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
 	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
 	public static final String degreeInput = "Enter doctor's graduation degree";
-	public static final String specializationInput = "Enter doctor's specialization (if any, NA if not applicable)";
+	public static final String specializationInput = "Enter doctor's specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS)";
 	public static final String birthDateInput = "Enter birth date (YYYY-MM-DD)";
 	public static final String contactInput = "Enter contact number (902#######)";
 	public static final String cityInput = "Enter city of residence";
@@ -153,12 +153,11 @@ public class ScreenFields {
     public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
     public static final String checkoutAmount = "Checkout Amount: ";
     public static final String redeemVoucher = "Reedemable Voucher: ";
-	public static final String voucherIdOption1= "1. Enter 1 to proceed without voucher and make payment through Credit Card: ";
-	public static final String voucherIdOption2= "2. Enter 2 to proceed with voucher: ";
+	public static final String voucherIdOption1= "1. Enter 1 to proceed without voucher and make payment through Credit Card. ";
+	public static final String voucherIdOption2= "2. Enter 2 to proceed with voucher. ";
 	public static final String enterVoucherId= "Enter Voucher Id: ";
-    public static final String paymentExit = "2. Exit: ";
+    public static final String paymentExit = "3. Exit: ";
     public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
-	//public static final String paymentExit = "2. Exit: ";
 
 	/* Blood Bank recommendation screen fields */
 	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
@@ -185,4 +184,25 @@ public class ScreenFields {
 	public static final String LIVER_TEST = "Liver Test";
 	public static final String VISION_TEST = "Vision Test";
 	public static final String COVID_TEST = "Covid Test";
+	
+	/* Patient Invoice Fields */
+	public static final String APPT_BY_DATE = "Search appointment by date (yyyy-mm-dd)";
+	public static final String PHARMA_BY_DATE = "Search pharmacy receipt by date (yyyy-mm-dd)";
+	public static final String IMMUNIZATION_BY_DATE = "Search immunization appointment receipt by date (yyyy-mm-dd)";
+	public static final String LAB_TEST_BY_DATE = "Search laboratory test receipt by date (yyyy-mm-dd)";
+	public static final String APPOINTMENT_ID = "Appointment No.";
+	public static final String PRESCRIPTION_ID = "Prescription No.";
+	public static final String IMMUNIZATION_APPT_ID = "Immunization Appointment No.";
+	public static final String LAB_TEST_ID = "Laboratory Test No.";
+	public static final String BILL_ID = "Bill No.";
+	public static final String PATIENT_NAME = "Patient's Name";
+	public static final String AGE_SEX = "Age/Sex";
+	public static final String DOCTOR_NAME = "Doctor's Name";
+	public static final String DEPARTMENT = "Department";
+	public static final String BILL_AMT = "Bill Amount (CAD)";
+	public static final String AMOUNT = "Amount (CAD)";
+	public static final String CREATED_ON = "Created On";
+	public static final String EXPIRY_DATE = "Expiry Date";
+	public static final String VACCINE_NAME = "Vaccine Name";
+	public static final String LAB_TEST_NAME = "Laboratory Test Name";
 }

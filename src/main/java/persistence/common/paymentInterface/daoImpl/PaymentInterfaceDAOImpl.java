@@ -7,7 +7,9 @@ import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -91,7 +93,6 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
     @Override
     public int getVoucherRedemptionPoints(int patientId) {
         Connection conn = DatabaseConnection.getConnection();
-
         ResultSet rs = null;
         StringBuilder sql = new StringBuilder();
         sql.append("select sum(points) as pointSummation from vouchers where voucher_id in ");
@@ -108,5 +109,41 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
         }
         return -1;
     }
+
+	@Override
+	public Map<Integer, PaymentInterface> getPaymentDetails(List<Integer> billingIdList) {
+		 Connection conn = DatabaseConnection.getConnection();
+		 ResultSet rs = null;
+		 StringBuilder sql = new StringBuilder();
+		 PaymentInterface payment = null;
+		 Map<Integer, PaymentInterface> paymentMap = new HashMap<>(); 
+		 String wildcard = "?,".repeat(billingIdList.size());
+		 sql.append("select * from payment_billing where billing_id in ("+wildcard.substring(0, wildcard.length()-1)+")");
+		 try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
+			 for(int i=0; i<billingIdList.size(); i++) {
+				 ps.setInt(i+1, billingIdList.get(i));
+			 }
+			 rs = ps.executeQuery();
+			 while (rs.next()) {
+				 payment = new PaymentInterface();
+				 payment.setBilling_id(rs.getInt(1));
+				 payment.setPatient_id(rs.getInt(2));
+				 payment.setVoucher_id(rs.getString(3));
+				 payment.setBilling_date(rs.getDate(4));
+				 payment.setBill_category(PaymentBillingCategory.valueOf(rs.getString(5)));
+				 payment.setBill_amount(rs.getDouble(6));
+				 payment.setCurrentPaymentMode(PaymentInterface.payment_mode.valueOf(rs.getString(7)));
+				 payment.setDiscount(rs.getDouble(8));
+				 payment.setCreated_on(rs.getDate(9));
+				 payment.setStatusOfPayment(PaymentInterface.status.valueOf(rs.getString(10)));
+				 payment.setVoucher_redemption_date(rs.getDate(11));
+				 paymentMap.put(payment.getBilling_id(), payment);
+			 }
+		 }
+		 catch(SQLException e) {
+			 LOGGER.log(Level.SEVERE, e.toString());
+		 }
+		 return paymentMap;
+	}
 }
 

@@ -10,8 +10,7 @@ package presentation.common;
  *
  */
 public class ScreenTitles {
-	
-	
+		
 	private ScreenTitles() {}
 	
 	/* Pharma invoice screen title */
@@ -80,6 +79,13 @@ public class ScreenTitles {
 	/* Redeemable Vocuhers */
 	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
+	/* Request Medication */
+	public static final String REQUEST_MEDICATION = "Request Medication";
+	public static final String prescribedMedicne = "1.View Prescribed Medicine and doses.";
+	public static final String viewMedicineStock = "2.View Prescribed Medicine and doses.";
+	public static final String goToPaymentScreen = "3.Proceed to payment.";
+	public static final String exitFromRequestMedication = "4.Exit";
+	
 	/* Doctor Appointment Booking titles */
 	public static final String doctorAppointment = "Doctor Appointment Bookings";
 	public static final String bookAppointment = "Book an appointment";
@@ -94,4 +100,10 @@ public class ScreenTitles {
 	public static final String VIEW_LIVER_REPORTS = "Liver Test Report";
 	public static final String VIEW_VISION_REPORTS = "Vision Test Report";
 	public static final String VIEW_COVID_REPORTS = "Covid Test Report";
+	
+	/* Patient Invoice */
+	public static final String APPOINTMENT_RECEIPT = "Appointment Receipt";
+	public static final String PHARMACY_RECEIPT = "Pharmacy Receipt";
+	public static final String IMMUNIZATION_RECEIPT = "Immunization Appointment Receipt";
+	public static final String LAB_TEST_RECEIPT = "Laboratory Test Receipt";
 }
