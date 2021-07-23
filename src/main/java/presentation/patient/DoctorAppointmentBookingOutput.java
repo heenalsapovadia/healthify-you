@@ -10,7 +10,10 @@ import persistence.doctor.model.Appointment;
 import presentation.common.CommonConstants;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenTitles;
+import presentation.startup.DatabaseConnection;
+
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -18,7 +21,7 @@ import java.util.*;
 public class DoctorAppointmentBookingOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
-    public void dashboard() {
+    public void dashboard() throws SQLException {
         consoleObj.printHeader(ScreenTitles.doctorAppointment);
 
         List<String> options = Arrays.asList(ScreenTitles.bookAppointment, ScreenTitles.rescheduleAppointment);
@@ -26,8 +29,10 @@ public class DoctorAppointmentBookingOutput {
 
         switch (option){
             case 1:
-                //book doc appt code
+                DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+                doctorAppointmentBookingDashboard.display();
                 break;
+
             case 2:
                 rescheduleAppointment();
                 break;
@@ -162,4 +167,5 @@ public class DoctorAppointmentBookingOutput {
         }
         return daysOptions;
     }
+
 }

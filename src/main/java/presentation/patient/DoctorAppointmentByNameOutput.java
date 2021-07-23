@@ -1,11 +1,21 @@
 package presentation.patient;
 
 import persistence.patient.daoImpl.DoctorAppointmentBookingByNameDAOImpl;
+import persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl;
 import presentation.common.PrintToConsole;
-import presentation.startup.DatabaseConnection;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.*;
+
+/**
+* <pre>
+* Output class for doctor appointment booking by name
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+**/
 
 public class DoctorAppointmentByNameOutput {
 
@@ -45,12 +55,38 @@ public class DoctorAppointmentByNameOutput {
               Map<Integer, List<String>> result = new HashMap<>();
               result = doctorAppointmentBookingByNameDAOImpl.fetchDoctorAvailability(doctorID);
               List<String> datesAvailable = result.get(doctorID);
+              DoctorAppointmentBookingByNameUtilImpl doctorAppointmentBookingByNameUtil = new DoctorAppointmentBookingByNameUtilImpl();
 
               System.out.println("Next dates available for the requested doctor are as given below:");
               System.out.println(datesAvailable);
 
               System.out.println("Please enter your choice from the dates mentioned above");
               String appointmentDate = sc.nextLine().trim();
+
+              while(!doctorAppointmentBookingByNameUtil.validateDate(appointmentDate, datesAvailable)) {
+                System.out.println(datesAvailable);
+                System.out.println("Please enter your choice from the dates mentioned above");
+                appointmentDate = sc.nextLine().trim();
+              }
+
+              System.out.println("Enter registered patient email address for whom the appointment should be booked!");
+              String patientEmail = sc.next();
+              int patientID = doctorAppointmentBookingByNameUtil.validateEmail(patientEmail);
+
+              while(patientID == -1) {
+                System.out.println("Email address entered is not registered with us! Please enter registered patient email address for whom the appointment should be booked!");
+                patientEmail = sc.next();
+                patientID = doctorAppointmentBookingByNameUtil.validateEmail(patientEmail);
+              }
+
+              LocalDate date = LocalDate.now();
+              String bookedDate = date.toString();
+
+              if(doctorAppointmentBookingByNameDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate)) {
+                  System.out.println("Appointment booked successfully!");
+              } else {
+                  return;
+              }
           }
       }
     }

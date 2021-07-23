@@ -1,5 +1,6 @@
 package presentation.patient;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import presentation.common.CommonErrors;
@@ -23,7 +24,7 @@ public class PatientMenuOutput {
 		return PatientMenuOutputHelper.instance;
 	}
 	
-	public void displayOutput() {
+	public void displayOutput() throws SQLException {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		consoleObj.printHeader(ScreenTitles.patientDashboard);
 		loadScreenOptions(consoleObj);
@@ -39,7 +40,7 @@ public class PatientMenuOutput {
 		return selectionOptions;
 	}
 	
-	private int loadScreenOptions(PrintToConsole consoleObj) {
+	private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
 		List<String> selectionOptions = getSelectionOptions();
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {

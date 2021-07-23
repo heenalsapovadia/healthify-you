@@ -1,7 +1,6 @@
 package persistence.patient.daoImpl;
 
 import persistence.patient.dao.DoctorAppointmentBookingByNameDAO;
-import persistence.patient.util.DoctorAppointmentBookingByNameUtil;
 import persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl;
 import presentation.patient.DoctorAppointmentBookingOutput;
 import presentation.startup.DatabaseConnection;
@@ -11,6 +10,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+
+/**
+* <pre>
+* DAO class for doctor appointment booking by name
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+**/
 
 public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentBookingByNameDAO {
 
@@ -87,6 +95,44 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
       } catch (SQLException se) {
         return null;
       }
+    }
+  }
+
+  public boolean addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate) throws SQLException{
+
+    DoctorAppointmentBookingByNameUtilImpl doctorAppointmentBookingByNameUtil = new DoctorAppointmentBookingByNameUtilImpl();
+
+    if(!doctorAppointmentBookingByNameUtil.validateID(doctorID)) {
+      return false;
+    }
+
+    if(bookedOnDate == null) {
+      return false;
+    }
+
+    if(bookedOnDate != null && bookedOnDate.isEmpty()) {
+      return false;
+    }
+
+    if(appointmentDate == null) {
+      return false;
+    }
+
+    if(appointmentDate != null && appointmentDate.isEmpty()) {
+      return false;
+    }
+
+    Connection conn = DatabaseConnection.getConnection();
+    Statement statement = conn.createStatement();
+    ResultSet rS = null;
+
+    try {
+      /* retrieves doctor list for the symptoms */
+      rS = statement.executeQuery("insert ignore into doctor_appointment(patient_id, doctor_id, booked_on_date, booked_for_date) values(" + patientID + "," + doctorID + ", \"" + bookedOnDate + "\"" + ", \"" + appointmentDate + "\");");
+
+      return true;
+    } catch (SQLException sqlException) {
+      return false;
     }
   }
 
