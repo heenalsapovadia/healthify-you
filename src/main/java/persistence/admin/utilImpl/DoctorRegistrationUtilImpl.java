@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,6 +54,8 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
 
     @Override
     public boolean validateSpecialization(String specialization) {
+        specialization = specialization.toUpperCase(Locale.ROOT);
+
         List<String> specializationList = new ArrayList<>();
         specializationList.add("ENT SPECIALIST");
         specializationList.add("CARDIOLOGIST");
