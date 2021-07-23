@@ -7,7 +7,9 @@ import persistence.admin.util.DoctorRegistrationUtil;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,7 +53,12 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
 
     @Override
     public boolean validateSpecialization(String specialization) {
-        if(specialization!=null && !specialization.equals("") && specialization.matches("^[ a-zA-Z]*$")) {
+        List<String> specializationList = new ArrayList<>();
+        specializationList.add("ENT SPECIALIST");
+        specializationList.add("CARDIOLOGIST");
+        specializationList.add("PHYSICIAN");
+        specializationList.add("OTHERS");
+        if(specialization!=null && !specialization.equals("") && specialization.matches("^[ a-zA-Z]*$") && specializationList.contains(specialization)) {
             return true;
         } else{
             return false;
