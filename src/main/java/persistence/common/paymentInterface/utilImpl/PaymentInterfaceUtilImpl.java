@@ -5,7 +5,6 @@ import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingC
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentCardDetails;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
-import presentation.common.CommonErrors;
 
 import java.util.Date;
 
