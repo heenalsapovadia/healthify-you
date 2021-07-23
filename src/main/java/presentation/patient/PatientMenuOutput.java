@@ -34,6 +34,7 @@ public class PatientMenuOutput {
 		selectionOptions.add(ScreenFields.book);
 		selectionOptions.add(ScreenFields.invoices);
 		selectionOptions.add(ScreenFields.requestMedication);
+		selectionOptions.add(ScreenFields.VIEW_REPORTS);
 		selectionOptions.add(ScreenFields.vouchers);
 		selectionOptions.add(ScreenFields.logout);
 		return selectionOptions;
@@ -57,11 +58,16 @@ public class PatientMenuOutput {
 			//request medication
 		}
 		else if(sel == 4) {
+			ViewReportsOutput viewReports = new ViewReportsOutput();
+			viewReports.displayOutput();
+			sel = loadScreenOptions(consoleObj);
+		}
+		else if(sel == 5) {
 			RedeemableVoucherOutput redeemableVoucherOutput = new RedeemableVoucherOutput();
 			redeemableVoucherOutput.displayOutput();
 			sel = loadScreenOptions(consoleObj);
 		}
-		else if(sel == 5) {
+		else if(sel == 6) {
 			System.out.println(ScreenFields.logoutMessage);
 			System.out.println(ScreenFields.applicationTerminationMessage);
 			System.exit(0);

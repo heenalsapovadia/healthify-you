@@ -80,4 +80,18 @@ public class ScreenTitles {
 	/* Redeemable Vocuhers */
 	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
+	/* Doctor Appointment Booking titles */
+	public static final String doctorAppointment = "Doctor Appointment Bookings";
+	public static final String bookAppointment = "Book an appointment";
+	public static final String rescheduleAppointment = "Reschedule an appointment";
+	
+	/* View Reports */
+	public static final String VIEW_REPORTS = "View Reports";
+	public static final String VIEW_REPORTS_BY_TEST = "View Reports by Test";
+	public static final String REPORTS = "Reports";
+	public static final String VIEW_BLOOD_REPORTS = "Blood Test Report";
+	public static final String VIEW_KIDNEY_REPORTS = "Kidney Test Report";
+	public static final String VIEW_LIVER_REPORTS = "Liver Test Report";
+	public static final String VIEW_VISION_REPORTS = "Vision Test Report";
+	public static final String VIEW_COVID_REPORTS = "Covid Test Report";
 }

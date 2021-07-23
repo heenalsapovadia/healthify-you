@@ -1,9 +1,5 @@
 package presentation.startup;
 
-import persistence.patient.model.Patient;
-import presentation.common.PaymentInterfaceOutput;
-import presentation.patient.LabTestBookingOutput;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,7 +19,5 @@ public class Main {
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
 		applicationOutput.displayOutput();
-		applicationOutput.displayOutput();
 	}
-	
 }

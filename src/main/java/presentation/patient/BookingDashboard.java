@@ -38,6 +38,8 @@ public class BookingDashboard {
         int sel = consoleObj.printSelection(selectionOptions);
         if(sel == 1) {
             //Book an appointment with doctor
+            DoctorAppointmentBookingOutput doctorAppointmentBookingOutput = new DoctorAppointmentBookingOutput();
+            doctorAppointmentBookingOutput.dashboard();
         }
         else if(sel == 2) {
             LabTestBookingOutput labTestBookingOutput = new LabTestBookingOutput();
