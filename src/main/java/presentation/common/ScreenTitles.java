@@ -82,6 +82,13 @@ public class ScreenTitles {
 
 	/* Request Medication */
 	public static final String REQUEST_MEDICATION = "Request Medication";
+	public static final String prescribedMedicne = "1.View Prescribed Medicine and doses.";
+	public static final String viewMedicineStock = "2.View Prescribed Medicine and doses.";
+	public static final String goToPaymentScreen = "3.Proceed to payment.";
+	public static final String exitFromRequestMedication = "4.Exit";
+
+
+
 
 
 

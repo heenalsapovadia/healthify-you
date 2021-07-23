@@ -43,6 +43,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 				invoice.setItemUnitPrice(rs.getDouble("pharma_item_unit_price"));
 				invoice.setDate(rs.getDate("pharma_bill_date"));
 				invoice.setTime(rs.getTime("pharma_bill_time"));
+				invoice.setItemQuantity(rs.getInt("pharma_item_updated_quantity"));
 				if(invoicesMap.containsKey(invoice.getPharmaName()))
 					invoicesMap.get(invoice.getPharmaName()).add(invoice);
 				else {

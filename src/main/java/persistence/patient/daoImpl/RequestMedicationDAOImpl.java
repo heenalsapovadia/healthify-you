@@ -79,7 +79,7 @@ public class RequestMedicationDAOImpl {
     // In order to update the stock based on medicine that is requested by patient
     public void updatePharmaInvoice(String medication, int remainingQuantity) {
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "UPDATE pharma_supplies SET pharma_item_quantity = ? where pharma_item_name = ?";
+        String sql = "UPDATE pharma_supplies SET pharma_item_updated_quantity = ? where pharma_item_name = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, remainingQuantity);
             ps.setString(2, medication);
