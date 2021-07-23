@@ -12,7 +12,9 @@ public class Prescription {
     int morning;
     int afternoon;
     int evening;
+    int dosageDays;
     Date date;
+    int billingId;
 
     public int getPrescription_id() {
         return prescription_id;
@@ -84,6 +86,22 @@ public class Prescription {
 
     public void setEvening(int evening) {
         this.evening = evening;
+    }
+
+    public int getDosageDays() {
+        return dosageDays;
+    }
+
+    public void setDosageDays(int dosageDays) {
+        this.dosageDays = dosageDays;
+    }
+
+    public int getBillingId() {
+        return billingId;
+    }
+
+    public void setBillingId(int billingId) {
+        this.billingId = billingId;
     }
 
     public Date getDate() {

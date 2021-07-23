@@ -34,13 +34,14 @@ public class ScreenFields {
 	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
 
 	/* Medicine Prescription fields */
-	public static final String appointmentId = "Appointment ID";
-	public static final String medicineNumber = "Number of medicines to prescribe";
-	public static final String medicineName = "Medicine Name";
-	public static final String morningDose = "Morning Dose";
-	public static final String afternoonDose = "Afternoon Dose";
-	public static final String eveningDose = "Evening Dose";
-	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
+	public static final String APPOINTMENT_ID = "Appointment ID";
+	public static final String MEDICINE_NUMBER = "Number of medicines to prescribe";
+	public static final String MEDICINE_NAME = "Medicine Name";
+	public static final String MORNING_DOSE = "Morning Dose";
+	public static final String AFTERNOON_DOSE = "Afternoon Dose";
+	public static final String EVENING_DOSE = "Evening Dose";
+	public static final String DOSAGE_DAYS = "Number of days";
+	public static final String MEDICINE_PRESCRIBE_MESSAGE = "Medicines prescribed successfully!";
 
 	/* Registration screen fields */
 	public static final String emailInput = "Enter email address";
