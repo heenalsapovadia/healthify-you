@@ -56,12 +56,12 @@ public class ViewReportsOutput {
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_TEST);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_PARTICULAR_DATE);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_DATE_RANGE);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 	
 	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
 			date = Date.valueOf(sc.next());

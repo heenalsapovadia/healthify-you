@@ -1,6 +1,3 @@
-/**
- * 
- */
 package persistence.patient.daoImpl;
 
 import java.sql.Connection;

@@ -14,7 +14,7 @@ public class InvoiceOutput {
 	
 	public void displayInvoice(){
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.invoice);
+		consoleObj.printHeader(ScreenTitles.INVOICES);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
@@ -30,7 +30,7 @@ public class InvoiceOutput {
 	}
 	
 	private void parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		try {
 			Date date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
@@ -52,8 +52,8 @@ public class InvoiceOutput {
 	
 	private List<String> getSelectionOptions() {
 		List<String> selectionOptions = new ArrayList<>();
-		selectionOptions.add(ScreenFields.pharmSuppliesByDate);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.PHARMA_SUPPLIES_BY_DATE);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

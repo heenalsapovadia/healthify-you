@@ -78,7 +78,7 @@ public class ViewReportsByTestOutput {
 		selectionOptions.add(ScreenFields.LIVER_TEST);
 		selectionOptions.add(ScreenFields.VISION_TEST);
 		selectionOptions.add(ScreenFields.COVID_TEST);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

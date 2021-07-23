@@ -14,6 +14,12 @@ import presentation.startup.DatabaseConnection;
 
 public class PharmaInvoiceDAOImplTest {
 
+	/**
+	 * <pre>
+	 * Tests invoices by date.
+	 * </pre>
+	 * 
+	 */
 	@Test
 	public void testGetInvoiceDetailsByDate() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -33,6 +39,12 @@ public class PharmaInvoiceDAOImplTest {
 	    });
 	}
 	
+	/**
+	 * <pre>
+	 * Generates static data list 1.
+	 * </pre>
+	 * @return list
+	 */
 	private List<PharmaInvoice> getPharmaInvoice1() {
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		PharmaInvoice pharmaInvoice = new PharmaInvoice();
@@ -66,6 +78,13 @@ public class PharmaInvoiceDAOImplTest {
 		return invoicesList;
 	}
 	
+	/**
+	 * <pre>
+	 * Generates static data list 2.
+	 * </pre>
+	 * 
+	 * @return
+	 */
 	private List<PharmaInvoice> getPharmaInvoice2() {
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		PharmaInvoice pharmaInvoiceLatest = new PharmaInvoice();

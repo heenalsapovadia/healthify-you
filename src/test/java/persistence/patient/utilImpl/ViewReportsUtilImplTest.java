@@ -16,6 +16,11 @@ class ViewReportsUtilImplTest {
 
 	private ViewReportsUtil viewReportsUtil; 
 			
+	/**
+	 * <pre>
+	 * Tests Reports Fetched By Date.
+	 * </pre>
+	 */
 	@Test
 	void testFetchReportByDate() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -43,6 +48,11 @@ class ViewReportsUtilImplTest {
 	    });
 	}
 
+	/**
+	 * <pre>
+	 * Tests reports fetched by date range.
+	 * </pre>
+	 */
 	@Test
 	void testFetchReportByDateRange() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -70,6 +80,11 @@ class ViewReportsUtilImplTest {
 	    });
 	}
 
+	/**
+	 * <pre>
+	 * Tests blood test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetBloodReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -87,6 +102,11 @@ class ViewReportsUtilImplTest {
 		assertEquals(expectedReport, actualReport);
 	}
 
+	/**
+	 * <pre>
+	 * Tests Kidney test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetKidneyReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -100,6 +120,11 @@ class ViewReportsUtilImplTest {
 		assertEquals(expectedReport, actualReport);
 	}
 
+	/**
+	 * <pre>
+	 * Tests Liver test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetLiverReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -116,6 +141,11 @@ class ViewReportsUtilImplTest {
 		assertEquals(expectedReport, actualReport);
 	}
 
+	/**
+	 * <pre>
+	 * Tests vision test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetVisionReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -129,6 +159,9 @@ class ViewReportsUtilImplTest {
 		assertEquals(expectedReport, actualReport);
 	}
 
+	/**
+	 * Tests covid test reports.
+	 */
 	@Test
 	void testGetCovidReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();

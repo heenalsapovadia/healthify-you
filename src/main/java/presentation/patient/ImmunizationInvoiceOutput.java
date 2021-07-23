@@ -2,7 +2,6 @@ package presentation.patient;
 
 import java.sql.Date;
 import java.util.Map;
-
 import persistence.patient.model.Invoice;
 import persistence.patient.util.PatientInvoiceUtil;
 import persistence.patient.utilImpl.PatientInvoiceUtilImpl;
@@ -45,15 +44,15 @@ public class ImmunizationInvoiceOutput {
 	 * @param invoice
 	 */
 	private void loadTableHeader(PrintToConsole consoleObj, Invoice invoice) {
-		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.commonTextSeparator+invoice.getPatientName());
-		System.out.println(ScreenFields.address+CommonConstants.singleSpace+CommonConstants.commonTextSeparator+invoice.getAddress());
-		System.out.println(ScreenFields.contact+CommonConstants.commonTextSeparator+invoice.getContactNumber());
-		System.out.println(ScreenFields.AGE_SEX+CommonConstants.singleTab+CommonConstants.commonTextSeparator+invoice.getAge()
+		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
+		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
+		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());
+		System.out.println(ScreenFields.AGE_SEX+CommonConstants.SINGLE_TAB+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAge()
 			+CommonConstants.SLASH+invoice.getGender());
-		System.out.println(ScreenFields.CREATED_ON+CommonConstants.commonTextSeparator+invoice.getOriginalDatetime());
+		System.out.println(ScreenFields.CREATED_ON+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getOriginalDatetime());
 		consoleObj.printLineSeparator();
 		for(Map.Entry<Integer, String> entry: invoice.getVaccineMap().entrySet()) {
-			System.out.println(ScreenFields.VACCINE_NAME+CommonConstants.commonTextSeparator+entry.getValue());
+			System.out.println(ScreenFields.VACCINE_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+entry.getValue());
 		}
 		consoleObj.printLineSeparator();
 	}

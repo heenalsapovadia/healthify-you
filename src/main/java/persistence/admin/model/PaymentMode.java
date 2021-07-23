@@ -1,8 +1,4 @@
-/**
- * 
- */
 package persistence.admin.model;
-
 
 /**
  * <pre>

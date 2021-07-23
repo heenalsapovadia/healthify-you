@@ -2,7 +2,6 @@ package presentation.patient;
 
 import java.sql.Date;
 import java.util.List;
-
 import persistence.patient.model.Invoice;
 import persistence.patient.model.LabCheckBooking;
 import persistence.patient.util.PatientInvoiceUtil;
@@ -47,25 +46,25 @@ public class LabTestInvoiceOutput {
 	 * @param invoice
 	 */
 	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
-		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.commonTextSeparator+invoice.getPatientName());
-		System.out.println(ScreenFields.address+CommonConstants.singleSpace+CommonConstants.commonTextSeparator+invoice.getAddress());
-		System.out.println(ScreenFields.contact+CommonConstants.commonTextSeparator+invoice.getContactNumber());
-		System.out.println(ScreenFields.AGE_SEX+CommonConstants.singleTab+CommonConstants.commonTextSeparator+invoice.getAge()
+		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
+		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
+		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());
+		System.out.println(ScreenFields.AGE_SEX+CommonConstants.SINGLE_TAB+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAge()
 			+CommonConstants.SLASH+invoice.getGender());
 		consoleObj.printLineSeparator();
 		List<LabCheckBooking> labCheckBookings = invoice.getLabCheckBookingList();
 		double total = 0d;
 		for(int i=0; i<labCheckBookings.size(); i++) {
-			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.commonTextSeparator+labCheckBookings.get(i).getAppointment_id());
-			System.out.println(ScreenFields.dateTime+CommonConstants.commonTextSeparator+labCheckBookings.get(i).getBooked_for_date());
-			System.out.println(ScreenFields.LAB_TEST_NAME+CommonConstants.singleTab+CommonConstants.COLON+CommonConstants.DOUBLE_TAB
+			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.COMMON_TEXT_SEPARATOR+labCheckBookings.get(i).getAppointment_id());
+			System.out.println(ScreenFields.DATETIME+CommonConstants.COMMON_TEXT_SEPARATOR+labCheckBookings.get(i).getBooked_for_date());
+			System.out.println(ScreenFields.LAB_TEST_NAME+CommonConstants.SINGLE_TAB+CommonConstants.COLON+CommonConstants.DOUBLE_TAB
 					+ invoice.getLabCheckMap().get(labCheckBookings.get(i).getHealthcheck_id()));
 			consoleObj.printLineSeparator();
 			total += invoice.getPaymentMap().get(labCheckBookings.get(i).getBilling_id()).getBill_amount();
 		}
-		System.out.println(ScreenFields.BILL_AMT+CommonConstants.DOUBLE_TAB+CommonConstants.singleTab+total);
+		System.out.println(ScreenFields.BILL_AMT+CommonConstants.DOUBLE_TAB+CommonConstants.SINGLE_TAB+total);
 		consoleObj.printLineSeparator();
-		System.out.println(ScreenFields.CREATED_ON+CommonConstants.commonTextSeparator+invoice.getOriginalDatetime());
+		System.out.println(ScreenFields.CREATED_ON+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getOriginalDatetime());
 		consoleObj.printLineSeparator();
 	}
 }

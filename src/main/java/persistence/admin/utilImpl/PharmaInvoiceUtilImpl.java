@@ -1,7 +1,6 @@
 package persistence.admin.utilImpl;
 
 import java.util.List;
-
 import persistence.admin.util.PharmaInvoiceUtil;
 
 public class PharmaInvoiceUtilImpl implements PharmaInvoiceUtil{

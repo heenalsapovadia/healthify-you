@@ -23,5 +23,13 @@ public interface PaymentInterfaceDAO {
 
     public int findMaxBillingId();
     
+    /**
+     * <pre>
+     * Generates map of Payment corresponding to billing id.
+     * </pre>
+     * 
+     * @param billingIdList
+     * @return map
+     */
     public Map<Integer, PaymentInterface> getPaymentDetails(List<Integer> billingIdList);
 }

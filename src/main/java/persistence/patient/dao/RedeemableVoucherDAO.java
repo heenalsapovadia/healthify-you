@@ -1,6 +1,3 @@
-/**
- * 
- */
 package persistence.patient.dao;
 
 import persistence.patient.model.RedeemableVoucher;

@@ -8,6 +8,9 @@ import persistence.admin.util.PharmaInvoiceUtil;
 
 public class PharmaInvoiceUtilImplTest {
 
+	/**
+	 * Tests the total amount calculation.
+	 */
 	@Test
 	public void testCalculateTotalAmount() {
 		PharmaInvoiceUtil util = new PharmaInvoiceUtilImpl();
@@ -15,6 +18,9 @@ public class PharmaInvoiceUtilImplTest {
 		assertEquals(467.28, calculatedValue, 0);
 	}
 
+	/**
+	 * Tests summation of prices in an invoice.
+	 */
 	@Test
 	public void testCalculateGrandTotalAmount() {
 		PharmaInvoiceUtil util = new PharmaInvoiceUtilImpl();
