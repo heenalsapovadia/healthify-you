@@ -1,5 +1,6 @@
 package persistence.patient.utilImpl;
 
+import persistence.patient.daoImpl.DoctorAppointmentBookingByNameDAOImpl;
 import persistence.patient.util.DoctorAppointmentBookingByNameUtil;
 import presentation.common.CommonErrors;
 import presentation.startup.DatabaseConnection;
@@ -26,28 +27,14 @@ import java.util.regex.Pattern;
 public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointmentBookingByNameUtil {
 
     public boolean validateID(int doctorID) throws SQLException {
+        DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAO = new DoctorAppointmentBookingByNameDAOImpl();
 
         if (doctorID == 0) {
             return false;
         } else {
-            String sql = "select distinct doctor_id from doctors;";
-
-            Connection conn = DatabaseConnection.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet rS = null;
-
-            try {
-                /* retrieves doctor_id(s) list from the database */
-                rS = statement.executeQuery(sql);
-
-                Set<Integer> doctorIDSet = new HashSet<>();
-                if (!rS.next()) {
-                    return false;
-                } else {
-                    doctorIDSet.add(rS.getInt("doctor_id"));
-                    return true;
-                }
-            } catch (SQLException se) {
+            if(doctorAppointmentBookingByNameDAO.checkDoctorExists(doctorID) == 0) {
+              return true;
+            } else {
                 return false;
             }
         }
@@ -74,14 +61,11 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
             if (!date.isEmpty() && !datesAvailable.isEmpty()) {
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(date);
-                if (matcher.matches()) {
-                    if (datesAvailable.contains(date)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if (matcher.matches() && datesAvailable.contains(date)) {
+                  return true;
+                } else {
+                    return false;
                 }
-                return true;
             } else {
                 return false;
             }
@@ -93,34 +77,18 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
 
     @Override
     public int validateEmail(String email) throws SQLException {
+        DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAO = new DoctorAppointmentBookingByNameDAOImpl();
+
         String emailregex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
         Pattern pattern = Pattern.compile(emailregex);
         Matcher matcher = pattern.matcher(email);
         int identifier;
 
         if (matcher.matches() == false || email == null || email == "") {
+            System.err.println(CommonErrors.emailError);
             return -1;
         } else {
-            String sql = "select patient_id from patients where patient_email = ";
-
-            Connection conn = DatabaseConnection.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet rS = null;
-
-            try {
-                /* retrieves doctor_id(s) list from the database */
-                rS = statement.executeQuery(sql + "\"" + email + "\"");
-
-                if (!rS.next()) {
-                    return -1;
-                } else {
-                    do {
-                        identifier = rS.getInt("patient_id");
-                    } while (rS.next());
-                }
-            } catch (SQLException se) {
-                return -1;
-            }
+            identifier = doctorAppointmentBookingByNameDAO.checkPatientExists(email);
             return identifier;
         }
     }

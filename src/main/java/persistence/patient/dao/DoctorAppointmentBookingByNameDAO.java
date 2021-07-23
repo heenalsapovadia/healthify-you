@@ -17,6 +17,10 @@ public interface DoctorAppointmentBookingByNameDAO {
 
   public Map<Integer, String> fetchDoctorIdentifier(String name) throws SQLException;
   public Map<Integer, List<String>> fetchDoctorAvailability(int doctorID) throws SQLException;
-  public boolean addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate) throws SQLException;
+  public int checkDoctorExists(int doctorID) throws SQLException;
+  public int checkPatientExists(String email) throws SQLException;
+  public double fetchDoctorCharges(int doctorID) throws SQLException;
+  public int updateBillingID(int billingID, String appointmentIDList) throws SQLException;
+  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate) throws SQLException;
 
 }
