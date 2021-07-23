@@ -19,6 +19,5 @@ public class Main {
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
 		applicationOutput.displayOutput();
-
 	}
 }
