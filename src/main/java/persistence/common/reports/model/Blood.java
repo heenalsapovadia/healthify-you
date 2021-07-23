@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Blood {
     private CBC cbcPanel;
     private Date date;
+    private Date dateOfCollection;
 
     public Date getDate() {
         return date;
@@ -21,5 +22,13 @@ public class Blood {
     public void setCbcPanel(CBC cbcPanel) {
         this.cbcPanel = cbcPanel;
     }
+
+	public Date getDateOfCollection() {
+		return dateOfCollection;
+	}
+
+	public void setDateOfCollection(Date dateOfCollection) {
+		this.dateOfCollection = dateOfCollection;
+	}
 
 }

@@ -32,7 +32,7 @@ public class RedeemableVoucherOutput {
 	
 	private double pointsRedeemed;
 	
-	public RedeemableVoucher displayOutput() {
+	public void displayOutput() {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		consoleObj.printHeader(ScreenTitles.REDEEMABLE_VOUCHERS);
 		RedeemableVoucher voucher = fetchAvailablePoints();
@@ -44,11 +44,8 @@ public class RedeemableVoucherOutput {
 			switch(sel) {
 				case 1: consoleObj.printSingleNewLine();
 						loadVoucher(voucher);
-						return voucher;
-				case 2:
-					return null;
+				case 2: return;
 				default: consoleObj.printError(CommonErrors.invalidSelection);
-				return null;
 			}
 		}
 		while(sel != 2);

@@ -15,11 +15,14 @@ import java.util.Scanner;
 public class LabCheckUtilImpl implements LabCheckUtil {
     Map<Integer, LabCheck> labCheckMap;
 
+    public LabCheckUtilImpl(){
+        labCheckMap = new HashMap<>();
+    }
+
     @Override
     public List<LabCheck> fetchLabCheckPlans() {
         LabCheckDAO labCheckDao = new LabCheckDAOImpl();
         List<LabCheck> labCheckList = labCheckDao.getAvailablePlans();
-        labCheckMap = new HashMap<>();
         for(LabCheck labCheck : labCheckList)
             labCheckMap.put(labCheck.getCheckup_id(), labCheck);
         return labCheckList;
@@ -34,13 +37,16 @@ public class LabCheckUtilImpl implements LabCheckUtil {
             System.out.println(CommonErrors.invalidCheckUpId+CommonConstants.commonTextSeparator);
             checkup_id = sc.nextInt();
         }
-        System.out.println("Details of "+labCheckMap.get(checkup_id).getCheckup_name());
+        System.out.println("------------ "+"Details of "+labCheckMap.get(checkup_id).getCheckup_name() + " ------------");
         System.out.println("Description : "+labCheckMap.get(checkup_id).getDescription());
         System.out.println("Charges : "+labCheckMap.get(checkup_id).getCharges());
     }
 
     @Override
     public Map<Integer, LabCheck> fetchLabCheckMap(){
+        if(labCheckMap.isEmpty()) {
+            fetchLabCheckPlans();
+        }
         return labCheckMap;
     }
 }

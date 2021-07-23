@@ -63,6 +63,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             cbc.setHaemoglobin((float) (double) cbcMap.get("Haemoglobin"));
             cbc.setHematocrit((float) (double) cbcMap.get("Hematocrit"));
             bloodObj.setCbcPanel(cbc);
+            bloodObj.setDateOfCollection(Date.valueOf((String) bloodReport.get("DateOfCollection")));
             bloodReportsList.add(bloodObj);
         }
         return bloodReportsList;
@@ -80,6 +81,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             kidneyObj.setDate(Date.valueOf(date));
             kidneyObj.setCreatinine((float) (double) kidneyReport.get("Creatinine"));
             kidneyObj.setBun((int) (long) kidneyReport.get("BUN"));
+            kidneyObj.setDateOfCollection(Date.valueOf((String) kidneyReport.get("DateOfCollection")));
             kidneyReportsList.add(kidneyObj);
         }
         return kidneyReportsList;
@@ -100,6 +102,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             liverObj.setAlp((int) (long) liverReport.get("ALP"));
             liverObj.setAlbumin((float) (double) liverReport.get("Albumin"));
             liverObj.setBilirubin((float) (double) liverReport.get("Bilirubin"));
+            liverObj.setDateOfCollection(Date.valueOf((String) liverReport.get("DateOfCollection")));
             liverReportsList.add(liverObj);
         }
         return liverReportsList;
@@ -116,8 +119,29 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             String date = (String) visionReport.get("Date");
             visionObj.setDate(Date.valueOf(date));
             visionObj.setAcuity((String) visionReport.get("Vision"));
+            visionObj.setDateOfCollection(Date.valueOf((String) visionReport.get("DateOfCollection")));
             visionReportsList.add(visionObj);
         }
         return visionReportsList;
+    }
+    
+    @Override
+    public List<Covid> parseCovidReports(Map tests){
+        JSONArray covidReports = (JSONArray) tests.get("Covid");
+        List<Covid> covidReportsList = new ArrayList<>();
+        if(covidReports == null) return covidReportsList;
+        for(int i=0; i<covidReports.size(); i++){
+        	Covid covidObj = new Covid();
+            Map covidReport = (Map) covidReports.get(i);
+            String date = (String) covidReport.get("Date");
+            covidObj.setDate(Date.valueOf(date));
+            RtPcr rtPcr = new RtPcr();
+            Map rtPcrMap = (Map) covidReport.get("RTPCR");
+            rtPcr.setSarsCov2((String) rtPcrMap.get("SARs-CoV2"));
+            covidObj.setRtPcr(rtPcr);
+            covidObj.setDateOfCollection(Date.valueOf((String) covidReport.get("DateOfCollection")));
+            covidReportsList.add(covidObj);
+        }
+        return covidReportsList;
     }
 }
