@@ -27,4 +27,5 @@ public class CommonConstants {
 	public static final String ZERO = "0";
 	public static final String NEW_LINE = "\n";
 	public static final String DOUBLE_TAB = "\t\t";
+	public static final String SLASH = "/";
 }

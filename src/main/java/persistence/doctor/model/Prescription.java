@@ -1,5 +1,7 @@
 package persistence.doctor.model;
 
+import java.sql.Date;
+
 public class Prescription {
     int prescription_id;
     int appointment_id;
@@ -11,8 +13,8 @@ public class Prescription {
     int afternoon;
     int evening;
     int dosage_days;
-
-
+    private Date prescriptionDate;
+    private int billingId;
 
     public int getPrescription_id() {
         return prescription_id;
@@ -89,4 +91,20 @@ public class Prescription {
     public int getDosage_days() { return dosage_days; }
 
     public void setDosage_days(int dosage_days) { this.dosage_days = dosage_days; }
+    
+    public Date getPrescriptionDate() {
+		return prescriptionDate;
+	}
+
+	public void setPrescriptionDate(Date prescriptionDate) {
+		this.prescriptionDate = prescriptionDate;
+	}
+
+	public int getBillingId() {
+		return billingId;
+	}
+
+	public void setBillingId(int billingId) {
+		this.billingId = billingId;
+	}
 }

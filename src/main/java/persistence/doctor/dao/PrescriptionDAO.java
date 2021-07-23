@@ -10,4 +10,6 @@ public interface PrescriptionDAO {
     int findMaxPrescriptionId();
 
     List<Prescription> getPrescriptionById(int prescriptionId);
+    
+    List<Prescription> getPrescriptionByPatientId();
 }
