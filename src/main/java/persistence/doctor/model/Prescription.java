@@ -10,6 +10,9 @@ public class Prescription {
     int morning;
     int afternoon;
     int evening;
+    int dosage_days;
+
+
 
     public int getPrescription_id() {
         return prescription_id;
@@ -83,4 +86,7 @@ public class Prescription {
         this.evening = evening;
     }
 
+    public int getDosage_days() { return dosage_days; }
+
+    public void setDosage_days(int dosage_days) { this.dosage_days = dosage_days; }
 }

@@ -25,7 +25,10 @@ public class PharmaInvoice {
 	private double itemUnitPrice;
 	private Date date;
 	private Time time;
-	
+	private int itemUpdatedQuantity;
+
+
+
 	public int getInvoiceId() {
 		return invoiceId;
 	}
@@ -98,7 +101,10 @@ public class PharmaInvoice {
 	public void setTime(Time time) {
 		this.time = time;
 	}
-	
+	public int getItemUpdatedQuantity() { return itemUpdatedQuantity; }
+	public void setItemUpdatedQuantity(int itemUpdatedQuantity) { this.itemUpdatedQuantity = itemUpdatedQuantity; }
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj)
