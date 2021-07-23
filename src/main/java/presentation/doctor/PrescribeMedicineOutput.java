@@ -19,7 +19,7 @@ public class PrescribeMedicineOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     public void prescribeMedication(){
-        consoleObj.printHeader(ScreenTitles.prescription);
+        consoleObj.printHeader(ScreenTitles.MEDICINE_PRESCRIPTION);
 
         Scanner sc = new Scanner(System.in);
         System.out.print(ScreenFields.APPOINTMENT_ID + CommonConstants.commonTextSeparator);

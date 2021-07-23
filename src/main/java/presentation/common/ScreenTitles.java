@@ -21,7 +21,7 @@ public class ScreenTitles {
 	public static final String invoice = "Invoices";
 	
 	/* Medicine prescription screen title */
-	public static final String prescription = "Medicine Prescription";
+	public static final String MEDICINE_PRESCRIPTION = "Medicine Prescription";
 	
 	/* Medicine prescription screen title */
 	public static final String login = "Login";
@@ -47,7 +47,7 @@ public class ScreenTitles {
 	public static final String adminDashboard = "Admin Dashboard";
 
 	/* Doctor Dashboard Title */
-	public static final String doctorDashboard = "Doctor Dashboard";
+	public static final String DOCTOR_DASHBOARD = "Doctor Dashboard";
 
 	/* Patient Dashboard Title */
 	public static final String patientDashboard = "Patient Dashboard";
@@ -58,11 +58,11 @@ public class ScreenTitles {
 	public static final String bookingDashboard = "Make a Booking";
 
 	/* Lab Test Booking screen titles */
-	public static final String bookATest = "Book a Health Check/Lab Test";
-	public static final String availablePlans = "View Plans and Tests";
-	public static final String labTestRecommendation = "Recommendations for Health Check/Lab Test";
-	public static final String makeBooking = "Make a booking for Checkup";
-	public static final String previousBookings = "View Previous Bookings";
+	public static final String BOOK_A_TEST = "Book a Health Check/Lab Test";
+	public static final String AVAILABLE_PLANS = "View Plans and Tests";
+	public static final String LAB_TEST_RECOMMENDATION = "Recommendations for Health Check/Lab Test";
+	public static final String MAKE_BOOKING = "Make a booking for Checkup";
+	public static final String PREVIOUS_BOOKINGS = "View Previous Bookings";
 
 	/* Payment screen titles */
 	public static final String paymentInterface = "Proceed to Pay";
@@ -74,16 +74,16 @@ public class ScreenTitles {
 	public static final String vaccines= "Vaccines Available";
 
 	/* Vaccination Demand Stats titles */
-	public static final String vaccineStats = "Immunization Statistics";
-	public static final String covidAnalysis = "Covid Vaccine Shots Analysis";
+	public static final String VACCINE_STATS = "Immunization Statistics";
+	public static final String COVID_ANALYSIS = "Covid Vaccine Shots Analysis";
 	
 	/* Redeemable Vocuhers */
 	public static final String REDEEMABLE_VOUCHERS = "Redeemable Vouchers";
 
 	/* Doctor Appointment Booking titles */
-	public static final String doctorAppointment = "Doctor Appointment Bookings";
-	public static final String bookAppointment = "Book an appointment";
-	public static final String rescheduleAppointment = "Reschedule an appointment";
+	public static final String DOCTOR_APPOINTMENT = "Doctor Appointment Bookings";
+	public static final String BOOK_APPOINTMENT = "Book an appointment";
+	public static final String RESCHEDULE_APPOINTMENT = "Reschedule an appointment";
 	
 	/* View Reports */
 	public static final String VIEW_REPORTS = "View Reports";

@@ -19,9 +19,9 @@ public class DoctorAppointmentBookingOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     public void dashboard() {
-        consoleObj.printHeader(ScreenTitles.doctorAppointment);
+        consoleObj.printHeader(ScreenTitles.DOCTOR_APPOINTMENT);
 
-        List<String> options = Arrays.asList(ScreenTitles.bookAppointment, ScreenTitles.rescheduleAppointment);
+        List<String> options = Arrays.asList(ScreenTitles.BOOK_APPOINTMENT, ScreenTitles.RESCHEDULE_APPOINTMENT);
         int option = consoleObj.printSelection(options);
 
         switch (option){
@@ -35,7 +35,7 @@ public class DoctorAppointmentBookingOutput {
     }
 
     public void rescheduleAppointment(){
-        consoleObj.printHeader(ScreenTitles.rescheduleAppointment);
+        consoleObj.printHeader(ScreenTitles.RESCHEDULE_APPOINTMENT);
 
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
         List<Appointment> appointmentList = appointmentDAO.fetchAppointmentsForPatient();

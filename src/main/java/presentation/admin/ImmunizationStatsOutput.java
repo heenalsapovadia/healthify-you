@@ -17,7 +17,7 @@ public class ImmunizationStatsOutput {
 
     public void dashboard(){
         // Title
-        consoleObj.printHeader(ScreenTitles.vaccineStats);
+        consoleObj.printHeader(ScreenTitles.VACCINE_STATS);
 
         System.out.println(ScreenFields.mostDemandedVaccine
                 + CommonConstants.commonTextSeparator
@@ -46,7 +46,7 @@ public class ImmunizationStatsOutput {
     public void covidAnalysis(){
         Map<String, Integer> covidAnalysis = vaccineDemandStatsUtil.covidVaccineDistribution();
 
-        System.out.println(ScreenTitles.covidAnalysis);
+        System.out.println(ScreenTitles.COVID_ANALYSIS);
         if(covidAnalysis.isEmpty())
             System.out.println("No data available for Covid Shot analysis");
         else {

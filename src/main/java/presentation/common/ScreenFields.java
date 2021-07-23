@@ -113,8 +113,8 @@ public class ScreenFields {
 	public static final String applicationTerminationMessage = "The application will now stop!";
 
 	/* Doctor Dashboard Fields */
-	public static final String prescribeMedicine = "Prescribe medication";
-	public static final String viewAppointment = "View appointments";
+	public static final String PRESCRIBE_MEDICATION = "Prescribe medication";
+	public static final String VIEW_APPOINTMENTS = "View appointments";
 
 	/* Patient Dashboard Fields */
 	public static final String book = "Make a Booking";
@@ -123,15 +123,15 @@ public class ScreenFields {
 	public static final String vouchers = "Redeemable Vouchers";
 
 	/* Lab Test Booking fields */
-	public static final String enterOption = "Enter your option";
-	public static final String viewDetails = "View more details";
-	public static final String backToBooking = "Go back to booking";
-	public static final String checkId = "Enter the health check number";
-	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
+	public static final String ENTER_OPTION = "Enter your option";
+	public static final String VIEW_DETAILS = "View more details";
+	public static final String BACK_TO_BOOKING = "Go back to booking";
+	public static final String HEALTH_CHECK_NUMBER = "Enter the health check number";
+	public static final String LAB_CHECK_RECOMMENDATION = "Recommendations for LabChecks are";
 
 	/* Booking Dashboard  Booking fields */
-	public static final String appointmentWithDoctor = "Book an appointment with doctor";
-	public static final String bookLabTest = "Book a Lab Test/Health Check Up";
+	public static final String APPOINTMENT_WITH_DOCTOR = "Book an appointment with doctor";
+	public static final String BOOK_LAB_TEST = "Book a Lab Test/Health Check Up";
 	public static final String bookImmunization = "Book an Immunization";
 	public static final String bookBloodBankService = "Book a Blood Bank service";
 	public static final String yourBloodGroup = "Please enter your blood group:";
