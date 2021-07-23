@@ -69,6 +69,7 @@ public class RequestMedicationDAOImpl {
                 invoice.setItemUnitPrice(rs.getDouble("pharma_item_unit_price"));
                 invoice.setDate(rs.getDate("pharma_bill_date"));
                 invoice.setTime(rs.getTime("pharma_bill_time"));
+                invoice.setItemUpdatedQuantity(rs.getInt("pharma_item_updated_quantity"));
             }
         }
         catch(SQLException e) {

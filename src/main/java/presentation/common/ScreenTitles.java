@@ -88,7 +88,7 @@ public class ScreenTitles {
 	public static final String exitFromRequestMedication = "4.Exit";
 
 
-	
+
 	/* Doctor Appointment Booking titles */
 	public static final String doctorAppointment = "Doctor Appointment Bookings";
 	public static final String bookAppointment = "Book an appointment";
