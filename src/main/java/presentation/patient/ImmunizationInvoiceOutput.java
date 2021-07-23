@@ -30,7 +30,7 @@ public class ImmunizationInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
+		consoleObj.printHeader(ScreenTitles.IMMUNIZATION_RECEIPT);
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateImmunizationInvoice(date.toString(), invoice);

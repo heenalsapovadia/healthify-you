@@ -50,6 +50,7 @@ public class AppointmentInvoiceOutput {
 	 * Loads common header on the screen.
 	 * </pre>
 	 * 
+	 * @param consoleObj
 	 * @param invoice
 	 */
 	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
@@ -67,7 +68,7 @@ public class AppointmentInvoiceOutput {
 			System.out.println(ScreenFields.DOCTOR_NAME+CommonConstants.commonTextSeparator+invoice.getDoctorDetail().get(appointments.get(i).getDoctor_id()));
 			System.out.println(ScreenFields.CREATED_ON+CommonConstants.commonTextSeparator+invoice.getOriginalDatetime());
 			consoleObj.printLineSeparator();
-			System.out.println(ScreenFields.BILL_AMT+CommonConstants.commonTextSeparator+invoice.getPaymentMap().get(appointments.get(i).getBilling_id()).getBill_amount());
+			System.out.println(ScreenFields.BILL_AMT+CommonConstants.DOUBLE_TAB+invoice.getPaymentMap().get(appointments.get(i).getBilling_id()).getBill_amount());
 			consoleObj.printLineSeparator();
 		}
 	}

@@ -47,6 +47,7 @@ public class InvoiceOutput {
 						break;
 				case 4: LabTestInvoiceOutput labCheckInvoice = new LabTestInvoiceOutput();
 						labCheckInvoice.displayInvoice(parseDateInput(consoleObj, new Scanner(System.in)));
+						break;
 				case 5: return;
 				default: consoleObj.printError(CommonErrors.invalidSelection);
 			}

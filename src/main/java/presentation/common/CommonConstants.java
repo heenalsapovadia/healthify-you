@@ -28,4 +28,5 @@ public class CommonConstants {
 	public static final String NEW_LINE = "\n";
 	public static final String DOUBLE_TAB = "\t\t";
 	public static final String SLASH = "/";
+	public static final String COLON = ":";
 }

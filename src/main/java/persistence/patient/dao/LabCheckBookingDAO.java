@@ -12,7 +12,5 @@ public interface LabCheckBookingDAO {
 
     List<LabCheckBooking> getBookingByDate(Date date);
     
-    List<LabCheckBooking> getBookingByPatientId();
-    
     Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList);
 }

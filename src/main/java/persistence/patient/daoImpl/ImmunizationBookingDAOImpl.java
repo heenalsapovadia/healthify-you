@@ -179,9 +179,11 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		String sql = "SELECT vaccine_id, vaccine_name from vaccination_stock where vaccine_id in ("+ wildcard.substring(0, wildcard.length()-1)+")";
 		Map<Integer, String> vaccineMap = new HashMap<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
-			ps.setString(1, getInString(vaccineIdList));
+			for(int i=0; i<vaccineIdList.size(); i++) {
+				ps.setInt(i+1, vaccineIdList.get(i));
+			}
 			resultSet = ps.executeQuery();
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				vaccineMap.put(resultSet.getInt("vaccine_id"), resultSet.getString("vaccine_name"));
 			}
 		} catch (SQLException e) {
@@ -197,7 +199,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, Patient.getPatient().getPatientId());
 			resultSet = ps.executeQuery();
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				ImmunizationBooking booking = new ImmunizationBooking();
 				booking.setAppointmentId(resultSet.getInt("appointment_id"));
 				booking.setPatientId(resultSet.getInt("patient_id"));
@@ -211,13 +213,5 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 			e.getLocalizedMessage();
 		}
 		return bookingList;
-	}
-	
-	private String getInString(List<Integer> vaccineIdList) {
-		StringBuilder output = new StringBuilder();
-		for(Integer vaccineId: vaccineIdList) {
-			output.append(vaccineId+",");
-		}
-		return output.toString().substring(0, output.toString().length()-1);
 	}
 }

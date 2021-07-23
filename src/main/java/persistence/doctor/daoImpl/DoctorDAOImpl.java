@@ -73,7 +73,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     public Map<Integer, String> getDoctorNameById(List<Integer> doctorId){
     	Map<Integer, String> doctorMap = new HashMap<>();
         Connection conn = DatabaseConnection.getConnection();
-        StringBuilder doctorName = new StringBuilder();
+        StringBuilder doctorName;
         String wildcard = "?,".repeat(doctorId.size());
         String sql = "SELECT * FROM doctors WHERE doctor_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -82,6 +82,7 @@ public class DoctorDAOImpl implements DoctorDAO {
         	}
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+            	doctorName = new StringBuilder();
                 doctorName.append(rs.getString("first_name"));
                 doctorName.append(" ");
                 doctorName.append(rs.getString("last_name"));

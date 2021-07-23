@@ -79,7 +79,7 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 	public Invoice generateLabCheckInvoice(String date, Invoice invoice) {
 		List<Integer> billingIdList = new ArrayList<>();
 		LabCheckBookingDAO labCheckBookingDAO = new LabCheckBookingDAOImpl();
-		List<LabCheckBooking> labCheckBookingList = labCheckBookingDAO.getBookingByPatientId();
+		List<LabCheckBooking> labCheckBookingList = labCheckBookingDAO.getAllBookings();
 		List<LabCheckBooking> actualLabCheckBookings = new ArrayList<>();
 		List<Integer> healthCheckIdList = new ArrayList<>();
 		for(LabCheckBooking labCheckBooking: labCheckBookingList) {

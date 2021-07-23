@@ -92,32 +92,6 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
         }
         return null;
     }
-    
-    @Override
-	public List<LabCheckBooking> getBookingByPatientId() {
-		Connection conn = DatabaseConnection.getConnection();
-        List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
-        String sql = "SELECT * FROM labcheck_appointments WHERE patient_id = ?";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, Patient.getPatient().getPatientId());
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                LabCheckBooking labCheckBooking = new LabCheckBooking();
-                labCheckBooking.setAppointment_id(rs.getInt("appointment_id"));
-                labCheckBooking.setHealthcheck_id(rs.getInt("healthcheck_id"));
-                labCheckBooking.setPatient_id(rs.getInt("patient_id"));
-                labCheckBooking.setBooked_for_date(rs.getDate("booked_for_date"));
-                labCheckBooking.setRescheduled_date(rs.getDate("rescheduled_date"));
-                labCheckBooking.setBilling_id(rs.getInt("billing_id"));
-                labCheckBookingList.add(labCheckBooking);
-            }
-        }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
-        }
-        return labCheckBookingList;
-	}
 
 	@Override
 	public Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList) {

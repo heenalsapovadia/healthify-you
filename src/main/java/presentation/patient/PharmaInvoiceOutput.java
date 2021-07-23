@@ -41,7 +41,7 @@ public class PharmaInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
+		consoleObj.printHeader(ScreenTitles.PHARMACY_RECEIPT);
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generatePharmaInvoice(date.toString(), invoice);
@@ -74,7 +74,7 @@ public class PharmaInvoiceOutput {
 	 * @param invoice
 	 */
 	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
-		System.out.println(ScreenFields.PRESCRIPTION_ID+CommonConstants.commonTextSeparator+invoice.getPrescriptionId());
+		System.out.println(ScreenFields.PRESCRIPTION_ID+CommonConstants.singleTab+CommonConstants.COLON+CommonConstants.DOUBLE_TAB+invoice.getPrescriptionId());
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.commonTextSeparator+invoice.getPatientName());
 		System.out.println(ScreenFields.address+CommonConstants.singleSpace+CommonConstants.commonTextSeparator+invoice.getAddress());
 		System.out.println(ScreenFields.contact+CommonConstants.commonTextSeparator+invoice.getContactNumber());
