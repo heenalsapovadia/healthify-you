@@ -41,7 +41,8 @@ public class DoctorAppointmentBookingDashboard {
         doctorAppointmentByNameOutput.displayOutput();
         return;
     } else if (choice == 3) {
-        //add code
+        DoctorAppointmentBySpecializationOutput doctorAppointmentBySpecializationOutput = new DoctorAppointmentBySpecializationOutput();
+        doctorAppointmentBySpecializationOutput.displayOutput();
         return;
     } else if (choice == 4) {
         return;

@@ -92,7 +92,7 @@ public class DoctorRegistration {
     }
 
     public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+        this.specialization = specialization.toUpperCase(Locale.ROOT);
     }
 
     public void setBirthDate(String bdate) {

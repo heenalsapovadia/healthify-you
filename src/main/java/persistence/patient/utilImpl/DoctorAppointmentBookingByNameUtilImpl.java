@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 
 public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointmentBookingByNameUtil {
 
+    @Override
     public boolean validateID(int doctorID) throws SQLException {
         DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAO = new DoctorAppointmentBookingByNameDAOImpl();
 
@@ -40,7 +41,7 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
         }
     }
 
-
+    @Override
     public boolean validateName(String name) {
         if (name != null) {
             if (name.isEmpty()) {

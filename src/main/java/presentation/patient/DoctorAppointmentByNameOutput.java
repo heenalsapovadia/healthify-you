@@ -10,7 +10,6 @@ import persistence.patient.utilImpl.LabCheckBookingUtilImpl;
 import presentation.common.PaymentInterfaceOutput;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
-import presentation.startup.DatabaseConnection;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -138,6 +137,7 @@ public class DoctorAppointmentByNameOutput {
                       return;
                   }
               } else {
+                  System.err.println("Day availability for the mentioned doctor not updated in the system!");
                   return;
               }
           }
