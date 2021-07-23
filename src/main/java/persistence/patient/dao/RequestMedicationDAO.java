@@ -1,7 +1,6 @@
 package persistence.patient.dao;
 
 import persistence.doctor.model.Prescription;
-
 import java.util.List;
 
 public interface RequestMedicationDAO {
