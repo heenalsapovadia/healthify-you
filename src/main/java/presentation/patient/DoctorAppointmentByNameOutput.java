@@ -93,49 +93,29 @@ public class DoctorAppointmentByNameOutput {
                   LocalDate date = LocalDate.now();
                   String bookedDate = date.toString();
 
-                  List<Integer> appointmentID = doctorAppointmentBookingByNameDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate);
-                  if(appointmentID != null && !appointmentID.isEmpty()) {
-                      System.out.println("Appointment booked successfully!");
+                  List<String> options = Arrays.asList("Continue For Payment", ScreenFields.EXIT);
+                  int option = consoleObj.printSelection(options);
+                  int billingId = 0;
+                    switch (option) {
+                      case 1:
+                        // Call Payment Interface screen code
+                        double checkoutAmount = doctorAppointmentBookingByNameDAOImpl.fetchDoctorCharges(doctorID);
+                        Patient.setPatient(patientEmail);
+                        PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
+                        billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.D, checkoutAmount, "");
+                        List<Integer> appointmentID = doctorAppointmentBookingByNameDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate, billingId);
 
-                      List<String> options = Arrays.asList("Continue For Payment", ScreenFields.EXIT);
-                      int option = consoleObj.printSelection(options);
+                        if(appointmentID != null && !appointmentID.isEmpty()) {
+                          System.out.println("Appointment booked successfully!");
+                        } else {
+                            System.err.println("An error occured, make a new booking!");
+                        }
+                        break;
 
-                      String inClause = "";
+                        case 2:
+                          return;
+                    }
 
-                      for (int i = 0; i < appointmentID.size(); i++) {
-                          if (i < appointmentID.size() - 1) {
-                              inClause = inClause + appointmentID.get(i) + " ,";
-                          } else {
-                              if (i == appointmentID.size() - 1) {
-                                  inClause = inClause + appointmentID.get(i);
-                              }
-                          }
-                      }
-
-                      int billingId = 0;
-                      switch (option) {
-                          case 1:
-                              // Call Payment Interface screen code
-                              DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAO = new DoctorAppointmentBookingByNameDAOImpl();
-                              double checkoutAmount = doctorAppointmentBookingByNameDAOImpl.fetchDoctorCharges(doctorID);
-                              Patient.setPatient(patientEmail);
-                              PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
-                              billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.D, checkoutAmount, "");
-                              int check = doctorAppointmentBookingByNameDAO.updateBillingID(billingId, inClause);
-
-                              if(check == 0) {
-                                  System.out.println("Payment done successfully!");
-                              } else {
-                                  System.out.println("Error occurred during payment! Make a new booking!");
-                              }
-                              break;
-
-                          case 2:
-                              return;
-                      }
-                  } else {
-                      return;
-                  }
               } else {
                   System.err.println("Day availability for the mentioned doctor not updated in the system!");
                   return;
