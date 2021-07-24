@@ -2,41 +2,52 @@ package persistence.admin.utilImpl;
 
 import org.junit.Test;
 import persistence.admin.util.VaccineDemandStatsUtil;
-
+import presentation.startup.DatabaseConnection;
 import java.util.Map;
-
 import static org.junit.Assert.*;
 
 public class VaccineDemandStatsUtilImplTest {
-    VaccineDemandStatsUtil vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+    VaccineDemandStatsUtil vaccineDemandStatsUtil;
 
     @Test
     public void mostVaccinatedByVaccine() {
-        assertEquals("covaxin", vaccineDemandStatsUtil.mostVaccinatedBy("vaccineName"));
+        DatabaseConnection.loadDatabaseConnection();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+        assertEquals("Influenza", vaccineDemandStatsUtil.mostVaccinatedBy("vaccineName"));
     }
 
     @Test
     public void mostVaccinatedByAge() {
-        assertEquals("Adult", vaccineDemandStatsUtil.mostVaccinatedBy("ageGroup"));
+        DatabaseConnection.loadDatabaseConnection();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+        assertEquals("27 to 60", vaccineDemandStatsUtil.mostVaccinatedBy("ageGroup"));
     }
 
     @Test
     public void mostVaccinatedByGender() {
-        assertEquals("Male", vaccineDemandStatsUtil.mostVaccinatedBy("gender"));
+        DatabaseConnection.loadDatabaseConnection();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+        assertEquals("M", vaccineDemandStatsUtil.mostVaccinatedBy("gender"));
     }
 
     @Test
     public void mostVaccinatedByArea() {
-        assertEquals("Halifax", vaccineDemandStatsUtil.mostVaccinatedBy("area"));
+        DatabaseConnection.loadDatabaseConnection();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+        assertEquals("Argentina", vaccineDemandStatsUtil.mostVaccinatedBy("area"));
     }
 
     @Test
     public void dosesAdministered() {
-        assertEquals(10, vaccineDemandStatsUtil.dosesAdministered(1));
+        DatabaseConnection.loadDatabaseConnection();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+        assertEquals(23, vaccineDemandStatsUtil.dosesAdministered(12));
     }
 
     @Test
     public void covidVaccineDistribution() {
+        DatabaseConnection.loadDatabaseConnection();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
         Map<String, Integer> covidAnalysis = vaccineDemandStatsUtil.covidVaccineDistribution();
         assertTrue(covidAnalysis.get("covaxin")>0);
     }

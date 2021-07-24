@@ -20,7 +20,7 @@ public class LabCheckRecommendationUtilImplTest {
         LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
         List<LabCheck> labCheckList = labCheckRecommendationUtil.genderBasedRecommendation();
         assertEquals(1, labCheckList.size());
-        assertEquals(4, labCheckList.get(0).getCheckup_id());
+        assertEquals(4, labCheckList.get(0).getCheckupId());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class LabCheckRecommendationUtilImplTest {
         LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
         List<LabCheck> labCheckList = labCheckRecommendationUtil.ageBasedRecommendation();
         assertEquals(1, labCheckList.size());
-        assertEquals(3, labCheckList.get(0).getCheckup_id());
+        assertEquals(3, labCheckList.get(0).getCheckupId());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class LabCheckRecommendationUtilImplTest {
         LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
         List<LabCheck> labCheckList = labCheckRecommendationUtil.ageBasedRecommendation();
         assertEquals(1, labCheckList.size());
-        assertEquals(1, labCheckList.get(0).getCheckup_id());
+        assertEquals(1, labCheckList.get(0).getCheckupId());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class LabCheckRecommendationUtilImplTest {
 
         HashMap<Integer, LabCheck> labCheckHashMap = new HashMap();
         for(LabCheck labCheck : labCheckList)
-            labCheckHashMap.put(labCheck.getCheckup_id(), labCheck);
+            labCheckHashMap.put(labCheck.getCheckupId(), labCheck);
 
         assertTrue(labCheckHashMap.containsKey(2));
         assertTrue(labCheckHashMap.containsKey(5));
@@ -83,7 +83,7 @@ public class LabCheckRecommendationUtilImplTest {
 
         Map<Integer, LabCheck> labCheckHashMap = new HashMap<>();
         for(LabCheck labCheck : labCheckList)
-            labCheckHashMap.put(labCheck.getCheckup_id(), labCheck);
+            labCheckHashMap.put(labCheck.getCheckupId(), labCheck);
 
         assertTrue(labCheckHashMap.containsKey(7));
         assertTrue(labCheckHashMap.containsKey(8));
