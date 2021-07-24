@@ -173,7 +173,6 @@ public class RegisterPatientOutput {
       break;
 
     case 3:
-      print.printScreenFields(ScreenFields.EXIT);
       return false;
     }
     return true;
