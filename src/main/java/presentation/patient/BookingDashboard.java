@@ -21,7 +21,7 @@ public class BookingDashboard {
 
     public void displayOutput() throws SQLException {
         PrintToConsole consoleObj = PrintToConsole.getInstance();
-        consoleObj.printHeader(ScreenTitles.bookingDashboard);
+
         loadScreenOptions(consoleObj);
     }
 
@@ -36,6 +36,7 @@ public class BookingDashboard {
     }
 
     private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
+        consoleObj.printHeader(ScreenTitles.bookingDashboard);
         List<String> selectionOptions = getSelectionOptions();
         int sel = consoleObj.printSelection(selectionOptions);
         if(sel == 1) {
