@@ -70,7 +70,8 @@ public class PharmaInvoiceOutput {
 	 * @param invoice
 	 */
 	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
-		System.out.println(ScreenFields.PRESCRIPTION_ID+CommonConstants.SINGLE_TAB+CommonConstants.COLON+CommonConstants.DOUBLE_TAB+invoice.getPrescriptionId());
+		System.out.println(ScreenFields.PRESCRIPTION_ID+CommonConstants.SINGLE_TAB+CommonConstants.COLON
+				+CommonConstants.DOUBLE_TAB+invoice.getPrescriptionId());
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());

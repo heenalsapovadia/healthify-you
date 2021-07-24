@@ -31,10 +31,10 @@ public class PharmaInvoiceDAOImplTest {
 	    assertEquals(generatedMap.size(), invoicesMap.size());
 	    assertTrue(generatedMap.keySet().containsAll(invoicesMap.keySet()));
 	    generatedMap.keySet().stream().forEach((key) -> {
-	        List<PharmaInvoice> pList = generatedMap.get(key);
-	        List<PharmaInvoice> rList = invoicesMap.get(key);
-	        for(int i=0; i<pList.size(); i++) {
-	        	assertTrue(pList.get(i).equals(rList.get(i)));
+	        List<PharmaInvoice> expectedList = generatedMap.get(key);
+	        List<PharmaInvoice> actualList = invoicesMap.get(key);
+	        for(int i=0; i<expectedList.size(); i++) {
+	        	assertTrue(expectedList.get(i).equals(actualList.get(i)));
 	        }
 	    });
 	}

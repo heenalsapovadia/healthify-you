@@ -12,7 +12,7 @@ public class PharmaInvoiceUtilImpl implements PharmaInvoiceUtil{
 
 	@Override
 	public double calculateGrandTotalAmount(List<Double> prices) {
-		return prices.stream().reduce(0.0d, (a, b)->a+b);
+		return prices.stream().reduce(0.0d, (leftOperand, rightOperand)->leftOperand+rightOperand);
 	}
 	
 }

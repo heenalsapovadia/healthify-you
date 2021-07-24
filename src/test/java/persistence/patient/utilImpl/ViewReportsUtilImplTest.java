@@ -1,6 +1,5 @@
 package persistence.patient.utilImpl;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +42,7 @@ class ViewReportsUtilImplTest {
 	        List<String> actualList = actualReportsMap.get(key);
 	        List<String> expectedList = expectedReportsMap.get(key);
 	        for(int i=0; i<actualList.size(); i++) {
-	        	assertTrue(actualList.get(i).equals(expectedList.get(i)));
+	        	assertEquals(actualList.get(i), expectedList.get(i));
 	        }
 	    });
 	}
@@ -75,7 +74,7 @@ class ViewReportsUtilImplTest {
 	        List<String> actualList = actualReportsMap.get(key);
 	        List<String> expectedList = expectedReportsMap.get(key);
 	        for(int i=0; i<actualList.size(); i++) {
-	        	assertTrue(actualList.get(i).equals(expectedList.get(i)));
+	        	assertEquals(actualList.get(i), expectedList.get(i));
 	        }
 	    });
 	}

@@ -41,6 +41,7 @@ public class RedeemableVoucherOutput {
 			switch(sel) {
 				case 1: consoleObj.printSingleNewLine();
 						loadVoucher(voucher);
+						break;
 				case 2: return;
 				default: consoleObj.printError(CommonErrors.invalidSelection);
 			}
