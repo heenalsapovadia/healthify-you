@@ -31,7 +31,8 @@ public class BloodBankServiceOutput  {
         System.out.println("3. Exit");
         System.out.println(ScreenFields.enterYourSelection);
         userSelection = sc.nextInt();
-            if (userSelection == 1) {
+        System.out.println("Blood donation criteria: a) Minimum 6 month after previous donation, b) Blood report should be normal.");
+        if (userSelection == 1) {
                 BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
                 BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
                 List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
@@ -50,7 +51,7 @@ public class BloodBankServiceOutput  {
 
                 } else {
                     // Check eligibility if blood report is normal
-                    System.out.println("Checking donation eligibilty based on Blood Report provided.");
+                    System.out.println("Checking donation eligibilty based on Blood Report.");
                     Boolean donatedInLastSixMonths = false;
                     Boolean reportsAreNormalForBloodDonations = true;
                     for ( BloodBankService service : donations ) {
@@ -73,7 +74,7 @@ public class BloodBankServiceOutput  {
                             // Blood reports
                             List<Blood> bloodReports = reportParser.parseBloodReports(allTestsMap);
                             for ( Blood blood : bloodReports ) {
-                                if (blood.getCbcPanel().getHaemoglobin() < 5) {
+                                if (blood.getCbcPanel().getHaemoglobin() < 16) {
                                     reportsAreNormalForBloodDonations = false;
                                 }
                             }
@@ -87,12 +88,17 @@ public class BloodBankServiceOutput  {
                                 System.out.println(ScreenFields.tokenGenerated + bloodBankServiceUtil.getTokenIdForDonation());
                                 System.out.println(ScreenFields.donationDate + java.time.LocalDate.now());
                                 System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
+                                System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
+                                System.out.println("\n");
+
                                 return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroupInput);
                             } else {
-                                System.out.println("Reports are not normal for Blood donation");
+                                System.out.println("Reports are not normal for Blood donation. Sorry please donate after recovery. ");
+                                System.out.println("\n");
                             }
                         } else {
                             System.out.println(ScreenFields.patientAlreadyDonated);
+                            System.out.println("\n");
                             break;
                         }
                     }
@@ -102,12 +108,16 @@ public class BloodBankServiceOutput  {
                 // calling database class and checking if donation records exits then display previous records
                 BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
                 List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
-                for ( BloodBankService service : donations ) {
-                    System.out.println("Patient-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Donation-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Date" + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Blood group" + CommonConstants.SINGLE_TAB);
-                    System.out.println(service.getPatientId() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + service.getDonationId() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getDate() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getBloodGrp());
-                    System.out.println("\n");
+                if(donations.size()>0) {
+                    for ( BloodBankService service : donations ) {
+                        System.out.println("Patient-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Donation-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Date" + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Blood group" + CommonConstants.SINGLE_TAB);
+                        System.out.println(service.getPatientId() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + service.getDonationId() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getDate() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getBloodGrp());
+                        System.out.println("\n");
+                    }
                 }
+                else{
                 System.out.println("No donation record exits for the patient.");
+                }
             }
         if (userSelection == 3) {
             System.out.println("EXIT!");
