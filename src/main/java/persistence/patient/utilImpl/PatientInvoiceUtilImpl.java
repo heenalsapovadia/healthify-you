@@ -75,7 +75,9 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 			PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
 			invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
 		}
-		invoice.setAppointmentList(actualAppointmentList);
+		if(!actualAppointmentList.isEmpty()) {
+			invoice.setAppointmentList(actualAppointmentList);
+		}
 		return invoice;
 	}
 
@@ -93,12 +95,16 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 				healthCheckIdList.add(labCheckBooking.getHealthcheckId());
 			}
 		}
-		invoice.setLabCheckBookingList(actualLabCheckBookings);
+		if(!actualLabCheckBookings.isEmpty()) {
+			invoice.setLabCheckBookingList(actualLabCheckBookings);
+		}
 		if(!billingIdList.isEmpty()) {
 			PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
 			invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
 		}
-		invoice.setLabCheckMap(labCheckBookingDAO.getHealthChecks(healthCheckIdList));
+		if(!healthCheckIdList.isEmpty()) {
+			invoice.setLabCheckMap(labCheckBookingDAO.getHealthChecks(healthCheckIdList));
+		}
 		return invoice;
 	}
 
@@ -116,9 +122,11 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 				billingIdList.add(prescription.getBillingId());
 			}
 		}
-		PharmaInvoiceDAO pharmaInvoiceDAO = new PharmaInvoiceDAOImpl();
-		List<PharmaInvoice> pharmaInvoiceList = pharmaInvoiceDAO.getPharmaSupplies(medicineNameList);
-		invoice.setPharmaInvoiceList(pharmaInvoiceList);
+		if(!medicineNameList.isEmpty()) {
+			PharmaInvoiceDAO pharmaInvoiceDAO = new PharmaInvoiceDAOImpl();
+			List<PharmaInvoice> pharmaInvoiceList = pharmaInvoiceDAO.getPharmaSupplies(medicineNameList);
+			invoice.setPharmaInvoiceList(pharmaInvoiceList);
+		}
 		if(!billingIdList.isEmpty()) {
 			PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
 			invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
@@ -135,8 +143,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 				vaccineIdList.add(booking.getVaccineId());
 			}
 		}
-		Map<Integer, String> vaccineMap = immunizationDAO.getVaccineDetailById(vaccineIdList);
-		invoice.setVaccineMap(vaccineMap);
+		if(!vaccineIdList.isEmpty()) {
+			Map<Integer, String> vaccineMap = immunizationDAO.getVaccineDetailById(vaccineIdList);
+			invoice.setVaccineMap(vaccineMap);
+		}
 		return invoice;
 	}
 }

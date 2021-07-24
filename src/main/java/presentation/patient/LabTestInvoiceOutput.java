@@ -7,6 +7,7 @@ import persistence.patient.model.LabCheckBooking;
 import persistence.patient.util.PatientInvoiceUtil;
 import persistence.patient.utilImpl.PatientInvoiceUtilImpl;
 import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
@@ -30,11 +31,17 @@ public class LabTestInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.LAB_TEST_RECEIPT);
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateLabCheckInvoice(date.toString(), invoice);
-		loadScreen(consoleObj, invoice);
+		List<LabCheckBooking> labCheckBookings = invoice.getLabCheckBookingList();
+		if(labCheckBookings != null && !labCheckBookings.isEmpty()) {
+			consoleObj.printHeader(ScreenTitles.LAB_TEST_RECEIPT);
+			loadScreen(consoleObj, invoice, labCheckBookings);
+		}
+		else {
+			System.err.println(CommonErrors.NO_RECEIPTS);
+		}
 	}
 	
 	/**
@@ -45,14 +52,13 @@ public class LabTestInvoiceOutput {
 	 * @param consoleObj
 	 * @param invoice
 	 */
-	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
+	private void loadScreen(PrintToConsole consoleObj, Invoice invoice, List<LabCheckBooking> labCheckBookings) {
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());
 		System.out.println(ScreenFields.AGE_SEX+CommonConstants.SINGLE_TAB+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAge()
 			+CommonConstants.SLASH+invoice.getGender());
 		consoleObj.printLineSeparator();
-		List<LabCheckBooking> labCheckBookings = invoice.getLabCheckBookingList();
 		double total = 0d;
 		for(int i=0; i<labCheckBookings.size(); i++) {
 			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.COMMON_TEXT_SEPARATOR+labCheckBookings.get(i).getAppointmentId());
