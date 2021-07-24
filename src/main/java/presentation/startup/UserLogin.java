@@ -66,6 +66,7 @@ public class UserLogin {
               obj.registerPatient();
               break;
             } else if (sel2 == 3) {
+              System.exit(0);
               return false;
             }
           } else if (dao.getuserDetails(l).equals(ScreenFields.successLogin)) {
