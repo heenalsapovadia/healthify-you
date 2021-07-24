@@ -35,12 +35,12 @@ public class ViewReportsOutput {
 	
 	public void displayOutput() {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.VIEW_REPORTS);
 		consoleObj.printSingleNewLine();
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		ViewReportsUtil reportsUtil = new ViewReportsUtilImpl();
 		do {
+			consoleObj.printHeader(ScreenTitles.VIEW_REPORTS);
 			sel = consoleObj.printSelection(selectionOptions);
 			switch(sel) {
 				case 1: ViewReportsByTestOutput viewReportsByTest = new ViewReportsByTestOutput();
