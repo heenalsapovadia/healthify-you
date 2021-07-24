@@ -17,12 +17,12 @@ public class ScheduledAppointmentsOutput {
         ScheduledaAppointmentsDAOImpl scheduledaAppointmentsDAOimpl = new ScheduledaAppointmentsDAOImpl();
         Scanner sc = new Scanner(System.in);
         for ( int i = 0; i < 100; i++ )
-            System.out.print(CommonConstants.headingChar);
+            System.out.print(CommonConstants.HEADING_CHAR);
 
         System.out.println();
-        System.out.println(CommonConstants.titleSpace + CommonConstants.titleSpace + ScreenTitles.scheduledAppointments + CommonConstants.titleSpace);
+        System.out.println(CommonConstants.TITLE_SPACE + CommonConstants.TITLE_SPACE + ScreenTitles.scheduledAppointments + CommonConstants.TITLE_SPACE);
         for ( int i = 0; i < 100; i++ )
-            System.out.print(CommonConstants.headingChar);
+            System.out.print(CommonConstants.HEADING_CHAR);
         System.out.println();
         System.out.println("Enter the date of appointment(yyyy-mm-dd): ");
 
@@ -57,14 +57,14 @@ public class ScheduledAppointmentsOutput {
         selection = sc.nextInt();
         if(selection == 1)
         {
-            System.out.println(ScreenFields.logoutMessage);
-            System.out.println(ScreenFields.applicationTerminationMessage);
+            System.out.println(ScreenFields.LOGOUT_MESSAGE);
+            System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
             System.exit(0);
         }
         else{
             System.out.println("Wrong input");
-            System.out.println(ScreenFields.logoutMessage);
-            System.out.println(ScreenFields.applicationTerminationMessage);
+            System.out.println(ScreenFields.LOGOUT_MESSAGE);
+            System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
             System.exit(0);
         }
         return "";
