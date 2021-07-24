@@ -16,11 +16,6 @@ import presentation.startup.DatabaseConnection;
  */
 class RedeemableVoucherDAOImplTest {
 
-	/**
-	 * <pre>
-	 * Tests vouchers for O+ blood group.
-	 * </pre>
-	 */
 	@Test
 	void testGetVoucherByBloodGroupOPositive() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -37,12 +32,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for A- blood group.
-	 * </pre>
-	 * 
-	 */
 	@Test
 	void testGetVoucherByBloodGroupANegative() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -59,12 +48,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for O- blood group.
-	 * </pre>
-	 * 
-	 */
 	@Test
 	void testGetVoucherByBloodGroupONegative() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -81,12 +64,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for A+ blood group.
-	 * </pre>
-	 * 
-	 */
 	@Test
 	void testGetVoucherByBloodGroupAPositive() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -103,12 +80,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for AB+ blood group.
-	 * </pre>
-	 * 
-	 */
 	@Test
 	void testGetVoucherByBloodGroupABPositive() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -125,12 +96,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for AB- blood group.
-	 * </pre>
-	 * 
-	 */
 	@Test
 	void testGetVoucherByBloodGroupABNegative() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -147,12 +112,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for B+ blood group.
-	 * </pre>
-	 * 
-	 */
 	@Test
 	void testGetVoucherByBloodGroupBPositive() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -169,11 +128,6 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 	
-	/**
-	 * <pre>
-	 * Tests vouchers for B- blood group.
-	 * </pre>
-	 */
 	@Test
 	void testGetVoucherByBloodGroupBNegative() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -190,24 +144,19 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 
-	/**
-	 * <pre>
-	 * Tests vouchers by patient id.
-	 * </pre>
-	 */
 	@Test
 	void testGetVoucherByPatient() {
-//		DatabaseConnection.loadDatabaseConnection();
-//		RedeemableVoucherDAO redeemableVoucherDAO = new RedeemableVoucherDAOImpl();
-//		RedeemableVoucher actualVoucher = redeemableVoucherDAO.getVoucherByPatient(13);
-//		RedeemableVoucher expectedVoucher = new RedeemableVoucher();
-//		expectedVoucher.setBloodGroup("AB-");
-//		expectedVoucher.setVoucherId("R6NG5");
-//		expectedVoucher.setPoints((double) 200);
-//		expectedVoucher.setValidityInDays(30);
-//		assertEquals(expectedVoucher.getBloodGroup(), actualVoucher.getBloodGroup());
-//		assertEquals(expectedVoucher.getVoucherId(), actualVoucher.getVoucherId());
-//		assertEquals(expectedVoucher.getPoints(), actualVoucher.getPoints());
-//		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
+		DatabaseConnection.loadDatabaseConnection();
+		RedeemableVoucherDAO redeemableVoucherDAO = new RedeemableVoucherDAOImpl();
+		RedeemableVoucher actualVoucher = redeemableVoucherDAO.getVoucherByPatient(13);
+		RedeemableVoucher expectedVoucher = new RedeemableVoucher();
+		expectedVoucher.setBloodGroup("AB-");
+		expectedVoucher.setVoucherId("R6NG5");
+		expectedVoucher.setPoints((double) 200);
+		expectedVoucher.setValidityInDays(30);
+		assertEquals(expectedVoucher.getBloodGroup(), actualVoucher.getBloodGroup());
+		assertEquals(expectedVoucher.getVoucherId(), actualVoucher.getVoucherId());
+		assertEquals(expectedVoucher.getPoints(), actualVoucher.getPoints());
+		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 }
