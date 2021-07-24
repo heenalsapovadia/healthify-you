@@ -66,8 +66,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 		ResultSet resultSet = null;
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		StringBuilder sqlStatement = new StringBuilder();
-		String wildcardChar = "?,";
-		String wildcard = wildcardChar.repeat(medicineNameList.size());
+		String wildcard = "?,".repeat(medicineNameList.size());
 		sqlStatement.append("select * from pharma_supplies where pharma_item_name in ("+ wildcard.substring(0, wildcard.length()-1)+")");
 		try (PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement.toString())){
 			for(int i=0; i<medicineNameList.size(); i++) {
