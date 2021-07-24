@@ -28,7 +28,7 @@ public class DoctorAppointmentBookingDashboard {
     selectionOptions.add("Get Doctor recommendations based on symptoms");
     selectionOptions.add("Visit a specific doctor");
     selectionOptions.add("Book an appointment with doctor based on specialization");
-    selectionOptions.add("Logout");
+    selectionOptions.add("Exit");
     consoleObj.printScreenFields(ScreenFields.SELECTION);
     int choice = consoleObj.printSelection(selectionOptions);
 
