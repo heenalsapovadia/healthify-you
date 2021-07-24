@@ -114,7 +114,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
   }
 
   @Override
-  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate) {
+  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) {
 
     DoctorAppointmentBookingByNameUtilImpl doctorAppointmentBookingByNameUtil = new DoctorAppointmentBookingByNameUtilImpl();
 
@@ -158,7 +158,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
 
     try {
       /* retrieves doctor list for the symptoms */
-      resultSet = statement.executeQuery("insert ignore into doctor_appointment(patient_id, doctor_id, booked_on_date, booked_for_date) values(" + patientID + "," + doctorID + ", \"" + bookedOnDate + "\"" + ", \"" + appointmentDate + "\");");
+      resultSet = statement.executeQuery("insert ignore into doctor_appointment(patient_id, doctor_id, booked_on_date, booked_for_date, billing_id) values(" + patientID + "," + doctorID + ", \"" + bookedOnDate + "\"" + ", \"" + appointmentDate + "\"," + billingID + ");");
       resultSet1 = statement.executeQuery("select * from doctor_appointment where patient_id = " + patientID + " and doctor_id=" + doctorID + " and booked_for_date=\"" + appointmentDate + "\" and booked_on_date=\"" + bookedOnDate + "\";");
 
       if(!resultSet1.next()) {
