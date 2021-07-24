@@ -39,7 +39,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             }
         }
         catch (Exception e){
-            System.out.println("Json Parsing excepion : "+e.getMessage());
+            System.out.println("Json Parsing exception : "+e.getMessage());
         }
         return null;
     }
