@@ -4,6 +4,8 @@ import persistence.doctor.daoImpl.AppointmentDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.util.PrescriptionValidationUtil;
 
+import java.util.Set;
+
 public class PrescriptionValidationUtilImpl implements PrescriptionValidationUtil {
 
     @Override
@@ -13,5 +15,11 @@ public class PrescriptionValidationUtilImpl implements PrescriptionValidationUti
 
         AppointmentDAOImpl appointmentDAO = new AppointmentDAOImpl();
         return appointmentDAO.validateAppointmentId(appointment);
+    }
+
+    @Override
+    public boolean validateMedicineName(String medicineName, Set<String> medicineList) {
+        String medicineNameToLowerCase = medicineName.toLowerCase();
+        return medicineList.contains(medicineNameToLowerCase);
     }
 }

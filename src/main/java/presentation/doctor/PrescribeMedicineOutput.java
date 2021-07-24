@@ -1,5 +1,7 @@
 package presentation.doctor;
 
+import persistence.admin.dao.PharmaInvoiceDAO;
+import persistence.admin.daoImpl.PharmaInvoiceDAOImpl;
 import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
@@ -13,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class PrescribeMedicineOutput {
 
@@ -47,12 +50,19 @@ public class PrescribeMedicineOutput {
         int medicineNumber = scanner.nextInt();
         List<Prescription> prescriptionList = new ArrayList<>();
 
+        PharmaInvoiceDAO pharmaInvoiceDAO = new PharmaInvoiceDAOImpl();
+        Set<String> medicineList = pharmaInvoiceDAO.getMedicineList();
+
         /*
         Take user input for all medicines
          */
         while(medicineNumber>0){
             System.out.print(ScreenFields.MEDICINE_NAME + CommonConstants.COMMON_TEXT_SEPARATOR);
             String medicineName = scanner.next();
+            if(!prescriptionValidationUtil.validateMedicineName(medicineName, medicineList)) {
+                System.out.println("Medicine Name Not Found! Try again");
+                continue;
+            }
             System.out.print(ScreenFields.MORNING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
             int morning = scanner.nextInt();
             System.out.print(ScreenFields.AFTERNOON_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);

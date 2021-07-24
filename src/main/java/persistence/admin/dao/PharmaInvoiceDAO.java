@@ -3,6 +3,8 @@ package persistence.admin.dao;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import persistence.admin.model.PharmaInvoice;
 
 public interface PharmaInvoiceDAO {
@@ -24,5 +26,7 @@ public interface PharmaInvoiceDAO {
 	 * @param medicineName
 	 * @return
 	 */
-	List<PharmaInvoice> getPharmaSupplies(List<String> medicineName); 
+	List<PharmaInvoice> getPharmaSupplies(List<String> medicineName);
+
+	Set<String> getMedicineList();
 }
