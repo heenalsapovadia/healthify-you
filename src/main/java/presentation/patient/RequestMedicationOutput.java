@@ -43,14 +43,18 @@ public class RequestMedicationOutput {
             System.out.println("Enter Prescription ID:");
             int current_PrescriptionId = sc.nextInt();
 
-        System.out.println("Patient Name = " + Patient.getPatient().getPatientName());
-        System.out.println("\n" );
-        System.out.println("Prescribed List of above patient is below:" );
+
 
         List<Prescription> prescriptions = requestMedication.getPrescriptionDetails(current_PrescriptionId);
         double finalAmountForPayment = 0.0;
         ArrayList<MedicationsToUpdate> medicationsToUpdate = new ArrayList<>();
+        System.out.println("Current logged in Patient Name = " + Patient.getPatient().getPatientName());
+
+        if (!prescriptions.isEmpty()) {
         for (Prescription currentPrescription : prescriptions) {
+
+            System.out.println("\n" );
+            System.out.println("Prescribed list of above prescription id is below:" );
             System.out.println("Medicine Name: " + currentPrescription.getMedicineName());
             int totalDoseNeeded = currentPrescription.getMorning() + currentPrescription.getAfternoon() + currentPrescription.getEvening();
             System.out.println("Medicine Dose: " + totalDoseNeeded);
@@ -59,47 +63,51 @@ public class RequestMedicationOutput {
             int finalDoseAmount = totalDoseNeeded * medicinePrescirbedDays;
 
             PharmaInvoice invoice = requestMedication.getPharmaInvoice(currentPrescription.getMedicineName());
-//            if(!currentPrescription.getMedicineName().equals(invoice)){
-//                System.out.println("Medicine not found in Pharmacy. Unable to proceed.");
-//                return null;
-//            }
-            int itemQuantityAvailable = invoice.getItemQuantity();
-            double unitPrice = invoice.getItemUnitPrice();
 
-            // enough quantity
-            if (finalDoseAmount < itemQuantityAvailable) {
-                int itemLeft = itemQuantityAvailable - finalDoseAmount;
-                if (itemLeft < 0) {
-                    itemLeft = 0;
-                }
-                    double totalPrice = unitPrice  * totalDoseNeeded * medicinePrescirbedDays;
+                int itemQuantityAvailable = invoice.getItemQuantity();
+                double unitPrice = invoice.getItemUnitPrice();
+
+                // enough quantity
+                if (finalDoseAmount < itemQuantityAvailable) {
+                    int itemLeft = itemQuantityAvailable - finalDoseAmount;
+                    if (itemLeft < 0) {
+                        itemLeft = 0;
+                    }
+                    double totalPrice = unitPrice * totalDoseNeeded * medicinePrescirbedDays;
                     System.out.println("Payment needed of amount " + totalPrice);
-                    System.out.println("Enough Doses of quantity availble in Stock " + finalDoseAmount + "  - Number left in inventory after after this prescription " + itemLeft);
+                    System.out.println("Enough Doses of quantity availble in Stock " + finalDoseAmount );
                     requestMedication.updatePharmaInvoice(currentPrescription.getMedicineName(), itemLeft);
 
-                if (totalPrice == 0.0) {
-                    System.out.println("Checkout amount is not eligible for payment.");
-                    System.out.println("\n");
+                    if (totalPrice == 0.0) {
+                        System.out.println("Checkout amount is not eligible for payment.");
+                        System.out.println("\n");
+                    } else {
+                        finalAmountForPayment += totalPrice;
+                        medicationsToUpdate.add(new MedicationsToUpdate(currentPrescription.getMedicineName(), itemLeft));
+                    }
                 } else {
-                    finalAmountForPayment += totalPrice;
-                    medicationsToUpdate.add(new MedicationsToUpdate(currentPrescription.getMedicineName(), itemLeft));
+                    System.out.println("Not enough dose available in inventory. Unable to add to checkout amount.");
                 }
-            }
-            else {
-                System.out.println("Not enough dose available in inventory. Unable to add to checkout amount.");
-            }
+
         }
-        System.out.println("Total medicine checkout amount - " + finalAmountForPayment);
+        }
+        else{
+            System.out.println("This is Incorrect prescription id for logged in patient.");
+        }
+        //System.out.println("Total medicine checkout amount - " + finalAmountForPayment);
         System.out.println("\n");
         String voucherID;
         if (finalAmountForPayment > 0) {
             PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
+            System.out.println("Total medicine checkout amount - " + finalAmountForPayment);
             int billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.M, finalAmountForPayment, " ");
             if (billingId != 0) {
                 for (MedicationsToUpdate medicationToUpdate: medicationsToUpdate) {
                     requestMedication.updatePharmaInvoice(medicationToUpdate.medicationName, medicationToUpdate.medicationLeft);
                 }
+                requestMedication.updatePrescription(current_PrescriptionId, billingId);
             }
+
         }
 
         return null;

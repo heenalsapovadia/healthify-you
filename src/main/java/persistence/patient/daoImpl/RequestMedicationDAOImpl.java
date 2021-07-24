@@ -92,4 +92,16 @@ public class RequestMedicationDAOImpl {
         }
     }
 
+    public void updatePrescription(int prescription_id, int billing_id) {
+        Connection conn = DatabaseConnection.getConnection();
+        String sql = "UPDATE prescription SET billing_id = ? where prescription_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, billing_id);
+            ps.setInt(2, prescription_id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.getLocalizedMessage();
+        }
+    }
+
 }

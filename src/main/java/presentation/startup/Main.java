@@ -28,10 +28,10 @@ public class Main {
 			LOGGER.log(Level.SEVERE, "Could not establish connection with database.");
 			System.exit(0);
 		}
-//		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
-//		applicationOutput.displayOutput();
-		Patient.setPatient("samtran@gmail.com");
-		RequestMedicationOutput output = new RequestMedicationOutput();
-		output.requestMedicationDetails();
+		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
+		applicationOutput.displayOutput();
+//		Patient.setPatient("samtran@gmail.com");
+//		RequestMedicationOutput output = new RequestMedicationOutput();
+//		output.requestMedicationDetails();
 	}
 }
