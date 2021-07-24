@@ -1,6 +1,8 @@
 package persistence.doctor.daoImpl;
 
 import persistence.doctor.model.Appointment;
+import persistence.doctor.model.PatientDetailsModel;
+import persistence.patient.utilImpl.ImmunizationBookingUtilImpl;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.ResultSet;
@@ -42,5 +44,24 @@ public class ScheduledaAppointmentsDAOImpl {
             System.out.println("SQL ERROR:"+e.getMessage());
         }
         return appointmentList;
+    }
+
+    public PatientDetailsModel getPatient(int patientId) {
+        Connection conn = DatabaseConnection.getConnection();
+        String sql = "select * from patients where patient_id = ?";
+        ImmunizationBookingUtilImpl immunizationBookingUtil = new ImmunizationBookingUtilImpl();
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, patientId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                Date dob = rs.getDate("patient_dob");
+                int age = immunizationBookingUtil.getAge(dob.toString());
+                return new PatientDetailsModel(rs.getString("patient_name"), age);
+            }
+        }
+        catch (SQLException e){
+            LOGGER.log(Level.SEVERE, e.toString());
+        }
+        return null;
     }
 }
