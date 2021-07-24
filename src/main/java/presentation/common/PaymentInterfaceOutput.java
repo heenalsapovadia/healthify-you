@@ -111,7 +111,7 @@ public class PaymentInterfaceOutput {
                 // if voucher is invalid
                 System.out.println("Invalid Voucher. Please pay through credit card.");
             }
-            System.out.println("Invalid Voucher. Please pay through credit card.");
+           // System.out.println("Invalid Voucher. Please pay through credit card.");
         }
         else {
             consoleObj.printError(CommonErrors.invalidSelection);
