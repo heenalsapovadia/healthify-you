@@ -6,7 +6,9 @@ import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -90,4 +92,26 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
         }
         return null;
     }
+
+	@Override
+	public Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList) {
+		Connection conn = DatabaseConnection.getConnection();
+        Map<Integer, String> labCheckMap = new HashMap<>();
+        String wildcard = "?,".repeat(healthCheckIdList.size());
+        String sql = "SELECT * FROM labcheck_plans WHERE checkup_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+        	for(int i=0; i<healthCheckIdList.size(); i++) {
+        		ps.setInt(i+1, healthCheckIdList.get(i));
+        	}
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                labCheckMap.put(rs.getInt("checkup_id"), rs.getString("checkup_name"));
+            }
+        }
+        catch (SQLException e){
+            LOGGER.log(Level.SEVERE, e.toString());
+            System.out.println("SQL ERROR:"+e.getMessage());
+        }
+        return labCheckMap;
+	}
 }

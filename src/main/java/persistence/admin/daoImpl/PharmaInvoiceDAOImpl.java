@@ -58,4 +58,42 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 		}
 		return invoicesMap;
 	}
+	
+	@Override
+	public List<PharmaInvoice> getPharmaSupplies(List<String> medicineNameList) {
+		Connection conn = DatabaseConnection.getConnection();
+		ResultSet rs = null;
+		List<PharmaInvoice> invoicesList = new ArrayList<>();
+		StringBuilder sql = new StringBuilder();
+		String wildcard = "?,".repeat(medicineNameList.size());
+		sql.append("select * from pharma_supplies where pharma_item_name in ("+ wildcard.substring(0, wildcard.length()-1)+")");
+		try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
+			for(int i=0; i<medicineNameList.size(); i++) {
+				ps.setString(i+1, medicineNameList.get(i));
+			}
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				PharmaInvoice invoice = new PharmaInvoice();
+				invoice.setInvoiceId(rs.getInt("pharma_billing_id"));
+				invoice.setPharmaName(rs.getString("pharma_name"));
+				invoice.setPharmaAddress(rs.getString("pharma_address"));
+				invoice.setPharmaContact(rs.getString("pharma_contact"));
+				invoice.setPaymentMode(rs.getString("payment_mode"));
+				invoice.setItemName(rs.getString("pharma_item_name"));
+				invoice.setItemDosage(rs.getString("pharma_item_dosage"));
+				invoice.setItemManufacturer(rs.getString("pharma_manufacturer"));
+				invoice.setItemQuantity(rs.getInt("pharma_item_quantity"));
+				invoice.setItemUnitPrice(rs.getDouble("pharma_item_unit_price"));
+				invoice.setDate(rs.getDate("pharma_bill_date"));
+				invoice.setTime(rs.getTime("pharma_bill_time"));
+				invoice.setExpiryDate(rs.getDate("expiry_date"));
+				invoice.setOrderedQuantity(rs.getInt("ordered_quantity"));
+				invoicesList.add(invoice);
+			}
+		}
+		catch(SQLException e) {
+			LOGGER.log(Level.SEVERE, e.toString());
+		}
+		return invoicesList;
+	}
 }

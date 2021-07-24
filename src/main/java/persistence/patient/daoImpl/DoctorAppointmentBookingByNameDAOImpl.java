@@ -44,11 +44,13 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
         if (!rS.next()) {
           return null;
         } else {
-          int doctorID = rS.getInt("doctor_id");
-          String doctorName = "";
-          doctorName = doctorName + rS.getString("first_name") + " " + rS.getString("last_name");
-          doctorName = doctorName.trim();
-          doctorIdentifierList.put(doctorID, doctorName);
+          do {
+            int doctorID = rS.getInt("doctor_id");
+            String doctorName = "";
+            doctorName = doctorName + rS.getString("first_name") + " " + rS.getString("last_name");
+            doctorName = doctorName.trim();
+            doctorIdentifierList.put(doctorID, doctorName);
+          } while(rS.next());
         }
         return doctorIdentifierList;
       } catch (SQLException se) {

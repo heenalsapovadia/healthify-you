@@ -3,6 +3,7 @@ package persistence.common.paymentInterface.dao;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
 import java.util.List;
+import java.util.Map;
 
 public interface PaymentInterfaceDAO {
 
@@ -21,4 +22,6 @@ public interface PaymentInterfaceDAO {
     public int getVoucherRedemptionPoints(int patientId);
 
     public int findMaxBillingId();
+    
+    public Map<Integer, PaymentInterface> getPaymentDetails(List<Integer> billingIdList);
 }
