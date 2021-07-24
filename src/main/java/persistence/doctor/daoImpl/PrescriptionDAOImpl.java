@@ -101,30 +101,29 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 	@Override
 	public List<Prescription> getPrescriptionByPatientId() {
 		List<Prescription> prescriptionList = new ArrayList<>();
-        Connection conn = DatabaseConnection.getConnection();
-        String sql = "SELECT * FROM prescription WHERE patient_id = ?";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, Patient.getPatient().getPatientId());
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+        Connection connection = DatabaseConnection.getConnection();
+        String sqlStatement = "SELECT * FROM prescription WHERE patient_id = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
+            preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
                 Prescription prescription = new Prescription();
-                prescription.setPrescription_id(rs.getInt("prescription_id"));
-                prescription.setAppointment_id(rs.getInt("appointment_id"));
-                prescription.setDoctor_id(rs.getInt("doctor_id"));
-                prescription.setDoctor_name(rs.getString("doctor_name"));
-                prescription.setPatient_id(rs.getInt("patient_id"));
-                prescription.setMedicine_name(rs.getString("medicine_name"));
-                prescription.setMorning(rs.getInt("morning_dose"));
-                prescription.setAfternoon(rs.getInt("afternoon_dose"));
-                prescription.setEvening(rs.getInt("evening_dose"));
-                prescription.setPrescriptionDate(rs.getDate("prescription_date"));
-                prescription.setBillingId(rs.getInt("billing_id"));
+                prescription.setPrescription_id(resultSet.getInt("prescription_id"));
+                prescription.setAppointment_id(resultSet.getInt("appointment_id"));
+                prescription.setDoctor_id(resultSet.getInt("doctor_id"));
+                prescription.setDoctor_name(resultSet.getString("doctor_name"));
+                prescription.setPatient_id(resultSet.getInt("patient_id"));
+                prescription.setMedicine_name(resultSet.getString("medicine_name"));
+                prescription.setMorning(resultSet.getInt("morning_dose"));
+                prescription.setAfternoon(resultSet.getInt("afternoon_dose"));
+                prescription.setEvening(resultSet.getInt("evening_dose"));
+                prescription.setPrescriptionDate(resultSet.getDate("prescription_date"));
+                prescription.setBillingId(resultSet.getInt("billing_id"));
                 prescriptionList.add(prescription);
             }
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException exception){
+            LOGGER.log(Level.SEVERE, exception.toString());
         }
         return prescriptionList;
 	}

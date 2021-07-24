@@ -195,10 +195,10 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 	@Override
 	public List<ImmunizationBooking> getVaccineIdByPatientId() {
 		List<ImmunizationBooking> bookingList = new ArrayList<>();
-		String sql = "SELECT * from immunization_appointments where patient_id = ?";
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
-			ps.setInt(1, Patient.getPatient().getPatientId());
-			resultSet = ps.executeQuery();
+		String sqlStatement = "SELECT * from immunization_appointments where patient_id = ?";
+		try (PreparedStatement preparedStatement = conn.prepareStatement(sqlStatement)) {
+			preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				ImmunizationBooking booking = new ImmunizationBooking();
 				booking.setAppointmentId(resultSet.getInt("appointment_id"));
@@ -209,8 +209,8 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 				booking.setVaccineId(resultSet.getInt("vaccine_id"));
 				bookingList.add(booking);
 			}
-		} catch (SQLException e) {
-			e.getLocalizedMessage();
+		} catch (SQLException exception) {
+			exception.getLocalizedMessage();
 		}
 		return bookingList;
 	}

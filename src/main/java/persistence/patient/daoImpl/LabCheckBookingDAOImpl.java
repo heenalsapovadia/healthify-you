@@ -95,22 +95,22 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
 	@Override
 	public Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList) {
-		Connection conn = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.getConnection();
         Map<Integer, String> labCheckMap = new HashMap<>();
         String wildcard = "?,".repeat(healthCheckIdList.size());
-        String sql = "SELECT * FROM labcheck_plans WHERE checkup_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
+        String sqlStatement = "SELECT * FROM labcheck_plans WHERE checkup_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
         	for(int i=0; i<healthCheckIdList.size(); i++) {
-        		ps.setInt(i+1, healthCheckIdList.get(i));
+        		preparedStatement.setInt(i+1, healthCheckIdList.get(i));
         	}
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                labCheckMap.put(rs.getInt("checkup_id"), rs.getString("checkup_name"));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                labCheckMap.put(resultSet.getInt("checkup_id"), resultSet.getString("checkup_name"));
             }
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException exception){
+            LOGGER.log(Level.SEVERE, exception.toString());
+            System.out.println("SQL ERROR:"+exception.getMessage());
         }
         return labCheckMap;
 	}
