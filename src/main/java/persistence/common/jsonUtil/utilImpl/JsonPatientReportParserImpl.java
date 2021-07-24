@@ -26,8 +26,8 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
     @Override
     public Map getPatientReport(int patientId) {
         try {
-            // Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
-            Object obj = new JSONParser().parse(new FileReader(new File(fileName)));
+            Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
+            // Object obj = new JSONParser().parse(new FileReader(new File(fileName)));
             JSONObject jo = (JSONObject) obj;
             JSONArray patients = (JSONArray) jo.get("patient");
 
