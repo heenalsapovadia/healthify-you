@@ -43,11 +43,12 @@ public class BookingDashboard {
             //Book an appointment with doctor
             DoctorAppointmentBookingOutput doctorAppointmentBookingOutput = new DoctorAppointmentBookingOutput();
             doctorAppointmentBookingOutput.dashboard();
+            sel = loadScreenOptions(consoleObj);
         }
         else if(sel == 2) {
             LabTestBookingOutput labTestBookingOutput = new LabTestBookingOutput();
-            //Patient patient = Patient.getPatient();
             labTestBookingOutput.dashboard();
+            sel = loadScreenOptions(consoleObj);
         }
         else if(sel == 3) {
           ImmunizationBookingOutput obj = new ImmunizationBookingOutput();
@@ -60,6 +61,7 @@ public class BookingDashboard {
             patient.getPatientEmail();
             BloodBankServiceOutput bloodBankServiceOutput = new BloodBankServiceOutput();
             bloodBankServiceOutput.bloodBankService(patient);
+            sel = loadScreenOptions(consoleObj);
 
         }
         else if(sel == 5) {

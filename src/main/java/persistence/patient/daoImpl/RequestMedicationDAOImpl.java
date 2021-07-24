@@ -3,6 +3,7 @@ package persistence.patient.daoImpl;
 import persistence.admin.model.PharmaInvoice;
 import persistence.doctor.daoImpl.AppointmentDAOImpl;
 import persistence.doctor.model.Prescription;
+import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.*;
@@ -19,9 +20,11 @@ public class RequestMedicationDAOImpl {
         public List<Prescription> getPrescriptionDetails(int prescriptionId) {
             List<Prescription> prescriptionList = new ArrayList<>();
             Connection conn = DatabaseConnection.getConnection();
-            String sql = "SELECT * FROM prescription WHERE prescription_id = ?";
+            String sql = "SELECT * FROM prescription WHERE prescription_id = ? and patient_id = ?";
+
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, prescriptionId);
+                ps.setInt(2, Patient.getPatient().getPatientId());
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     Prescription prescription = new Prescription();
@@ -48,6 +51,7 @@ public class RequestMedicationDAOImpl {
         ResultSet rs = null;
         PharmaInvoice invoice = null;
         StringBuilder sql = new StringBuilder();
+
         sql.append("select * from pharma_supplies where pharma_item_name = ?");
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
             ps.setString(1, medicationName);
@@ -82,6 +86,18 @@ public class RequestMedicationDAOImpl {
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, remainingQuantity);
             ps.setString(2, medication);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.getLocalizedMessage();
+        }
+    }
+
+    public void updatePrescription(int prescription_id, int billing_id) {
+        Connection conn = DatabaseConnection.getConnection();
+        String sql = "UPDATE prescription SET billing_id = ? where prescription_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, billing_id);
+            ps.setInt(2, prescription_id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.getLocalizedMessage();

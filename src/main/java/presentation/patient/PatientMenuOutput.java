@@ -54,6 +54,7 @@ public class PatientMenuOutput {
 
 		}
 		else if(sel == 2) {
+			//invoices
 			InvoiceOutput invoiceOutput = new InvoiceOutput();
 			invoiceOutput.displayInvoice();
 			sel = loadScreenOptions(consoleObj);
@@ -62,6 +63,7 @@ public class PatientMenuOutput {
 			//request medication
 			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
 			requestMedicationDetails.requestMedicationDetails();
+			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 4) {
 			ViewReportsOutput viewReports = new ViewReportsOutput();
