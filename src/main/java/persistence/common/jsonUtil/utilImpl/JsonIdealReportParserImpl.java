@@ -24,7 +24,8 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
     @Override
     public Map parseIdealReports() {
         try {
-            Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
+            // Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
+            Object obj = new JSONParser().parse(new FileReader(new File(fileName));
             return (JSONObject) obj;
         }
         catch (Exception e){
