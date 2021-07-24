@@ -51,7 +51,7 @@ public class ImmunizationBookingOutput {
   public void immunizationEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap) {
     print.printSingleNewLine();
     print.printScreenFields(ScreenFields.elibilitycheck);
-    
+
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
@@ -77,19 +77,21 @@ public class ImmunizationBookingOutput {
       print.printHeader(ScreenTitles.bookImmunization);
       if (dao.getSlots().isEmpty()) {
         print.printScreenFields("Sorry. No slots are available. Try again next week");
-      }
-      List<String> selection2 = dao.getSlots();
-      int sel = print.printSelection(selection2);
-      if (sel != 0) {
-        String slot = dao.getSlots().get(sel - 1);
-        if (dao.assignPatientinDatabase(dao.getSlots().get(sel - 1), vaccineId)) {
-          confirmationStatus(slot);
-        }
       } else {
-        print.printScreenFields(CommonErrors.errorMessage);
+        List<String> selection2 = dao.getSlots();
+        int sel = print.printSelection(selection2);
+        if (sel != 0) {
+          String slot = dao.getSlots().get(sel - 1);
+          if (dao.assignPatientinDatabase(dao.getSlots().get(sel - 1), vaccineId)) {
+            confirmationStatus(slot);
+          }
+        } else {
+          print.printScreenFields(CommonErrors.errorMessage);
+        }
       }
+
     }
-    
+
   }
 
   private void confirmationStatus(String slot) {
