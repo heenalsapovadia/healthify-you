@@ -26,18 +26,18 @@ public class PatientMenuOutput {
 	
 	public void displayOutput() throws SQLException {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.patientDashboard);
+		consoleObj.printHeader(ScreenTitles.PATIENT_DASHBOARD);
 		loadScreenOptions(consoleObj);
 	}
 	
 	private List<String> getSelectionOptions() {
 		List<String> selectionOptions = new ArrayList<>();
-		selectionOptions.add(ScreenFields.book);
-		selectionOptions.add(ScreenFields.invoices);
-		selectionOptions.add(ScreenFields.requestMedication);
+		selectionOptions.add(ScreenFields.BOOK);
+		selectionOptions.add(ScreenFields.INVOICES);
+		selectionOptions.add(ScreenFields.REQUEST_MEDICATION);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS);
-		selectionOptions.add(ScreenFields.vouchers);
-		selectionOptions.add(ScreenFields.logout);
+		selectionOptions.add(ScreenFields.VOUCHERS);
+		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
 	}
 	
@@ -53,10 +53,14 @@ public class PatientMenuOutput {
 
 		}
 		else if(sel == 2) {
-			//invoices
+			InvoiceOutput invoiceOutput = new InvoiceOutput();
+			invoiceOutput.displayInvoice();
+			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 3) {
 			//request medication
+			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
+			requestMedicationDetails.requestMedicationDetails();
 		}
 		else if(sel == 4) {
 			ViewReportsOutput viewReports = new ViewReportsOutput();
@@ -69,8 +73,8 @@ public class PatientMenuOutput {
 			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 6) {
-			System.out.println(ScreenFields.logoutMessage);
-			System.out.println(ScreenFields.applicationTerminationMessage);
+			System.out.println(ScreenFields.LOGOUT_MESSAGE);
+			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
 			System.exit(0);
 		}
 		else {

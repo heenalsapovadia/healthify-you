@@ -24,20 +24,20 @@ public class LabCheckUtilImpl implements LabCheckUtil {
         LabCheckDAO labCheckDao = new LabCheckDAOImpl();
         List<LabCheck> labCheckList = labCheckDao.getAvailablePlans();
         for(LabCheck labCheck : labCheckList)
-            labCheckMap.put(labCheck.getCheckup_id(), labCheck);
+            labCheckMap.put(labCheck.getCheckupId(), labCheck);
         return labCheckList;
     }
 
     @Override
     public void fetchDetails(){
         Scanner sc = new Scanner(System.in);
-        System.out.print(ScreenFields.checkId + CommonConstants.commonTextSeparator);
+        System.out.print(ScreenFields.HEALTH_CHECK_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
         int checkup_id = sc.nextInt();
         while(!labCheckMap.containsKey(checkup_id)) {
-            System.out.println(CommonErrors.invalidCheckUpId+CommonConstants.commonTextSeparator);
+            System.out.println(CommonErrors.INVALID_CHECK_UP_ID +CommonConstants.COMMON_TEXT_SEPARATOR);
             checkup_id = sc.nextInt();
         }
-        System.out.println("------------ "+"Details of "+labCheckMap.get(checkup_id).getCheckup_name() + " ------------");
+        System.out.println("------------ "+"Details of "+labCheckMap.get(checkup_id).getCheckupName() + " ------------");
         System.out.println("Description : "+labCheckMap.get(checkup_id).getDescription());
         System.out.println("Charges : "+labCheckMap.get(checkup_id).getCharges());
     }

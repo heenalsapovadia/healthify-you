@@ -1,62 +1,67 @@
 package persistence.doctor.model;
 
+import java.sql.Date;
+
 public class Prescription {
-    int prescription_id;
-    int appointment_id;
-    int patient_id;
-    int doctor_id;
-    String doctor_name;
-    String medicine_name;
-    int morning;
-    int afternoon;
-    int evening;
+    private int prescriptionId;
+    private int appointmentId;
+    private int patientId;
+    private int doctorId;
+    private String doctorName;
+    private String medicineName;
+    private int morning;
+    private int afternoon;
+    private int evening;
+    private int dosageDays;
+    private Date date;
+    private int billingId;
 
-    public int getPrescription_id() {
-        return prescription_id;
+    public int getPrescriptionId() {
+        return prescriptionId;
     }
 
-    public void setPrescription_id(int prescription_id) {
-        this.prescription_id = prescription_id;
+    public void setPrescriptionId(int prescriptionId) {
+        this.prescriptionId = prescriptionId;
     }
 
-    public int getAppointment_id() {
-        return appointment_id;
+    public int getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setAppointment_id(int appointment_id) {
-        this.appointment_id = appointment_id;
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
-    public int getPatient_id() {
-        return patient_id;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(int patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
-    public String getDoctor_name() {
-        return doctor_name;
+    public String getDoctorName() {
+        return doctorName;
     }
 
-    public void setDoctor_name(String doctor_name) {
-        this.doctor_name = doctor_name;
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 
-    public String getMedicine_name() {
-        return medicine_name;
+    public String getMedicineName() {
+        return medicineName;
     }
 
-    public void setMedicine_name(String medicine_name) {
-        this.medicine_name = medicine_name;
+    public void setMedicineName(String medicineName) {
+        this.medicineName = medicineName;
     }
 
     public int getMorning() {
@@ -83,4 +88,27 @@ public class Prescription {
         this.evening = evening;
     }
 
+    public int getDosageDays() {
+        return dosageDays;
+    }
+
+    public void setDosageDays(int dosageDays) {
+        this.dosageDays = dosageDays;
+    }
+
+    public int getBillingId() {
+        return billingId;
+    }
+
+    public void setBillingId(int billingId) {
+        this.billingId = billingId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

@@ -17,23 +17,23 @@ public class DoctorAvailabilityDAOImpl implements DoctorAvailabilityDAO {
 
     @Override
     public List<String> getAvailabilityByDoctor(int doctorId) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
 
         List<String> daysList = new ArrayList<>();
 
         String sql = "SELECT * FROM doc_availability WHERE doctor_id = ?";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, doctorId);
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, doctorId);
 
-            ResultSet rs = ps.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                daysList.add(rs.getString("weekday"));
+            while (resultSet.next()) {
+                daysList.add(resultSet.getString("weekday"));
             }
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException sqlException){
+            LOGGER.log(Level.SEVERE, sqlException.toString());
+            System.out.println("SQL ERROR:"+sqlException.getMessage());
         }
         return daysList;
     }

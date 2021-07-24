@@ -7,12 +7,19 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <pre>
+ * This is class is responsible for bootstrapping the application.
+ * </pre>
+ * 
+ * @author Gurleen Saluja
+ *
+ */
 public class Main {
 
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
 	public static void main(String[] args) throws SQLException {
-		/* Used for Testing. Refer this while making connections in all features. */
 		DatabaseConnection.loadDatabaseConnection();
 		Connection conn = DatabaseConnection.getConnection();
 		if(conn == null) {

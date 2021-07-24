@@ -19,10 +19,10 @@ public class LabCheckBookingUtilImpl implements LabCheckBookingUtil {
     public void makeBooking(int healthCheckId, Date bookingDate, int billingId) {
         LabCheckBooking labCheckBooking = new LabCheckBooking();
 
-        labCheckBooking.setPatient_id(Patient.getPatient().getPatientId());
-        labCheckBooking.setHealthcheck_id(healthCheckId);
-        labCheckBooking.setBooked_for_date(bookingDate);
-        labCheckBooking.setBilling_id(billingId);
+        labCheckBooking.setPatientId(Patient.getPatient().getPatientId());
+        labCheckBooking.setHealthcheckId(healthCheckId);
+        labCheckBooking.setBookedForDate(bookingDate);
+        labCheckBooking.setBillingId(billingId);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);

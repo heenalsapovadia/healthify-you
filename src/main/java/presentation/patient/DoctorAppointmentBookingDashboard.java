@@ -29,7 +29,7 @@ public class DoctorAppointmentBookingDashboard {
     selectionOptions.add("Visit a specific doctor");
     selectionOptions.add("Book an appointment with doctor based on specialization");
     selectionOptions.add("Logout");
-    consoleObj.printScreenFields(ScreenFields.selection);
+    consoleObj.printScreenFields(ScreenFields.SELECTION);
     int choice = consoleObj.printSelection(selectionOptions);
 
     if (choice == 1) {
@@ -41,7 +41,8 @@ public class DoctorAppointmentBookingDashboard {
         doctorAppointmentByNameOutput.displayOutput();
         return;
     } else if (choice == 3) {
-        //add code
+        DoctorAppointmentBySpecializationOutput doctorAppointmentBySpecializationOutput = new DoctorAppointmentBySpecializationOutput();
+        doctorAppointmentBySpecializationOutput.displayOutput();
         return;
     } else if (choice == 4) {
         return;

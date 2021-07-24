@@ -14,7 +14,7 @@ public class InvoiceOutput {
 	
 	public void displayInvoice(){
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.invoice);
+		consoleObj.printHeader(ScreenTitles.INVOICES);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
@@ -30,7 +30,7 @@ public class InvoiceOutput {
 	}
 	
 	private void parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		try {
 			Date date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
@@ -39,7 +39,7 @@ public class InvoiceOutput {
 			else {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				System.out.println("Loading all receipts for the date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
+				System.out.println("Fetching invoices for date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
 				PharmaInvoiceOutput output = new PharmaInvoiceOutput();
 				output.displayInvoice(date);
 			}
@@ -52,8 +52,8 @@ public class InvoiceOutput {
 	
 	private List<String> getSelectionOptions() {
 		List<String> selectionOptions = new ArrayList<>();
-		selectionOptions.add(ScreenFields.pharmSuppliesByDate);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.PHARMA_SUPPLIES_BY_DATE);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

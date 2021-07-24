@@ -10,8 +10,6 @@ import persistence.doctor.model.Appointment;
 import presentation.common.CommonConstants;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenTitles;
-import presentation.startup.DatabaseConnection;
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -22,9 +20,9 @@ public class DoctorAppointmentBookingOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     public void dashboard() throws SQLException {
-        consoleObj.printHeader(ScreenTitles.doctorAppointment);
+        consoleObj.printHeader(ScreenTitles.DOCTOR_APPOINTMENT);
 
-        List<String> options = Arrays.asList(ScreenTitles.bookAppointment, ScreenTitles.rescheduleAppointment);
+        List<String> options = Arrays.asList(ScreenTitles.BOOK_APPOINTMENT, ScreenTitles.RESCHEDULE_APPOINTMENT);
         int option = consoleObj.printSelection(options);
 
         switch (option){
@@ -32,7 +30,6 @@ public class DoctorAppointmentBookingOutput {
                 DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
                 doctorAppointmentBookingDashboard.display();
                 break;
-
             case 2:
                 rescheduleAppointment();
                 break;
@@ -40,7 +37,7 @@ public class DoctorAppointmentBookingOutput {
     }
 
     public void rescheduleAppointment(){
-        consoleObj.printHeader(ScreenTitles.rescheduleAppointment);
+        consoleObj.printHeader(ScreenTitles.RESCHEDULE_APPOINTMENT);
 
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
         List<Appointment> appointmentList = appointmentDAO.fetchAppointmentsForPatient();
@@ -60,7 +57,7 @@ public class DoctorAppointmentBookingOutput {
 
         consoleObj.printSingleNewLine();
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         List<String> daysAvailable = doctorAvailability(appointmentToReschedule.getDoctor_id());
         List<String> datesOptions = datesGenerator(daysAvailable, 0);
         System.out.println("Doctor is available on the following dates : ");
@@ -74,8 +71,8 @@ public class DoctorAppointmentBookingOutput {
         consoleObj.printSingleNewLine();
         System.out.println("Do you want dates for the week after ?");
         System.out.println("1. Yes\n2. No");
-        if(sc.hasNextInt()) {
-            int option = sc.nextInt();
+        if(scanner.hasNextInt()) {
+            int option = scanner.nextInt();
             if (option == 1) {
                 List<String> datesForNextWeek = datesGenerator(daysAvailable, 1);
                 datesOptions.addAll(datesForNextWeek);
@@ -83,7 +80,7 @@ public class DoctorAppointmentBookingOutput {
         }
         int dateOption = consoleObj.printSelection(datesOptions);
         Date rescheduleDate = Date.valueOf(datesOptions.get(dateOption-1));
-        System.out.println("Rescheduling to Date"+CommonConstants.commonTextSeparator+rescheduleDate);
+        System.out.println("Rescheduling to Date"+CommonConstants.COMMON_TEXT_SEPARATOR+rescheduleDate);
         consoleObj.printSingleNewLine();
 
         appointmentToReschedule.setRescheduled_date(rescheduleDate);
@@ -92,12 +89,12 @@ public class DoctorAppointmentBookingOutput {
     }
 
     public int validateAppointmentIdToReschedule(Map<Integer, Appointment> appointmentMap){
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int appointmentId;
         while(true) {
             System.out.print("Enter appointment Id to reschedule : ");
-            if (sc.hasNextInt()) {
-                appointmentId = sc.nextInt();
+            if (scanner.hasNextInt()) {
+                appointmentId = scanner.nextInt();
                 if(appointmentMap.containsKey(appointmentId))
                     break;
                 else

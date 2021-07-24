@@ -5,14 +5,6 @@ package presentation.patient;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import org.json.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import persistence.common.jsonUtil.util.JsonPatientReportParser;
-import persistence.common.jsonUtil.utilImpl.JsonPatientReportParserImpl;
-import persistence.patient.model.Patient;
 import persistence.patient.util.ViewReportsUtil;
 import persistence.patient.utilImpl.ViewReportsUtilImpl;
 import presentation.common.CommonErrors;
@@ -22,11 +14,7 @@ import presentation.common.ScreenTitles;
 
 /**
  * <pre>
- * Displays medical reports of patient.
- * The reports can be viewed by
- * 	1. A particular date
- * 	2. A particular test
- * 	3. A date range
+ * Displays medical reports of patient by a particular test.
  * </pre>
  * 
  * @author Gurleen Saluja
@@ -78,7 +66,7 @@ public class ViewReportsByTestOutput {
 		selectionOptions.add(ScreenFields.LIVER_TEST);
 		selectionOptions.add(ScreenFields.VISION_TEST);
 		selectionOptions.add(ScreenFields.COVID_TEST);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

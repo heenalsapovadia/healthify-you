@@ -21,15 +21,15 @@ public class DoctorMenuOutput {
     }
 
     public void displayOutput() {
-        consoleObj.printHeader(ScreenTitles.doctorDashboard);
+        consoleObj.printHeader(ScreenTitles.DOCTOR_DASHBOARD);
         loadScreenOptions();
     }
 
     private List<String> getSelectionOptions() {
         List<String> selectionOptions = new ArrayList<>();
-        selectionOptions.add(ScreenFields.prescribeMedicine);
-        selectionOptions.add(ScreenFields.viewAppointment);
-        selectionOptions.add(ScreenFields.logout);
+        selectionOptions.add(ScreenFields.PRESCRIBE_MEDICATION);
+        selectionOptions.add(ScreenFields.VIEW_APPOINTMENTS);
+        selectionOptions.add(ScreenFields.LOGOUT);
         return selectionOptions;
     }
 
@@ -47,8 +47,8 @@ public class DoctorMenuOutput {
             scheduledAppointmentsOutput.scheduledAppointmentsDetails();
         }
         else if(option == 3) {
-            System.out.println(ScreenFields.logoutMessage);
-            System.out.println(ScreenFields.applicationTerminationMessage);
+            System.out.println(ScreenFields.LOGOUT_MESSAGE);
+            System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
             System.exit(0);
         }
         else {

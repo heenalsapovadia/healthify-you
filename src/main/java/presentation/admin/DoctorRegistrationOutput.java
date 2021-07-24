@@ -29,7 +29,7 @@ public class DoctorRegistrationOutput {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
         DoctorRegistrationUtilImpl doctorRegistrationUtilImpl = new DoctorRegistrationUtilImpl();
 
-        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+CommonConstants.titleSpace+CommonConstants.titleSpace+doctorRegistration);
+        System.out.println(CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+doctorRegistration);
 
         System.out.println();
         System.out.println("Please enter the details below:\n");
