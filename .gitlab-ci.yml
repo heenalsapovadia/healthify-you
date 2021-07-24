@@ -65,7 +65,7 @@ deployTest:
   script:
     - scp -r -o StrictHostKeyChecking=no /home/gitlab-runner/.m2/repository/com/healthifyyou/healthifyyou/0.0.1-SNAPSHOT/healthifyyou-0.0.1-SNAPSHOT-jar-with-dependencies.jar "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
     - scp -r -o StrictHostKeyChecking=no "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/patientHistory.json"
-    - scp -r -o StrictHostKeyChecking=no "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/idealReports.json"
+    - scp -r -o StrictHostKeyChecking=no "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/IdealReports.json"
   environment:
     name: Production
   only:
