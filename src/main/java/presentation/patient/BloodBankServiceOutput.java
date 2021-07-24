@@ -13,7 +13,7 @@ import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 import persistence.patient.utilImpl.BloodBankServiceUtilImpl;
 
-public class BloodBankServiceOutput  {
+public class BloodBankServiceOutput {
 
     public static String bloodBankService(Patient patient) {
         Scanner sc = new Scanner(System.in);
