@@ -26,7 +26,7 @@ public class PatientMenuOutput {
 	
 	public void displayOutput() throws SQLException {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.PATIENT_DASHBOARD);
+
 		loadScreenOptions(consoleObj);
 	}
 	
@@ -42,6 +42,7 @@ public class PatientMenuOutput {
 	}
 	
 	private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
+		consoleObj.printHeader(ScreenTitles.PATIENT_DASHBOARD);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {

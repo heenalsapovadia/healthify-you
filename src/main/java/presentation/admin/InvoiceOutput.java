@@ -14,10 +14,10 @@ public class InvoiceOutput {
 	
 	public void displayInvoice(){
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.INVOICES);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
+			consoleObj.printHeader(ScreenTitles.INVOICES);
 			sel = consoleObj.printSelection(selectionOptions);
 			switch(sel) {
 				case 1: parseDateInput(consoleObj, new Scanner(System.in));

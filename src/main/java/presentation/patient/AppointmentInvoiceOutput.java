@@ -33,7 +33,6 @@ public class AppointmentInvoiceOutput {
 		invoice = invoiceUtil.generateAppointmentInvoice(date.toString(), invoice);
 		List<Appointment> appointments = invoice.getAppointmentList();
 		if(appointments != null && !appointments.isEmpty()) {
-			consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
 			loadScreen(consoleObj, invoice, appointments);
 		}
 		else {
@@ -50,6 +49,7 @@ public class AppointmentInvoiceOutput {
 	 * @param invoice
 	 */
 	private void loadScreen(PrintToConsole consoleObj, Invoice invoice, List<Appointment> appointments) {
+		consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());

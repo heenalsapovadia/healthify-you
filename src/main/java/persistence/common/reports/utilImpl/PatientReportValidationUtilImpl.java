@@ -44,6 +44,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
 
     @Override
     public boolean validateBloodReports(){
+        if(patientReports == null || patientReports.isEmpty()) return true;
         JSONArray tests = (JSONArray) patientReports.get("tests");
         List<Blood> bloodReportsList = jsonPatientReportParser.parseBloodReports((Map) tests.get(0));
         Map bloodPanel = (Map) idealReports.get("Blood");
@@ -66,6 +67,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
 
     @Override
     public boolean validateKidneyReports(){
+        if(patientReports == null || patientReports.isEmpty()) return true;
         JSONArray tests = (JSONArray) patientReports.get("tests");
         List<Kidney> kidneyReportsList = jsonPatientReportParser.parseKidneyReports((Map) tests.get(0));
         Map kidneyPanel = (Map) idealReports.get("KidneyFunction");
@@ -87,6 +89,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
 
     @Override
     public boolean validateLiverReports(){
+        if(patientReports == null || patientReports.isEmpty()) return true;
         JSONArray tests = (JSONArray) patientReports.get("tests");
         List<Liver> liverReportsList = jsonPatientReportParser.parseLiverReports((Map) tests.get(0));
         Map liverPanel = (Map) idealReports.get("LiverFunction");
@@ -108,6 +111,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
 
     @Override
     public boolean validateEyeReports(){
+        if(patientReports == null || patientReports.isEmpty()) return true;
         JSONArray tests = (JSONArray) patientReports.get("tests");
         List<Vision> visionReportsList = jsonPatientReportParser.parseEyeReports((Map) tests.get(0));
         LocalDate today = LocalDate.now();

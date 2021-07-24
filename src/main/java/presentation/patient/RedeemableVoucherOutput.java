@@ -31,12 +31,12 @@ public class RedeemableVoucherOutput {
 	
 	public void displayOutput() {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.REDEEMABLE_VOUCHERS);
 		RedeemableVoucher voucher = fetchAvailablePoints();
 		consoleObj.printSingleNewLine();
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
+			consoleObj.printHeader(ScreenTitles.REDEEMABLE_VOUCHERS);
 			sel = consoleObj.printSelection(selectionOptions);
 			switch(sel) {
 				case 1: consoleObj.printSingleNewLine();
