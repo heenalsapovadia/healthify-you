@@ -47,11 +47,7 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
 
     BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
     List<BloodBankRecommendationDAOImpl.Order> orders = new ArrayList<>();
-    try {
-      orders = bloodBankRecommendationDAOImpl.fetchBloodGroupList(bloodGroup);
-    } catch (SQLException throwables) {
-        return null;
-    }
+    orders = bloodBankRecommendationDAOImpl.fetchBloodGroupList(bloodGroup);
 
     if (orders == null) {
       return null;

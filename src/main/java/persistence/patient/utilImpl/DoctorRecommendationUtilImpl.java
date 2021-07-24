@@ -44,11 +44,8 @@ public class DoctorRecommendationUtilImpl {
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList();
-        try {
-            doctorIDList = doctorRecommendationDAOImpl.fetchDoctorList(symptom);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
+        doctorIDList = doctorRecommendationDAOImpl.fetchDoctorList(symptom);
 
         if(support <= doctorIDList.size()) {
             TreeMap<Integer, Integer> rec = new TreeMap<Integer, Integer>();    /* map to store key and value pairs of doctor_id and their frequencies respectively */
