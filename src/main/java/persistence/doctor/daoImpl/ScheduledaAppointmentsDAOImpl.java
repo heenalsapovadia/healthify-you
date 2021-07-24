@@ -1,6 +1,7 @@
 package persistence.doctor.daoImpl;
 
 import persistence.doctor.model.Appointment;
+import persistence.doctor.model.Doctor;
 import persistence.doctor.model.PatientDetailsModel;
 import persistence.patient.utilImpl.ImmunizationBookingUtilImpl;
 import presentation.startup.DatabaseConnection;
@@ -23,9 +24,10 @@ public class ScheduledaAppointmentsDAOImpl {
     public List<Appointment> getAppointmentsDetails(Date appoitmentDate) {
         List<Appointment> appointmentList = new ArrayList<>();
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "SELECT * FROM doctor_appointment WHERE booked_on_date = ?";
+        String sql = "SELECT * FROM doctor_appointment WHERE booked_for_date = ? and doctor_id = ?";
         try( PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setDate(1, (java.sql.Date) appoitmentDate);
+            ps.setInt(2, Doctor.getDoctor().getDoctor_id());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appointment appointment = new Appointment();
@@ -64,4 +66,5 @@ public class ScheduledaAppointmentsDAOImpl {
         }
         return null;
     }
+
 }

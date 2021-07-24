@@ -1,5 +1,7 @@
 package presentation.startup;
 
+import presentation.doctor.ScheduledAppointmentsOutput;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;

@@ -94,4 +94,7 @@ public class ScreenTitles {
 	public static final String VIEW_LIVER_REPORTS = "Liver Test Report";
 	public static final String VIEW_VISION_REPORTS = "Vision Test Report";
 	public static final String VIEW_COVID_REPORTS = "Covid Test Report";
+
+	/* Scheduled Appointments */
+	public static final String scheduledAppointments = "Scheduled Appointments";
 }
