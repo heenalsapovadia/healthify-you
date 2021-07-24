@@ -39,7 +39,7 @@ public class PharmaInvoiceOutput {
 		Map<String, List<PharmaInvoice>> invoicesMap = invoiceDAO.getInvoiceDetailsByDate(date);
 		List<Double> pricesList;
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.pharmaInvoice);
+		consoleObj.printHeader(ScreenTitles.PHARMA_INVOICE);
 		if(invoicesMap != null && !invoicesMap.isEmpty()) {
 			for(Map.Entry<String, List<PharmaInvoice>> entry: invoicesMap.entrySet()) {
 				loadTableHeader(consoleObj, entry.getValue().get(0), fetchAllReceipts(entry.getValue()));
@@ -47,17 +47,17 @@ public class PharmaInvoiceOutput {
 				for(PharmaInvoice invoice: entry.getValue()) {
 					Double totalPrice = invoiceUtil.calculateTotalAmount(invoice.getItemUnitPrice(), invoice.getItemQuantity());
 					System.out.println(
-							invoice.getItemName()+CommonConstants.singleSpace
-							+ invoice.getItemDosage()+CommonConstants.singleSpace
+							invoice.getItemName()+CommonConstants.SINGLE_SPACE
+							+ invoice.getItemDosage()+CommonConstants.SINGLE_SPACE
 							+ invoice.getItemManufacturer()+"\t\t\t\t"
 							+ invoice.getItemQuantity()+"\t\t"
 							+ invoice.getItemUnitPrice()+"\t\t"
-							+ totalPrice+CommonConstants.singleSpace);
+							+ totalPrice+CommonConstants.SINGLE_SPACE);
 					pricesList.add(totalPrice);
 				}
 				consoleObj.printLineSeparator();
 				Double grandTotal = invoiceUtil.calculateGrandTotalAmount(pricesList);
-				System.out.println(ScreenFields.grandTotal+CommonConstants.commonTextSeparator+grandTotal);
+				System.out.println(ScreenFields.GRAND_TOTAL+CommonConstants.COMMON_TEXT_SEPARATOR+grandTotal);
 				consoleObj.printLineSeparator();
 			}
 		}
@@ -80,25 +80,25 @@ public class PharmaInvoiceOutput {
 	 */
 	private void loadTableHeader(PrintToConsole consoleObj, PharmaInvoice invoice, List<Integer> receiptList) {
 		Iterator<Integer> itr = receiptList.iterator();
-		System.out.print(ScreenFields.receiptNo+CommonConstants.commonTextSeparator);
+		System.out.print(ScreenFields.RECEIPT_NO+CommonConstants.COMMON_TEXT_SEPARATOR);
 		while(itr.hasNext()) {
 			System.out.print(itr.next());
 			if(itr.hasNext()) {
-				System.out.print(CommonConstants.commaDelimiter+CommonConstants.singleSpace);
+				System.out.print(CommonConstants.COMMA_DELIMITER+CommonConstants.SINGLE_SPACE);
 			}
 		}
 		System.out.println();
-		System.out.println(ScreenFields.pharmaName+CommonConstants.commonTextSeparator+invoice.getPharmaName());
-		System.out.println(ScreenFields.address+CommonConstants.singleSpace+CommonConstants.commonTextSeparator+invoice.getPharmaAddress());
-		System.out.println(ScreenFields.mop+CommonConstants.commonTextSeparator+PaymentMode.getMop(invoice.getPaymentMode()).toString());
-		System.out.println(ScreenFields.dateTime+CommonConstants.commonTextSeparator+invoice.getDate()+CommonConstants.commaDelimiter+CommonConstants.singleSpace+invoice.getTime());
-		System.out.println(ScreenFields.contact+CommonConstants.commonTextSeparator+invoice.getPharmaContact());
+		System.out.println(ScreenFields.PHARMA_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPharmaName());
+		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPharmaAddress());
+		System.out.println(ScreenFields.MOP+CommonConstants.COMMON_TEXT_SEPARATOR+PaymentMode.getMop(invoice.getPaymentMode()).toString());
+		System.out.println(ScreenFields.DATETIME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getDate()+CommonConstants.COMMA_DELIMITER+CommonConstants.SINGLE_SPACE+invoice.getTime());
+		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPharmaContact());
 		consoleObj.printLineSeparator();
 		System.out.println(
-				ScreenFields.description+CommonConstants.singleSpace+ScreenFields.descriptionExtras+CommonConstants.singleTab
-				+ ScreenFields.quantity+CommonConstants.singleTab
-				+ ScreenFields.unitprice+CommonConstants.singleTab
-				+ ScreenFields.total+CommonConstants.singleTab);
+				ScreenFields.DESCRIPTION+CommonConstants.SINGLE_SPACE+ScreenFields.DESCRIPTION_EXTRAS+CommonConstants.SINGLE_TAB
+				+ ScreenFields.QUANTITY+CommonConstants.SINGLE_TAB
+				+ ScreenFields.UNIT_PRICE+CommonConstants.SINGLE_TAB
+				+ ScreenFields.TOTAL+CommonConstants.SINGLE_TAB);
 		consoleObj.printLineSeparator();
 	}
 }

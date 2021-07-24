@@ -30,7 +30,7 @@ public class DoctorRecommendationOutput {
     public void recommendDoctor() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+CommonConstants.titleSpace+CommonConstants.titleSpace+doctorRecommendation);
+        System.out.println(CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+doctorRecommendation);
 
         int choice = 0;
         System.out.println();
@@ -42,7 +42,7 @@ public class DoctorRecommendationOutput {
             System.out.println(selectionOption1);
             System.out.println(selectionOption2);
 
-            System.out.println(selection);
+            System.out.println(SELECTION);
             choice = sc.nextInt();
 
             if (choice == 1) {

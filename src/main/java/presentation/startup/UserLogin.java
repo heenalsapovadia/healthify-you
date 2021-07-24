@@ -45,7 +45,7 @@ public class UserLogin {
     print.printDoubleNewlines();
     int sel;
     while (true) {
-      List<String> selectionOptions = Arrays.asList(ScreenFields.proceed, "Patient Sign Up", ScreenFields.exit);
+      List<String> selectionOptions = Arrays.asList(ScreenFields.proceed, "Patient Sign Up", ScreenFields.EXIT);
       sel = print.printSelection(selectionOptions);
       switch (sel) {
       case 1:
@@ -100,7 +100,7 @@ public class UserLogin {
         break;
         
       case 3:
-        print.printScreenFields(ScreenFields.exit);
+        print.printScreenFields(ScreenFields.EXIT);
         return false;
 
       }

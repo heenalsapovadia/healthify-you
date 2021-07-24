@@ -15,16 +15,16 @@ public class BloodBankServiceOutput  {
         Scanner sc = new Scanner(System.in);
         String bloodGroupInput;
         for ( int i = 0; i < 100; i++ )
-            System.out.print(CommonConstants.headingChar);
+            System.out.print(CommonConstants.HEADING_CHAR);
         System.out.println();
-        System.out.println(CommonConstants.titleSpace + CommonConstants.titleSpace + ScreenTitles.bloodBankService + CommonConstants.titleSpace);
+        System.out.println(CommonConstants.TITLE_SPACE + CommonConstants.TITLE_SPACE + ScreenTitles.bloodBankService + CommonConstants.TITLE_SPACE);
         for ( int i = 0; i < 100; i++ )
-            System.out.print(CommonConstants.headingChar);
+            System.out.print(CommonConstants.HEADING_CHAR);
         System.out.println();
         int userSelection = 0;
         System.out.println(ScreenFields.registerPatientForBloodDonation);
         System.out.println(ScreenFields.viewDonationHistory);
-        System.out.println(ScreenFields.exit);
+        System.out.println(ScreenFields.EXIT);
         System.out.println(ScreenFields.enterYourSelection);
         userSelection = sc.nextInt();
         
@@ -74,8 +74,8 @@ public class BloodBankServiceOutput  {
             BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
             List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
             for ( BloodBankService service : donations ) {
-                System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + "Blood group" + CommonConstants.singleTab);
-                System.out.println(service.getPatientId() + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
+                System.out.println("Patient-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Donation-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Date" + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Blood group" + CommonConstants.SINGLE_TAB);
+                System.out.println(service.getPatientId() + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getDonationId() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getDate() + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + service.getBloodGrp());
             }
         }
         if (userSelection == 3) {

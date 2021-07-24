@@ -95,7 +95,7 @@ public class DoctorAppointmentBySpecializationOutput {
                 if(appointmentID != null && !appointmentID.isEmpty()) {
                   System.out.println("Appointment booked successfully!");
 
-                  List<String> options = Arrays.asList("Continue For Payment", ScreenFields.exit);
+                  List<String> options = Arrays.asList("Continue For Payment", ScreenFields.EXIT);
                   int option = consoleObj.printSelection(options);
 
                   String inClause = "";

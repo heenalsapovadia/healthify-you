@@ -30,7 +30,7 @@ public class InvoiceOutput {
 	
 	public void displayInvoice(){
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.invoice);
+		consoleObj.printHeader(ScreenTitles.INVOICES);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
@@ -56,7 +56,7 @@ public class InvoiceOutput {
 	}
 	
 	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
 			date = Date.valueOf(sc.next());
@@ -77,7 +77,7 @@ public class InvoiceOutput {
 		selectionOptions.add(ScreenFields.PHARMA_BY_DATE);
 		selectionOptions.add(ScreenFields.IMMUNIZATION_BY_DATE);
 		selectionOptions.add(ScreenFields.LAB_TEST_BY_DATE);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

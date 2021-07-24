@@ -14,24 +14,24 @@ public class ScreenFields {
   private ScreenFields() {}
 	
 	/* Pharma invoice screen fields */
-	public static final String receiptNo = "Receipt No.";
-	public static final String pharmaName = "Pharma Name";
-	public static final String address = "Address";
-	public static final String contact = "Contact No.";
-	public static final String dateTime = "Date/Time";
-	public static final String mop = "Payment Mode";
-	public static final String description = "Description";
-	public static final String quantity = "Quantity";
-	public static final String unitprice = "Unit Price";
-	public static final String total = "Total Amount";
-	public static final String grandTotal = "Grand Total";
-	public static final String descriptionExtras = "(Name, Dosage, Manufacturer)";
+	public static final String RECEIPT_NO = "Receipt No.";
+	public static final String PHARMA_NAME = "Pharma Name";
+	public static final String ADDRESS = "Address";
+	public static final String CONTACT = "Contact No.";
+	public static final String DATETIME = "Date/Time";
+	public static final String MOP = "Payment Mode";
+	public static final String DESCRIPTION = "Description";
+	public static final String QUANTITY = "Quantity";
+	public static final String UNIT_PRICE = "Unit Price";
+	public static final String TOTAL = "Total Amount";
+	public static final String GRAND_TOTAL = "Grand Total";
+	public static final String DESCRIPTION_EXTRAS = "(Name, Dosage, Manufacturer)";
 	
 	/* Invoice screen fields */
-	public static final String pharmSuppliesByDate = "Search pharmaceutical supplies by date";
-	public static final String exit = "Exit";
-	public static final String selection = "Please enter your selection below:";
-	public static final String dateInput = "Please enter a date (yyyy-mm-dd):";
+	public static final String PHARMA_SUPPLIES_BY_DATE = "Search pharmaceutical supplies by date";
+	public static final String EXIT = "Exit";
+	public static final String SELECTION = "Please enter your selection below:";
+	public static final String DATEINPUT = "Please enter a date (yyyy-mm-dd):";
 
 	/* Medicine Prescription fields */
 	public static final String appointmentId = "Appointment ID";
@@ -100,26 +100,26 @@ public class ScreenFields {
 	public static final String recommendationInput= "Enter the number of recommendations";
 
 	/* Main Menu Fields */
-	public static final String login = "Login";
-	public static final String signUp = "Sign Up";
+	public static final String LOGIN = "Login";
+	public static final String SIGNUP = "Sign Up";
 
 	/* Admin Dashboard Fields */
-	public static final String getInvoices = "Get Invoices";
-	public static final String getRecommendations = "Check recommendations for blood bank management";
-	public static final String registerDoctor = "Registration of accounts for doctors";
-	public static final String logout = "Logout";
-	public static final String logoutMessage = "You are being logged out!";
-	public static final String applicationTerminationMessage = "The application will now stop!";
+	public static final String GET_INVOICES = "Get Invoices";
+	public static final String GET_RECOMMENDATIONS = "Check recommendations for blood bank management";
+	public static final String REGISTER_DOCTOR = "Registration of accounts for doctors";
+	public static final String LOGOUT = "Logout";
+	public static final String LOGOUT_MESSAGE = "You are being logged out!";
+	public static final String APPLICATION_TERMINATION_MESSAGE = "The application will now stop!";
 
 	/* Doctor Dashboard Fields */
 	public static final String prescribeMedicine = "Prescribe medication";
 	public static final String viewAppointment = "View appointments";
 
 	/* Patient Dashboard Fields */
-	public static final String book = "Make a Booking";
-	public static final String invoices = "Invoices";
-	public static final String requestMedication = "Request Medication";
-	public static final String vouchers = "Redeemable Vouchers";
+	public static final String BOOK = "Make a Booking";
+	public static final String INVOICES = "Invoices";
+	public static final String REQUEST_MEDICATION = "Request Medication";
+	public static final String VOUCHERS = "Redeemable Vouchers";
 
 	/* Lab Test Booking fields */
 	public static final String enterOption = "Enter your option";
