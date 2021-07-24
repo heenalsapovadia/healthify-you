@@ -3,7 +3,6 @@ package persistence.patient.utilImpl;
 import persistence.patient.daoImpl.DoctorAppointmentBookingBySpecializationDAOImpl;
 import persistence.patient.util.DoctorAppointmentBookingBySpecializationUtil;
 import presentation.common.CommonErrors;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
