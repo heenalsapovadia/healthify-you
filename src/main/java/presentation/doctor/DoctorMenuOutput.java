@@ -43,6 +43,8 @@ public class DoctorMenuOutput {
         }
         else if(option == 2) {
             //add code for View Appointment for Doctor here
+            ScheduledAppointmentsOutput scheduledAppointmentsOutput = new ScheduledAppointmentsOutput();
+            scheduledAppointmentsOutput.scheduledAppointmentsDetails();
         }
         else if(option == 3) {
             System.out.println(ScreenFields.LOGOUT_MESSAGE);
