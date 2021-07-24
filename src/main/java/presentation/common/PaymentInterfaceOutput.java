@@ -51,6 +51,7 @@ public class PaymentInterfaceOutput {
 
         // below is for redeem voucher and further process
         System.out.println(ScreenFields.checkoutAmount + checkoutAmount);
+        System.out.println("\n");
         RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
         RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(Patient.getPatient().getPatientId());
         if (voucher != null) {

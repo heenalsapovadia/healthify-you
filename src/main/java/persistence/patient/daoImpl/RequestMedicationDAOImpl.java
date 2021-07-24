@@ -23,6 +23,7 @@ public class RequestMedicationDAOImpl {
             List<Prescription> prescriptionList = new ArrayList<>();
             Connection conn = DatabaseConnection.getConnection();
             String sql = "SELECT * FROM prescription WHERE prescription_id = ?";
+
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, prescriptionId);
                 ResultSet rs = ps.executeQuery();
@@ -51,6 +52,7 @@ public class RequestMedicationDAOImpl {
         ResultSet rs = null;
         PharmaInvoice invoice = null;
         StringBuilder sql = new StringBuilder();
+
         sql.append("select * from pharma_supplies where pharma_item_name = ?");
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
             ps.setString(1, medicationName);

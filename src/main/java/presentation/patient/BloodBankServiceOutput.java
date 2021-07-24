@@ -9,7 +9,7 @@ import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 import persistence.patient.utilImpl.BloodBankServiceUtilImpl;
 
-public class BloodBankServiceOutput  {
+public class BloodBankServiceOutput {
 
     public static String bloodBankService(Patient patient) {
         Scanner sc = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class BloodBankServiceOutput  {
         System.out.println(ScreenFields.exit);
         System.out.println(ScreenFields.enterYourSelection);
         userSelection = sc.nextInt();
-        
+
         if (userSelection == 1) {
             BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
             BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
@@ -43,6 +43,7 @@ public class BloodBankServiceOutput  {
                 System.out.println(ScreenFields.tokenGenerated + bloodBankServiceUtil.getTokenIdForDonation());
                 System.out.println(ScreenFields.donationDate + java.time.LocalDate.now());
                 System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
+                System.out.println("\n");
                 return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroupInput);
 
             } else {
@@ -63,7 +64,9 @@ public class BloodBankServiceOutput  {
                     if (!donatedInLastSixMonths) {
                         return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, patient, bloodGroupInput);
                     } else {
+                        // print if patient and already donated
                         System.out.println(ScreenFields.patientAlreadyDonated);
+                        System.out.println("\n");
                         break;
                     }
                 }
@@ -74,12 +77,18 @@ public class BloodBankServiceOutput  {
             BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
             List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(patient);
             for ( BloodBankService service : donations ) {
-                System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + "Blood group" + CommonConstants.singleTab);
-                System.out.println(service.getPatientId() + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
+                if (donations != null) {
+                    System.out.println("No donation record exists. Exiting.");
+                    continue;
+                } else {
+                    System.out.println("Patient-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Donation-Id" + CommonConstants.singleTab + CommonConstants.verticleBar + "Date" + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + "Blood group" + CommonConstants.singleTab);
+                    System.out.println(service.getPatientId() + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDonationId() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getDate() + CommonConstants.singleTab + CommonConstants.singleTab + CommonConstants.verticleBar + service.getBloodGrp());
+                }
             }
-        }
-        if (userSelection == 3) {
-            System.out.println("EXIT!");
+            if (userSelection == 3) {
+                System.out.println("3.EXIT!");
+            }
+
         }
         return null;
     }
