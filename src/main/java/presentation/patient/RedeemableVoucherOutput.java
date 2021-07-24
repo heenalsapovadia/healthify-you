@@ -1,6 +1,3 @@
-/**
- * 
- */
 package presentation.patient;
 
 import java.util.ArrayList;
@@ -44,6 +41,7 @@ public class RedeemableVoucherOutput {
 			switch(sel) {
 				case 1: consoleObj.printSingleNewLine();
 						loadVoucher(voucher);
+						break;
 				case 2: return;
 				default: consoleObj.printError(CommonErrors.invalidSelection);
 			}
@@ -58,14 +56,14 @@ public class RedeemableVoucherOutput {
 		if(voucher != null) {
 			pointsAvailable = voucher.getPoints();
 		}
-		System.out.println(ScreenFields.POINTS_AVAILABLE+CommonConstants.commonTextSeparator+pointsAvailable);
+		System.out.println(ScreenFields.POINTS_AVAILABLE+CommonConstants.COMMON_TEXT_SEPARATOR+pointsAvailable);
 		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
 		pointsRedeemed = paymentDAO.getVoucherRedemptionPoints(patientId);
 		if(pointsRedeemed > 0) { 
-			System.out.println(ScreenFields.POINTS_REDEEMED+CommonConstants.singleSpace+CommonConstants.commonTextSeparator+pointsRedeemed);
+			System.out.println(ScreenFields.POINTS_REDEEMED+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+pointsRedeemed);
 		}
 		else {
-			System.out.println(ScreenFields.POINTS_REDEEMED+CommonConstants.singleSpace+CommonConstants.commonTextSeparator+CommonConstants.ZERO);
+			System.out.println(ScreenFields.POINTS_REDEEMED+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+CommonConstants.ZERO);
 		}
 		return voucher;
 	}
@@ -73,7 +71,7 @@ public class RedeemableVoucherOutput {
 	private List<String> getSelectionOptions() {
 		List<String> selectionOptions = new ArrayList<>();
 		selectionOptions.add(ScreenFields.VIEW_VOUCHER);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 	

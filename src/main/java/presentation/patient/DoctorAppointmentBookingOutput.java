@@ -80,7 +80,7 @@ public class DoctorAppointmentBookingOutput {
         }
         int dateOption = consoleObj.printSelection(datesOptions);
         Date rescheduleDate = Date.valueOf(datesOptions.get(dateOption-1));
-        System.out.println("Rescheduling to Date"+CommonConstants.commonTextSeparator+rescheduleDate);
+        System.out.println("Rescheduling to Date"+CommonConstants.COMMON_TEXT_SEPARATOR+rescheduleDate);
         consoleObj.printSingleNewLine();
 
         appointmentToReschedule.setRescheduled_date(rescheduleDate);

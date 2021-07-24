@@ -69,7 +69,7 @@ public class ImmunizationBookingOutput {
 
   public void bookVaccine(int vaccineId) {
     print.printScreenFields("Book an appointment? Yes / No");
-    print.printScreenFields(ScreenFields.selection);
+    print.printScreenFields(ScreenFields.SELECTION);
     List<String> selection = Arrays.asList("Yes", "No");
     int choice = print.printSelection(selection);
 

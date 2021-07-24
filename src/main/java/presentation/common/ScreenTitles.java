@@ -14,10 +14,10 @@ public class ScreenTitles {
 	private ScreenTitles() {}
 	
 	/* Pharma invoice screen title */
-	public static final String pharmaInvoice = "Pharmaceutical Supplies Receipt";
+	public static final String PHARMA_INVOICE = "Pharmaceutical Supplies Receipt";
 	
 	/* Invoice screen title */
-	public static final String invoice = "Invoices";
+	public static final String INVOICES = "Invoices";
 	
 	/* Medicine prescription screen title */
 	public static final String MEDICINE_PRESCRIPTION = "Medicine Prescription";
@@ -40,16 +40,16 @@ public class ScreenTitles {
 	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
 
 	/* Main Screen Title */
-	public static final String mainScreen = "Main Menu";
+	public static final String MAIN_SCREEN = "Main Menu";
 
 	/* Admin Dashboard Title */
-	public static final String adminDashboard = "Admin Dashboard";
+	public static final String ADMIN_DASHBOARD = "Admin Dashboard";
 
 	/* Doctor Dashboard Title */
 	public static final String DOCTOR_DASHBOARD = "Doctor Dashboard";
 
 	/* Patient Dashboard Title */
-	public static final String patientDashboard = "Patient Dashboard";
+	public static final String PATIENT_DASHBOARD = "Patient Dashboard";
 
 	public static final String bloodBankService = "Register for Blood Bank";
 

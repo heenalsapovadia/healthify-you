@@ -30,17 +30,17 @@ public class AdminMenuOutput {
 
   public void displayOutput() {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
-    consoleObj.printHeader(ScreenTitles.adminDashboard);
+    consoleObj.printHeader(ScreenTitles.ADMIN_DASHBOARD);
     loadScreenOptions(consoleObj);
   }
 
   private List<String> getSelectionOptions() {
     List<String> selectionOptions = new ArrayList<>();
-    selectionOptions.add(ScreenFields.getInvoices);
-    selectionOptions.add(ScreenFields.getRecommendations);
-    selectionOptions.add(ScreenFields.registerDoctor);
+    selectionOptions.add(ScreenFields.GET_INVOICES);
+    selectionOptions.add(ScreenFields.GET_RECOMMENDATIONS);
+    selectionOptions.add(ScreenFields.REGISTER_DOCTOR);
     selectionOptions.add(ScreenFields.immunizationmanagement);
-    selectionOptions.add(ScreenFields.logout);
+    selectionOptions.add(ScreenFields.LOGOUT);
     return selectionOptions;
   }
 
@@ -69,8 +69,8 @@ public class AdminMenuOutput {
       sel = loadScreenOptions(consoleObj);
       
     } else if (sel == 5) {
-      System.out.println(ScreenFields.logoutMessage);
-      System.out.println(ScreenFields.applicationTerminationMessage);
+      System.out.println(ScreenFields.LOGOUT_MESSAGE);
+      System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
       System.exit(0);
     } else {
       consoleObj.printError(CommonErrors.invalidSelection);

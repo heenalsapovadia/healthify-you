@@ -15,6 +15,8 @@ public interface ViewReportsUtil {
 	/**
 	 * <pre>
 	 * Fetches all reports from JSON by date.
+	 * 
+	 * Returns a map by screen title to be printed to console.
 	 * </pre>
 	 * 
 	 * @param date
@@ -25,6 +27,8 @@ public interface ViewReportsUtil {
 	/**
 	 * <pre>
 	 * Fetches all reports from JSON by date range.
+	 * 
+	 * Returns a map by screen title to be printed to console.
 	 * </pre>
 	 * 
 	 * @param fromDate
@@ -45,6 +49,9 @@ public interface ViewReportsUtil {
 	/**
 	 * <pre>
 	 * Fetches kidney test reports from JSON.
+	 * 
+	 * Returns a string of data to be printed to console 
+	 * by specific test report class.
 	 * </pre>
 	 * 
 	 * @return string
@@ -54,6 +61,9 @@ public interface ViewReportsUtil {
 	/**
 	 * <pre>
 	 * Fetches liver test reports from JSON.
+	 * 
+	 * Returns a string of data to be printed to console 
+	 * by specific test report class.
 	 * </pre>
 	 * 
 	 * @return
@@ -63,6 +73,9 @@ public interface ViewReportsUtil {
 	/**
 	 * <pre>
 	 * Fetches eye test reports from JSON.
+	 * 
+	 * Returns a string of data to be printed to console 
+	 * by specific test report class.
 	 * </pre>
 	 * 
 	 * @return string
@@ -72,6 +85,9 @@ public interface ViewReportsUtil {
 	/**
 	 * <pre>
 	 * Fetches covid test reports from JSON.
+	 * 
+	 * Returns a string of data to be printed to console 
+	 * by specific test report class.
 	 * </pre>
 	 * 
 	 * @return string

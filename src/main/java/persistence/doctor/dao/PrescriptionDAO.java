@@ -11,5 +11,14 @@ public interface PrescriptionDAO {
 
     List<Prescription> getPrescriptionById(int prescriptionId);
     
+    /**
+     * <pre>
+     * Fetches prescription by patient id.
+     * 
+     * Returns a list of prescriptions.
+     * </pre>
+     * 
+     * @return list
+     */
     List<Prescription> getPrescriptionByPatientId();
 }

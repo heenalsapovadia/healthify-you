@@ -31,10 +31,10 @@ public class LabCheckUtilImpl implements LabCheckUtil {
     @Override
     public void fetchDetails(){
         Scanner sc = new Scanner(System.in);
-        System.out.print(ScreenFields.HEALTH_CHECK_NUMBER + CommonConstants.commonTextSeparator);
+        System.out.print(ScreenFields.HEALTH_CHECK_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
         int checkup_id = sc.nextInt();
         while(!labCheckMap.containsKey(checkup_id)) {
-            System.out.println(CommonErrors.invalidCheckUpId+CommonConstants.commonTextSeparator);
+            System.out.println(CommonErrors.invalidCheckUpId+CommonConstants.COMMON_TEXT_SEPARATOR);
             checkup_id = sc.nextInt();
         }
         System.out.println("------------ "+"Details of "+labCheckMap.get(checkup_id).getCheckup_name() + " ------------");
