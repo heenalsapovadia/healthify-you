@@ -5,12 +5,16 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistence.admin.dao.PharmaInvoiceDAO;
 import persistence.admin.model.PharmaInvoice;
-import persistence.doctor.model.Prescription;
 import presentation.startup.DatabaseConnection;
 
 public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
