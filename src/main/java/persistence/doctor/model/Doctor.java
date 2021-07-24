@@ -1,18 +1,17 @@
 package persistence.doctor.model;
 
 import persistence.doctor.daoImpl.DoctorDAOImpl;
-
 import java.util.Date;
 
 public class Doctor {
-    int doctor_id;
-    String first_name;
-    String last_name;
-    Date joining_date;
+    int doctorId;
+    String firstName;
+    String lastName;
+    Date joiningDate;
     String degree;
     String specialization;
-    Date birth_date;
-    String contact_number;
+    Date birthDate;
+    String contactNumber;
     String city;
     String email;
 
@@ -31,36 +30,36 @@ public class Doctor {
         doctor = doctorDAO.getDoctor(doctor);
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public Date getJoining_date() {
-        return joining_date;
+    public Date getJoiningDate() {
+        return joiningDate;
     }
 
-    public void setJoining_date(Date joining_date) {
-        this.joining_date = joining_date;
+    public void setJoiningDate(Date joiningDate) {
+        this.joiningDate = joiningDate;
     }
 
     public String getDegree() {
@@ -79,20 +78,20 @@ public class Doctor {
         this.specialization = specialization;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public String getContact_number() {
-        return contact_number;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setContact_number(String contact_number) {
-        this.contact_number = contact_number;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public String getCity() {

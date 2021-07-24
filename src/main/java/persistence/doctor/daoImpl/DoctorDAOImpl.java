@@ -27,14 +27,14 @@ public class DoctorDAOImpl implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
-                doctor.setDoctor_id(rs.getInt("doctor_id"));
-                doctor.setFirst_name(rs.getString("first_name"));
-                doctor.setLast_name(rs.getString("last_name"));
-                doctor.setJoining_date(rs.getDate("joining_date"));
+                doctor.setDoctorId(rs.getInt("doctor_id"));
+                doctor.setFirstName(rs.getString("first_name"));
+                doctor.setLastName(rs.getString("last_name"));
+                doctor.setJoiningDate(rs.getDate("joining_date"));
                 doctor.setDegree(rs.getString("degree"));
                 doctor.setSpecialization(rs.getString("specialization"));
-                doctor.setBirth_date(rs.getDate("birth_date"));
-                doctor.setContact_number(rs.getString("contact_number"));
+                doctor.setBirthDate(rs.getDate("birth_date"));
+                doctor.setContactNumber(rs.getString("contact_number"));
                 doctor.setCity(rs.getString("city"));
                 return doctor;
             }
