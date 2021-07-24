@@ -2,8 +2,6 @@ package persistence.admin.utilImpl;
 
 import persistence.admin.daoImpl.BloodBankRecommendationDAOImpl;
 import persistence.admin.util.BloodBankRecommendationUtil;
-
-import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
