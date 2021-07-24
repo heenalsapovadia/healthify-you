@@ -20,10 +20,10 @@ public class LabCheckBookingDAOImplTest {
         Date date = Date.valueOf("2021-05-21");
 
         LabCheckBooking labCheckBooking = new LabCheckBooking();
-        labCheckBooking.setPatient_id(1);
-        labCheckBooking.setHealthcheck_id(2);
-        labCheckBooking.setBooked_for_date(date);
-        labCheckBooking.setBilling_id(123);
+        labCheckBooking.setPatientId(1);
+        labCheckBooking.setHealthcheckId(2);
+        labCheckBooking.setBookedForDate(date);
+        labCheckBooking.setBillingId(123);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);
@@ -35,10 +35,10 @@ public class LabCheckBookingDAOImplTest {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
         LabCheckBooking labCheckBooking = new LabCheckBooking();
-        labCheckBooking.setPatient_id(1);
-        labCheckBooking.setHealthcheck_id(2);
-        labCheckBooking.setBooked_for_date(Date.valueOf("2021-05-21"));
-        labCheckBooking.setBilling_id(123);
+        labCheckBooking.setPatientId(1);
+        labCheckBooking.setHealthcheckId(2);
+        labCheckBooking.setBookedForDate(Date.valueOf("2021-05-21"));
+        labCheckBooking.setBillingId(123);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);

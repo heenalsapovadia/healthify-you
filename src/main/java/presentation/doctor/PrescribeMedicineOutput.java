@@ -21,9 +21,9 @@ public class PrescribeMedicineOutput {
     public void prescribeMedication(){
         consoleObj.printHeader(ScreenTitles.MEDICINE_PRESCRIPTION);
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
-        int appointmentId = sc.nextInt();
+        int appointmentId = scanner.nextInt();
 
         /*
         Call for Validation of appointment ID
@@ -32,9 +32,9 @@ public class PrescribeMedicineOutput {
         Appointment validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
 
         while(validAppointment==null){
-            System.out.println(CommonErrors.invalidAppointmentId);
+            System.out.println(CommonErrors.INVALID_APPOINTMENT_ID);
             System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
-            appointmentId = sc.nextInt();
+            appointmentId = scanner.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
         }
 
@@ -44,7 +44,7 @@ public class PrescribeMedicineOutput {
         int patient_id = validAppointment.getPatient_id();
 
         System.out.print(ScreenFields.MEDICINE_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
-        int medicineNumber = sc.nextInt();
+        int medicineNumber = scanner.nextInt();
         List<Prescription> prescriptionList = new ArrayList<>();
 
         /*
@@ -52,28 +52,28 @@ public class PrescribeMedicineOutput {
          */
         while(medicineNumber>0){
             System.out.print(ScreenFields.MEDICINE_NAME + CommonConstants.COMMON_TEXT_SEPARATOR);
-            String medicineName = sc.next();
+            String medicineName = scanner.next();
             System.out.print(ScreenFields.MORNING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
-            int morning = sc.nextInt();
+            int morning = scanner.nextInt();
             System.out.print(ScreenFields.AFTERNOON_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
-            int afternoon = sc.nextInt();
+            int afternoon = scanner.nextInt();
             System.out.print(ScreenFields.EVENING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
-            int evening = sc.nextInt();
+            int evening = scanner.nextInt();
             System.out.print(ScreenFields.DOSAGE_DAYS + CommonConstants.COMMON_TEXT_SEPARATOR);
-            int dosageDays = sc.nextInt();
+            int dosageDays = scanner.nextInt();
 
             Prescription prescription = new Prescription();
-            prescription.setAppointment_id(appointmentId);
-            prescription.setMedicine_name(medicineName);
+            prescription.setAppointmentId(appointmentId);
+            prescription.setMedicineName(medicineName);
             prescription.setMorning(morning);
             prescription.setAfternoon(afternoon);
             prescription.setEvening(evening);
+            prescription.setPatientId(patient_id);
             prescription.setDosageDays(dosageDays);
-            prescription.setPatient_id(patient_id);
             prescription.setDate(Date.valueOf(LocalDate.now()));
 
-            prescription.setDoctor_id(Doctor.getDoctor().getDoctor_id());
-            prescription.setDoctor_name(Doctor.getDoctor().getFirst_name()+" "+Doctor.getDoctor().getLast_name());
+            prescription.setDoctorId(Doctor.getDoctor().getDoctorId());
+            prescription.setDoctorName(Doctor.getDoctor().getFirstName()+" "+Doctor.getDoctor().getLastName());
 
             prescriptionList.add(prescription);
             medicineNumber--;

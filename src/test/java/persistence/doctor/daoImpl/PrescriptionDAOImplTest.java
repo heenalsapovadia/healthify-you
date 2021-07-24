@@ -23,29 +23,29 @@ public class PrescriptionDAOImplTest {
         PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
 
         int appointmentId = 12;
-        int doctorId = Doctor.getDoctor().getDoctor_id(); // fetch the current doctor's id
-        String doctorName = Doctor.getDoctor().getFirst_name() + Doctor.getDoctor().getLast_name(); // fetch the current doctor's name
+        int doctorId = Doctor.getDoctor().getDoctorId(); // fetch the current doctor's id
+        String doctorName = Doctor.getDoctor().getFirstName() + Doctor.getDoctor().getLastName(); // fetch the current doctor's name
         int prescriptionId = prescriptionDAO.findMaxPrescriptionId() + 1;
 
         List<Prescription> prescriptionList = new ArrayList<>();
         Prescription prescription1 = new Prescription();
-        prescription1.setAppointment_id(appointmentId);
-        prescription1.setPatient_id(12);
-        prescription1.setDoctor_id(doctorId);
-        prescription1.setDoctor_name(doctorName);
-        prescription1.setPrescription_id(prescriptionId);
-        prescription1.setMedicine_name("Med1");
+        prescription1.setAppointmentId(appointmentId);
+        prescription1.setPatientId(12);
+        prescription1.setDoctorId(doctorId);
+        prescription1.setDoctorName(doctorName);
+        prescription1.setPrescriptionId(prescriptionId);
+        prescription1.setMedicineName("Med1");
         prescription1.setMorning(0);
         prescription1.setAfternoon(1);
         prescription1.setEvening(0);
 
         Prescription prescription2 = new Prescription();
-        prescription2.setAppointment_id(appointmentId);
-        prescription2.setPatient_id(12);
-        prescription2.setDoctor_id(doctorId);
-        prescription2.setDoctor_name(doctorName);
-        prescription2.setPrescription_id(prescriptionId);
-        prescription2.setMedicine_name("Med2");
+        prescription2.setAppointmentId(appointmentId);
+        prescription2.setPatientId(12);
+        prescription2.setDoctorId(doctorId);
+        prescription2.setDoctorName(doctorName);
+        prescription2.setPrescriptionId(prescriptionId);
+        prescription2.setMedicineName("Med2");
         prescription2.setMorning(0);
         prescription2.setAfternoon(1);
         prescription2.setEvening(0);
