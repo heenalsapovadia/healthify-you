@@ -11,6 +11,7 @@ import presentation.common.CommonConstants;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenTitles;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -18,7 +19,7 @@ import java.util.*;
 public class DoctorAppointmentBookingOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
-    public void dashboard() {
+    public void dashboard() throws SQLException {
         consoleObj.printHeader(ScreenTitles.DOCTOR_APPOINTMENT);
 
         List<String> options = Arrays.asList(ScreenTitles.BOOK_APPOINTMENT, ScreenTitles.RESCHEDULE_APPOINTMENT);
