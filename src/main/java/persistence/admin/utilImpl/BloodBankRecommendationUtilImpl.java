@@ -2,8 +2,6 @@ package persistence.admin.utilImpl;
 
 import persistence.admin.daoImpl.BloodBankRecommendationDAOImpl;
 import persistence.admin.util.BloodBankRecommendationUtil;
-
-import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,11 +45,7 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
 
     BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
     List<BloodBankRecommendationDAOImpl.Order> orders = new ArrayList<>();
-    try {
-      orders = bloodBankRecommendationDAOImpl.fetchBloodGroupList(bloodGroup);
-    } catch (SQLException throwables) {
-        return null;
-    }
+    orders = bloodBankRecommendationDAOImpl.fetchBloodGroupList(bloodGroup);
 
     if (orders == null) {
       return null;
