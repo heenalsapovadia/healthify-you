@@ -114,33 +114,33 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
   }
 
   @Override
-  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) {
+  public int addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) {
 
     DoctorAppointmentBookingByNameUtilImpl doctorAppointmentBookingByNameUtil = new DoctorAppointmentBookingByNameUtilImpl();
 
     try {
       if (!doctorAppointmentBookingByNameUtil.validateID(doctorID)) {
-        return null;
+        return -1;
       }
     } catch (SQLException sqlException) {
       System.err.println("Error occurred in establishing database connection!");
-      return null;
+      return -1;
     }
 
     if (bookedOnDate == null) {
-      return null;
+      return -1;
     }
 
     if (bookedOnDate != null && bookedOnDate.isEmpty()) {
-      return null;
+      return -1;
     }
 
     if (appointmentDate == null) {
-      return null;
+      return -1;
     }
 
     if (appointmentDate != null && appointmentDate.isEmpty()) {
-      return null;
+      return -1;
     }
 
     Connection connection = DatabaseConnection.getConnection();
@@ -149,12 +149,12 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
       statement = connection.createStatement();
     } catch (SQLException sqlException) {
       System.err.println("Error occurred in establishing database connection!");
-      return null;
+      return -1;
     }
     ResultSet resultSet = null;
     ResultSet resultSet1 = null;
 
-    List<Integer> appointmentIDList = new ArrayList<>();
+    int appointmentID;
 
     try {
       /* retrieves doctor list for the symptoms */
@@ -162,15 +162,15 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
       resultSet1 = statement.executeQuery("select * from doctor_appointment where patient_id = " + patientID + " and doctor_id=" + doctorID + " and booked_for_date=\"" + appointmentDate + "\" and booked_on_date=\"" + bookedOnDate + "\";");
 
       if(!resultSet1.next()) {
-        return null;
+        return -1;
       } else {
           do {
-            appointmentIDList.add(resultSet1.getInt("appointment_id"));
+            appointmentID = resultSet1.getInt("appointment_id");
           } while(resultSet1.next());
-          return appointmentIDList;
+          return appointmentID;
       }
     } catch (SQLException sqlException) {
-        return null;
+        return -1;
     }
   }
 

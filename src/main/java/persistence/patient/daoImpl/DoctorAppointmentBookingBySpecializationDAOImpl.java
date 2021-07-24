@@ -240,28 +240,28 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
   }
 
   @Override
-  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) throws SQLException {
+  public int addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) throws SQLException {
 
     DoctorAppointmentBookingBySpecializationUtilImpl doctorAppointmentBookingBySpecializationUtil = new DoctorAppointmentBookingBySpecializationUtilImpl();
 
     if (!doctorAppointmentBookingBySpecializationUtil.validateID(doctorID)) {
-      return null;
+      return -1;
     }
 
     if (bookedOnDate == null) {
-      return null;
+      return -1;
     }
 
     if (bookedOnDate != null && bookedOnDate.isEmpty()) {
-      return null;
+      return -1;
     }
 
     if (appointmentDate == null) {
-      return null;
+      return -1;
     }
 
     if (appointmentDate != null && appointmentDate.isEmpty()) {
-      return null;
+      return -1;
     }
 
     Connection connection = DatabaseConnection.getConnection();
@@ -269,7 +269,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     ResultSet resultSet = null;
     ResultSet resultSet1 = null;
 
-    List<Integer> appointmentIDList = new ArrayList<>();
+    int appointmentID;
 
     try {
       /* retrieves doctor list for the symptoms */
@@ -277,15 +277,15 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
       resultSet1 = statement.executeQuery("select * from doctor_appointment where patient_id = " + patientID + " and doctor_id=" + doctorID + " and booked_for_date=\"" + appointmentDate + "\" and booked_on_date=\"" + bookedOnDate + "\";");
 
       if(!resultSet1.next()) {
-        return null;
+        return -1;
       } else {
           do {
-            appointmentIDList.add(resultSet1.getInt("appointment_id"));
+            appointmentID = resultSet1.getInt("appointment_id");
           } while(resultSet1.next());
-          return appointmentIDList;
+          return appointmentID;
       }
     } catch (SQLException sqlException) {
-        return null;
+        return -1;
     }
   }
 

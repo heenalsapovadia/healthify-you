@@ -100,14 +100,16 @@ public class DoctorRecommendationOutput {
                 }
 
             } else if (choice == 2) {
-                System.out.println("Thank you for using our service!");
-                return;
+                DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+                try {
+                    doctorAppointmentBookingDashboard.display();
+                } catch (SQLException se) {
+                    return;
+                }
             } else {
                 System.out.println("Invalid choice!");
             }
-
         }
-
     }
 
 }

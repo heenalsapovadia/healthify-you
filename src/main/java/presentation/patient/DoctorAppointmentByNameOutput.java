@@ -105,10 +105,11 @@ public class DoctorAppointmentByNameOutput {
                                   Patient.setPatient(patientEmail);
                                   PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
                                   billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.D, checkoutAmount, "");
-                                  List<Integer> appointmentID = doctorAppointmentBookingByNameDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate, billingId);
+                                  int appointmentID = doctorAppointmentBookingByNameDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate, billingId);
 
-                                  if (appointmentID != null && !appointmentID.isEmpty()) {
+                                  if (appointmentID != -1) {
                                       System.out.println("Appointment booked successfully!");
+                                      System.out.println("Appointment ID: " +appointmentID);
                                   } else {
                                       System.err.println("An error occured, make a new booking!");
                                   }
