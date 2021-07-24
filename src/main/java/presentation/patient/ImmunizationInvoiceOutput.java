@@ -6,6 +6,7 @@ import persistence.patient.model.Invoice;
 import persistence.patient.util.PatientInvoiceUtil;
 import persistence.patient.utilImpl.PatientInvoiceUtilImpl;
 import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
@@ -29,11 +30,17 @@ public class ImmunizationInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.IMMUNIZATION_RECEIPT);
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateImmunizationInvoice(date.toString(), invoice);
-		loadTableHeader(consoleObj, invoice);
+		Map<Integer, String> vaccineMap = invoice.getVaccineMap();
+		if(vaccineMap != null && !vaccineMap.isEmpty()) {
+			consoleObj.printHeader(ScreenTitles.IMMUNIZATION_RECEIPT);
+			loadTableHeader(consoleObj, invoice, vaccineMap);
+		}
+		else {
+			System.err.println(CommonErrors.NO_RECEIPTS);
+		}
 	}
 	
 	/**
@@ -43,7 +50,7 @@ public class ImmunizationInvoiceOutput {
 	 * 
 	 * @param invoice
 	 */
-	private void loadTableHeader(PrintToConsole consoleObj, Invoice invoice) {
+	private void loadTableHeader(PrintToConsole consoleObj, Invoice invoice, Map<Integer, String> vaccineMap) {
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());
@@ -51,7 +58,7 @@ public class ImmunizationInvoiceOutput {
 			+CommonConstants.SLASH+invoice.getGender());
 		System.out.println(ScreenFields.CREATED_ON+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getOriginalDatetime());
 		consoleObj.printLineSeparator();
-		for(Map.Entry<Integer, String> entry: invoice.getVaccineMap().entrySet()) {
+		for(Map.Entry<Integer, String> entry: vaccineMap.entrySet()) {
 			System.out.println(ScreenFields.VACCINE_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+entry.getValue());
 		}
 		consoleObj.printLineSeparator();

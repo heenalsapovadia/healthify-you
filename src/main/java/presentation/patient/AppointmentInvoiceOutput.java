@@ -8,6 +8,7 @@ import persistence.patient.model.Invoice;
 import persistence.patient.util.PatientInvoiceUtil;
 import persistence.patient.utilImpl.PatientInvoiceUtilImpl;
 import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
@@ -27,11 +28,17 @@ public class AppointmentInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateAppointmentInvoice(date.toString(), invoice);
-		loadScreen(consoleObj, invoice);
+		List<Appointment> appointments = invoice.getAppointmentList();
+		if(appointments != null && !appointments.isEmpty()) {
+			consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
+			loadScreen(consoleObj, invoice, appointments);
+		}
+		else {
+			System.err.println(CommonErrors.NO_RECEIPTS);
+		}
 	}
 	
 	/**
@@ -42,14 +49,13 @@ public class AppointmentInvoiceOutput {
 	 * @param consoleObj
 	 * @param invoice
 	 */
-	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
+	private void loadScreen(PrintToConsole consoleObj, Invoice invoice, List<Appointment> appointments) {
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());
 		System.out.println(ScreenFields.AGE_SEX+CommonConstants.SINGLE_TAB+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAge()
 			+CommonConstants.SLASH+invoice.getGender());
 		consoleObj.printLineSeparator();
-		List<Appointment> appointments = invoice.getAppointmentList();
 		for(int i=0; i<appointments.size(); i++) {
 			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.COMMON_TEXT_SEPARATOR+appointments.get(i).getAppointment_id());
 			System.out.println(ScreenFields.DATETIME+CommonConstants.COMMON_TEXT_SEPARATOR+appointments.get(i).getBooked_for_date());
