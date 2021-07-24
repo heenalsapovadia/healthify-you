@@ -74,7 +74,7 @@ public class BloodBankServiceOutput  {
                             // Blood reports
                             List<Blood> bloodReports = reportParser.parseBloodReports(allTestsMap);
                             for ( Blood blood : bloodReports ) {
-                                if (blood.getCbcPanel().getHaemoglobin() < 16) {
+                                if (blood.getCbcPanel().getHaemoglobin() < 14) {
                                     reportsAreNormalForBloodDonations = false;
                                 }
                             }
