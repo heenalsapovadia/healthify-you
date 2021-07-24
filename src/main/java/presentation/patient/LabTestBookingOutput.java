@@ -106,7 +106,7 @@ public class LabTestBookingOutput {
         List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
         System.out.println("Appointment ID | HealthCheck ID | Date");
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
-            System.out.println(labCheckBooking.getAppointmentId()+CommonConstants.VERTICAL_BAR+labCheckBooking.getHealthcheckId()+CommonConstants.verticleBar+labCheckBooking.getBookedForDate());
+            System.out.println(labCheckBooking.getAppointmentId()+CommonConstants.VERTICAL_BAR+labCheckBooking.getHealthcheckId()+CommonConstants.VERTICAL_BAR+labCheckBooking.getBookedForDate());
         }
     }
 
@@ -127,7 +127,7 @@ public class LabTestBookingOutput {
             labCheckSet.add(labCheck);
         System.out.println("------------ "+ScreenFields.LAB_CHECK_RECOMMENDATION +" ------------");
         for(LabCheck labCheck : labCheckSet)
-            System.out.println(labCheck.getCheckupId()+CommonConstants.COMMON_TEXT_SEPARATOR+labCheck.getCheckup_name());
+            System.out.println(labCheck.getCheckupId()+CommonConstants.COMMON_TEXT_SEPARATOR+labCheck.getCheckupName());
     }
 
     private int inputHealthCheckId(Scanner scanner){

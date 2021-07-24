@@ -52,9 +52,9 @@ public class ImmunizationStatsOutput {
         else {
             for (Map.Entry<String, Integer> entry : covidAnalysis.entrySet()) {
                 if(entry.getKey().equals("covishield")) System.out.println(entry.getKey()
-                        + CommonConstants.singleTab
+                        + CommonConstants.SINGLE_TAB
                         + ":"
-                        + CommonConstants.mediumSpace
+                        + CommonConstants.MEDIUM_SPACE
                         + entry.getValue());
                 else
                     System.out.println(entry.getKey()

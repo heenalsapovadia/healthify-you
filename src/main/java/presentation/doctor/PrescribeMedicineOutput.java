@@ -72,8 +72,8 @@ public class PrescribeMedicineOutput {
             prescription.setDosageDays(dosageDays);
             prescription.setDate(Date.valueOf(LocalDate.now()));
 
-            prescription.setDoctorId(Doctor.getDoctor().getDoctor_id());
-            prescription.setDoctorName(Doctor.getDoctor().getFirst_name()+" "+Doctor.getDoctor().getLast_name());
+            prescription.setDoctorId(Doctor.getDoctor().getDoctorId());
+            prescription.setDoctorName(Doctor.getDoctor().getFirstName()+" "+Doctor.getDoctor().getLastName());
 
             prescriptionList.add(prescription);
             medicineNumber--;
