@@ -36,7 +36,7 @@ public class RequestMedicationOutput {
                 System.out.print(CommonConstants.HEADING_CHAR);
 
             System.out.println();
-            System.out.println(CommonConstants.TITLE_SPACE + CommonConstants.TITLE_SPACE + ScreenTitles.REQUEST_MEDICATION + CommonConstants.TITLE_SPACE);
+            System.out.println(CommonConstants.TITLE_SPACE + ScreenTitles.REQUEST_MEDICATION + CommonConstants.TITLE_SPACE);
             for ( int i = 0; i < 100; i++ )
                 System.out.print(CommonConstants.HEADING_CHAR);
             System.out.println();
@@ -59,7 +59,7 @@ public class RequestMedicationOutput {
             int finalDoseAmount = totalDoseNeeded * medicinePrescirbedDays;
 
             PharmaInvoice invoice = requestMedication.getPharmaInvoice(currentPrescription.getMedicineName());
-//            if(!currentPrescription.getMedicine_name().equals(invoice)){
+//            if(!currentPrescription.getMedicineName().equals(invoice)){
 //                System.out.println("Medicine not found in Pharmacy. Unable to proceed.");
 //                return null;
 //            }
@@ -82,7 +82,7 @@ public class RequestMedicationOutput {
                     System.out.println("\n");
                 } else {
                     finalAmountForPayment += totalPrice;
-                    medicationsToUpdate.add(new MedicationsToUpdate(currentPrescription.getMedicine_name(), itemLeft));
+                    medicationsToUpdate.add(new MedicationsToUpdate(currentPrescription.getMedicineName(), itemLeft));
                 }
             }
             else {
@@ -91,9 +91,10 @@ public class RequestMedicationOutput {
         }
         System.out.println("Total medicine checkout amount - " + finalAmountForPayment);
         System.out.println("\n");
+        String voucherID;
         if (finalAmountForPayment > 0) {
             PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
-            int billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.M, finalAmountForPayment, "");
+            int billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.M, finalAmountForPayment, " ");
             if (billingId != 0) {
                 for (MedicationsToUpdate medicationToUpdate: medicationsToUpdate) {
                     requestMedication.updatePharmaInvoice(medicationToUpdate.medicationName, medicationToUpdate.medicationLeft);

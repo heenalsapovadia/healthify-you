@@ -3,6 +3,7 @@ package persistence.patient.daoImpl;
 import persistence.admin.model.PharmaInvoice;
 import persistence.doctor.daoImpl.AppointmentDAOImpl;
 import persistence.doctor.model.Prescription;
+import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.*;
@@ -19,10 +20,11 @@ public class RequestMedicationDAOImpl {
         public List<Prescription> getPrescriptionDetails(int prescriptionId) {
             List<Prescription> prescriptionList = new ArrayList<>();
             Connection conn = DatabaseConnection.getConnection();
-            String sql = "SELECT * FROM prescription WHERE prescription_id = ?";
+            String sql = "SELECT * FROM prescription WHERE prescription_id = ? and patient_id = ?";
 
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, prescriptionId);
+                ps.setInt(2, Patient.getPatient().getPatientId());
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     Prescription prescription = new Prescription();
