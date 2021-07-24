@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public interface DoctorRegistrationDAO {
 
-    public int updateDoctorDetails(DoctorRegistration doc) throws SQLException;
-    public boolean checkDoctorExists(String email) throws SQLException;
+  public int updateDoctorDetails(DoctorRegistration doc) throws SQLException;
+  public boolean checkDoctorExists(String email) throws SQLException;
 
 }
