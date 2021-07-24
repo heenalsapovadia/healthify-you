@@ -47,16 +47,15 @@ public class PharmaInvoiceOutput {
 		if(invoicesList != null && !invoicesList.isEmpty()) {
 			consoleObj.printHeader(ScreenTitles.PHARMACY_RECEIPT);
 			loadScreen(consoleObj, invoice);
-			for(PharmaInvoice pharmInvoice: invoicesList) {
-				Double totalPrice = pharmaInvoiceUtil.calculateTotalAmount(pharmInvoice.getItemUnitPrice(), pharmInvoice.getOrderedQuantity());
+			for(int i=0; i<invoicesList.size(); i++) {
 				System.out.println(
-						pharmInvoice.getItemName()+CommonConstants.SINGLE_SPACE
-						+ pharmInvoice.getItemDosage()+CommonConstants.SINGLE_SPACE
-						+ pharmInvoice.getItemManufacturer()+"\t\t\t\t"
-						+ pharmInvoice.getOrderedQuantity()+"\t\t"
-						+ pharmInvoice.getExpiryDate()+"\t\t"
-						+ totalPrice+CommonConstants.SINGLE_SPACE);
-				pricesList.add(totalPrice);
+						invoicesList.get(i).getItemName()+CommonConstants.SINGLE_SPACE
+						+ invoicesList.get(i).getItemDosage()+CommonConstants.SINGLE_SPACE
+						+ invoicesList.get(i).getItemManufacturer()+"\t\t\t\t"
+						+ invoicesList.get(i).getOrderedQuantity()+"\t\t"
+						+ invoicesList.get(i).getExpiryDate()+"\t\t"
+						+ invoice.getPaymentMap().get(invoice.getBillId()).getBill_amount()+CommonConstants.SINGLE_SPACE);
+				pricesList.add(invoice.getPaymentMap().get(invoice.getBillId()).getBill_amount());
 			}
 			consoleObj.printLineSeparator();
 			Double grandTotal = pharmaInvoiceUtil.calculateGrandTotalAmount(pricesList);

@@ -119,7 +119,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 				invoice.setPrescriptionId(prescription.getPrescription_id());
 				invoice.setBillId(prescription.getBillingId());
 				medicineNameList.add(prescription.getMedicine_name());
-				billingIdList.add(prescription.getBillingId());
+				if(!billingIdList.contains(prescription.getBillingId())) {
+					billingIdList.add(prescription.getBillingId());
+					invoice.setBillId(prescription.getBillingId());
+				}
 			}
 		}
 		if(!medicineNameList.isEmpty()) {
