@@ -17,7 +17,7 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
     private String fileName;
 
     public JsonIdealReportParserImpl(){
-        pathToResources = "src/main/resources";
+        pathToResources = "/users/grad/gsaluja/CSCI5308builds";
         fileName = "IdealReports.json";
     }
 
