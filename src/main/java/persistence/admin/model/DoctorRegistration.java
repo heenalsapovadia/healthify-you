@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 /**
 * <pre>
@@ -75,11 +76,11 @@ public class DoctorRegistration {
     }
 
     public void setFirstName(String fname) {
-        this.fname = fname;
+        this.fname = fname.toUpperCase(Locale.ROOT);
     }
 
     public void setLastName(String lname) {
-        this.lname = lname;
+        this.lname = lname.toUpperCase(Locale.ROOT);
     }
 
     public void setJoiningDate(String jDate) {
@@ -91,7 +92,7 @@ public class DoctorRegistration {
     }
 
     public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+        this.specialization = specialization.toUpperCase(Locale.ROOT);
     }
 
     public void setBirthDate(String bdate) {

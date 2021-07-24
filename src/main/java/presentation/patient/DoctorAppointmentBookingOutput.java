@@ -26,7 +26,8 @@ public class DoctorAppointmentBookingOutput {
 
         switch (option){
             case 1:
-                //book doc appt code
+                DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+                doctorAppointmentBookingDashboard.display();
                 break;
             case 2:
                 rescheduleAppointment();
@@ -162,4 +163,5 @@ public class DoctorAppointmentBookingOutput {
         }
         return daysOptions;
     }
+
 }

@@ -1,5 +1,6 @@
 package presentation.patient;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ImmunizationBookingOutput {
   ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
   String vaccineName;
 
-  public void immunizationBooking() {
+  public void immunizationBooking() throws SQLException {
 
     print.printHeader(ScreenTitles.bookImmunization);
     List<String> selection = new ArrayList(dao.getVaccineStock());

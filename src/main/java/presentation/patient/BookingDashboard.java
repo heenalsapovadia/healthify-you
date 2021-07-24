@@ -5,6 +5,8 @@ import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class BookingDashboard {
         return BookingDashboard.BookingDashboardHelper.instance;
     }
 
-    public void displayOutput() {
+    public void displayOutput() throws SQLException {
         PrintToConsole consoleObj = PrintToConsole.getInstance();
         consoleObj.printHeader(ScreenTitles.bookingDashboard);
         loadScreenOptions(consoleObj);
@@ -33,7 +35,7 @@ public class BookingDashboard {
         return selectionOptions;
     }
 
-    private int loadScreenOptions(PrintToConsole consoleObj) {
+    private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
         List<String> selectionOptions = getSelectionOptions();
         int sel = consoleObj.printSelection(selectionOptions);
         if(sel == 1) {
