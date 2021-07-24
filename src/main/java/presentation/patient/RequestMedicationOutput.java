@@ -9,6 +9,7 @@ import presentation.common.*;
 
 import java.util.List;
 import java.util.Scanner;
+import static presentation.common.ScreenTitles.viewMedicineStock;
 
 public class RequestMedicationOutput {
 
