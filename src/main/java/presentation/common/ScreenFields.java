@@ -34,13 +34,14 @@ public class ScreenFields {
 	public static final String DATEINPUT = "Please enter a date (yyyy-mm-dd):";
 
 	/* Medicine Prescription fields */
-	public static final String appointmentId = "Appointment ID";
-	public static final String medicineNumber = "Number of medicines to prescribe";
-	public static final String medicineName = "Medicine Name";
-	public static final String morningDose = "Morning Dose";
-	public static final String afternoonDose = "Afternoon Dose";
-	public static final String eveningDose = "Evening Dose";
-	public static final String medicinePrescribeMessage = "Medicines prescribed successfully!";
+	public static final String APPOINTMENT_ID = "Appointment ID";
+	public static final String MEDICINE_NUMBER = "Number of medicines to prescribe";
+	public static final String MEDICINE_NAME = "Medicine Name";
+	public static final String MORNING_DOSE = "Morning Dose";
+	public static final String AFTERNOON_DOSE = "Afternoon Dose";
+	public static final String EVENING_DOSE = "Evening Dose";
+	public static final String DOSAGE_DAYS = "Number of days";
+	public static final String MEDICINE_PRESCRIBE_MESSAGE = "Medicines prescribed successfully!";
 
 	/* Registration screen fields */
 	public static final String emailInput = "Enter email address";
@@ -112,8 +113,8 @@ public class ScreenFields {
 	public static final String APPLICATION_TERMINATION_MESSAGE = "The application will now stop!";
 
 	/* Doctor Dashboard Fields */
-	public static final String prescribeMedicine = "Prescribe medication";
-	public static final String viewAppointment = "View appointments";
+	public static final String PRESCRIBE_MEDICATION = "Prescribe medication";
+	public static final String VIEW_APPOINTMENTS = "View appointments";
 
 	/* Patient Dashboard Fields */
 	public static final String BOOK = "Make a Booking";
@@ -122,15 +123,15 @@ public class ScreenFields {
 	public static final String VOUCHERS = "Redeemable Vouchers";
 
 	/* Lab Test Booking fields */
-	public static final String enterOption = "Enter your option";
-	public static final String viewDetails = "View more details";
-	public static final String backToBooking = "Go back to booking";
-	public static final String checkId = "Enter the health check number";
-	public static final String labCheckRecommendation = "Recommendations for LabChecks are";
+	public static final String ENTER_OPTION = "Enter your option";
+	public static final String VIEW_DETAILS = "View more details";
+	public static final String BACK_TO_BOOKING = "Go back to booking";
+	public static final String HEALTH_CHECK_NUMBER = "Enter the health check number";
+	public static final String LAB_CHECK_RECOMMENDATION = "Recommendations for LabChecks are";
 
 	/* Booking Dashboard  Booking fields */
-	public static final String appointmentWithDoctor = "Book an appointment with doctor";
-	public static final String bookLabTest = "Book a Lab Test/Health Check Up";
+	public static final String APPOINTMENT_WITH_DOCTOR = "Book an appointment with doctor";
+	public static final String BOOK_LAB_TEST = "Book a Lab Test/Health Check Up";
 	public static final String bookImmunization = "Book an Immunization";
 	public static final String bookBloodBankService = "Book a Blood Bank service";
 	public static final String yourBloodGroup = "Please enter your blood group:";
@@ -190,7 +191,7 @@ public class ScreenFields {
 	public static final String PHARMA_BY_DATE = "Search pharmacy receipt by date (yyyy-mm-dd)";
 	public static final String IMMUNIZATION_BY_DATE = "Search immunization appointment receipt by date (yyyy-mm-dd)";
 	public static final String LAB_TEST_BY_DATE = "Search laboratory test receipt by date (yyyy-mm-dd)";
-	public static final String APPOINTMENT_ID = "Appointment No.";
+	public static final String APPOINTMENT_NO = "Appointment No.";
 	public static final String PRESCRIPTION_ID = "Prescription No.";
 	public static final String IMMUNIZATION_APPT_ID = "Immunization Appointment No.";
 	public static final String LAB_TEST_ID = "Laboratory Test No.";

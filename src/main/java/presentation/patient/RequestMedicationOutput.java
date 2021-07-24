@@ -40,7 +40,7 @@ public class RequestMedicationOutput {
             System.out.println("Medicine Name: " + currentPrescription.getMedicine_name());
             int totalDoseNeeded = currentPrescription.getMorning() + currentPrescription.getAfternoon() + currentPrescription.getEvening();
             System.out.println("Medicine Dose: " + totalDoseNeeded);
-            int medicinePrescirbedDays = currentPrescription.getDosage_days();
+            int medicinePrescirbedDays = currentPrescription.getDosageDays();
             System.out.println("Dosage is for : " + medicinePrescirbedDays + " days");
             int finalDoseAmount = totalDoseNeeded * medicinePrescirbedDays;
 
