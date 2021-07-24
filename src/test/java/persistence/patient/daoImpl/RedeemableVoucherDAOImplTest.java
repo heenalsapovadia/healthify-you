@@ -144,8 +144,8 @@ class RedeemableVoucherDAOImplTest {
 		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
 	}
 
-//	@Test
-//	void testGetVoucherByPatient() {
+	@Test
+	void testGetVoucherByPatient() {
 //		DatabaseConnection.loadDatabaseConnection();
 //		RedeemableVoucherDAO redeemableVoucherDAO = new RedeemableVoucherDAOImpl();
 //		RedeemableVoucher actualVoucher = redeemableVoucherDAO.getVoucherByPatient(13);
@@ -160,5 +160,5 @@ class RedeemableVoucherDAOImplTest {
 //		assertEquals(expectedVoucher.getVoucherId(), actualVoucher.getVoucherId());
 //		assertEquals(expectedVoucher.getPoints(), actualVoucher.getPoints());
 //		assertEquals(expectedVoucher.getValidityInDays(), actualVoucher.getValidityInDays());
-//	}
+	}
 }
