@@ -22,7 +22,7 @@ public class PrescribeMedicineOutput {
         consoleObj.printHeader(ScreenTitles.MEDICINE_PRESCRIPTION);
 
         Scanner sc = new Scanner(System.in);
-        System.out.print(ScreenFields.APPOINTMENT_ID + CommonConstants.COMMON_TEXT_SEPARATOR);
+        System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
         int appointmentId = sc.nextInt();
 
         /*
@@ -33,7 +33,7 @@ public class PrescribeMedicineOutput {
 
         while(validAppointment==null){
             System.out.println(CommonErrors.invalidAppointmentId);
-            System.out.print(ScreenFields.APPOINTMENT_ID + CommonConstants.COMMON_TEXT_SEPARATOR);
+            System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
             appointmentId = sc.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
         }

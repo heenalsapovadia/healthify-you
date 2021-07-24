@@ -191,7 +191,7 @@ public class ScreenFields {
 	public static final String PHARMA_BY_DATE = "Search pharmacy receipt by date (yyyy-mm-dd)";
 	public static final String IMMUNIZATION_BY_DATE = "Search immunization appointment receipt by date (yyyy-mm-dd)";
 	public static final String LAB_TEST_BY_DATE = "Search laboratory test receipt by date (yyyy-mm-dd)";
-	public static final String APPOINTMENT_ID = "Appointment No.";
+	public static final String APPOINTMENT_NO = "Appointment No.";
 	public static final String PRESCRIPTION_ID = "Prescription No.";
 	public static final String IMMUNIZATION_APPT_ID = "Immunization Appointment No.";
 	public static final String LAB_TEST_ID = "Laboratory Test No.";
