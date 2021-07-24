@@ -5,14 +5,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistence.admin.dao.PharmaInvoiceDAO;
 import persistence.admin.model.PharmaInvoice;
+import persistence.doctor.model.Prescription;
 import presentation.startup.DatabaseConnection;
 
 public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
@@ -96,5 +94,25 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 			LOGGER.log(Level.SEVERE, exception.toString());
 		}
 		return invoicesList;
+	}
+
+	@Override
+	public Set<String> getMedicineList(){
+		Connection connection = DatabaseConnection.getConnection();
+		Set<String> medicineSet = new HashSet<>();
+
+		String sql = "SELECT * FROM pharma_supplies";
+		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				String medicineName = resultSet.getString("pharma_item_name");
+				medicineSet.add(medicineName.toLowerCase());
+			}
+		}
+		catch (SQLException sqlException){
+			LOGGER.log(Level.SEVERE, sqlException.toString());
+			System.out.println("SQL ERROR:"+sqlException.getMessage());
+		}
+		return medicineSet;
 	}
 }

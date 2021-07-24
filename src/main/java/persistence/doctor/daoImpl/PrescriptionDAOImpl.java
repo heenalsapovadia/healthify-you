@@ -20,10 +20,6 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
     @Override
     public void insertPrescription(List<Prescription> prescriptionList){
         Connection connection = DatabaseConnection.getConnection();
-        /*
-        find existing max prescription id,
-        and increment by 1
-         */
         PrescriptionDAOImpl prescriptionDAO = new PrescriptionDAOImpl();
         int prescriptionId = prescriptionDAO.findMaxPrescriptionId() + 1;
 
