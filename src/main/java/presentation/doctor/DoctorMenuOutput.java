@@ -21,14 +21,14 @@ public class DoctorMenuOutput {
     }
 
     public void displayOutput() {
-        consoleObj.printHeader(ScreenTitles.doctorDashboard);
+        consoleObj.printHeader(ScreenTitles.DOCTOR_DASHBOARD);
         loadScreenOptions();
     }
 
     private List<String> getSelectionOptions() {
         List<String> selectionOptions = new ArrayList<>();
-        selectionOptions.add(ScreenFields.prescribeMedicine);
-        selectionOptions.add(ScreenFields.viewAppointment);
+        selectionOptions.add(ScreenFields.PRESCRIBE_MEDICATION);
+        selectionOptions.add(ScreenFields.VIEW_APPOINTMENTS);
         selectionOptions.add(ScreenFields.LOGOUT);
         return selectionOptions;
     }

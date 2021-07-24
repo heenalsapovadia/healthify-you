@@ -28,8 +28,9 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
         int prescriptionId = prescriptionDAO.findMaxPrescriptionId() + 1;
 
         for(Prescription prescription : prescriptionList){
-            String sql = "INSERT INTO prescription(prescription_id, appointment_id, patient_id, doctor_id, doctor_name, medicine_name, morning_dose,  afternoon_dose, evening_dose) " +
-                    "VALUES(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO prescription(prescription_id, appointment_id, patient_id, doctor_id, doctor_name, " +
+                    "medicine_name, morning_dose,  afternoon_dose, evening_dose, dosage_days, prescription_date) " +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, prescriptionId);
                 ps.setInt(2, prescription.getAppointment_id());
@@ -40,6 +41,8 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
                 ps.setInt(7, prescription.getMorning());
                 ps.setInt(8, prescription.getAfternoon());
                 ps.setInt(9, prescription.getEvening());
+                ps.setInt(10, prescription.getDosageDays());
+                ps.setDate(11, prescription.getDate());
 
                 ps.executeUpdate();
             }
@@ -87,7 +90,10 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
                 prescription.setMorning(rs.getInt("morning_dose"));
                 prescription.setAfternoon(rs.getInt("afternoon_dose"));
                 prescription.setEvening(rs.getInt("evening_dose"));
-                prescription.setPrescriptionDate(rs.getDate("prescription_date"));
+                prescription.setDosageDays(rs.getInt("dosage_days"));
+                prescription.setDate(rs.getDate("prescription_date"));
+                prescription.setBillingId(rs.getInt("billing_id"));
+
                 prescriptionList.add(prescription);
             }
         }
@@ -117,7 +123,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
                 prescription.setMorning(resultSet.getInt("morning_dose"));
                 prescription.setAfternoon(resultSet.getInt("afternoon_dose"));
                 prescription.setEvening(resultSet.getInt("evening_dose"));
-                prescription.setPrescriptionDate(resultSet.getDate("prescription_date"));
+                prescription.setDate(resultSet.getDate("prescription_date"));
                 prescription.setBillingId(resultSet.getInt("billing_id"));
                 prescriptionList.add(prescription);
             }
@@ -126,5 +132,5 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
             LOGGER.log(Level.SEVERE, exception.toString());
         }
         return prescriptionList;
-	}
+    }
 }

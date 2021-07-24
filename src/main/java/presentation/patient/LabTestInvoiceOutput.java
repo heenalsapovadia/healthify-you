@@ -61,7 +61,7 @@ public class LabTestInvoiceOutput {
 		consoleObj.printLineSeparator();
 		double total = 0d;
 		for(int i=0; i<labCheckBookings.size(); i++) {
-			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.COMMON_TEXT_SEPARATOR+labCheckBookings.get(i).getAppointment_id());
+			System.out.println(ScreenFields.APPOINTMENT_NO +CommonConstants.COMMON_TEXT_SEPARATOR+labCheckBookings.get(i).getAppointment_id());
 			System.out.println(ScreenFields.DATETIME+CommonConstants.COMMON_TEXT_SEPARATOR+labCheckBookings.get(i).getBooked_for_date());
 			System.out.println(ScreenFields.LAB_TEST_NAME+CommonConstants.SINGLE_TAB+CommonConstants.COLON+CommonConstants.DOUBLE_TAB
 					+ invoice.getLabCheckMap().get(labCheckBookings.get(i).getHealthcheck_id()));

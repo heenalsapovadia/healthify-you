@@ -57,7 +57,7 @@ public class AppointmentInvoiceOutput {
 			+CommonConstants.SLASH+invoice.getGender());
 		consoleObj.printLineSeparator();
 		for(int i=0; i<appointments.size(); i++) {
-			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.COMMON_TEXT_SEPARATOR+appointments.get(i).getAppointment_id());
+			System.out.println(ScreenFields.APPOINTMENT_NO +CommonConstants.COMMON_TEXT_SEPARATOR+appointments.get(i).getAppointment_id());
 			System.out.println(ScreenFields.DATETIME+CommonConstants.COMMON_TEXT_SEPARATOR+appointments.get(i).getBooked_for_date());
 			System.out.println(ScreenFields.MOP+CommonConstants.COMMON_TEXT_SEPARATOR+PaymentMode.getMop(invoice.getPaymentMap().get(appointments.get(i).getBilling_id()).getCurrentPaymentMode().toString()));
 			System.out.println(ScreenFields.DOCTOR_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getDoctorDetail().get(appointments.get(i).getDoctor_id()));

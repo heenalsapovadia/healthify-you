@@ -115,7 +115,7 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		List<Prescription> prescriptionList = prescriptionDAO.getPrescriptionByPatientId();
 		List<String> medicineNameList = new ArrayList<>();
 		for(Prescription prescription: prescriptionList) {
-			if(prescription.getPrescriptionDate().toString().equals(date)) {
+			if(prescription.getDate().toString().equals(date)) {
 				invoice.setPrescriptionId(prescription.getPrescription_id());
 				invoice.setBillId(prescription.getBillingId());
 				medicineNameList.add(prescription.getMedicine_name());
