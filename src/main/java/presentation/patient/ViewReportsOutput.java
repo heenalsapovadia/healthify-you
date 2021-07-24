@@ -108,18 +108,20 @@ public class ViewReportsOutput {
 	
 	private void displayReportForDateRange(ViewReportsUtil reportsUtil, PrintToConsole consoleObj) {
 		parseDateRange(consoleObj, new Scanner(System.in));
-		Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDateRange(startDate.toString(), endDate.toString());
-		if(!reportsMap.isEmpty()) {
-			for(Map.Entry<String, List<String>> entry: reportsMap.entrySet()) {
-				consoleObj.printHeader(entry.getKey());
-				for(String report: entry.getValue()) {
-					System.out.println(report);
-					consoleObj.printLineSeparator();
+		if(startDate != null && endDate != null) {
+			Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDateRange(startDate.toString(), endDate.toString());
+			if(!reportsMap.isEmpty()) {
+				for(Map.Entry<String, List<String>> entry: reportsMap.entrySet()) {
+					consoleObj.printHeader(entry.getKey());
+					for(String report: entry.getValue()) {
+						System.out.println(report);
+						consoleObj.printLineSeparator();
+					}
 				}
 			}
-		}
-		else {
-			System.err.println(CommonErrors.NO_REPORTS);
+			else {
+				System.err.println(CommonErrors.NO_REPORTS);
+			}
 		}
 	}
 	
@@ -129,13 +131,13 @@ public class ViewReportsOutput {
 			startDate = Date.valueOf(sc.next());
 			if(startDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
 				System.err.println(CommonErrors.greaterDate);
-				displayOutput();
+				return;
 			}
 			System.out.println(ScreenFields.END_DATE);
 			endDate = Date.valueOf(sc.next());
 			if(endDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
 				System.err.println(CommonErrors.greaterDate);
-				displayOutput();
+				return;
 			}
 			else {
 				Calendar startDateCal = Calendar.getInstance();
@@ -150,11 +152,10 @@ public class ViewReportsOutput {
 		}
 		catch(IllegalArgumentException e) {
 			consoleObj.printError(CommonErrors.invalidDateFormat);
-			parseDateRange(consoleObj, new Scanner(System.in));
+			return;
 		}
 		if(startDate == null || endDate == null) {
 			consoleObj.printError(CommonErrors.invalidDateFormat);
-			parseDateRange(consoleObj, new Scanner(System.in));
 		}
 	}
 }

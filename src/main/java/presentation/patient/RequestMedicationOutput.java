@@ -6,8 +6,10 @@ import persistence.doctor.model.Prescription;
 import persistence.patient.daoImpl.RequestMedicationDAOImpl;
 import persistence.patient.model.Patient;
 import presentation.common.*;
+
 import java.util.List;
 import java.util.Scanner;
+import static presentation.common.ScreenTitles.viewMedicineStock;
 
 public class RequestMedicationOutput {
 
@@ -16,7 +18,7 @@ public class RequestMedicationOutput {
 
             int patientId = Patient.getPatient().getPatientId();
             Prescription prescription =  new Prescription();
-            int prescriptionId = prescription.getPrescription_id();
+            int prescriptionId = prescription.getPrescriptionId();
 
             Scanner sc = new Scanner(System.in);
             for ( int i = 0; i < 100; i++ )
@@ -33,14 +35,14 @@ public class RequestMedicationOutput {
 
         List<Prescription> prescriptions = requestMedication.getPrescriptionDetails(current_PrescriptionId);
         for (Prescription currentPrescription : prescriptions) {
-            System.out.println("Medicine Name: " + currentPrescription.getMedicine_name());
+            System.out.println("Medicine Name: " + currentPrescription.getMedicineName());
             int totalDoseNeeded = currentPrescription.getMorning() + currentPrescription.getAfternoon() + currentPrescription.getEvening();
             System.out.println("Medicine Dose: " + totalDoseNeeded);
             int medicinePrescirbedDays = currentPrescription.getDosageDays();
             System.out.println("Dosage is for : " + medicinePrescirbedDays + " days");
             int finalDoseAmount = totalDoseNeeded * medicinePrescirbedDays;
 
-            PharmaInvoice invoice = requestMedication.getPharmaInvoice(currentPrescription.getMedicine_name());
+            PharmaInvoice invoice = requestMedication.getPharmaInvoice(currentPrescription.getMedicineName());
 //            if(!currentPrescription.getMedicine_name().equals(invoice)){
 //                System.out.println("Medicine not found in Pharmacy. Unable to proceed.");
 //                return null;
@@ -57,7 +59,7 @@ public class RequestMedicationOutput {
                     double totalPrice = unitPrice  * totalDoseNeeded * medicinePrescirbedDays;
                     System.out.println("Payment needed of amount " + totalPrice);
                     System.out.println("Enough Doses of quantity availble in Stock " + finalDoseAmount + "  - Number left in inventory after after this prescription " + itemLeft);
-                    requestMedication.updatePharmaInvoice(currentPrescription.getMedicine_name(), itemLeft);
+                    requestMedication.updatePharmaInvoice(currentPrescription.getMedicineName(), itemLeft);
 
                     if(totalPrice==0.0){
                         System.out.println("Checkout amount is not eligible for payment.");

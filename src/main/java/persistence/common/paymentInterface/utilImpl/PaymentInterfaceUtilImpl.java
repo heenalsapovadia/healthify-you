@@ -4,6 +4,8 @@ import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentCardDetails;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
+import persistence.patient.dao.PatientDAO;
+import persistence.patient.daoImpl.PatientDAOImpl;
 import persistence.patient.model.Patient;
 
 import java.util.Date;
@@ -36,7 +38,12 @@ public class PaymentInterfaceUtilImpl {
         paymentDetails.setStatusOfPayment(PaymentInterface.status.C);
 
         paymentDetails.setVoucher_redemption_date(d1);
-        return paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
+        int updatedRecords = paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
+        if(updatedRecords > 0 && voucherID != null && !voucherID.isEmpty() && !voucherID.isBlank()) {
+        	PatientDAO patientDAO = new PatientDAOImpl();
+        	patientDAO.updateVouchersForPatients("", null, Patient.getPatient().getPatientId());
+        }
+        return updatedRecords;
     }
 
 }

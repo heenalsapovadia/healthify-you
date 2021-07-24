@@ -174,8 +174,8 @@ public class ScreenFields {
 	public static final String VIEW_REPORTS_BY_TEST = "View Reports by test";
 	public static final String VIEW_REPORTS_BY_DATE_RANGE = "View Reports by date range";
 	public static final String VIEW_REPORTS_BY_PARTICULAR_DATE = "View Reports by a particular date";
-	public static final String START_DATE = "Enter start date";
-	public static final String END_DATE = "Enter end date";
+	public static final String START_DATE = "Enter start date (yyyy-mm-dd)";
+	public static final String END_DATE = "Enter end date (yyyy-mm-dd)";
 	public static final String DATE = "Date";
 	public static final String DATE_OF_COLLECTION = "Date of Collection";
 	

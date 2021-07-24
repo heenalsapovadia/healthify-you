@@ -13,6 +13,7 @@ import persistence.patient.model.Invoice;
 import persistence.patient.util.PatientInvoiceUtil;
 import persistence.patient.utilImpl.PatientInvoiceUtilImpl;
 import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
@@ -37,28 +38,33 @@ public class PharmaInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.PHARMACY_RECEIPT);
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generatePharmaInvoice(date.toString(), invoice);
 		PharmaInvoiceUtil pharmaInvoiceUtil = new PharmaInvoiceUtilImpl();
 		List<Double> pricesList = new ArrayList<>();
-		loadScreen(consoleObj, invoice);
-		for(PharmaInvoice pharmInvoice: invoice.getPharmaInvoiceList()) {
-			Double totalPrice = pharmaInvoiceUtil.calculateTotalAmount(pharmInvoice.getItemUnitPrice(), pharmInvoice.getOrderedQuantity());
-			System.out.println(
-					pharmInvoice.getItemName()+CommonConstants.SINGLE_SPACE
-					+ pharmInvoice.getItemDosage()+CommonConstants.SINGLE_SPACE
-					+ pharmInvoice.getItemManufacturer()+"\t\t\t\t"
-					+ pharmInvoice.getOrderedQuantity()+"\t\t"
-					+ pharmInvoice.getExpiryDate()+"\t\t"
-					+ totalPrice+CommonConstants.SINGLE_SPACE);
-			pricesList.add(totalPrice);
+		List<PharmaInvoice> invoicesList = invoice.getPharmaInvoiceList();
+		if(invoicesList != null && !invoicesList.isEmpty()) {
+			consoleObj.printHeader(ScreenTitles.PHARMACY_RECEIPT);
+			loadScreen(consoleObj, invoice);
+			for(int i=0; i<invoicesList.size(); i++) {
+				System.out.println(
+						invoicesList.get(i).getItemName()+CommonConstants.SINGLE_SPACE
+						+ invoicesList.get(i).getItemDosage()+CommonConstants.SINGLE_SPACE
+						+ invoicesList.get(i).getItemManufacturer()+"\t\t\t\t"
+						+ invoicesList.get(i).getOrderedQuantity()+"\t\t"
+						+ invoicesList.get(i).getExpiryDate()+"\t\t"
+						+ invoice.getPaymentMap().get(invoice.getBillId()).getBill_amount()+CommonConstants.SINGLE_SPACE);
+				pricesList.add(invoice.getPaymentMap().get(invoice.getBillId()).getBill_amount());
+			}
+			consoleObj.printLineSeparator();
+			Double grandTotal = pharmaInvoiceUtil.calculateGrandTotalAmount(pricesList);
+			System.out.println(ScreenFields.BILL_AMT+CommonConstants.COMMON_TEXT_SEPARATOR+grandTotal);
+			consoleObj.printLineSeparator();
 		}
-		consoleObj.printLineSeparator();
-		Double grandTotal = pharmaInvoiceUtil.calculateGrandTotalAmount(pricesList);
-		System.out.println(ScreenFields.BILL_AMT+CommonConstants.COMMON_TEXT_SEPARATOR+grandTotal);
-		consoleObj.printLineSeparator();
+		else {
+			System.err.println(CommonErrors.NO_RECEIPTS);
+		}
 	}
 	
 	/**

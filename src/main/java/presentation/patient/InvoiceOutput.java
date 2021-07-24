@@ -1,6 +1,3 @@
-/**
- * 
- */
 package presentation.patient;
 
 /**
@@ -62,7 +59,7 @@ public class InvoiceOutput {
 			date = Date.valueOf(sc.next());
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
-			System.out.println("Loading all receipts for the date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
+			System.out.println("Fetching invoices for date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
 		}
 		catch(IllegalArgumentException e) {
 			consoleObj.printError(CommonErrors.invalidDateFormat);

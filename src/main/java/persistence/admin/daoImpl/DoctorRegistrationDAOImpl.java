@@ -16,52 +16,59 @@ import java.util.ArrayList;
 
 public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 
-    @Override
-    public int updateDoctorDetails(DoctorRegistration doc) throws SQLException {
-        Connection conn = DatabaseConnection.getConnection();
-        Statement statement = conn.createStatement();
-
-        try {
-            /* insert ignore use to avoid violation of primary key constraint if the data for that key already exists in the database */
-            /* inserts registration details into the doctors table of the database */
-            statement.executeUpdate("insert ignore into doctors(first_name, last_name, joining_date, degree, specialization, birth_date, contact_number, city, email) values (\"" + doc.getFirstName() + "\"" + ", \"" + doc.getLastName() + "\"" + ", \"" + doc.getJoiningDate() + "\"" + ", \"" + doc.getDegree() + "\"" + ", \"" + doc.getSpecialization() + "\"" + ", \"" + doc.getBirthDate() + "\"" + ", \"" + doc.getContactNumber() + "\"" + ", \"" + doc.getCity() + "\"" + ", \"" + doc.getEmail() + "\");");
-            statement.executeUpdate("insert ignore into UserCredentials values (\"" + doc.getEmail() + "\"" + ", \"" + doc.getPassword() + "\"" + ", 'D');");
-
-            return 0;
-
-        } catch (SQLException se) {
-            return -1;
-        }
-
+  @Override
+  public int updateDoctorDetails(DoctorRegistration doc) {
+    Connection connection = DatabaseConnection.getConnection();
+    Statement statement = null;
+    try {
+      statement = connection.createStatement();
+    } catch (SQLException sqlException) {
+        System.err.println("Error occurred in establishing database connection!");
+        return -1;
     }
 
-    @Override
-    public boolean checkDoctorExists(String email) throws SQLException {
+    try {
+      /* insert ignore use to avoid violation of primary key constraint if the data for that key already exists in the database */
+      /* inserts registration details into the doctors table of the database */
+      statement.executeUpdate("insert ignore into doctors(first_name, last_name, joining_date, degree, specialization, birth_date, contact_number, city, email) values (\"" + doc.getFirstName() + "\"" + ", \"" + doc.getLastName() + "\"" + ", \"" + doc.getJoiningDate() + "\"" + ", \"" + doc.getDegree() + "\"" + ", \"" + doc.getSpecialization() + "\"" + ", \"" + doc.getBirthDate() + "\"" + ", \"" + doc.getContactNumber() + "\"" + ", \"" + doc.getCity() + "\"" + ", \"" + doc.getEmail() + "\");");
+      statement.executeUpdate("insert ignore into UserCredentials values (\"" + doc.getEmail() + "\"" + ", \"" + doc.getPassword() + "\"" + ", 'D');");
 
-        Connection conn = DatabaseConnection.getConnection();
-        Statement statement = conn.createStatement();
-        ResultSet rS = null;
+      return 0;
 
-        try {
-            /* retrieves details into the UserCredentials table of the database */
-            rS = statement.executeQuery("select * from UserCredentials where User_Id = " + "\"" + email + "\"" + ";");
-
-            ArrayList<String> check = new ArrayList<>();
-            while (rS.next()) {
-                check.add(rS.getString("User_Id"));
-            }
-
-            if (check.size() > 0) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } catch (SQLException se) {
-            return false;
-        }
-
+    } catch (SQLException | NullPointerException se) {
+        return -1;
     }
+  }
 
+  @Override
+  public boolean checkDoctorExists(String email) {
+
+    Connection connection = DatabaseConnection.getConnection();
+    Statement statement = null;
+    try {
+      statement = connection.createStatement();
+    } catch (SQLException sqlException) {
+        System.err.println("Error occurred in establishing database connection!");
+        return false;
+    }
+    ResultSet resultSet = null;
+
+    try {
+      /* retrieves details into the UserCredentials table of the database */
+      resultSet = statement.executeQuery("select * from UserCredentials where User_Id = " + "\"" + email + "\"" + ";");
+      ArrayList<String> check = new ArrayList<>();
+      while (resultSet.next()) {
+        check.add(resultSet.getString("User_Id"));
+      }
+
+      if (check.size() > 0) {
+        return true;
+      } else {
+          return false;
+      }
+    } catch (SQLException | NullPointerException se) {
+        return false;
+    }
+  }
 }
 

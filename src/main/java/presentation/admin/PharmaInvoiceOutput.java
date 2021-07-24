@@ -12,6 +12,7 @@ import persistence.admin.model.PharmaInvoice;
 import persistence.admin.util.PharmaInvoiceUtil;
 import persistence.admin.utilImpl.PharmaInvoiceUtilImpl;
 import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
@@ -39,8 +40,8 @@ public class PharmaInvoiceOutput {
 		Map<String, List<PharmaInvoice>> invoicesMap = invoiceDAO.getInvoiceDetailsByDate(date);
 		List<Double> pricesList;
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.PHARMA_INVOICE);
 		if(invoicesMap != null && !invoicesMap.isEmpty()) {
+			consoleObj.printHeader(ScreenTitles.PHARMA_INVOICE);
 			for(Map.Entry<String, List<PharmaInvoice>> entry: invoicesMap.entrySet()) {
 				loadTableHeader(consoleObj, entry.getValue().get(0), fetchAllReceipts(entry.getValue()));
 				pricesList = new ArrayList<>();
@@ -60,6 +61,9 @@ public class PharmaInvoiceOutput {
 				System.out.println(ScreenFields.GRAND_TOTAL+CommonConstants.COMMON_TEXT_SEPARATOR+grandTotal);
 				consoleObj.printLineSeparator();
 			}
+		}
+		else {
+			System.err.println(CommonErrors.NO_RECEIPTS);
 		}
 	}
 	

@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
 
-    private List<Map<String, Object>> data;
+    private List<Map<String, Object>> dataRecords;
     
     private final static String COVAXIN = "covaxin";
     private final static String COVISHIELD = "covishield";
@@ -21,15 +21,15 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
 
     public VaccineDemandStatsUtilImpl(){
         VaccineDemandDAO vaccineDemandDAO = new VaccineDemandDAOImpl();
-        data = vaccineDemandDAO.getVaccinationData();
+        dataRecords = vaccineDemandDAO.getVaccinationData();
     }
 
     @Override
     public String mostVaccinatedBy(String factor){
         Map<String, Integer> factorFrequency = new HashMap<>();
-        String mostVaccinatedValue = (String) data.get(0).get(factor);
+        String mostVaccinatedValue = (String) dataRecords.get(0).get(factor);
 
-        for(Map<String, Object> dataRecord : data){
+        for(Map<String, Object> dataRecord : dataRecords){
             String factorValue = (String) dataRecord.get(factor);
             factorFrequency.put(factorValue, factorFrequency.getOrDefault(factorValue, 0)+1);
             if(factorFrequency.get(factorValue) > factorFrequency.get(mostVaccinatedValue)) {
@@ -44,7 +44,7 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
     public int dosesAdministered(int timePeriodInMonths){
         int dosesInGivenPeriod = 0;
         LocalDate today = LocalDate.now();
-        for(Map<String, Object> dataRecord : data){
+        for(Map<String, Object> dataRecord : dataRecords){
             Date dateOfDose = (Date) dataRecord.get("date");
             LocalDate dateOfDoseLocal = dateOfDose.toLocalDate();
             if (Period.between(dateOfDoseLocal, today).getMonths() <= timePeriodInMonths)
@@ -57,7 +57,7 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
     public Map<String, Integer> covidVaccineDistribution(){
         Map<String, Integer> covidAnalysis = new HashMap<>();
         int totalCovidShots = 0;
-        for(Map<String, Object> dataRecord : data) {
+        for(Map<String, Object> dataRecord : dataRecords) {
             String vaccine = ((String) dataRecord.get("vaccineName")).toLowerCase();
             boolean isCovaxin = vaccine.equals(COVAXIN);
             boolean isCovishield = vaccine.equals(COVISHIELD);
