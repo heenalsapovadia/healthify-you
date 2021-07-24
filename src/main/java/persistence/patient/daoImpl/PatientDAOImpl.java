@@ -51,16 +51,26 @@ public class PatientDAOImpl implements PatientDAO {
 
 	@Override
 	public void updateVouchersForPatients(String voucherId, Timestamp datetime, int patientId) {
-		Connection conn = DatabaseConnection.getConnection();
-		String sql = "update patients set voucher_id = ?, voucher_credit_date = ? where patient_id = ?";
-		try (PreparedStatement ps = conn.prepareStatement(sql)){
-			ps.setString(1, voucherId);
-			ps.setTimestamp(2, datetime);
-			ps.setInt(3, patientId);
-			ps.executeUpdate();
+		Connection connection = DatabaseConnection.getConnection();
+		StringBuilder sqlStatement = new StringBuilder();
+		sqlStatement.append("update patients set voucher_id = ?");
+		if(datetime != null) {
+			sqlStatement.append(", voucher_credit_date = ?");
 		}
-		catch(SQLException e) {
-			LOGGER.log(Level.SEVERE, e.toString());
+		sqlStatement.append(" where patient_id = ?");
+		try (PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement.toString())){
+			preparedStatement.setString(1, voucherId);
+			if(datetime != null) {
+				preparedStatement.setTimestamp(2, datetime);
+				preparedStatement.setInt(3, patientId);
+			}
+			else {
+				preparedStatement.setInt(2, patientId);
+			}
+			preparedStatement.executeUpdate();
+		}
+		catch(SQLException exception) {
+			LOGGER.log(Level.SEVERE, exception.toString());
 		}
 	}
 }

@@ -21,6 +21,6 @@ public interface DoctorAppointmentBookingBySpecializationDAO {
   public int checkPatientExists(String email) throws SQLException;
   public double fetchDoctorCharges(int doctorID) throws SQLException;
   public int updateBillingID(int billingID, String appointmentIDList) throws SQLException;
-  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate) throws SQLException;
+  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) throws SQLException;
 
 }

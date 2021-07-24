@@ -21,14 +21,14 @@ public class BookingDashboard {
 
     public void displayOutput() throws SQLException {
         PrintToConsole consoleObj = PrintToConsole.getInstance();
-        consoleObj.printHeader(ScreenTitles.bookingDashboard);
+
         loadScreenOptions(consoleObj);
     }
 
     private List<String> getSelectionOptions() {
         List<String> selectionOptions = new ArrayList<>();
-        selectionOptions.add(ScreenFields.appointmentWithDoctor);
-        selectionOptions.add(ScreenFields.bookLabTest);
+        selectionOptions.add(ScreenFields.APPOINTMENT_WITH_DOCTOR);
+        selectionOptions.add(ScreenFields.BOOK_LAB_TEST);
         selectionOptions.add(ScreenFields.bookImmunization);
         selectionOptions.add(ScreenFields.bookBloodBankService);
         selectionOptions.add(ScreenFields.goBack);
@@ -36,6 +36,7 @@ public class BookingDashboard {
     }
 
     private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
+        consoleObj.printHeader(ScreenTitles.bookingDashboard);
         List<String> selectionOptions = getSelectionOptions();
         int sel = consoleObj.printSelection(selectionOptions);
         if(sel == 1) {

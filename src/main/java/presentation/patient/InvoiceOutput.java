@@ -1,6 +1,3 @@
-/**
- * 
- */
 package presentation.patient;
 
 /**
@@ -30,7 +27,7 @@ public class InvoiceOutput {
 	
 	public void displayInvoice(){
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.invoice);
+		consoleObj.printHeader(ScreenTitles.INVOICES);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
@@ -56,13 +53,13 @@ public class InvoiceOutput {
 	}
 	
 	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
 			date = Date.valueOf(sc.next());
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
-			System.out.println("Loading all receipts for the date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
+			System.out.println("Fetching invoices for date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
 		}
 		catch(IllegalArgumentException e) {
 			consoleObj.printError(CommonErrors.invalidDateFormat);
@@ -77,7 +74,7 @@ public class InvoiceOutput {
 		selectionOptions.add(ScreenFields.PHARMA_BY_DATE);
 		selectionOptions.add(ScreenFields.IMMUNIZATION_BY_DATE);
 		selectionOptions.add(ScreenFields.LAB_TEST_BY_DATE);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

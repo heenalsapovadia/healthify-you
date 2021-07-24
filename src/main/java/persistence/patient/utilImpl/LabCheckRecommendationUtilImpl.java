@@ -81,6 +81,6 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
         List<LabCheck> labCheckList = labCheckDao.getAvailablePlans();
         labCheckMap = new HashMap<>();
         for(LabCheck labCheck : labCheckList)
-            labCheckMap.put(labCheck.getCheckup_id(), labCheck);
+            labCheckMap.put(labCheck.getCheckupId(), labCheck);
     }
 }

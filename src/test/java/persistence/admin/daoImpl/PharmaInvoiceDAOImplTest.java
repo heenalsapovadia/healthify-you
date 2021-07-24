@@ -14,6 +14,12 @@ import presentation.startup.DatabaseConnection;
 
 public class PharmaInvoiceDAOImplTest {
 
+	/**
+	 * <pre>
+	 * Tests invoices by date.
+	 * </pre>
+	 * 
+	 */
 	@Test
 	public void testGetInvoiceDetailsByDate() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -25,14 +31,20 @@ public class PharmaInvoiceDAOImplTest {
 	    assertEquals(generatedMap.size(), invoicesMap.size());
 	    assertTrue(generatedMap.keySet().containsAll(invoicesMap.keySet()));
 	    generatedMap.keySet().stream().forEach((key) -> {
-	        List<PharmaInvoice> pList = generatedMap.get(key);
-	        List<PharmaInvoice> rList = invoicesMap.get(key);
-	        for(int i=0; i<pList.size(); i++) {
-	        	assertTrue(pList.get(i).equals(rList.get(i)));
+	        List<PharmaInvoice> expectedList = generatedMap.get(key);
+	        List<PharmaInvoice> actualList = invoicesMap.get(key);
+	        for(int i=0; i<expectedList.size(); i++) {
+	        	assertTrue(expectedList.get(i).equals(actualList.get(i)));
 	        }
 	    });
 	}
 	
+	/**
+	 * <pre>
+	 * Generates static data list 1.
+	 * </pre>
+	 * @return list
+	 */
 	private List<PharmaInvoice> getPharmaInvoice1() {
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		PharmaInvoice pharmaInvoice = new PharmaInvoice();
@@ -66,6 +78,13 @@ public class PharmaInvoiceDAOImplTest {
 		return invoicesList;
 	}
 	
+	/**
+	 * <pre>
+	 * Generates static data list 2.
+	 * </pre>
+	 * 
+	 * @return
+	 */
 	private List<PharmaInvoice> getPharmaInvoice2() {
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		PharmaInvoice pharmaInvoiceLatest = new PharmaInvoice();

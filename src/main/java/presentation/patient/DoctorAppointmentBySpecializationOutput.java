@@ -90,49 +90,27 @@ public class DoctorAppointmentBySpecializationOutput {
 
                 LocalDate date = LocalDate.now();
                 String bookedDate = date.toString();
-
-                List<Integer> appointmentID = doctorAppointmentBookingBySpecializationDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate);
-                if(appointmentID != null && !appointmentID.isEmpty()) {
-                  System.out.println("Appointment booked successfully!");
-
-                  List<String> options = Arrays.asList("Continue For Payment", ScreenFields.exit);
-                  int option = consoleObj.printSelection(options);
-
-                  String inClause = "";
-
-                  for (int i = 0; i < appointmentID.size(); i++) {
-                    if (i < appointmentID.size() - 1) {
-                      inClause = inClause + appointmentID.get(i) + " ,";
+                List<String> options = Arrays.asList("Continue For Payment", ScreenFields.EXIT);
+                int option = consoleObj.printSelection(options);
+                int billingId = 0;
+                switch (option) {
+                  case 1:
+                    // Call Payment Interface screen code
+                    DoctorAppointmentBookingBySpecializationDAOImpl doctorAppointmentBookingBySpecializationDAO = new DoctorAppointmentBookingBySpecializationDAOImpl();
+                    double checkoutAmount = doctorAppointmentBookingBySpecializationDAO.fetchDoctorCharges(doctorID);
+                    Patient.setPatient(patientEmail);
+                    PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
+                    billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.D, checkoutAmount, "");
+                    List<Integer> appointmentID = doctorAppointmentBookingBySpecializationDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate, billingId);
+                    if(appointmentID != null && !appointmentID.isEmpty()) {
+                      System.out.println("Appointment booked successfully!");
                     } else {
-                        if (i == appointmentID.size() - 1) {
-                          inClause = inClause + appointmentID.get(i);
-                        }
+                      System.err.println("An error occured, make a new booking!");
                     }
-                  }
+                    break;
 
-                  int billingId = 0;
-                  switch (option) {
-                    case 1:
-                      // Call Payment Interface screen code
-                      DoctorAppointmentBookingBySpecializationDAOImpl doctorAppointmentBookingBySpecializationDAO = new DoctorAppointmentBookingBySpecializationDAOImpl();
-                      double checkoutAmount = doctorAppointmentBookingBySpecializationDAO.fetchDoctorCharges(doctorID);
-                      Patient.setPatient(patientEmail);
-                      PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
-                      billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.D, checkoutAmount, "");
-                      int check = doctorAppointmentBookingBySpecializationDAO.updateBillingID(billingId, inClause);
-
-                      if(check == 0) {
-                        System.out.println("Payment done successfully!");
-                      } else {
-                          System.out.println("Error occurred during payment! Make a new booking!");
-                      }
-                      break;
-
-                      case 2:
-                        return;
-                  }
-                } else {
-                    return;
+                    case 2:
+                      return;
                 }
               } else {
                   System.err.println("Day availability for the mentioned doctor not updated in the system!");

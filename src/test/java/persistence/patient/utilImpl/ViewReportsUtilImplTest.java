@@ -1,6 +1,5 @@
 package persistence.patient.utilImpl;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +15,11 @@ class ViewReportsUtilImplTest {
 
 	private ViewReportsUtil viewReportsUtil; 
 			
+	/**
+	 * <pre>
+	 * Tests Reports Fetched By Date.
+	 * </pre>
+	 */
 	@Test
 	void testFetchReportByDate() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -34,15 +38,25 @@ class ViewReportsUtilImplTest {
 				+ "	Platelets		:		150000\n";
 		bloodValuesList.add(report);
 		expectedReportsMap.put(ScreenTitles.VIEW_BLOOD_REPORTS, bloodValuesList);
-		actualReportsMap.keySet().stream().forEach((key) -> {
-	        List<String> actualList = actualReportsMap.get(key);
-	        List<String> expectedList = expectedReportsMap.get(key);
-	        for(int i=0; i<actualList.size(); i++) {
-	        	assertTrue(actualList.get(i).equals(expectedList.get(i)));
-	        }
-	    });
+		if(actualReportsMap != null && !actualReportsMap.isEmpty()) {
+			actualReportsMap.keySet().stream().forEach((key) -> {
+		        List<String> actualList = actualReportsMap.get(key);
+		        List<String> expectedList = expectedReportsMap.get(key);
+		        for(int i=0; i<actualList.size(); i++) {
+		        	assertEquals(actualList.get(i), expectedList.get(i));
+		        }
+		    });
+		}
+		else {
+			assertNull(actualReportsMap);
+		}
 	}
 
+	/**
+	 * <pre>
+	 * Tests reports fetched by date range.
+	 * </pre>
+	 */
 	@Test
 	void testFetchReportByDateRange() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -61,15 +75,25 @@ class ViewReportsUtilImplTest {
 				+ "	Platelets		:		150000\n";
 		bloodValuesList.add(report);
 		expectedReportsMap.put(ScreenTitles.VIEW_BLOOD_REPORTS, bloodValuesList);
-		actualReportsMap.keySet().stream().forEach((key) -> {
-	        List<String> actualList = actualReportsMap.get(key);
-	        List<String> expectedList = expectedReportsMap.get(key);
-	        for(int i=0; i<actualList.size(); i++) {
-	        	assertTrue(actualList.get(i).equals(expectedList.get(i)));
-	        }
-	    });
+		if(actualReportsMap != null && !actualReportsMap.isEmpty()) {
+			actualReportsMap.keySet().stream().forEach((key) -> {
+		        List<String> actualList = actualReportsMap.get(key);
+		        List<String> expectedList = expectedReportsMap.get(key);
+		        for(int i=0; i<actualList.size(); i++) {
+		        	assertEquals(actualList.get(i), expectedList.get(i));
+		        }
+		    });
+		}
+		else {
+			assertNull(actualReportsMap);
+		}
 	}
 
+	/**
+	 * <pre>
+	 * Tests blood test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetBloodReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -84,9 +108,19 @@ class ViewReportsUtilImplTest {
 				+ "	Haemoglobin		:		14.0\n"
 				+ "	WBC			:		3501\n"
 				+ "	Platelets		:		150010\n";
-		assertEquals(expectedReport, actualReport);
+		if(actualReport != null) {
+			assertEquals(expectedReport, actualReport);
+		}
+		else {
+			assertNull(actualReport);
+		}
 	}
 
+	/**
+	 * <pre>
+	 * Tests Kidney test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetKidneyReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -97,9 +131,19 @@ class ViewReportsUtilImplTest {
 				+ "Date				:		2021-05-21\n"
 				+ "Creatinine			:		1.5\n"
 				+ "BUN				:		10\n";
-		assertEquals(expectedReport, actualReport);
+		if(actualReport != null) {
+			assertEquals(expectedReport, actualReport);
+		}
+		else {
+			assertNull(actualReport);
+		}
 	}
 
+	/**
+	 * <pre>
+	 * Tests Liver test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetLiverReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -113,9 +157,19 @@ class ViewReportsUtilImplTest {
 				+ "ALP				:		119\n"
 				+ "Albumin				:		6.8\n"
 				+ "Bilirubin			:		0.5\n";
-		assertEquals(expectedReport, actualReport);
+		if(actualReport != null) {
+			assertEquals(expectedReport, actualReport);
+		}
+		else {
+			assertNull(actualReport);
+		}
 	}
 
+	/**
+	 * <pre>
+	 * Tests vision test reports.
+	 * </pre>
+	 */
 	@Test
 	void testGetVisionReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -126,9 +180,17 @@ class ViewReportsUtilImplTest {
 				+ "Date				:		2021-05-21\n"
 				+ "Vision				:		20/40\n"
 				+ "";
-		assertEquals(expectedReport, actualReport);
+		if(actualReport != null) {
+			assertEquals(expectedReport, actualReport);
+		}
+		else {
+			assertNull(actualReport);
+		}
 	}
 
+	/**
+	 * Tests covid test reports.
+	 */
 	@Test
 	void testGetCovidReportByTest() {
 		DatabaseConnection.loadDatabaseConnection();
@@ -138,6 +200,11 @@ class ViewReportsUtilImplTest {
 		String expectedReport = "Date of Collection		:		2021-04-29\n"
 				+ "Date				:		2021-05-01\n"
 				+ "Covid				:		Detected\n";
-		assertEquals(expectedReport, actualReport);
+		if(actualReport != null) {
+			assertEquals(expectedReport, actualReport);
+		}
+		else {
+			assertNull(actualReport);
+		}
 	}
 }

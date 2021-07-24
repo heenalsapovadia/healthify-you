@@ -17,100 +17,100 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public void insertBooking(LabCheckBooking booking) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
 
         String sql = "INSERT INTO labcheck_appointments(patient_id, healthcheck_id, booked_for_date, billing_id) VALUES(?,?,?,?)";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, booking.getPatient_id());
-            ps.setInt(2, booking.getHealthcheck_id());
-            ps.setDate(3, booking.getBooked_for_date());
-            ps.setInt(4, booking.getBilling_id());
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, booking.getPatientId());
+            preparedStatement.setInt(2, booking.getHealthcheckId());
+            preparedStatement.setDate(3, booking.getBookedForDate());
+            preparedStatement.setInt(4, booking.getBillingId());
 
-            ps.executeUpdate();
+            preparedStatement.executeUpdate();
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException sqlException){
+            LOGGER.log(Level.SEVERE, sqlException.toString());
+            System.out.println("SQL ERROR:"+sqlException.getMessage());
         }
 
     }
 
     @Override
     public List<LabCheckBooking> getAllBookings() {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE patient_id = ?";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, Patient.getPatient().getPatientId());
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
                 LabCheckBooking labCheckBooking = new LabCheckBooking();
-                labCheckBooking.setAppointment_id(rs.getInt("appointment_id"));
-                labCheckBooking.setHealthcheck_id(rs.getInt("healthcheck_id"));
-                labCheckBooking.setPatient_id(rs.getInt("patient_id"));
-                labCheckBooking.setBooked_for_date(rs.getDate("booked_for_date"));
-                labCheckBooking.setRescheduled_date(rs.getDate("rescheduled_date"));
-                labCheckBooking.setBilling_id(rs.getInt("billing_id"));
+                labCheckBooking.setAppointmentId(resultSet.getInt("appointment_id"));
+                labCheckBooking.setHealthcheckId(resultSet.getInt("healthcheck_id"));
+                labCheckBooking.setPatientId(resultSet.getInt("patient_id"));
+                labCheckBooking.setBookedForDate(resultSet.getDate("booked_for_date"));
+                labCheckBooking.setRescheduledDate(resultSet.getDate("rescheduled_date"));
+                labCheckBooking.setBillingId(resultSet.getInt("billing_id"));
 
                 labCheckBookingList.add(labCheckBooking);
             }
             return labCheckBookingList;
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException sqlException){
+            LOGGER.log(Level.SEVERE, sqlException.toString());
+            System.out.println("SQL ERROR:"+sqlException.getMessage());
         }
         return null;
     }
 
     @Override
     public List<LabCheckBooking> getBookingByDate(Date date) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE booked_for_date = ?";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setDate(1, date);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setDate(1, date);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
                 LabCheckBooking labCheckBooking = new LabCheckBooking();
-                labCheckBooking.setAppointment_id(rs.getInt("appointment_id"));
-                labCheckBooking.setHealthcheck_id(rs.getInt("healthcheck_id"));
-                labCheckBooking.setPatient_id(rs.getInt("patient_id"));
-                labCheckBooking.setBooked_for_date(rs.getDate("booked_for_date"));
-                labCheckBooking.setRescheduled_date(rs.getDate("rescheduled_date"));
-                labCheckBooking.setBilling_id(rs.getInt("billing_id"));
+                labCheckBooking.setAppointmentId(resultSet.getInt("appointment_id"));
+                labCheckBooking.setHealthcheckId(resultSet.getInt("healthcheck_id"));
+                labCheckBooking.setPatientId(resultSet.getInt("patient_id"));
+                labCheckBooking.setBookedForDate(resultSet.getDate("booked_for_date"));
+                labCheckBooking.setRescheduledDate(resultSet.getDate("rescheduled_date"));
+                labCheckBooking.setBillingId(resultSet.getInt("billing_id"));
 
                 labCheckBookingList.add(labCheckBooking);
             }
             return labCheckBookingList;
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException sqlException){
+            LOGGER.log(Level.SEVERE, sqlException.toString());
+            System.out.println("SQL ERROR:"+sqlException.getMessage());
         }
         return null;
     }
 
 	@Override
 	public Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList) {
-		Connection conn = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.getConnection();
         Map<Integer, String> labCheckMap = new HashMap<>();
         String wildcard = "?,".repeat(healthCheckIdList.size());
         String sql = "SELECT * FROM labcheck_plans WHERE checkup_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
         	for(int i=0; i<healthCheckIdList.size(); i++) {
-        		ps.setInt(i+1, healthCheckIdList.get(i));
+        		preparedStatement.setInt(i+1, healthCheckIdList.get(i));
         	}
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                labCheckMap.put(rs.getInt("checkup_id"), rs.getString("checkup_name"));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                labCheckMap.put(resultSet.getInt("checkup_id"), resultSet.getString("checkup_name"));
             }
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException sqlException){
+            LOGGER.log(Level.SEVERE, sqlException.toString());
+            System.out.println("SQL ERROR:"+sqlException.getMessage());
         }
         return labCheckMap;
 	}

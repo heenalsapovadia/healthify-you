@@ -1,34 +1,34 @@
 package persistence.patient.model;
 
 public class LabCheck {
-    private int checkup_id;
-    private String checkup_name;
-    private String checkup_type;
+    private int checkupId;
+    private String checkupName;
+    private String checkupType;
     private String description;
     private double charges;
 
-    public int getCheckup_id() {
-        return checkup_id;
+    public int getCheckupId() {
+        return checkupId;
     }
 
-    public void setCheckup_id(int checkup_id) {
-        this.checkup_id = checkup_id;
+    public void setCheckupId(int checkupId) {
+        this.checkupId = checkupId;
     }
 
-    public String getCheckup_name() {
-        return checkup_name;
+    public String getCheckupName() {
+        return checkupName;
     }
 
-    public void setCheckup_name(String checkup_name) {
-        this.checkup_name = checkup_name;
+    public void setCheckupName(String checkupName) {
+        this.checkupName = checkupName;
     }
 
-    public String getCheckup_type() {
-        return checkup_type;
+    public String getCheckupType() {
+        return checkupType;
     }
 
-    public void setCheckup_type(String checkup_type) {
-        this.checkup_type = checkup_type;
+    public void setCheckupType(String checkupType) {
+        this.checkupType = checkupType;
     }
 
     public String getDescription() {

@@ -29,7 +29,7 @@ public class DoctorRegistrationOutput {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
         DoctorRegistrationUtilImpl doctorRegistrationUtilImpl = new DoctorRegistrationUtilImpl();
 
-        System.out.println(CommonConstants.titleSpace+CommonConstants.titleSpace+CommonConstants.titleSpace+CommonConstants.titleSpace+doctorRegistration);
+        System.out.println(CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+doctorRegistration);
 
         System.out.println();
         System.out.println("Please enter the details below:\n");
@@ -228,12 +228,8 @@ public class DoctorRegistrationOutput {
             choice = sc.nextInt();
 
             if(choice == 1) {
-                try {
-                    doctorRegistrationDAOImpl.updateDoctorDetails(doc);
-                    System.out.println("Registered successfully!");
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+              doctorRegistrationDAOImpl.updateDoctorDetails(doc);
+              System.out.println("Registered successfully!");
             } else if (choice == 2) {
                 System.out.println("Thank you for using our service!");
                 return;

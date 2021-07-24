@@ -27,17 +27,17 @@ public class ImmunizationSlotOutput {
     print.printHeader(presentation.common.ScreenTitles.immunizationDashboard);
     print.printSubHeading("Slots Assigned");
     Date date = new Date();
-    String str = String.format("Current " + ScreenFields.dateTime + ": %tc", date);
+    String str = String.format("Current " + ScreenFields.DATETIME + ": %tc", date);
     print.printScreenFields(str);
     print.printSingleNewLine();
-    print.printScreenFields(CommonConstants.mediumSpace + CommonConstants.verticleBar + CommonConstants.singleTab
-            + "Monday" + CommonConstants.mediumSpace + "Tuesday" + CommonConstants.mediumSpace + "Wedneday" + CommonConstants.singleTab
-            + "Thursday" + CommonConstants.singleTab + "Friday" + CommonConstants.singleTab);
+    print.printScreenFields(CommonConstants.MEDIUM_SPACE + CommonConstants.VERTICAL_BAR + CommonConstants.SINGLE_TAB
+            + "Monday" + CommonConstants.MEDIUM_SPACE + "Tuesday" + CommonConstants.MEDIUM_SPACE + "Wedneday" + CommonConstants.SINGLE_TAB
+            + "Thursday" + CommonConstants.SINGLE_TAB + "Friday" + CommonConstants.SINGLE_TAB);
 
-    print.printScreenFieldsSameLine(CommonConstants.mediumSpace + CommonConstants.verticleBar);
+    print.printScreenFieldsSameLine(CommonConstants.MEDIUM_SPACE + CommonConstants.VERTICAL_BAR);
     CurrentWeekdays week = new CurrentWeekdays();
     for (String Slotdate : week.getDates()) {
-      print.printScreenFieldsSameLine(CommonConstants.singleTab + Slotdate);
+      print.printScreenFieldsSameLine(CommonConstants.SINGLE_TAB + Slotdate);
     }
     print.printSingleNewLine();
   }
@@ -48,13 +48,13 @@ public class ImmunizationSlotOutput {
     int i = 0;
     for (String time : dao.getSlotTiming()) {
       print.printScreenFieldsSameLine(
-              time + CommonConstants.singleTab + CommonConstants.verticleBar + CommonConstants.singleTab);
+              time + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + CommonConstants.SINGLE_TAB);
       for (Map.Entry<String, ArrayList<Integer>> entry : dao.getAssignedDoctors(updateChoice).entrySet()) {
         int docID = entry.getValue().get(i);
         if (docID == 0) {
-          print.printScreenFieldsSameLine("over" + CommonConstants.mediumSpace);
+          print.printScreenFieldsSameLine("over" + CommonConstants.MEDIUM_SPACE);
         } else {
-          print.printScreenFieldsSameLine(entry.getValue().get(i) + CommonConstants.mediumSpace);
+          print.printScreenFieldsSameLine(entry.getValue().get(i) + CommonConstants.MEDIUM_SPACE);
         }
       }
       print.printSingleNewLine();
@@ -74,7 +74,7 @@ public class ImmunizationSlotOutput {
     print.printHorizontalLine();
     print.printScreenFields("Staff ID in queue :" + dao.getDoctorsAvailable());
     print.printScreenFields("Assign slots a new Staff ID? Yes / No");
-    print.printScreenFields(ScreenFields.selection);
+    print.printScreenFields(ScreenFields.SELECTION);
     List<String> selection = Arrays.asList("Yes", "No");
     int choice = print.printSelection(selection);
     if (choice == 1) {

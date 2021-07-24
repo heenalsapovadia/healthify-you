@@ -2,10 +2,7 @@ package persistence.patient.daoImpl;
 
 import persistence.admin.model.PharmaInvoice;
 import persistence.doctor.daoImpl.AppointmentDAOImpl;
-import persistence.doctor.model.Appointment;
-import persistence.doctor.model.Doctor;
 import persistence.doctor.model.Prescription;
-import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
 
 import java.sql.*;
@@ -29,13 +26,13 @@ public class RequestMedicationDAOImpl {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     Prescription prescription = new Prescription();
-                    prescription.setPrescription_id(prescriptionId);
-                    prescription.setPatient_id(rs.getInt("patient_id"));
-                    prescription.setMedicine_name(rs.getString("medicine_name"));
+                    prescription.setPrescriptionId(prescriptionId);
+                    prescription.setPatientId(rs.getInt("patient_id"));
+                    prescription.setMedicineName(rs.getString("medicine_name"));
                     prescription.setMorning(rs.getInt("morning_dose"));
                     prescription.setAfternoon(rs.getInt("afternoon_dose"));
                     prescription.setEvening(rs.getInt("evening_dose"));
-                    prescription.setDosage_days(rs.getInt("dosage_days"));
+                    prescription.setDosageDays(rs.getInt("dosage_days"));
                     prescriptionList.add(prescription);
                 }
             }
