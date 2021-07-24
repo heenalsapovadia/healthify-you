@@ -1,6 +1,3 @@
-/**
- * 
- */
 package persistence.patient.utilImpl;
 
 import java.util.ArrayList;
@@ -40,7 +37,6 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	@Override
 	public Map<String, List<String>> fetchReportByDate(String date) {
 		Map<String, List<String>> reportsMap = new HashMap<>();
-		
 		List<String> bloodReports = getBloodReportByDate(date);
 		List<String> kidneyReports = getKidneyReportByDate(date);
 		List<String> liverReports = getLiverReportByDate(date);
@@ -70,7 +66,6 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	public Map<String, List<String>> fetchReportByDateRange(String fromDate, String toDate) {
 		Map<String, List<String>> outputMap = new HashMap<>();
 		int i = 0;
-		
 		List<String> bloodReports = getBloodReport(fromDate, toDate, i);
 		List<String> kidneyReports = getKidneyReport(fromDate, toDate, i);
 		List<String> liverReports = getLiverReport(fromDate, toDate, i);
@@ -134,14 +129,21 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	}
 	
 	private StringBuilder setBloodReportContent(StringBuilder output, Blood report) {
-		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.commonTextSeparator).append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
-		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
-		output.append("CBC:").append(CommonConstants.NEW_LINE).append(CommonConstants.singleTab);
-		output.append("RBC").append(CommonConstants.singleTab).append(CommonConstants.commonTextSeparator).append(report.getCbcPanel().getRbc()).append(CommonConstants.NEW_LINE).append(CommonConstants.singleTab);
-		output.append("Hematocrit").append(CommonConstants.commonTextSeparator).append(report.getCbcPanel().getHematocrit()).append(CommonConstants.NEW_LINE).append(CommonConstants.singleTab);
-		output.append("Haemoglobin").append(CommonConstants.commonTextSeparator).append(report.getCbcPanel().getHaemoglobin()).append(CommonConstants.NEW_LINE).append(CommonConstants.singleTab);
-		output.append("WBC").append(CommonConstants.singleTab).append(CommonConstants.commonTextSeparator).append(report.getCbcPanel().getWbc()).append(CommonConstants.NEW_LINE).append(CommonConstants.singleTab);
-		output.append("Platelets").append(CommonConstants.commonTextSeparator).append(report.getCbcPanel().getPlatelets()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDate()).append(CommonConstants.NEW_LINE);
+		output.append("CBC:").append(CommonConstants.NEW_LINE).append(CommonConstants.SINGLE_TAB);
+		output.append("RBC").append(CommonConstants.SINGLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getCbcPanel().getRbc()).append(CommonConstants.NEW_LINE).append(CommonConstants.SINGLE_TAB);
+		output.append("Hematocrit").append(CommonConstants.COMMON_TEXT_SEPARATOR).append(report.getCbcPanel().getHematocrit())
+			.append(CommonConstants.NEW_LINE).append(CommonConstants.SINGLE_TAB);
+		output.append("Haemoglobin").append(CommonConstants.COMMON_TEXT_SEPARATOR).append(report.getCbcPanel().getHaemoglobin())
+			.append(CommonConstants.NEW_LINE).append(CommonConstants.SINGLE_TAB);
+		output.append("WBC").append(CommonConstants.SINGLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getCbcPanel().getWbc()).append(CommonConstants.NEW_LINE).append(CommonConstants.SINGLE_TAB);
+		output.append("Platelets").append(CommonConstants.COMMON_TEXT_SEPARATOR).append(report.getCbcPanel().getPlatelets())
+			.append(CommonConstants.NEW_LINE);
 		
 		return output;
 	}
@@ -184,10 +186,14 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	}
 	
 	private void setKidneyReportContent(StringBuilder output, Kidney report) {
-		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.commonTextSeparator).append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
-		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
-		output.append("Creatinine").append(CommonConstants.singleTab).append(CommonConstants.commonTextSeparator).append(report.getCreatinine()).append(CommonConstants.NEW_LINE);
-		output.append("BUN").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getBun()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.COMMON_TEXT_SEPARATOR).append(report.getDateOfCollection())
+			.append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDate()).append(CommonConstants.NEW_LINE);
+		output.append("Creatinine").append(CommonConstants.SINGLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getCreatinine()).append(CommonConstants.NEW_LINE);
+		output.append("BUN").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getBun()).append(CommonConstants.NEW_LINE);
 	}
 	
 	public String getLiverReportByTest() {
@@ -228,13 +234,20 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	}
 	
 	private void setLiverReportContent(StringBuilder output, Liver report) {
-		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.commonTextSeparator).append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
-		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
-		output.append("ALT").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getAlt()).append(CommonConstants.NEW_LINE);
-		output.append("AST").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getAst()).append(CommonConstants.NEW_LINE);
-		output.append("ALP").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getAlp()).append(CommonConstants.NEW_LINE);
-		output.append("Albumin").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getAlbumin()).append(CommonConstants.NEW_LINE);
-		output.append("Bilirubin").append(CommonConstants.singleTab).append(CommonConstants.commonTextSeparator).append(report.getBilirubin()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDate()).append(CommonConstants.NEW_LINE);
+		output.append("ALT").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getAlt()).append(CommonConstants.NEW_LINE);
+		output.append("AST").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getAst()).append(CommonConstants.NEW_LINE);
+		output.append("ALP").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getAlp()).append(CommonConstants.NEW_LINE);
+		output.append("Albumin").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getAlbumin()).append(CommonConstants.NEW_LINE);
+		output.append("Bilirubin").append(CommonConstants.SINGLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getBilirubin()).append(CommonConstants.NEW_LINE);
 	}
 	
 	public String getVisionReportByTest() {
@@ -275,9 +288,12 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	}
 	
 	private void setVisionReportContent(StringBuilder output, Vision report) {
-		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.commonTextSeparator).append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
-		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
-		output.append("Vision").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getAcuity()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDate()).append(CommonConstants.NEW_LINE);
+		output.append("Vision").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getAcuity()).append(CommonConstants.NEW_LINE);
 	}
 	
 	public String getCovidReportByTest() {
@@ -318,9 +334,12 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	}
 	
 	private void setCovidReportContent(StringBuilder output, Covid report) {
-		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.commonTextSeparator).append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
-		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getDate()).append(CommonConstants.NEW_LINE);
-		output.append("Covid").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.commonTextSeparator).append(report.getRtPcr().getSarsCov2()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE_OF_COLLECTION).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDateOfCollection()).append(CommonConstants.NEW_LINE);
+		output.append(ScreenFields.DATE).append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getDate()).append(CommonConstants.NEW_LINE);
+		output.append("Covid").append(CommonConstants.DOUBLE_TAB).append(CommonConstants.COMMON_TEXT_SEPARATOR)
+			.append(report.getRtPcr().getSarsCov2()).append(CommonConstants.NEW_LINE);
 	}
 	
 	private List<String> getBloodReport(String fromDate, String toDate, int i) {

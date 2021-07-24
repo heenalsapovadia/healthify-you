@@ -9,16 +9,22 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import persistence.patient.util.ViewReportsUtil;
 import persistence.patient.utilImpl.ViewReportsUtilImpl;
-import presentation.admin.PharmaInvoiceOutput;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
 
 /**
+ * <pre>
+ * Displays medical reports of patient.
+ * The reports can be viewed by
+ * 	1. A particular date
+ * 	2. A particular test
+ * 	3. A date range
+ * </pre>
+ * 
  * @author Gurleen Saluja
  *
  */
@@ -56,12 +62,12 @@ public class ViewReportsOutput {
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_TEST);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_PARTICULAR_DATE);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_DATE_RANGE);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 	
 	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
 			date = Date.valueOf(sc.next());
@@ -102,18 +108,20 @@ public class ViewReportsOutput {
 	
 	private void displayReportForDateRange(ViewReportsUtil reportsUtil, PrintToConsole consoleObj) {
 		parseDateRange(consoleObj, new Scanner(System.in));
-		Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDateRange(startDate.toString(), endDate.toString());
-		if(!reportsMap.isEmpty()) {
-			for(Map.Entry<String, List<String>> entry: reportsMap.entrySet()) {
-				consoleObj.printHeader(entry.getKey());
-				for(String report: entry.getValue()) {
-					System.out.println(report);
-					consoleObj.printLineSeparator();
+		if(startDate != null && endDate != null) {
+			Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDateRange(startDate.toString(), endDate.toString());
+			if(!reportsMap.isEmpty()) {
+				for(Map.Entry<String, List<String>> entry: reportsMap.entrySet()) {
+					consoleObj.printHeader(entry.getKey());
+					for(String report: entry.getValue()) {
+						System.out.println(report);
+						consoleObj.printLineSeparator();
+					}
 				}
 			}
-		}
-		else {
-			System.err.println(CommonErrors.NO_REPORTS);
+			else {
+				System.err.println(CommonErrors.NO_REPORTS);
+			}
 		}
 	}
 	
@@ -123,13 +131,13 @@ public class ViewReportsOutput {
 			startDate = Date.valueOf(sc.next());
 			if(startDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
 				System.err.println(CommonErrors.greaterDate);
-				displayOutput();
+				return;
 			}
 			System.out.println(ScreenFields.END_DATE);
 			endDate = Date.valueOf(sc.next());
 			if(endDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
 				System.err.println(CommonErrors.greaterDate);
-				displayOutput();
+				return;
 			}
 			else {
 				Calendar startDateCal = Calendar.getInstance();
@@ -144,11 +152,10 @@ public class ViewReportsOutput {
 		}
 		catch(IllegalArgumentException e) {
 			consoleObj.printError(CommonErrors.invalidDateFormat);
-			parseDateRange(consoleObj, new Scanner(System.in));
+			return;
 		}
 		if(startDate == null || endDate == null) {
 			consoleObj.printError(CommonErrors.invalidDateFormat);
-			parseDateRange(consoleObj, new Scanner(System.in));
 		}
 	}
 }

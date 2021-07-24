@@ -34,7 +34,7 @@ public class RequestMedicationDAOImpl {
                     prescription.setMorning(rs.getInt("morning_dose"));
                     prescription.setAfternoon(rs.getInt("afternoon_dose"));
                     prescription.setEvening(rs.getInt("evening_dose"));
-                    prescription.setDosage_days(rs.getInt("dosage_days"));
+                    prescription.setDosageDays(rs.getInt("dosage_days"));
                     prescriptionList.add(prescription);
                 }
             }

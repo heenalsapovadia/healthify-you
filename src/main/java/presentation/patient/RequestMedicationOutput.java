@@ -24,12 +24,12 @@ public class RequestMedicationOutput {
 
             Scanner sc = new Scanner(System.in);
             for ( int i = 0; i < 100; i++ )
-                System.out.print(CommonConstants.headingChar);
+                System.out.print(CommonConstants.HEADING_CHAR);
 
             System.out.println();
-            System.out.println(CommonConstants.titleSpace + CommonConstants.titleSpace + ScreenTitles.REQUEST_MEDICATION + CommonConstants.titleSpace);
+            System.out.println(CommonConstants.TITLE_SPACE + CommonConstants.TITLE_SPACE + ScreenTitles.REQUEST_MEDICATION + CommonConstants.TITLE_SPACE);
             for ( int i = 0; i < 100; i++ )
-                System.out.print(CommonConstants.headingChar);
+                System.out.print(CommonConstants.HEADING_CHAR);
             System.out.println();
             System.out.println("Enter Prescription ID:");
             int current_PrescriptionId = sc.nextInt();
@@ -40,7 +40,7 @@ public class RequestMedicationOutput {
             System.out.println("Medicine Name: " + currentPrescription.getMedicine_name());
             int totalDoseNeeded = currentPrescription.getMorning() + currentPrescription.getAfternoon() + currentPrescription.getEvening();
             System.out.println("Medicine Dose: " + totalDoseNeeded);
-            int medicinePrescirbedDays = currentPrescription.getDosage_days();
+            int medicinePrescirbedDays = currentPrescription.getDosageDays();
             System.out.println("Dosage is for : " + medicinePrescirbedDays + " days");
             int finalDoseAmount = totalDoseNeeded * medicinePrescirbedDays;
 

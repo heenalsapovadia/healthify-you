@@ -39,7 +39,7 @@ public class ApplicationOutput {
 	
 	void displayOutput() throws SQLException {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.mainScreen);
+		consoleObj.printHeader(ScreenTitles.MAIN_SCREEN);
 		loadMainScreenContent(consoleObj);
 		if(Admin.getAdmin() != null) {
 			AdminMenuOutput adminMenuOutput = AdminMenuOutput.getInstance();
@@ -78,9 +78,9 @@ public class ApplicationOutput {
 	
 	private List<String> getSelectionOptions() {
 		List<String> selectionOptions = new ArrayList<>();
-		selectionOptions.add(ScreenFields.login);
-		selectionOptions.add(ScreenFields.signUp);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.LOGIN);
+		selectionOptions.add(ScreenFields.SIGNUP);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 }

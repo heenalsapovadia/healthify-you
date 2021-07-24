@@ -17,21 +17,21 @@ public class ImmunizationStatsOutput {
 
     public void dashboard(){
         // Title
-        consoleObj.printHeader(ScreenTitles.vaccineStats);
+        consoleObj.printHeader(ScreenTitles.VACCINE_STATS);
 
         System.out.println(ScreenFields.mostDemandedVaccine
-                + CommonConstants.commonTextSeparator
+                + CommonConstants.COMMON_TEXT_SEPARATOR
                 + vaccineDemandStatsUtil.mostVaccinatedBy("vaccineName"));
         System.out.println(ScreenFields.mostVaccinatedAge
-                + CommonConstants.singleTab
+                + CommonConstants.SINGLE_TAB
                 + ":"
-                + CommonConstants.mediumSpace
+                + CommonConstants.MEDIUM_SPACE
                 + vaccineDemandStatsUtil.mostVaccinatedBy("ageGroup"));
         System.out.println(ScreenFields.mostVaccinatedGender
-                + CommonConstants.commonTextSeparator
+                + CommonConstants.COMMON_TEXT_SEPARATOR
                 + vaccineDemandStatsUtil.mostVaccinatedBy("gender"));
         System.out.println(ScreenFields.mostVaccinatedArea
-                + CommonConstants.commonTextSeparator
+                + CommonConstants.COMMON_TEXT_SEPARATOR
                 + vaccineDemandStatsUtil.mostVaccinatedBy("area"));
 
         consoleObj.printDoubleNewlines();
@@ -46,12 +46,12 @@ public class ImmunizationStatsOutput {
     public void covidAnalysis(){
         Map<String, Integer> covidAnalysis = vaccineDemandStatsUtil.covidVaccineDistribution();
 
-        System.out.println(ScreenTitles.covidAnalysis);
+        System.out.println(ScreenTitles.COVID_ANALYSIS);
         if(covidAnalysis.isEmpty())
             System.out.println("No data available for Covid Shot analysis");
         else {
             for (Map.Entry<String, Integer> entry : covidAnalysis.entrySet()) {
-                System.out.println(entry.getKey() + CommonConstants.commonTextSeparator + entry.getValue());
+                System.out.println(entry.getKey() + CommonConstants.COMMON_TEXT_SEPARATOR + entry.getValue());
             }
         }
     }
@@ -64,13 +64,13 @@ public class ImmunizationStatsOutput {
 
         switch (option) {
             case 1:
-                System.out.print("Enter number of months"+CommonConstants.commonTextSeparator);
+                System.out.print("Enter number of months"+CommonConstants.COMMON_TEXT_SEPARATOR);
                 int months;
                 if(sc.hasNextInt()) {
                     months = sc.nextInt();
                     int doses = vaccineDemandStatsUtil.dosesAdministered(months);
                     System.out.println("Doses administered in the last " + months + " months"
-                            + CommonConstants.commonTextSeparator
+                            + CommonConstants.COMMON_TEXT_SEPARATOR
                             + doses);
                 }
                 break;

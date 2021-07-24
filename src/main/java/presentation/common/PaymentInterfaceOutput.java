@@ -105,8 +105,8 @@ public class PaymentInterfaceOutput {
             }
         }
         else if(sel == 3) {
-            System.out.println(ScreenFields.logoutMessage);
-            System.out.println(ScreenFields.applicationTerminationMessage);
+            System.out.println(ScreenFields.LOGOUT_MESSAGE);
+            System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
             System.exit(0);
         }
         else {
