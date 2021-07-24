@@ -30,10 +30,6 @@ public class DoctorAppointmentByNameOutput {
       PrintToConsole consoleObj = PrintToConsole.getInstance();
       consoleObj.printHeader("Visit a specific doctor");
 
-      Scanner sc = new Scanner(System.in);
-      consoleObj.printScreenFields("Enter doctor's firstname or lastname (case-insensitive)");
-      String name = sc.nextLine();
-
       List<String> selectionOptions = new ArrayList<>();
       selectionOptions.add("Search doctor");
       selectionOptions.add("Exit");
@@ -43,6 +39,10 @@ public class DoctorAppointmentByNameOutput {
 
           if (choice == 1) {
               consoleObj.printHeader("Search doctor");
+
+              Scanner sc3 = new Scanner(System.in);
+              consoleObj.printScreenFields("Enter doctor's firstname or lastname (case-insensitive)");
+              String name = sc3.nextLine();
 
               DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAOImpl = new DoctorAppointmentBookingByNameDAOImpl();
               Map<Integer, String> doctorIdentifierList = doctorAppointmentBookingByNameDAOImpl.fetchDoctorIdentifier(name);
@@ -56,7 +56,7 @@ public class DoctorAppointmentByNameOutput {
                   for (Integer i : doctorIdentifierList.keySet()) {
                       System.out.println(i + ": " + doctorIdentifierList.get(i));
                   }
-                  doctorID = sc.nextInt();
+                  doctorID = sc3.nextInt();
                   if (!doctorIdentifierList.containsKey(doctorID)) {
                       System.err.println("Entered doctor identifier not in the list!");
                       return;
@@ -83,12 +83,12 @@ public class DoctorAppointmentByNameOutput {
                           }
 
                           System.out.println("Enter registered patient email address for whom the appointment should be booked!");
-                          String patientEmail = sc.next();
+                          String patientEmail = sc3.next();
                           int patientID = doctorAppointmentBookingByNameUtil.validateEmail(patientEmail);
 
                           while (patientID == -1) {
                               System.out.println("Email address entered is not registered with us! Please enter registered patient email address for whom the appointment should be booked!");
-                              patientEmail = sc.next();
+                              patientEmail = sc3.next();
                               patientID = doctorAppointmentBookingByNameUtil.validateEmail(patientEmail);
                           }
 
@@ -120,7 +120,6 @@ public class DoctorAppointmentByNameOutput {
 
                       } else {
                           System.err.println("Day availability for the mentioned doctor not updated in the system!");
-                          return;
                       }
                   }
               }
@@ -131,8 +130,14 @@ public class DoctorAppointmentByNameOutput {
               doctorAppointmentBookingDashboard.display();
           }
 
+          consoleObj.printHeader("Visit a specific doctor");
           choice = consoleObj.printSelection(selectionOptions);
 
+      }
+
+      if (choice == 2) {
+          DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+          doctorAppointmentBookingDashboard.display();
       }
   }
 

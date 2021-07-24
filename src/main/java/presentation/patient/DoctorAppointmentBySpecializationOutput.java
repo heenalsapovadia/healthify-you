@@ -27,10 +27,6 @@ public class DoctorAppointmentBySpecializationOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
     consoleObj.printHeader("Book an appointment with doctor based on specialization");
 
-    Scanner sc = new Scanner(System.in);
-    consoleObj.printScreenFields("Enter specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS) (case-insensitive)");
-    String specialization = sc.nextLine().toUpperCase(Locale.ROOT);
-
     List<String> selectionOptions = new ArrayList<>();
     selectionOptions.add("Search doctor");
     selectionOptions.add("Exit");
@@ -39,10 +35,14 @@ public class DoctorAppointmentBySpecializationOutput {
     while (choice != 2) {
       if (choice == 1) {
         consoleObj.printHeader("Search doctor");
+
+        Scanner sc = new Scanner(System.in);
+        consoleObj.printScreenFields("Enter specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS) (case-insensitive)");
+        String specialization = sc.nextLine().toUpperCase(Locale.ROOT);
+
         DoctorAppointmentBookingBySpecializationDAOImpl doctorAppointmentBookingBySpecializationDAOImpl = new DoctorAppointmentBookingBySpecializationDAOImpl();
         Map<Integer, String> doctorIdentifierList = doctorAppointmentBookingBySpecializationDAOImpl.fetchDoctorIdentifier(specialization);
         int doctorID = 0;
-
         if (doctorIdentifierList == null) {
           System.err.println("Not available!");
           return;
@@ -114,7 +114,6 @@ public class DoctorAppointmentBySpecializationOutput {
               }
             } else {
               System.err.println("Day availability for the mentioned doctor not updated in the system!");
-              return;
             }
           }
         }
@@ -125,8 +124,14 @@ public class DoctorAppointmentBySpecializationOutput {
         doctorAppointmentBookingDashboard.display();
       }
 
+      consoleObj.printHeader("Book an appointment with doctor based on specialization");
       choice = consoleObj.printSelection(selectionOptions);
 
+    }
+
+    if (choice == 2) {
+      DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+      doctorAppointmentBookingDashboard.display();
     }
   }
 
