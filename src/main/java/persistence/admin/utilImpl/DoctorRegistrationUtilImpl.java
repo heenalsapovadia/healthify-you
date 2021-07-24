@@ -106,22 +106,17 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
         Pattern p = Pattern.compile(regex);
 
         if(email!=null && !email.equals("")) {
-            if(p.matcher(email).matches()) {
-                try {
-                    if(doctorRegistrationDAOImpl.checkDoctorExists(email)) {
-                        System.out.println("Doctor is registered with the system already!");
-                        return false;
-                    } else {
-                        return true;
-                    }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+          if(p.matcher(email).matches()) {
+            if(doctorRegistrationDAOImpl.checkDoctorExists(email)) {
+              System.out.println("Doctor is registered with the system already!");
+              return false;
             } else {
-                System.out.println("Invalid email address format! The email address should include @ and . ");
-                return false;
+                return true;
             }
-            return true;
+          } else {
+              System.out.println("Invalid email address format! The email address should include @ and . ");
+              return false;
+          }
         } else {
             return false;
         }
