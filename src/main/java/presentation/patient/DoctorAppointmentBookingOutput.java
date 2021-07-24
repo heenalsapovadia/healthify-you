@@ -60,7 +60,7 @@ public class DoctorAppointmentBookingOutput {
 
         consoleObj.printSingleNewLine();
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         List<String> daysAvailable = doctorAvailability(appointmentToReschedule.getDoctor_id());
         List<String> datesOptions = datesGenerator(daysAvailable, 0);
         System.out.println("Doctor is available on the following dates : ");
@@ -74,8 +74,8 @@ public class DoctorAppointmentBookingOutput {
         consoleObj.printSingleNewLine();
         System.out.println("Do you want dates for the week after ?");
         System.out.println("1. Yes\n2. No");
-        if(sc.hasNextInt()) {
-            int option = sc.nextInt();
+        if(scanner.hasNextInt()) {
+            int option = scanner.nextInt();
             if (option == 1) {
                 List<String> datesForNextWeek = datesGenerator(daysAvailable, 1);
                 datesOptions.addAll(datesForNextWeek);
@@ -92,12 +92,12 @@ public class DoctorAppointmentBookingOutput {
     }
 
     public int validateAppointmentIdToReschedule(Map<Integer, Appointment> appointmentMap){
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int appointmentId;
         while(true) {
             System.out.print("Enter appointment Id to reschedule : ");
-            if (sc.hasNextInt()) {
-                appointmentId = sc.nextInt();
+            if (scanner.hasNextInt()) {
+                appointmentId = scanner.nextInt();
                 if(appointmentMap.containsKey(appointmentId))
                     break;
                 else

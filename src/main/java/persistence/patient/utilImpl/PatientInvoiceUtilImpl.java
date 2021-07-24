@@ -83,10 +83,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		List<LabCheckBooking> actualLabCheckBookings = new ArrayList<>();
 		List<Integer> healthCheckIdList = new ArrayList<>();
 		for(LabCheckBooking labCheckBooking: labCheckBookingList) {
-			if(labCheckBooking.getBooked_for_date().toString().equals(date)) {
+			if(labCheckBooking.getBookedForDate().toString().equals(date)) {
 				actualLabCheckBookings.add(labCheckBooking);
-				billingIdList.add(labCheckBooking.getBilling_id());
-				healthCheckIdList.add(labCheckBooking.getHealthcheck_id());
+				billingIdList.add(labCheckBooking.getBillingId());
+				healthCheckIdList.add(labCheckBooking.getHealthcheckId());
 			}
 		}
 		invoice.setLabCheckBookingList(actualLabCheckBookings);
@@ -104,9 +104,9 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		List<String> medicineNameList = new ArrayList<>();
 		for(Prescription prescription: prescriptionList) {
 			if(prescription.getPrescriptionDate().toString().equals(date)) {
-				invoice.setPrescriptionId(prescription.getPrescription_id());
+				invoice.setPrescriptionId(prescription.getPrescriptionId());
 				invoice.setBillId(prescription.getBillingId());
-				medicineNameList.add(prescription.getMedicine_name());
+				medicineNameList.add(prescription.getMedicineName());
 				billingIdList.add(prescription.getBillingId());
 			}
 		}

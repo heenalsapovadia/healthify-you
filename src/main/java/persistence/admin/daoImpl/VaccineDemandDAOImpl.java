@@ -18,7 +18,7 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
 
     @Override
     public List<Map<String, Object>> getVaccinationData(){
-        Connection conn = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         List<Map<String, Object>> dataRecords = new ArrayList<>();
 
         String sql = "SELECT appointment_id, Vaccine.patient_id, doctor_id, booked_for_date,\n" +
@@ -32,28 +32,28 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
                 "join CSCI5308_12_DEVINT.patients as Pat \n" +
                 "where Vaccine.patient_id = Pat.patient_id;";
 
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
                 Map<String, Object> dataRecord = new HashMap<>();
-                dataRecord.put("appointmentId", rs.getInt("appointment_id"));
-                dataRecord.put("patientId", rs.getInt("patient_id"));
-                dataRecord.put("doctorId", rs.getInt("doctor_id"));
-                dataRecord.put("date", rs.getDate("booked_for_date"));
-                dataRecord.put("vaccineId", rs.getInt("vaccine_id"));
-                dataRecord.put("gender", rs.getString("patient_gender"));
-                dataRecord.put("dob", rs.getDate("patient_dob"));
-                dataRecord.put("area", rs.getString("patient_address"));
-                dataRecord.put("vaccineName", rs.getString("vaccine_name"));
-                dataRecord.put("ageGroup", rs.getString("age_group_in_years"));
+                dataRecord.put("appointmentId", resultSet.getInt("appointment_id"));
+                dataRecord.put("patientId", resultSet.getInt("patient_id"));
+                dataRecord.put("doctorId", resultSet.getInt("doctor_id"));
+                dataRecord.put("date", resultSet.getDate("booked_for_date"));
+                dataRecord.put("vaccineId", resultSet.getInt("vaccine_id"));
+                dataRecord.put("gender", resultSet.getString("patient_gender"));
+                dataRecord.put("dob", resultSet.getDate("patient_dob"));
+                dataRecord.put("area", resultSet.getString("patient_address"));
+                dataRecord.put("vaccineName", resultSet.getString("vaccine_name"));
+                dataRecord.put("ageGroup", resultSet.getString("age_group_in_years"));
 
                 dataRecords.add(dataRecord);
             }
             return dataRecords;
         }
-        catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.toString());
-            System.out.println("SQL ERROR:"+e.getMessage());
+        catch (SQLException sqlException){
+            LOGGER.log(Level.SEVERE, sqlException.toString());
+            System.out.println("SQL ERROR:"+sqlException.getMessage());
         }
         return dataRecords;
     }

@@ -56,12 +56,12 @@ public class LabTestInvoiceOutput {
 		List<LabCheckBooking> labCheckBookings = invoice.getLabCheckBookingList();
 		double total = 0d;
 		for(int i=0; i<labCheckBookings.size(); i++) {
-			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.commonTextSeparator+labCheckBookings.get(i).getAppointment_id());
-			System.out.println(ScreenFields.dateTime+CommonConstants.commonTextSeparator+labCheckBookings.get(i).getBooked_for_date());
+			System.out.println(ScreenFields.APPOINTMENT_ID+CommonConstants.commonTextSeparator+labCheckBookings.get(i).getAppointmentId());
+			System.out.println(ScreenFields.dateTime+CommonConstants.commonTextSeparator+labCheckBookings.get(i).getBookedForDate());
 			System.out.println(ScreenFields.LAB_TEST_NAME+CommonConstants.singleTab+CommonConstants.COLON+CommonConstants.DOUBLE_TAB
-					+ invoice.getLabCheckMap().get(labCheckBookings.get(i).getHealthcheck_id()));
+					+ invoice.getLabCheckMap().get(labCheckBookings.get(i).getHealthcheckId()));
 			consoleObj.printLineSeparator();
-			total += invoice.getPaymentMap().get(labCheckBookings.get(i).getBilling_id()).getBill_amount();
+			total += invoice.getPaymentMap().get(labCheckBookings.get(i).getBillingId()).getBill_amount();
 		}
 		System.out.println(ScreenFields.BILL_AMT+CommonConstants.DOUBLE_TAB+CommonConstants.singleTab+total);
 		consoleObj.printLineSeparator();

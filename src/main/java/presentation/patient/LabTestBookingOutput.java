@@ -52,7 +52,7 @@ public class LabTestBookingOutput {
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
         List<LabCheck> labCheckList = labCheckUtil.fetchLabCheckPlans();
         for(LabCheck labCheck : labCheckList){
-            System.out.println(""+labCheck.getCheckup_id()+CommonConstants.commonTextSeparator+labCheck.getCheckup_name());
+            System.out.println(""+labCheck.getCheckupId()+CommonConstants.commonTextSeparator+labCheck.getCheckupName());
         }
         List<String> selectionOptions = Arrays.asList(ScreenFields.viewDetails, ScreenFields.backToBooking);
         int option = consoleObj.printSelection(selectionOptions);
@@ -74,10 +74,10 @@ public class LabTestBookingOutput {
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
         Map<Integer, LabCheck> labCheckMap = labCheckUtil.fetchLabCheckMap();
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        healthCheckId = inputHealthCheckId(sc);
-        bookingdate = inputBookingDate(sc);
+        healthCheckId = inputHealthCheckId(scanner);
+        bookingdate = inputBookingDate(scanner);
         double healthCheckCharges = labCheckMap.get(healthCheckId).getCharges();
 
         List<String> options = Arrays.asList("Continue For Payment", ScreenFields.exit);
@@ -106,7 +106,7 @@ public class LabTestBookingOutput {
         List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
         System.out.println("Appointment ID | HealthCheck ID | Date");
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
-            System.out.println(labCheckBooking.getAppointment_id()+CommonConstants.verticleBar+labCheckBooking.getHealthcheck_id()+CommonConstants.verticleBar+labCheckBooking.getBooked_for_date());
+            System.out.println(labCheckBooking.getAppointmentId()+CommonConstants.verticleBar+labCheckBooking.getHealthcheckId()+CommonConstants.verticleBar+labCheckBooking.getBookedForDate());
         }
     }
 
@@ -127,18 +127,18 @@ public class LabTestBookingOutput {
             labCheckSet.add(labCheck);
         System.out.println("------------ "+ScreenFields.labCheckRecommendation+" ------------");
         for(LabCheck labCheck : labCheckSet)
-            System.out.println(labCheck.getCheckup_id()+CommonConstants.commonTextSeparator+labCheck.getCheckup_name());
+            System.out.println(labCheck.getCheckupId()+CommonConstants.commonTextSeparator+labCheck.getCheckupName());
     }
 
-    private int inputHealthCheckId(Scanner sc){
+    private int inputHealthCheckId(Scanner scanner){
         int healthCheckId;
         System.out.print(ScreenFields.checkId+ CommonConstants.commonTextSeparator);
 
         while(true) {
-            if (sc.hasNextInt()) {
-                healthCheckId = sc.nextInt();
+            if (scanner.hasNextInt()) {
+                healthCheckId = scanner.nextInt();
                 if (healthCheckId < 1 || healthCheckId > 10)
-                    consoleObj.printError(CommonErrors.invalidCheckUpId);
+                    consoleObj.printError(CommonErrors.INVALID_CHECK_UP_ID);
                 else
                     return healthCheckId;
             } else
@@ -146,20 +146,20 @@ public class LabTestBookingOutput {
         }
     }
 
-    private Date inputBookingDate(Scanner sc){
+    private Date inputBookingDate(Scanner scanner){
         Date bookingdate;
         System.out.print(ScreenFields.dateInput+CommonConstants.commonTextSeparator);
 
         while(true) {
             try {
-                bookingdate = Date.valueOf(sc.next());
+                bookingdate = Date.valueOf(scanner.next());
                 if(bookingdate.compareTo(new Date(System.currentTimeMillis())) < 0) {
-                    consoleObj.printError(CommonErrors.smallerDate);
+                    consoleObj.printError(CommonErrors.SMALLER_DATE);
                 }
                 else
                     return bookingdate;
             }
-            catch(IllegalArgumentException e) {
+            catch(IllegalArgumentException illegalArgumentException) {
                 consoleObj.printError(CommonErrors.invalidDateFormat);
             }
         }

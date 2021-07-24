@@ -22,7 +22,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     public Appointment validateAppointmentId(Appointment appointment) {
         Connection conn = DatabaseConnection.getConnection();
 
-        int doctor_id = Doctor.getDoctor().getDoctor_id();
+        int doctor_id = Doctor.getDoctor().getDoctorId();
 
         String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ? AND doctor_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
