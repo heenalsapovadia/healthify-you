@@ -24,12 +24,12 @@ public class ViewReportsByTestOutput {
 	
 	public void displayOutput() {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		consoleObj.printHeader(ScreenTitles.VIEW_REPORTS_BY_TEST);
 		consoleObj.printSingleNewLine();
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		ViewReportsUtil reportsUtil = new ViewReportsUtilImpl();
 		do {
+			consoleObj.printHeader(ScreenTitles.VIEW_REPORTS_BY_TEST);
 			sel = consoleObj.printSelection(selectionOptions);
 			switch(sel) {
 				case 1: consoleObj.printHeader(ScreenTitles.VIEW_BLOOD_REPORTS);
