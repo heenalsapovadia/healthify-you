@@ -116,15 +116,15 @@ public class LabTestBookingOutput {
 
         List<LabCheck> ageBasedRecommendationList = labCheckRecommendationUtil.ageBasedRecommendation();
         List<LabCheck> genderBasedRecommendationList = labCheckRecommendationUtil.genderBasedRecommendation();
-        // List<LabCheck> historyBasedRecommendationList = labCheckRecommendationUtil.historyBasedRecommendation();
+        List<LabCheck> historyBasedRecommendationList = labCheckRecommendationUtil.historyBasedRecommendation();
 
         Set<LabCheck> labCheckSet = new HashSet<>();
         for(LabCheck labCheck : ageBasedRecommendationList)
             labCheckSet.add(labCheck);
         for(LabCheck labCheck : genderBasedRecommendationList)
             labCheckSet.add(labCheck);
-        // for(LabCheck labCheck : historyBasedRecommendationList)
-        //     labCheckSet.add(labCheck);
+        for(LabCheck labCheck : historyBasedRecommendationList)
+            labCheckSet.add(labCheck);
         System.out.println("------------ "+ScreenFields.LAB_CHECK_RECOMMENDATION +" ------------");
         for(LabCheck labCheck : labCheckSet)
             System.out.println(labCheck.getCheckupId()+CommonConstants.COMMON_TEXT_SEPARATOR+labCheck.getCheckupName());
