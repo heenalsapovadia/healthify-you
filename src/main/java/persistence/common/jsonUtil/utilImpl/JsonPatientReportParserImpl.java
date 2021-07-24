@@ -19,7 +19,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
     private String fileName;
 
     public JsonPatientReportParserImpl(){
-        pathToResources = "src/main/resources";
+        pathToResources = "/users/grad/gsaluja/CSCI5308builds/";
         fileName = "patientHistory.json";
     }
 
