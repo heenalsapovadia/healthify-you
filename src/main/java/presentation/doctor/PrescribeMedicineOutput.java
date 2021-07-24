@@ -3,9 +3,13 @@ package presentation.doctor;
 import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.daoImpl.PrescriptionDAOImpl;
 import persistence.doctor.model.Appointment;
+import persistence.doctor.model.Doctor;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,10 +19,10 @@ public class PrescribeMedicineOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     public void prescribeMedication(){
-        consoleObj.printHeader(ScreenTitles.prescription);
+        consoleObj.printHeader(ScreenTitles.MEDICINE_PRESCRIPTION);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print(ScreenFields.appointmentId + CommonConstants.commonTextSeparator);
+        System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
         int appointmentId = scanner.nextInt();
 
         /*
@@ -29,7 +33,7 @@ public class PrescribeMedicineOutput {
 
         while(validAppointment==null){
             System.out.println(CommonErrors.INVALID_APPOINTMENT_ID);
-            System.out.print(ScreenFields.appointmentId + CommonConstants.commonTextSeparator);
+            System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
             appointmentId = scanner.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
         }
@@ -39,7 +43,7 @@ public class PrescribeMedicineOutput {
          */
         int patient_id = validAppointment.getPatient_id();
 
-        System.out.print(ScreenFields.medicineNumber + CommonConstants.commonTextSeparator);
+        System.out.print(ScreenFields.MEDICINE_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
         int medicineNumber = scanner.nextInt();
         List<Prescription> prescriptionList = new ArrayList<>();
 
@@ -47,14 +51,16 @@ public class PrescribeMedicineOutput {
         Take user input for all medicines
          */
         while(medicineNumber>0){
-            System.out.print(ScreenFields.medicineName + CommonConstants.commonTextSeparator);
+            System.out.print(ScreenFields.MEDICINE_NAME + CommonConstants.COMMON_TEXT_SEPARATOR);
             String medicineName = scanner.next();
-            System.out.print(ScreenFields.morningDose + CommonConstants.commonTextSeparator);
+            System.out.print(ScreenFields.MORNING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
             int morning = scanner.nextInt();
-            System.out.print(ScreenFields.afternoonDose + CommonConstants.commonTextSeparator);
+            System.out.print(ScreenFields.AFTERNOON_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
             int afternoon = scanner.nextInt();
-            System.out.print(ScreenFields.eveningDose + CommonConstants.commonTextSeparator);
+            System.out.print(ScreenFields.EVENING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
             int evening = scanner.nextInt();
+            System.out.print(ScreenFields.DOSAGE_DAYS + CommonConstants.COMMON_TEXT_SEPARATOR);
+            int dosageDays = scanner.nextInt();
 
             Prescription prescription = new Prescription();
             prescription.setAppointmentId(appointmentId);
@@ -63,10 +69,11 @@ public class PrescribeMedicineOutput {
             prescription.setAfternoon(afternoon);
             prescription.setEvening(evening);
             prescription.setPatientId(patient_id);
+            prescription.setDosageDays(dosageDays);
+            prescription.setDate(Date.valueOf(LocalDate.now()));
 
-            //dummy, needs to be replaced with current logged in DOCTOR USER's details
-            prescription.setDoctorId(123);
-            prescription.setDoctorName("Test");
+            prescription.setDoctorId(Doctor.getDoctor().getDoctor_id());
+            prescription.setDoctorName(Doctor.getDoctor().getFirst_name()+" "+Doctor.getDoctor().getLast_name());
 
             prescriptionList.add(prescription);
             medicineNumber--;
@@ -78,6 +85,6 @@ public class PrescribeMedicineOutput {
         PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
         prescriptionDAO.insertPrescription(prescriptionList);
 
-        System.out.println(ScreenFields.medicinePrescribeMessage);
+        System.out.println(ScreenFields.MEDICINE_PRESCRIBE_MESSAGE);
     }
 }

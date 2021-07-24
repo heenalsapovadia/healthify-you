@@ -13,7 +13,7 @@ public class Prescription {
     private int afternoon;
     private int evening;
     private int dosageDays;
-    private Date prescriptionDate;
+    private Date date;
     private int billingId;
 
     public int getPrescriptionId() {
@@ -88,23 +88,27 @@ public class Prescription {
         this.evening = evening;
     }
 
-    public int getDosageDays() { return dosageDays; }
+    public int getDosageDays() {
+        return dosageDays;
+    }
 
-    public void setDosageDays(int dosageDays) { this.dosageDays = dosageDays; }
-    
-    public Date getPrescriptionDate() {
-		return prescriptionDate;
-	}
+    public void setDosageDays(int dosageDays) {
+        this.dosageDays = dosageDays;
+    }
 
-	public void setPrescriptionDate(Date prescriptionDate) {
-		this.prescriptionDate = prescriptionDate;
-	}
+    public int getBillingId() {
+        return billingId;
+    }
 
-	public int getBillingId() {
-		return billingId;
-	}
+    public void setBillingId(int billingId) {
+        this.billingId = billingId;
+    }
 
-	public void setBillingId(int billingId) {
-		this.billingId = billingId;
-	}
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

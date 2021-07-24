@@ -63,7 +63,7 @@ public class RegisterPatientOutput {
     print.printScreenFields(ScreenFields.passwordOutput + "= " + hidden);
     print.printDoubleNewlines();
 
-    List<String> selection = Arrays.asList(ScreenFields.proceed, ScreenFields.login, ScreenFields.exit);
+    List<String> selection = Arrays.asList(ScreenFields.proceed, ScreenFields.LOGIN, ScreenFields.EXIT);
     sel = print.printSelection(selection);
     switch (sel) {
     case 1:
@@ -173,7 +173,7 @@ public class RegisterPatientOutput {
       break;
 
     case 3:
-      print.printScreenFields(ScreenFields.exit);
+      print.printScreenFields(ScreenFields.EXIT);
       return false;
     }
     return true;

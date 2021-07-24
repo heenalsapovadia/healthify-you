@@ -16,10 +16,10 @@ public class LabTestBookingOutput {
         /*
         Dashboard main options list
          */
-        List<String> selectionOptions = Arrays.asList(ScreenTitles.availablePlans, ScreenTitles.labTestRecommendation,
-                ScreenTitles.makeBooking, ScreenTitles.previousBookings, ScreenFields.exit);
+        List<String> selectionOptions = Arrays.asList(ScreenTitles.AVAILABLE_PLANS, ScreenTitles.LAB_TEST_RECOMMENDATION,
+                ScreenTitles.MAKE_BOOKING, ScreenTitles.PREVIOUS_BOOKINGS, ScreenFields.EXIT);
         while(true) {
-            consoleObj.printHeader(ScreenTitles.bookATest);
+            consoleObj.printHeader(ScreenTitles.BOOK_A_TEST);
             int option = consoleObj.printSelection(selectionOptions);
 
             switch (option) {
@@ -47,14 +47,14 @@ public class LabTestBookingOutput {
         /*
         View Plans title
          */
-        consoleObj.printHeader(ScreenTitles.availablePlans);
+        consoleObj.printHeader(ScreenTitles.AVAILABLE_PLANS);
 
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
         List<LabCheck> labCheckList = labCheckUtil.fetchLabCheckPlans();
         for(LabCheck labCheck : labCheckList){
-            System.out.println(""+labCheck.getCheckupId()+CommonConstants.commonTextSeparator+labCheck.getCheckupName());
+            System.out.println(""+labCheck.getCheckupId()+CommonConstants.COMMON_TEXT_SEPARATOR+labCheck.getCheckupName());
         }
-        List<String> selectionOptions = Arrays.asList(ScreenFields.viewDetails, ScreenFields.backToBooking);
+        List<String> selectionOptions = Arrays.asList(ScreenFields.VIEW_DETAILS, ScreenFields.BACK_TO_BOOKING);
         int option = consoleObj.printSelection(selectionOptions);
         switch (option){
             case 1:
@@ -66,7 +66,7 @@ public class LabTestBookingOutput {
     }
 
     public void makeBooking(){
-        consoleObj.printHeader(ScreenTitles.makeBooking);
+        consoleObj.printHeader(ScreenTitles.MAKE_BOOKING);
 
         int healthCheckId;
         Date bookingdate;
@@ -80,7 +80,7 @@ public class LabTestBookingOutput {
         bookingdate = inputBookingDate(scanner);
         double healthCheckCharges = labCheckMap.get(healthCheckId).getCharges();
 
-        List<String> options = Arrays.asList("Continue For Payment", ScreenFields.exit);
+        List<String> options = Arrays.asList("Continue For Payment", ScreenFields.EXIT);
         int option = consoleObj.printSelection(options);
 
 
@@ -100,18 +100,18 @@ public class LabTestBookingOutput {
     }
 
     public void viewBookings(){
-        consoleObj.printHeader(ScreenTitles.previousBookings);
+        consoleObj.printHeader(ScreenTitles.PREVIOUS_BOOKINGS);
 
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
         List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
         System.out.println("Appointment ID | HealthCheck ID | Date");
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
-            System.out.println(labCheckBooking.getAppointmentId()+CommonConstants.verticleBar+labCheckBooking.getHealthcheckId()+CommonConstants.verticleBar+labCheckBooking.getBookedForDate());
+            System.out.println(labCheckBooking.getAppointmentId()+CommonConstants.VERTICAL_BAR+labCheckBooking.getHealthcheckId()+CommonConstants.verticleBar+labCheckBooking.getBookedForDate());
         }
     }
 
     public void getRecommendations(){
-        consoleObj.printHeader(ScreenTitles.labTestRecommendation);
+        consoleObj.printHeader(ScreenTitles.LAB_TEST_RECOMMENDATION);
         LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
 
         List<LabCheck> ageBasedRecommendationList = labCheckRecommendationUtil.ageBasedRecommendation();
@@ -125,14 +125,14 @@ public class LabTestBookingOutput {
             labCheckSet.add(labCheck);
         for(LabCheck labCheck : historyBasedRecommendationList)
             labCheckSet.add(labCheck);
-        System.out.println("------------ "+ScreenFields.labCheckRecommendation+" ------------");
+        System.out.println("------------ "+ScreenFields.LAB_CHECK_RECOMMENDATION +" ------------");
         for(LabCheck labCheck : labCheckSet)
-            System.out.println(labCheck.getCheckupId()+CommonConstants.commonTextSeparator+labCheck.getCheckupName());
+            System.out.println(labCheck.getCheckupId()+CommonConstants.COMMON_TEXT_SEPARATOR+labCheck.getCheckup_name());
     }
 
     private int inputHealthCheckId(Scanner scanner){
         int healthCheckId;
-        System.out.print(ScreenFields.checkId+ CommonConstants.commonTextSeparator);
+        System.out.print(ScreenFields.HEALTH_CHECK_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
 
         while(true) {
             if (scanner.hasNextInt()) {
@@ -148,7 +148,7 @@ public class LabTestBookingOutput {
 
     private Date inputBookingDate(Scanner scanner){
         Date bookingdate;
-        System.out.print(ScreenFields.dateInput+CommonConstants.commonTextSeparator);
+        System.out.print(ScreenFields.DATEINPUT+CommonConstants.COMMON_TEXT_SEPARATOR);
 
         while(true) {
             try {

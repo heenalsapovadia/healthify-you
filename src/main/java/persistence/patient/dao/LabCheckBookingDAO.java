@@ -12,5 +12,12 @@ public interface LabCheckBookingDAO {
 
     List<LabCheckBooking> getBookingByDate(Date date);
     
+    /**
+     * <pre>
+     * Returns map of health plan names corresponding to their id.
+     * </pre>
+     * @param healthCheckIdList
+     * @return map
+     */
     Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList);
 }

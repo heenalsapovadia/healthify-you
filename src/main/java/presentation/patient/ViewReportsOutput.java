@@ -9,16 +9,22 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import persistence.patient.util.ViewReportsUtil;
 import persistence.patient.utilImpl.ViewReportsUtilImpl;
-import presentation.admin.PharmaInvoiceOutput;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
 
 /**
+ * <pre>
+ * Displays medical reports of patient.
+ * The reports can be viewed by
+ * 	1. A particular date
+ * 	2. A particular test
+ * 	3. A date range
+ * </pre>
+ * 
  * @author Gurleen Saluja
  *
  */
@@ -56,12 +62,12 @@ public class ViewReportsOutput {
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_TEST);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_PARTICULAR_DATE);
 		selectionOptions.add(ScreenFields.VIEW_REPORTS_BY_DATE_RANGE);
-		selectionOptions.add(ScreenFields.exit);
+		selectionOptions.add(ScreenFields.EXIT);
 		return selectionOptions;
 	}
 	
 	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
-		System.out.println(ScreenFields.dateInput);
+		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
 			date = Date.valueOf(sc.next());

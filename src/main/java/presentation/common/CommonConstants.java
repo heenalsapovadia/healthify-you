@@ -13,17 +13,17 @@ public class CommonConstants {
 	
 	private CommonConstants() {}
 	
-	public static final String singleSpace = " ";
-	public static final String singleTab = "\t";
-	public static final String titleSpace = "\t\t\t\t";
-	public static final String headingChar = "=";
-	public static final String mediumSpace = "\t\t";
-	public static final String commonTextSeparator = mediumSpace+":"+mediumSpace;
-	public static final String commaDelimiter = ",";
-	public static final String subheading =" :: ";
-	public static final String period = ".";
-	public static final String verticleBar = "|";
-	public static final String horizontalDash = "-";
+	public static final String SINGLE_SPACE = " ";
+	public static final String SINGLE_TAB = "\t";
+	public static final String TITLE_SPACE = "\t\t\t\t";
+	public static final String HEADING_CHAR = "=";
+	public static final String MEDIUM_SPACE = "\t\t";
+	public static final String COMMON_TEXT_SEPARATOR = MEDIUM_SPACE+":"+MEDIUM_SPACE;
+	public static final String COMMA_DELIMITER = ",";
+	public static final String SUBHEADING =" :: ";
+	public static final String PERIOD = ".";
+	public static final String VERTICAL_BAR = "|";
+	public static final String HORIZONTAL_DASH = "-";
 	public static final String ZERO = "0";
 	public static final String NEW_LINE = "\n";
 	public static final String DOUBLE_TAB = "\t\t";

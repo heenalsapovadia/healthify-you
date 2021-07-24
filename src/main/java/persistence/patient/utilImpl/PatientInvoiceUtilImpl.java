@@ -68,9 +68,13 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 			}
 		}
 		DoctorDAO doctorDAO = new DoctorDAOImpl();
-		invoice.setDoctorDetail(doctorDAO.getDoctorNameById(doctorIdList));
-		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
-		invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
+		if(!doctorIdList.isEmpty()) {
+			invoice.setDoctorDetail(doctorDAO.getDoctorNameById(doctorIdList));
+		}
+		if(!billingIdList.isEmpty()) {
+			PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
+			invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
+		}
 		invoice.setAppointmentList(actualAppointmentList);
 		return invoice;
 	}
@@ -90,8 +94,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 			}
 		}
 		invoice.setLabCheckBookingList(actualLabCheckBookings);
-		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
-		invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
+		if(!billingIdList.isEmpty()) {
+			PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
+			invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
+		}
 		invoice.setLabCheckMap(labCheckBookingDAO.getHealthChecks(healthCheckIdList));
 		return invoice;
 	}
@@ -103,7 +109,7 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		List<Prescription> prescriptionList = prescriptionDAO.getPrescriptionByPatientId();
 		List<String> medicineNameList = new ArrayList<>();
 		for(Prescription prescription: prescriptionList) {
-			if(prescription.getPrescriptionDate().toString().equals(date)) {
+			if(prescription.getDate().toString().equals(date)) {
 				invoice.setPrescriptionId(prescription.getPrescriptionId());
 				invoice.setBillId(prescription.getBillingId());
 				medicineNameList.add(prescription.getMedicineName());
@@ -113,8 +119,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		PharmaInvoiceDAO pharmaInvoiceDAO = new PharmaInvoiceDAOImpl();
 		List<PharmaInvoice> pharmaInvoiceList = pharmaInvoiceDAO.getPharmaSupplies(medicineNameList);
 		invoice.setPharmaInvoiceList(pharmaInvoiceList);
-		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
-		invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
+		if(!billingIdList.isEmpty()) {
+			PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
+			invoice.setPaymentMap(paymentDAO.getPaymentDetails(billingIdList));
+		}
 		return invoice;
 	}
 

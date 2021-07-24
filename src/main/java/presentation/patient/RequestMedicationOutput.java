@@ -21,12 +21,12 @@ public class RequestMedicationOutput {
 
             Scanner sc = new Scanner(System.in);
             for ( int i = 0; i < 100; i++ )
-                System.out.print(CommonConstants.headingChar);
+                System.out.print(CommonConstants.HEADING_CHAR);
 
             System.out.println();
-            System.out.println(CommonConstants.titleSpace + CommonConstants.titleSpace + ScreenTitles.REQUEST_MEDICATION + CommonConstants.titleSpace);
+            System.out.println(CommonConstants.TITLE_SPACE + CommonConstants.TITLE_SPACE + ScreenTitles.REQUEST_MEDICATION + CommonConstants.TITLE_SPACE);
             for ( int i = 0; i < 100; i++ )
-                System.out.print(CommonConstants.headingChar);
+                System.out.print(CommonConstants.HEADING_CHAR);
             System.out.println();
             System.out.println("Enter Prescription ID:");
             int current_PrescriptionId = sc.nextInt();
