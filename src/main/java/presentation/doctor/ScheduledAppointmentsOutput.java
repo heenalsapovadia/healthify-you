@@ -20,7 +20,7 @@ public class ScheduledAppointmentsOutput {
             System.out.print(CommonConstants.HEADING_CHAR);
 
         System.out.println();
-        System.out.println(CommonConstants.TITLE_SPACE + CommonConstants.TITLE_SPACE + ScreenTitles.scheduledAppointments + CommonConstants.TITLE_SPACE);
+        System.out.println(CommonConstants.TITLE_SPACE + ScreenTitles.scheduledAppointments + CommonConstants.TITLE_SPACE);
         for ( int i = 0; i < 100; i++ )
             System.out.print(CommonConstants.HEADING_CHAR);
         System.out.println();
@@ -65,7 +65,7 @@ public class ScheduledAppointmentsOutput {
             System.out.println("Wrong input");
             System.out.println(ScreenFields.LOGOUT_MESSAGE);
             System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
-            System.exit(0);
+            //System.exit(0);
         }
         return "";
     }
