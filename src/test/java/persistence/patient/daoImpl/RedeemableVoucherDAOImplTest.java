@@ -152,7 +152,8 @@ class RedeemableVoucherDAOImplTest {
 		RedeemableVoucher expectedVoucher = new RedeemableVoucher();
 		//expectedVoucher.setBloodGroup("AB-");
 		expectedVoucher.setBloodGroup("A+");
-		expectedVoucher.setVoucherId("R6NG5");
+		//expectedVoucher.setVoucherId("R6NG5");
+		expectedVoucher.setVoucherId("FXQO2");
 		expectedVoucher.setPoints((double) 200);
 		expectedVoucher.setValidityInDays(30);
 		assertEquals(expectedVoucher.getBloodGroup(), actualVoucher.getBloodGroup());
