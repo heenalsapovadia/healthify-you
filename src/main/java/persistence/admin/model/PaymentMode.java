@@ -17,14 +17,19 @@ public enum PaymentMode {
 	PaymentMode(){}
 	
 	public static PaymentMode getMop(String paymentModeFromDB) {
-		if("C".equals(paymentModeFromDB))
+		if("C".equals(paymentModeFromDB)) {
 			return Cash;
-		else if("CH".equals(paymentModeFromDB))
+		}
+		else if("CH".equals(paymentModeFromDB)) {
 			return Cheque;
-		else if("CC".equals(paymentModeFromDB))
+		}
+		else if("CC".equals(paymentModeFromDB)) {
 			return CreditCard;
-		else if("DC".equals(paymentModeFromDB))
+		}
+		else if("DC".equals(paymentModeFromDB)) {
 			return DebitCard;
+		}
+		
 		return Other;
 	}
 }
