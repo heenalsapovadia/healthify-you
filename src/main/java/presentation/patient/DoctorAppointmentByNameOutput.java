@@ -138,16 +138,6 @@ public class DoctorAppointmentByNameOutput {
       doctorAppointmentBookingDashboard.display();
     }
   }
-
-    public static void main(String[] args) {
-        DatabaseConnection.loadDatabaseConnection();
-        DoctorAppointmentByNameOutput doctorAppointmentByNameOutput = new DoctorAppointmentByNameOutput();
-        try {
-            doctorAppointmentByNameOutput.displayOutput();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-    }
-
+  
 }
 
