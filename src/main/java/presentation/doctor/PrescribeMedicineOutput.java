@@ -9,7 +9,6 @@ import persistence.doctor.model.Doctor;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,15 +27,12 @@ public class PrescribeMedicineOutput {
         System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
         int appointmentId = scanner.nextInt();
 
-        /*
-        Call for Validation of appointment ID
-         */
         PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();
         Appointment validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
 
         while(validAppointment==null){
-            System.out.println(CommonErrors.INVALID_APPOINTMENT_ID);
-            System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
+            consoleObj.printError(CommonErrors.INVALID_APPOINTMENT_ID);
+            System.out.print(ScreenFields.APPOINTMENT_ID + CommonConstants.COMMON_TEXT_SEPARATOR);
             appointmentId = scanner.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
         }
@@ -60,7 +56,7 @@ public class PrescribeMedicineOutput {
             System.out.print(ScreenFields.MEDICINE_NAME + CommonConstants.COMMON_TEXT_SEPARATOR);
             String medicineName = scanner.next();
             if(!prescriptionValidationUtil.validateMedicineName(medicineName, medicineList)) {
-                System.out.println("Medicine Name Not Found! Try again");
+                consoleObj.printError(CommonErrors.MEDICINE_NAME_NOT_FOUND);
                 continue;
             }
             System.out.print(ScreenFields.MORNING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);

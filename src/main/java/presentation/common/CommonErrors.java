@@ -34,6 +34,6 @@ public class CommonErrors {
 	public static final String NO_REPORTS = "No Reports Found";
 	public static final String NO_RECEIPTS = "No Receipts Found";
 	public static final String NO_DATA_FOR_COVID = "No data available for Covid Shot analysis";
-
+	public static final String MEDICINE_NAME_NOT_FOUND = "Medicine Name Not Found! Try again";
 
 }
