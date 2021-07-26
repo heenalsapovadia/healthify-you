@@ -56,7 +56,6 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
     @Override
     public Map<String, Integer> covidVaccineDistribution(){
         Map<String, Integer> covidAnalysis = new HashMap<>();
-        int totalCovidShots = 0;
         for(Map<String, Object> dataRecord : dataRecords) {
             String vaccine = ((String) dataRecord.get("vaccineName")).toLowerCase();
             boolean isCovaxin = vaccine.equals(COVAXIN);
@@ -64,15 +63,18 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
             boolean isPfizer = vaccine.equals(PFIZER);
             boolean isModerna = vaccine.equals(MODERNA);
             if(isCovaxin || isCovishield || isPfizer || isModerna){
-                totalCovidShots++;
-                if (isCovaxin)
-                    covidAnalysis.put(COVAXIN, covidAnalysis.getOrDefault(COVAXIN, 0)+1);
-                else if (isCovishield)
-                    covidAnalysis.put(COVISHIELD, covidAnalysis.getOrDefault(COVISHIELD, 0)+1);
-                else if (isPfizer)
-                    covidAnalysis.put(PFIZER, covidAnalysis.getOrDefault(PFIZER, 0)+1);
-                else
-                    covidAnalysis.put(MODERNA, covidAnalysis.getOrDefault(MODERNA, 0)+1);
+                if (isCovaxin) {
+                    covidAnalysis.put(COVAXIN, covidAnalysis.getOrDefault(COVAXIN, 0) + 1);
+                }
+                else if (isCovishield) {
+                    covidAnalysis.put(COVISHIELD, covidAnalysis.getOrDefault(COVISHIELD, 0) + 1);
+                }
+                else if (isPfizer) {
+                    covidAnalysis.put(PFIZER, covidAnalysis.getOrDefault(PFIZER, 0) + 1);
+                }
+                else {
+                    covidAnalysis.put(MODERNA, covidAnalysis.getOrDefault(MODERNA, 0) + 1);
+                }
             }
         }
         return covidAnalysis;
