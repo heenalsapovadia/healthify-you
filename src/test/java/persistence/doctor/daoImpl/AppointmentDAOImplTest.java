@@ -17,7 +17,7 @@ public class AppointmentDAOImplTest {
         DatabaseConnection.loadDatabaseConnection();
 
         Appointment appointment = new Appointment();
-        appointment.setAppointment_id(17);
+        appointment.setAppointmentId(17);
 
         //Set current doctor's id
         Doctor.setDoctor("biswa.roy@healthifyyou.com");
@@ -28,7 +28,7 @@ public class AppointmentDAOImplTest {
         appointment = appointmentDAO.validateAppointmentId(appointment);
 
         Assert.assertNotNull(appointment);
-        Assert.assertEquals(doctor_id, appointment.getDoctor_id());
+        Assert.assertEquals(doctor_id, appointment.getDoctorId());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class AppointmentDAOImplTest {
         DatabaseConnection.loadDatabaseConnection();
 
         Appointment appointment = new Appointment();
-        appointment.setAppointment_id(12);
+        appointment.setAppointmentId(12);
 
         //Set current doctor's id
         Doctor.setDoctor("biswa.roy@healthifyyou.com");

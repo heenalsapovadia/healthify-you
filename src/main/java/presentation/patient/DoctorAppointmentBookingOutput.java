@@ -51,14 +51,14 @@ public class DoctorAppointmentBookingOutput {
         System.out.println("------------------------ Appointment to be rescheduled ------------------------ ");
         Appointment appointmentToReschedule = appointmentMap.get(appointmentId);
         System.out.println("Appointment Id : "+appointmentId);
-        System.out.println("Doctor Name : "+ doctorMap.get(appointmentToReschedule.getDoctor_id()));
-        Date currentAppointmentDate = appointmentToReschedule.getRescheduled_date()==null ? appointmentToReschedule.getBooked_for_date() : appointmentToReschedule.getRescheduled_date();
+        System.out.println("Doctor Name : "+ doctorMap.get(appointmentToReschedule.getDoctorId()));
+        Date currentAppointmentDate = appointmentToReschedule.getRescheduledDate()==null ? appointmentToReschedule.getBookedForDate() : appointmentToReschedule.getRescheduledDate();
         System.out.println("Appointment Date : "+currentAppointmentDate);
 
         consoleObj.printSingleNewLine();
 
         Scanner scanner = new Scanner(System.in);
-        List<String> daysAvailable = doctorAvailability(appointmentToReschedule.getDoctor_id());
+        List<String> daysAvailable = doctorAvailability(appointmentToReschedule.getDoctorId());
         List<String> datesOptions = datesGenerator(daysAvailable, 0);
         System.out.println("Doctor is available on the following dates : ");
         for(int i=0; i<datesOptions.size(); i++){
@@ -83,7 +83,7 @@ public class DoctorAppointmentBookingOutput {
         System.out.println("Rescheduling to Date"+CommonConstants.COMMON_TEXT_SEPARATOR+rescheduleDate);
         consoleObj.printSingleNewLine();
 
-        appointmentToReschedule.setRescheduled_date(rescheduleDate);
+        appointmentToReschedule.setRescheduledDate(rescheduleDate);
 
         appointmentDAO.updateAppointment(appointmentToReschedule);
     }
@@ -111,16 +111,16 @@ public class DoctorAppointmentBookingOutput {
         System.out.println("Your upcoming doctor appointments are : ");
         consoleObj.printSingleNewLine();
         for(Appointment appointment : appointmentList){
-            Date currentAppointmentDate = appointment.getRescheduled_date()==null ? appointment.getBooked_for_date() : appointment.getRescheduled_date();
+            Date currentAppointmentDate = appointment.getRescheduledDate()==null ? appointment.getBookedForDate() : appointment.getRescheduledDate();
             LocalDate today = LocalDate.now();
-            LocalDate appointmentDateLocal = appointment.getBooked_for_date().toLocalDate();
+            LocalDate appointmentDateLocal = appointment.getBookedForDate().toLocalDate();
             int differencePeriod = Period.between(today, appointmentDateLocal).getDays();
             if(differencePeriod > 0) {
-                System.out.println("AppointmentId : " + appointment.getAppointment_id()
-                        + ", DoctorName : " + doctorMap.get(appointment.getDoctor_id())
+                System.out.println("AppointmentId : " + appointment.getAppointmentId()
+                        + ", DoctorName : " + doctorMap.get(appointment.getDoctorId())
                         + ", AppointmentDate : " + currentAppointmentDate
-                        + ", BillingId : " + appointment.getBilling_id());
-                appointmentMap.put(appointment.getAppointment_id(), appointment);
+                        + ", BillingId : " + appointment.getBillingId());
+                appointmentMap.put(appointment.getAppointmentId(), appointment);
             }
         }
         return appointmentMap;
@@ -130,8 +130,8 @@ public class DoctorAppointmentBookingOutput {
         DoctorDAO doctorDAO = new DoctorDAOImpl();
         Map<Integer, String> doctorIdNameMap = new HashMap<>();
         for(Appointment appointment : appointmentList) {
-            String doctorName = doctorDAO.getDoctorNameById(appointment.getDoctor_id());
-            doctorIdNameMap.put(appointment.getDoctor_id(), doctorName);
+            String doctorName = doctorDAO.getDoctorNameById(appointment.getDoctorId());
+            doctorIdNameMap.put(appointment.getDoctorId(), doctorName);
         }
         return doctorIdNameMap;
     }

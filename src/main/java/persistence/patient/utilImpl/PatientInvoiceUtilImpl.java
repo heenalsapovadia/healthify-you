@@ -61,10 +61,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		List<Integer> doctorIdList = new ArrayList<>();
 		List<Integer> billingIdList = new ArrayList<>();
 		for(Appointment appointment: appointmentsList) {
-			if(appointment.getBooked_for_date().toString().equals(date)) {
-				doctorIdList.add(appointment.getDoctor_id());
+			if(appointment.getBookedForDate().toString().equals(date)) {
+				doctorIdList.add(appointment.getDoctorId());
 				actualAppointmentList.add(appointment);
-				billingIdList.add(appointment.getBilling_id());
+				billingIdList.add(appointment.getBillingId());
 			}
 		}
 		DoctorDAO doctorDAO = new DoctorDAOImpl();
