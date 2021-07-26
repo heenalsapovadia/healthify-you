@@ -6,8 +6,6 @@ import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Doctor;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
-
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
