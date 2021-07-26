@@ -43,14 +43,14 @@ public class RedeemableVoucherOutput {
 						loadVoucher(voucher);
 						break;
 				case 2: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 2);
 	}
 	
 	private RedeemableVoucher fetchAvailablePoints() {
-		int patientId = Patient.getPatient().getPatientId();
+		int patientId = Patient.instance().getPatientId();
 		RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
 		RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(patientId);
 		if(voucher != null) {

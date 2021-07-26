@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static presentation.common.ScreenFields.BLOOD_BANK_MESSAGE;
+
 /**
 * <pre>
 * Output class for blood bank recommendation
@@ -24,28 +26,28 @@ public class BloodBankRecommendationOutput {
 
   public void getBloodBankRecommendations() {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
-    consoleObj.printHeader(ScreenTitles.bloodBankRecommendation);
+    consoleObj.printHeader(ScreenTitles.BLOOD_BANK_RECOMMENDATION);
     consoleObj.printDoubleNewlines();
     Scanner sc = new Scanner(System.in);
     BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
 
     String bloodGroup = "";
-    consoleObj.printScreenFields(ScreenFields.bloodGroupInput);
+    consoleObj.printScreenFields(ScreenFields.BLOOD_GROUP_INPUT);
     bloodGroup = sc.nextLine().toUpperCase(Locale.ROOT);
     while (!bloodBankRecommendationUtil.validateBloodGroup(bloodGroup)) {
       System.err.println("Enter blood group from the given list!");
-      consoleObj.printScreenFields(ScreenFields.bloodGroupInput);
+      consoleObj.printScreenFields(ScreenFields.BLOOD_GROUP_INPUT);
       bloodGroup = sc.nextLine().toUpperCase(Locale.ROOT);
     }
 
     Scanner sc1 = new Scanner(System.in);
     int numRec = 0;
-    consoleObj.printScreenFields(ScreenFields.numRecInput);
+    consoleObj.printScreenFields(ScreenFields.NUM_REC_INPUT);
     numRec = sc1.nextInt();
 
     while (!bloodBankRecommendationUtil.validateNumRec(numRec)) {
       System.err.println("Enter blood group from the given list!");
-      consoleObj.printScreenFields(ScreenFields.numRecInput);
+      consoleObj.printScreenFields(ScreenFields.NUM_REC_INPUT);
       numRec = sc1.nextInt();
     }
 
@@ -56,7 +58,7 @@ public class BloodBankRecommendationOutput {
         System.out.println(answer);
     }
 
-    System.out.println("The blood groups displayed are the in the order of most frequently ordered to least frequently ordered!");
+    System.out.println(BLOOD_BANK_MESSAGE);
 
   }
 

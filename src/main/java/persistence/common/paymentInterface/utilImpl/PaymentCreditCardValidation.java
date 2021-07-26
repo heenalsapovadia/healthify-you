@@ -1,6 +1,5 @@
 package persistence.common.paymentInterface.utilImpl;
 
-import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import presentation.common.CommonErrors;
 import presentation.common.ScreenFields;
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class PaymentCreditCardValidation {
         Pattern pattern = Pattern.compile(dateregex);
         Matcher matcher = pattern.matcher(Date);
         if (matcher.matches() == false || Date == null || Date == "") {
-            return CommonErrors.invalidDateFormat;
+            return CommonErrors.INVALID_DATE_FORMAT;
         }
 
         return null;

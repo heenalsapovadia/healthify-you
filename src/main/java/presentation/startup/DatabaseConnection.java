@@ -35,7 +35,7 @@ public class DatabaseConnection {
 		}
 	}
 	
-	public static Connection getConnection() {
+	public static Connection instance() {
 		return connection;
 	}
 	

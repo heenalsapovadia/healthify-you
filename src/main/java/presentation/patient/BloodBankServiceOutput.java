@@ -68,7 +68,7 @@ public class BloodBankServiceOutput {
                         }
                         if (!donatedInLastSixMonths) {
                             JsonPatientReportParserImpl reportParser = new JsonPatientReportParserImpl();
-                            Map report = reportParser.getPatientReport(Patient.getPatient().getPatientId());
+                            Map report = reportParser.getPatientReport(Patient.instance().getPatientId());
                             JSONArray allTestsArray = (JSONArray) report.get("tests");
                             Map allTestsMap = (Map) allTestsArray.get(0);
                             // Blood reports

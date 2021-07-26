@@ -42,7 +42,7 @@ public class DoctorMenuOutput {
 					System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
 					return;
 				default:
-					consoleObj.printError(CommonErrors.invalidSelection);
+					consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 	}

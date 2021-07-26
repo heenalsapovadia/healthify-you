@@ -56,7 +56,7 @@ public class PrintToConsole {
 			if (scanner.hasNextInt()) {
 				selected = scanner.nextInt();
 			} else {
-				printError(CommonErrors.invalidSelection);
+				printError(CommonErrors.INVALID_SELECTION);
 				selected = printSelection(selectionOptions);
 			}
 		} else {

@@ -17,7 +17,7 @@ public class UserLoginDAOImpl implements UserLoginDAO {
 
   @Override
   public String getuserDetails(Login l) {
-    Connection conn = DatabaseConnection.getConnection();
+    Connection conn = DatabaseConnection.instance();
     SHA_Hash sha = new SHA_Hash();
     ResultSet resultSet = null;
     String query = "SELECT * FROM UserCredentials WHERE User_Id = ?";

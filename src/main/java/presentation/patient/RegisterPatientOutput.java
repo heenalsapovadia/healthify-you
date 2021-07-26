@@ -1,9 +1,5 @@
 package presentation.patient;
 
-import static presentation.common.ScreenFields.cityInput;
-import static presentation.common.ScreenFields.contactInput;
-import static presentation.common.ScreenFields.firstNameInput;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,11 +10,6 @@ import persistence.patient.daoImpl.RegistrationDAOImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.util.RegistrationUtil;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
-import persistence.startup.dao.UserLoginDAO;
-import persistence.startup.daoImpl.UserLoginDAOImpl;
-import persistence.startup.util.UserLoginUtil;
-import persistence.startup.utilImpl.UserLoginUtilImpl;
-import presentation.common.CommonConstants;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
@@ -54,7 +45,7 @@ public class RegisterPatientOutput {
       return false;
     }
     Patient.setPatient(userId);
-    Patient p = Patient.getPatient();
+    Patient p = Patient.instance();
     p.setPassword(password);
     p.setPatientEmail(userId);
     p.setPatientType("P");
@@ -78,22 +69,22 @@ public class RegisterPatientOutput {
         print.printHeader(ScreenTitles.signUp);
         print.printSubHeading(ScreenTitles.registration);
         print.printScreenFields(ScreenFields.getInput);
-        print.printScreenFields(ScreenFields.firstNameInput);
+        print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
         String fname = sc.next();
         if (util.validateNames(fname) != null) {
           do {
             print.printMethodReturns(util.validateNames(fname));
-            print.printScreenFields(ScreenFields.firstNameInput);
+            print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
             fname = sc.next();
             
           } while (util.validateNames(fname) != null);
         }
-        print.printScreenFields(ScreenFields.lastNameInput);
+        print.printScreenFields(ScreenFields.LAST_NAME_INPUT);
         String lname = sc.next();
         if (util.validateNames(lname) != null) {
           do {
             print.printMethodReturns(util.validateNames(lname));
-            print.printScreenFields(ScreenFields.lastNameInput);
+            print.printScreenFields(ScreenFields.LAST_NAME_INPUT);
             lname = sc.next();
             
           } while (util.validateNames(lname) != null);
@@ -103,13 +94,13 @@ public class RegisterPatientOutput {
           String name = fname + " " + lname;
           p.setPatientName(name);
         }
-        print.printScreenFields(ScreenFields.birthDateInput);
+        print.printScreenFields(ScreenFields.BIRTH_DATE_INPUT);
         String DOB = sc.next();
 
         if (util.validateDate(DOB) != null) {
           do {
             print.printMethodReturns(util.validateDate(DOB));
-            print.printScreenFields(ScreenFields.birthDateInput);
+            print.printScreenFields(ScreenFields.BIRTH_DATE_INPUT);
             DOB = sc.next();
 
           } while (util.validateDate(DOB) != null);
@@ -119,12 +110,12 @@ public class RegisterPatientOutput {
           p.setPatientDob(DOB);
         }
         
-        print.printScreenFields(ScreenFields.contactInput);
+        print.printScreenFields(ScreenFields.CONTACT_INPUT);
         Long contact = sc.nextLong();
         if (util.validateContact(contact) != null) {
           do {
             print.printMethodReturns(util.validateContact(contact));
-            print.printScreenFields(ScreenFields.contactInput);
+            print.printScreenFields(ScreenFields.CONTACT_INPUT);
             contact = sc.nextLong();
 
           } while (util.validateContact(contact) != null);
@@ -134,12 +125,12 @@ public class RegisterPatientOutput {
           p.setPatientContact(contact);
         }
         
-        print.printScreenFields(ScreenFields.cityInput);
+        print.printScreenFields(ScreenFields.CITY_INPUT);
         String city = sc.next();
         if (util.validateCity(city) != null) {
           do {
             print.printMethodReturns(util.validateCity(city));
-            print.printScreenFields(ScreenFields.cityInput);
+            print.printScreenFields(ScreenFields.CITY_INPUT);
             city = sc.next();
             
           } while (util.validateCity(city) != null);

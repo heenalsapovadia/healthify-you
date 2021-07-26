@@ -8,7 +8,6 @@ import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
-import presentation.startup.ApplicationOutput;
 
 /**
  * @author Deeksha Sareen 
@@ -50,7 +49,7 @@ public class ImmunizationDashboard {
       immunizationStatsOutput.dashboard();
 
     } else {
-      consoleObj.printError(CommonErrors.invalidSelection);
+      consoleObj.printError(CommonErrors.INVALID_SELECTION);
       sel = loadScreenOptions();
     }
     return sel;
