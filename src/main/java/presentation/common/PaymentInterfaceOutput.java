@@ -114,7 +114,7 @@ public class PaymentInterfaceOutput {
            // System.out.println("Invalid Voucher. Please pay through credit card.");
         }
         else {
-            consoleObj.printError(CommonErrors.invalidSelection);
+            consoleObj.printError(CommonErrors.INVALID_SELECTION);
             sel = loadScreenOptions(consoleObj, billingCategory ,checkoutAmount);
         }
         return sel;
