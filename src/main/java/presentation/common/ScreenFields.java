@@ -128,6 +128,7 @@ public class ScreenFields {
 	public static final String BACK_TO_BOOKING = "Go back to booking";
 	public static final String HEALTH_CHECK_NUMBER = "Enter the health check number";
 	public static final String LAB_CHECK_RECOMMENDATION = "Recommendations for LabChecks are";
+	public static final String HEALTH_CHECK_ID = "HealthCheck ID";
 
 	/* Booking Dashboard  Booking fields */
 	public static final String APPOINTMENT_WITH_DOCTOR = "Book an appointment with doctor";
@@ -159,6 +160,7 @@ public class ScreenFields {
 	public static final String enterVoucherId= "Enter Voucher Id: ";
     public static final String paymentExit = "3. Exit: ";
     public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
+    public static final String CONTINUE_TO_PAYMENT = "Continue To Payment";
 
 	/* Blood Bank recommendation screen fields */
 	public static final String BLOOD_GROUP_INPUT = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
@@ -207,4 +209,17 @@ public class ScreenFields {
 	public static final String EXPIRY_DATE = "Expiry Date";
 	public static final String VACCINE_NAME = "Vaccine Name";
 	public static final String LAB_TEST_NAME = "Laboratory Test Name";
+
+	/* Vaccine Demand Statistics fields */
+	public static final String CHECK_DOSE_STATISTICS = "Do you want to check the statistics of doses administered ?";
+	public static final String ENTER_MONTHS = "Enter number of months";
+
+	/* Doctor Availability fields */
+	public static final String DOCTOR_AVAILABILITY = "Doctor is available on the following dates : ";
+	public static final String DATES_NEXT_WEEK = "Do you want dates for the week after ?";
+	public static final String APPOINTMENT_ID_TO_RESCHEDULE = "Enter appointment Id to reschedule : ";
+	public static final String UPCOMING_APPOINTMENTS = "Your upcoming doctor appointments are : ";
+	public static final String APPOINTMENT_DATE = "DoctorName";
+	public static final String APPOINTMENT_TO_RESCHEDULE = "Appointment to be rescheduled";
+
 }

@@ -3,67 +3,67 @@ package persistence.doctor.model;
 import java.sql.Date;
 
 public class Appointment {
-    private int appointment_id;
-    private int patient_id;
-    private int doctor_id;
-    private Date booked_on_date;
-    private Date booked_for_date;
-    private Date rescheduled_date;
-    private int billing_id;
+    private int appointmentId;
+    private int patientId;
+    private int doctorId;
+    private Date bookedOnDate;
+    private Date bookedForDate;
+    private Date rescheduledDate;
+    private int billingId;
 
-    public int getAppointment_id() {
-        return appointment_id;
+    public int getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setAppointment_id(int appointment_id) {
-        this.appointment_id = appointment_id;
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
-    public int getPatient_id() {
-        return patient_id;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(int patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
-    public Date getBooked_on_date() {
-        return booked_on_date;
+    public Date getBookedOnDate() {
+        return bookedOnDate;
     }
 
-    public void setBooked_on_date(Date booked_on_date) {
-        this.booked_on_date = booked_on_date;
+    public void setBookedOnDate(Date bookedOnDate) {
+        this.bookedOnDate = bookedOnDate;
     }
 
-    public Date getBooked_for_date() {
-        return booked_for_date;
+    public Date getBookedForDate() {
+        return bookedForDate;
     }
 
-    public void setBooked_for_date(Date booked_for_date) {
-        this.booked_for_date = booked_for_date;
+    public void setBookedForDate(Date bookedForDate) {
+        this.bookedForDate = bookedForDate;
     }
 
-    public Date getRescheduled_date() {
-        return rescheduled_date;
+    public Date getRescheduledDate() {
+        return rescheduledDate;
     }
 
-    public void setRescheduled_date(Date rescheduled_date) {
-        this.rescheduled_date = rescheduled_date;
+    public void setRescheduledDate(Date rescheduledDate) {
+        this.rescheduledDate = rescheduledDate;
     }
 
-    public int getBilling_id() {
-        return billing_id;
+    public int getBillingId() {
+        return billingId;
     }
 
-    public void setBilling_id(int billing_id) {
-        this.billing_id = billing_id;
+    public void setBillingId(int billingId) {
+        this.billingId = billingId;
     }
 }

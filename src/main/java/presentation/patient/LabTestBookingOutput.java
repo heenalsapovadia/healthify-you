@@ -4,7 +4,12 @@ import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingC
 import persistence.patient.model.*;
 import persistence.patient.util.*;
 import persistence.patient.utilImpl.*;
-import presentation.common.*;
+import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
+import presentation.common.PrintToConsole;
+import presentation.common.ScreenFields;
+import presentation.common.ScreenTitles;
+import presentation.common.PaymentInterfaceOutput;
 import java.sql.Date;
 import java.util.*;
 
@@ -13,9 +18,6 @@ public class LabTestBookingOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     public void dashboard(){
-        /*
-        Dashboard main options list
-         */
         List<String> selectionOptions = Arrays.asList(ScreenTitles.AVAILABLE_PLANS, ScreenTitles.LAB_TEST_RECOMMENDATION,
                 ScreenTitles.MAKE_BOOKING, ScreenTitles.PREVIOUS_BOOKINGS, ScreenFields.EXIT);
         while(true) {
@@ -44,9 +46,6 @@ public class LabTestBookingOutput {
     }
 
     public void viewPlans(){
-        /*
-        View Plans title
-         */
         consoleObj.printHeader(ScreenTitles.AVAILABLE_PLANS);
 
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
@@ -80,14 +79,13 @@ public class LabTestBookingOutput {
         bookingdate = inputBookingDate(scanner);
         double healthCheckCharges = labCheckMap.get(healthCheckId).getCharges();
 
-        List<String> options = Arrays.asList("Continue For Payment", ScreenFields.EXIT);
+        List<String> options = Arrays.asList(ScreenFields.CONTINUE_TO_PAYMENT, ScreenFields.EXIT);
         int option = consoleObj.printSelection(options);
 
 
         int billingId = 0;
         switch (option) {
             case 1:
-                // Call Payment Interface screen code
                 PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
                 billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.L, healthCheckCharges,"");
                 break;
@@ -104,9 +102,13 @@ public class LabTestBookingOutput {
 
         LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
         List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
-        System.out.println("Appointment ID | HealthCheck ID | Date");
+        System.out.println(ScreenFields.APPOINTMENT_ID + CommonConstants.VERTICAL_BAR
+                + ScreenFields.HEALTH_CHECK_ID + CommonConstants.VERTICAL_BAR
+                + ScreenFields.DATE);
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
-            System.out.println(labCheckBooking.getAppointmentId()+CommonConstants.VERTICAL_BAR+labCheckBooking.getHealthcheckId()+CommonConstants.VERTICAL_BAR+labCheckBooking.getBookedForDate());
+            System.out.println(labCheckBooking.getAppointmentId() + CommonConstants.VERTICAL_BAR
+                    + labCheckBooking.getHealthcheckId() + CommonConstants.VERTICAL_BAR
+                    + labCheckBooking.getBookedForDate());
         }
     }
 

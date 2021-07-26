@@ -33,5 +33,7 @@ public class CommonErrors {
 	public static final String SMALLER_DATE = "Date smaller than today!";
 	public static final String NO_REPORTS = "No Reports Found";
 	public static final String NO_RECEIPTS = "No Receipts Found";
+	public static final String NO_DATA_FOR_COVID = "No data available for Covid Shot analysis";
+
 
 }

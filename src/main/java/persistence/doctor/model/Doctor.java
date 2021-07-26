@@ -4,16 +4,16 @@ import persistence.doctor.daoImpl.DoctorDAOImpl;
 import java.util.Date;
 
 public class Doctor {
-    int doctorId;
-    String firstName;
-    String lastName;
-    Date joiningDate;
-    String degree;
-    String specialization;
-    Date birthDate;
-    String contactNumber;
-    String city;
-    String email;
+    private int doctorId;
+    private String firstName;
+    private String lastName;
+    private Date joiningDate;
+    private String degree;
+    private String specialization;
+    private Date birthDate;
+    private String contactNumber;
+    private String city;
+    private String email;
 
     private static Doctor doctor;
 
