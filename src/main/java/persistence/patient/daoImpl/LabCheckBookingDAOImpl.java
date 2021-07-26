@@ -18,7 +18,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public void insertBooking(LabCheckBooking booking) {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         String sql = "INSERT INTO labcheck_appointments(patient_id, healthcheck_id, booked_for_date, billing_id) VALUES(?,?,?,?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -38,7 +38,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public List<LabCheckBooking> getAllBookings() {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE patient_id = ?";
@@ -67,7 +67,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public List<LabCheckBooking> getBookingByDate(Date date) {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE booked_for_date = ?";
@@ -96,7 +96,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
 	@Override
 	public Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
         Map<Integer, String> labCheckMap = new HashMap<>();
         String wildcard = "?,".repeat(healthCheckIdList.size());
         String sql = "SELECT * FROM labcheck_plans WHERE checkup_id in ("+wildcard.substring(0, wildcard.length()-1)+")";

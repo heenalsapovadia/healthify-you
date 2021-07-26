@@ -19,7 +19,7 @@ public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
     public Doctor getDoctor(Doctor doctor) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         String sql = "SELECT * FROM doctors WHERE email = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -49,7 +49,7 @@ public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
     public String getDoctorNameById(int doctorId){
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         StringBuilder doctorName = new StringBuilder();
 
         String sql = "SELECT * FROM doctors WHERE doctor_id = ?";
@@ -73,7 +73,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     @Override
     public Map<Integer, String> getDoctorNameById(List<Integer> doctorId){
     	Map<Integer, String> doctorMap = new HashMap<>();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         StringBuilder doctorName;
         String wildcard = "?,".repeat(doctorId.size());
         String sql = "SELECT * FROM doctors WHERE doctor_id in ("+wildcard.substring(0, wildcard.length()-1)+")";

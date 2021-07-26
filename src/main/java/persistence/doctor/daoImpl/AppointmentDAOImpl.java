@@ -21,7 +21,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public Appointment validateAppointmentId(Appointment appointment) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         int doctor_id = Doctor.instance().getDoctorId();
 
@@ -52,7 +52,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public void updateAppointment(Appointment appointment) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         int patientId = Patient.instance().getPatientId();
         String sql = "UPDATE doctor_appointment " +
                         "SET rescheduled_date = ? " +
@@ -71,7 +71,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public List<Appointment> fetchAppointmentsForPatient(){
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         int patientId = Patient.instance().getPatientId();
         List<Appointment> appointmentList = new ArrayList<>();
         String sql = "SELECT * FROM doctor_appointment WHERE patient_id = ?";

@@ -21,7 +21,7 @@ public class RedeemableVoucherDAOImpl implements RedeemableVoucherDAO {
 
 	@Override
 	public RedeemableVoucher getVoucherByBloodGroup(String bloodGroup) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		RedeemableVoucher voucher = null;
 		ResultSet resultSet = null;
 		StringBuilder sqlStatement = new StringBuilder();
@@ -42,7 +42,7 @@ public class RedeemableVoucherDAOImpl implements RedeemableVoucherDAO {
 
 	@Override
 	public RedeemableVoucher getVoucherByPatient(int patientId) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		RedeemableVoucher voucher = null;
 		ResultSet resultSet = null;
 		StringBuilder sqlStatement = new StringBuilder();

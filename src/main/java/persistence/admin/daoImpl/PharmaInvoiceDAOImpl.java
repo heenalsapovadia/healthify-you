@@ -28,7 +28,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	@Override
 	public Map<String, List<PharmaInvoice>> getInvoiceDetailsByDate(Date date) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		ResultSet resultSet = null;
 		Map<String, List<PharmaInvoice>> invoicesMap = new HashMap<>();
 		StringBuilder sqlStatement = new StringBuilder();
@@ -57,7 +57,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	@Override
 	public List<PharmaInvoice> getPharmaSupplies(List<String> medicineNameList) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		ResultSet resultSet = null;
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		StringBuilder sqlStatement = new StringBuilder();
@@ -99,7 +99,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	@Override
 	public Set<String> getMedicineList(){
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		Set<String> medicineSet = new HashSet<>();
 
 		String sql = "SELECT * FROM pharma_supplies";

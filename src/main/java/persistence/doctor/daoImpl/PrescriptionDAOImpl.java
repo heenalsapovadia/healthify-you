@@ -20,7 +20,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 
     @Override
     public void insertPrescription(List<Prescription> prescriptionList){
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         PrescriptionDAOImpl prescriptionDAO = new PrescriptionDAOImpl();
         int prescriptionId = prescriptionDAO.findMaxPrescriptionId() + 1;
 
@@ -52,7 +52,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 
     @Override
     public int findMaxPrescriptionId() {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         String sql = "SELECT MAX(prescription_id) AS prescription_id FROM prescription";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -70,7 +70,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
     @Override
     public List<Prescription> getPrescriptionById(int prescriptionId){
         List<Prescription> prescriptionList = new ArrayList<>();
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         String sql = "SELECT * FROM prescription WHERE prescription_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -108,7 +108,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
 	@Override
 	public List<Prescription> getPrescriptionByPatientId() {
 		List<Prescription> prescriptionList = new ArrayList<>();
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         String sqlStatement = "SELECT * FROM prescription WHERE patient_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
             preparedStatement.setInt(1, Patient.instance().getPatientId());

@@ -30,7 +30,7 @@ public class PatientDAOImpl implements PatientDAO {
 
 	@Override
 	public Patient getPatient(Patient patient) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
         String sqlStatement = "select * from patients where patient_email = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
         	preparedStatement.setString(1, patient.getPatientEmail());
@@ -53,7 +53,7 @@ public class PatientDAOImpl implements PatientDAO {
 
 	@Override
 	public void updateVouchersForPatients(String voucherId, Timestamp datetime, int patientId) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		StringBuilder sqlStatement = new StringBuilder();
 		sqlStatement.append("update patients set voucher_id = ?");
 		if(datetime != null) {

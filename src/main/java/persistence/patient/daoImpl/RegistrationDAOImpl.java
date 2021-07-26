@@ -16,7 +16,7 @@ public class RegistrationDAOImpl implements RegistrationDAO{
 	@Override
 	public String addPatientDetails(Patient p) {
 		
-		Connection conn = DatabaseConnection.getConnection();
+		Connection conn = DatabaseConnection.instance();
 		PreparedStatement preparedStatement;
 		SHA_Hash sha= new SHA_Hash();
 		String hashedPassword= sha.getSHA(p.getPassword());

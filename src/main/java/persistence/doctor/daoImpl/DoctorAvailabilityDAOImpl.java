@@ -18,7 +18,7 @@ public class DoctorAvailabilityDAOImpl implements DoctorAvailabilityDAO {
 
     @Override
     public List<String> getAvailabilityByDoctor(int doctorId) {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<String> daysList = new ArrayList<>();
 

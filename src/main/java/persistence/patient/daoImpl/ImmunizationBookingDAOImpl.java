@@ -24,7 +24,7 @@ import presentation.startup.DatabaseConnection;
  */
 public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, ImmunizationDoctorsDAO {
 
-	Connection connection = DatabaseConnection.getConnection();
+	Connection connection = DatabaseConnection.instance();
 	ResultSet resultSet = null;
 	PreparedStatement preparedStatement = null;
 

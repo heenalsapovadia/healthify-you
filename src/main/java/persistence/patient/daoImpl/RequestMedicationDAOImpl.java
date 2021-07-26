@@ -19,7 +19,7 @@ public class RequestMedicationDAOImpl {
         // As per Prescription Id validation getting prescription name, dose per day
         public List<Prescription> getPrescriptionDetails(int prescriptionId) {
             List<Prescription> prescriptionList = new ArrayList<>();
-            Connection conn = DatabaseConnection.getConnection();
+            Connection conn = DatabaseConnection.instance();
             String sql = "SELECT * FROM prescription WHERE prescription_id = ? and patient_id = ?";
 
             try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -47,7 +47,7 @@ public class RequestMedicationDAOImpl {
 
     // In order to check stock based on medicine name
     public PharmaInvoice getPharmaInvoice(String medicationName) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         ResultSet rs = null;
         PharmaInvoice invoice = null;
         StringBuilder sql = new StringBuilder();
@@ -81,7 +81,7 @@ public class RequestMedicationDAOImpl {
 
     // In order to update the stock based on medicine that is requested by patient
     public void updatePharmaInvoice(String medication, int remainingQuantity) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "UPDATE pharma_supplies SET pharma_item_updated_quantity = ? where pharma_item_name = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, remainingQuantity);
@@ -93,7 +93,7 @@ public class RequestMedicationDAOImpl {
     }
 
     public void updatePrescription(int prescription_id, int billing_id) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "UPDATE prescription SET billing_id = ? where prescription_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, billing_id);
