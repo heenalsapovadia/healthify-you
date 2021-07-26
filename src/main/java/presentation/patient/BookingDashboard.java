@@ -59,7 +59,7 @@ public class BookingDashboard {
             //Book a blood bank service - blood donation
             BloodBankServiceOutput bloodBankServiceOutput = new BloodBankServiceOutput();
             bloodBankServiceOutput.bloodBankService();
-            bloodBankServiceOutput.bloodBankService(patient);
+            bloodBankServiceOutput.bloodBankService();
             sel = loadScreenOptions(consoleObj);
 
         }

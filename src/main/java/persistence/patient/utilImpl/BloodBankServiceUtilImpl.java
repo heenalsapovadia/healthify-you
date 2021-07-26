@@ -72,8 +72,10 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         return reportsAreNormalForBloodDonations;
     }
 
-    public boolean validateSixMonthCheck(List<BloodBankService> donations) {
+    public boolean validateSixMonthCheck() {
         Boolean donatedInLastSixMonths = false;
+        BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
+        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
 
         for ( BloodBankService service : donations ) {
 

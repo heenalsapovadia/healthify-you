@@ -1,5 +1,6 @@
 package presentation.patient;
 import java.util.*;
+
 import presentation.common.*;
 import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
 import persistence.patient.model.BloodBankService;
@@ -41,80 +42,77 @@ public class BloodBankServiceOutput {
         System.out.println(ScreenFields.bloodDonationCriteria);
 
         BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
         List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
+        BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
         BloodBankService service1 = new BloodBankService();
         System.out.println(ScreenFields.yourBloodGroup);
+        String actualBloodGroup = null;
         String bloodGroupInput = null;
         bloodGroupInput = sc1.next();
 
         // validate blood group here
+        for(BloodBankService bloodBankService : donations){
+            actualBloodGroup = bloodBankService.getBloodGrp();
+            break;
+        }
         while(true) {
             //bloodGroupInput = sc1.nextLine();
-                if (bloodGroupInput.equals(service1.getBloodGrp())) {
-                    //continue;
-                    System.out.println("Blood Group Validated");
+                if (actualBloodGroup != null && bloodGroupInput.equals(actualBloodGroup)) {
+            //continue;
+                  System.out.println("Blood Group Validated");
+                    // Using logic to check if previous donation is 0 then user will be allowed to register for blood donation
+                    if (donations.size() == 0) {
+//                        System.out.println(ScreenFields.checkingEligibility);
+//                        System.out.println(ScreenFields.patientIsEligible);
+//                        System.out.println(ScreenFields.registeringPatient);
+//                        System.out.println(ScreenFields.tokenGenerated + bloodBankServiceUtil.getTokenIdForDonation());
+//                        System.out.println(ScreenFields.donationDate + java.time.LocalDate.now());
+//                        System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
+//                        return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.getPatient(), bloodGroupInput);
+                    }
+                    // call next method to peform further process
+                    else{
+                        validateDonationDataAndReport(actualBloodGroup);}
+                    break;
                 } else {
                     System.out.println(ScreenFields.donationRecord);
                     bloodGroupInput = sc1.next();
                 }
         }
-//        if (!bloodGroupInput.equals(service1.getBloodGrp())) {
-//            do {
-//                System.out.println(ScreenFields.donationRecord);
-//                   bloodGroupInput = sc1.next();
-//
-//            } while (bloodGroupInput.equals(service1.getBloodGrp()));
-//        }
 
-
-//            // Using logic to check if previous donation is 0 then user will be allowed to register for blood donation
-//            if (donations.size() == 0) {
-//                System.out.println(ScreenFields.checkingEligibility);
-//                System.out.println(ScreenFields.patientIsEligible);
-//                System.out.println(ScreenFields.registeringPatient);
-//                System.out.println(ScreenFields.tokenGenerated + bloodBankServiceUtil.getTokenIdForDonation());
-//                System.out.println(ScreenFields.donationDate + java.time.LocalDate.now());
-//                System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
-//                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.getPatient(), bloodGroupInput);
-//            } else {
-//                // If donation history is available and more than 6 months before will check eligibility if blood report is normal
-//                Boolean donatedInLastSixMonths = false;
-//                Boolean reportsAreNormalForBloodDonations = false;
-//
-//                for ( BloodBankService service : donations ) {
-//                    // if blood group is wrong it will keep asking until blood group Ais correct
-//                    bloodBankServiceUtil.validateSixMonthCheck(donations);
-//
-//                    if (!donatedInLastSixMonths == true) {
-//                        // if previous donation is more than 6 months check report of the person and then proceed
-//                        bloodBankServiceUtil.checkingEligibilityThroughReport();
-//                        if (reportsAreNormalForBloodDonations == true) {
-//                            System.out.println(ScreenFields.reportNormal);
-//                            System.out.println(ScreenFields.registeringPatient);
-//                            System.out.println(ScreenFields.tokenGenerated + bloodBankServiceUtil.getTokenIdForDonation());
-//                            System.out.println(ScreenFields.donationDate + java.time.LocalDate.now());
-//                            System.out.println(ScreenFields.hoursOfOperation);
-//                            System.out.println(CommonConstants.NEW_LINE);
-//                            return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.getPatient(), bloodGroupInput);
-//                        }
-////                    else {
-////                        System.out.println(ScreenFields.reportsNotNormal);
-////                        System.out.println("\n");
-////                        break;
-////                    }
-//                    }
-//                }System.out.println(ScreenFields.reportsNotNormal);
-//                System.out.println("\n");
-//                //return "";
-//            }
-
-
-        //bloodGroupInput = sc1.nextLine();
-        //return "";
+        return"";
     }
 
+    public static String  validateDonationDataAndReport(String bloodGroupInput){
+        // If donation history is available and more than 6 months before will check eligibility if blood report is normal
+        Boolean donatedInLastSixMonths = false;
+        Boolean reportsAreNormalForBloodDonations = false;
+        BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
+        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
+        BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
 
+        for ( BloodBankService service : donations ) {
+            // if blood group is wrong it will keep asking until blood group Ais correct
+            bloodBankServiceUtil.validateSixMonthCheck();
+
+            // if (!donatedInLastSixMonths == true) {
+            // if previous donation is more than 6 months check report of the person and then proceed
+            bloodBankServiceUtil.checkingEligibilityThroughReport();
+            if (donatedInLastSixMonths == true || reportsAreNormalForBloodDonations == true) {
+                System.out.println(ScreenFields.patientDonatedPreviosly);
+                System.out.println(ScreenFields.reportNormal);
+                System.out.println(ScreenFields.registeringPatient);
+                System.out.println(ScreenFields.tokenGenerated + bloodBankServiceUtil.getTokenIdForDonation());
+                System.out.println(ScreenFields.donationDate + java.time.LocalDate.now());
+                System.out.println(ScreenFields.hoursOfOperation);
+                System.out.println(CommonConstants.NEW_LINE);
+                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.getPatient(), bloodGroupInput);
+            }
+        }System.out.println(ScreenFields.patientAlreadyDonated);
+        System.out.println(ScreenFields.reportsNotNormal);
+        System.out.println("\n");
+        return "";
+    }
     private static void viewPreviousDonations() {
         BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
         List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());

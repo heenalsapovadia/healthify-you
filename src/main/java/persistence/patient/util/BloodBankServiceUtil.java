@@ -2,9 +2,11 @@ package persistence.patient.util;
 
 import persistence.doctor.model.Appointment;
 import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
+import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 
 import java.security.SecureRandom;
+import java.util.List;
 
 public interface BloodBankServiceUtil {
 
@@ -17,4 +19,5 @@ public interface BloodBankServiceUtil {
 
     public String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient,String bloodGroupInput);
 
+    public boolean validateSixMonthCheck();
 }

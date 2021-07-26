@@ -20,7 +20,7 @@ public class Patient {
 	private static Patient patient;
   
 	public static void setPatient(String email) {
-		if(patient == null) {
+		if(patient == null || patient.getPatientId() == 0 ) {
 			patient = new Patient();
 			patient.setPatientEmail(email);
 			PatientDAO patientDAO = new PatientDAOImpl();

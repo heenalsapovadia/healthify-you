@@ -2,6 +2,7 @@ package presentation.startup;
 
 
 import persistence.patient.model.Patient;
+import presentation.patient.BloodBankServiceOutput;
 import presentation.patient.RequestMedicationOutput;
 
 import java.sql.Connection;

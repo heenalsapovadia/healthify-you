@@ -151,8 +151,10 @@ public class ScreenFields {
 	public static final String bloodDonationCriteria ="Blood donation criteria: a) Minimum 6 month after previous donation, b) Blood report should be normal.";
 	public static final String reportNormal = "Eligible....Patient test reports are normal...";
 	public static final String hoursOfOperation =  "We operate on Tuesdays and Sundays. Visit anytime.";
-	public static final String reportsNotNormal = "Reports are not normal for Blood donation. Sorry please donate after recovery. ";
+	public static final String reportsNotNormal = "Also reports are not normal for Blood donation. Sorry please donate after 6 month and recovery. ";
 	public static final String noDontionRecordsFound = "No donation record exits for the patient.";
+	public static final String patientDonatedPreviosly = "Patient donation history is more than 6 month so now checking blood report..";
+
 	/* Payment Interface fields */
 	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
     public static final String expirydate = "Enter expiry date(yyyy-mm): ";
