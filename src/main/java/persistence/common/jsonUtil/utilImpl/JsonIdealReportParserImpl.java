@@ -39,7 +39,7 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
         cbcMin.setRbc((float) (double) CBCPanel.get("RBCMin"));
         cbcMin.setWbc((int) (long) CBCPanel.get("WBCMin"));
         cbcMin.setPlatelets((int) (long) CBCPanel.get("plateletsMin"));
-        cbcMin.setHaemoglobin((float) (double) CBCPanel.get("HaemoglobinMin"));
+        cbcMin.setHaemoglobin( (double) CBCPanel.get("HaemoglobinMin"));
         cbcMin.setHematocrit((float) (double) CBCPanel.get("HematocritMin"));
         return cbcMin;
     }
@@ -50,7 +50,7 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
         cbcMax.setRbc((float) (double) CBCPanel.get("RBCMax"));
         cbcMax.setWbc((int) (long) CBCPanel.get("WBCMax"));
         cbcMax.setPlatelets((int) (long) CBCPanel.get("plateletsMax"));
-        cbcMax.setHaemoglobin((float) (double) CBCPanel.get("HaemoglobinMax"));
+        cbcMax.setHaemoglobin( (double) CBCPanel.get("HaemoglobinMax"));
         cbcMax.setHematocrit((float) (double) CBCPanel.get("HematocritMax"));
         return cbcMax;
     }

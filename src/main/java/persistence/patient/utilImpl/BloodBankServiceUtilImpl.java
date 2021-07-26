@@ -7,6 +7,7 @@ import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 import persistence.patient.util.BloodBankServiceUtil;
+import presentation.common.ScreenFields;
 
 import java.security.SecureRandom;
 import java.util.Date;
@@ -55,10 +56,13 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         return donationId;
     }
 
-    public boolean checkingEligibilityThroughReport() {
+    public boolean checkIfReportsAreNormalForDonation() {
         Boolean reportsAreNormalForBloodDonations = true;
         JsonPatientReportParserImpl reportParser = new JsonPatientReportParserImpl();
         Map report = reportParser.getPatientReport(Patient.getPatient().getPatientId());
+        if(report == null){
+            return true;
+        }
         JSONArray allTestsArray = (JSONArray) report.get("tests");
         Map allTestsMap = (Map) allTestsArray.get(0);
 
@@ -72,21 +76,15 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         return reportsAreNormalForBloodDonations;
     }
 
-    public boolean validateSixMonthCheck() {
+    public boolean validateIfPreviousDonationMoreThanSixMonth(BloodBankService donation) {
         Boolean donatedInLastSixMonths = false;
-        BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
+        int m1 = donation.getDate().getYear() * 12 + donation.getDate().getMonth();
+        Date currentDate = new Date();
+        int m2 = currentDate.getYear() * 12 + currentDate.getMonth();
 
-        for ( BloodBankService service : donations ) {
-
-            int m1 = service.getDate().getYear() * 12 + service.getDate().getMonth();
-            Date currentDate = new Date();
-            int m2 = currentDate.getYear() * 12 + currentDate.getMonth();
-
-            // if greater than 6 months register for blood donation
-            if (m2 - m1 + 1 <= 6) {
-                donatedInLastSixMonths = true;
-            }
+        // if greater than 6 months register for blood donation
+        if (m2 - m1 + 1 <= 6) {
+            donatedInLastSixMonths = true;
         }
         return donatedInLastSixMonths;
     }

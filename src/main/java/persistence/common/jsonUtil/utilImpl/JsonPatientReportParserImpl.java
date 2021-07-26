@@ -60,7 +60,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             cbc.setRbc((float) (double) cbcMap.get("RBC"));
             cbc.setWbc((int) (long) cbcMap.get("WBC"));
             cbc.setPlatelets((int) (long) cbcMap.get("Platelets"));
-            cbc.setHaemoglobin((float) (double) cbcMap.get("Haemoglobin"));
+            cbc.setHaemoglobin((double) cbcMap.get("Haemoglobin"));
             cbc.setHematocrit((float) (double) cbcMap.get("Hematocrit"));
             bloodObj.setCbcPanel(cbc);
             bloodObj.setDateOfCollection(Date.valueOf((String) bloodReport.get("DateOfCollection")));

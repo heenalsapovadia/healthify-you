@@ -33,4 +33,7 @@ public class DatabaseConstants {
 
     /* Billing table constants */
     public static final String BILLING_ID = "billing_id";
+
+    /* Blood Donation Table Constants*/
+
 }

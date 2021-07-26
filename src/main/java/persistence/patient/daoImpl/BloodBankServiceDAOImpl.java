@@ -12,12 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-//Through this feature, the logged in patient can register for donating blood
-// database entities
-//● DonationId
-//● PatientId
-//● BloodGrp
-//● Date
+
 public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
     private static final Logger LOGGER = Logger.getLogger(BloodBankServiceDAOImpl.class.getName());
 

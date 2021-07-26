@@ -134,26 +134,27 @@ public class ScreenFields {
 	public static final String BOOK_LAB_TEST = "Book a Lab Test/Health Check Up";
 	public static final String bookImmunization = "Book an Immunization";
 	public static final String bookBloodBankService = "Book a Blood Bank service";
-	public static final String yourBloodGroup = "Please enter your blood group:";
 
 	/* Blood Bank Registration fields */
-	public static final String registerPatientForBloodDonation = "Register for Blood Donation";
-	public static final String viewDonationHistory = "My Donations";
-	public static final String exitFromBloodDonation = "Exit";
-	public static final String enterYourSelection = "Please enter your selection below:";
-	public static final String checkingEligibility = "Checking Eligibility....";
-	public static final String patientIsEligible = "Eligible...No previous donations found for the Patient!";
-	public static final String registeringPatient = "Registering Patient!";
-	public static final String tokenGenerated = "Your Token is: ";
-	public static final String donationDate = "Donation Date: ";
-	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
-	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
-	public static final String bloodDonationCriteria ="Blood donation criteria: a) Minimum 6 month after previous donation, b) Blood report should be normal.";
-	public static final String reportNormal = "Eligible....Patient test reports are normal...";
-	public static final String hoursOfOperation =  "We operate on Tuesdays and Sundays. Visit anytime.";
-	public static final String reportsNotNormal = "Also reports are not normal for Blood donation. Sorry please donate after 6 month and recovery. ";
-	public static final String noDontionRecordsFound = "No donation record exits for the patient.";
-	public static final String patientDonatedPreviosly = "Patient donation history is more than 6 month so now checking blood report..";
+	public static final String REGISTER_PATIENT_FOR_BLOOD_DONATION = "Register for Blood Donation";
+	public static final String VIEW_DONATION_HISTORY = "My Donations";
+	public static final String EXIT_FROM_BLOOD_DONATION = "Exit";
+	public static final String ENTER_YOUR_SELECTION = "Please enter your selection below:";
+	public static final String CHECK_ELIGIBILITY = "Checking Eligibility....";
+	public static final String PATIENT_IS_ELIGIBLE = "Eligible...No previous donations found for the Patient!";
+	public static final String REGISTERING_PATIENT = "Registering Patient!";
+	public static final String TOKEN_GENERATED = "Your Token is: ";
+	public static final String DONATION_DATE = "Donation Date: ";
+	public static final String DONATION_RECORD = "Record of patient exists. Please enter valid blood group.";
+	public static final String PATIENT_ALREADY_DONATED = "Patient has already Donated in last 6 months and is not eligible to donate again.";
+	public static final String BLOOD_DONATION_CRITERIA = "Blood donation criteria: a) Minimum 6 month after previous donation, b) Blood report should be normal.";
+	public static final String REPORT_NORMAL = "Eligible....Patient test reports are normal...";
+	public static final String HOURS_OF_OPERATION = "We operate on Tuesdays and Sundays. Visit anytime.";
+	public static final String REPORTS_ARE_NORMAL_FOR_BLOOD_DONATIONS = "Reports are not normal for Blood donation. Sorry please donate after recovery. ";
+	public static final String NO_DONTION_RECORDS_FOUND = "No donation record exits for the patient.";
+	public static final String PATIENT_DONATED_SIX_MONTH_BEFORE = "Patient donation history is more than 6 month so now registering them..";
+	public static final String YOUR_BLOOD_GROUP = "Please enter your blood group:";
+
 
 	/* Payment Interface fields */
 	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";

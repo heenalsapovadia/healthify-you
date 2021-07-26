@@ -16,7 +16,7 @@ public class ReportsValidationUtilImplTest {
         cbcReport.setRbc((float) 4.5);
         cbcReport.setWbc(3600);
         cbcReport.setPlatelets(210000);
-        cbcReport.setHaemoglobin((float) 15);
+        cbcReport.setHaemoglobin((double) 15);
         cbcReport.setHematocrit((float) 39.1);
         bloodReport.setCbcPanel(cbcReport);
 
@@ -24,14 +24,14 @@ public class ReportsValidationUtilImplTest {
         cbcMin.setRbc((float) 4.32);
         cbcMin.setWbc(3500);
         cbcMin.setPlatelets(150000);
-        cbcMin.setHaemoglobin((float) 13.5);
+        cbcMin.setHaemoglobin((double) 13.5);
         cbcMin.setHematocrit((float) 38.8);
 
         CBC cbcMax = new CBC();
         cbcMax.setRbc((float) 5.72);
         cbcMax.setWbc(10500);
         cbcMax.setPlatelets(450000);
-        cbcMax.setHaemoglobin((float) 17.5);
+        cbcMax.setHaemoglobin((double) 17.5);
         cbcMax.setHematocrit((float) 50.0);
 
         assertTrue(reportsValidationUtil.validateBloodReport(bloodReport, cbcMin, cbcMax));

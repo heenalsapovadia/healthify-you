@@ -19,5 +19,5 @@ public interface BloodBankServiceUtil {
 
     public String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient,String bloodGroupInput);
 
-    public boolean validateSixMonthCheck();
+    public boolean validateIfPreviousDonationMoreThanSixMonth(BloodBankService donations);
 }

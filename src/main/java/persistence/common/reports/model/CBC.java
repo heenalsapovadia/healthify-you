@@ -4,7 +4,7 @@ public class CBC {
     private float rbc;
     private int wbc;
     private int platelets;
-    private float haemoglobin;
+    private double haemoglobin;
     private float hematocrit;
 
     public float getRbc() {
@@ -31,11 +31,11 @@ public class CBC {
         this.platelets = platelets;
     }
 
-    public float getHaemoglobin() {
+    public double getHaemoglobin() {
         return haemoglobin;
     }
 
-    public void setHaemoglobin(float haemoglobin) {
+    public void setHaemoglobin(double haemoglobin) {
         this.haemoglobin = haemoglobin;
     }
 
