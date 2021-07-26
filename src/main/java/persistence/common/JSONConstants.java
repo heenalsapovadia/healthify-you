@@ -57,7 +57,7 @@ public class JSONConstants {
     public static final String AST = "AST";
     public static final String ALP = "ALP";
     public static final String VISION = "Vision";
-    public static final String COVID = "covid";
-    public static final String RTPCR = "rtpcr";
+    public static final String COVID = "Covid";
+    public static final String RTPCR = "RTPCR";
     public static final String SARS_COV2 = "SARs-CoV2";
 }
