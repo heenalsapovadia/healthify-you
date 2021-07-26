@@ -47,6 +47,7 @@ public class AdminMenuOutput {
 		consoleObj.printHeader(ScreenTitles.ADMIN_DASHBOARD);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel = consoleObj.printSelection(selectionOptions);
+		
 		if (sel == 1) {
 			InvoiceOutput invoiceOutput = new InvoiceOutput();
 			invoiceOutput.displayInvoice();
@@ -59,7 +60,6 @@ public class AdminMenuOutput {
 			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
 			doctorRegistrationOutput.registerDoctor();
 			sel = loadScreenOptions(consoleObj);
-
 		} else if (sel == 4) {
 			ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
 			immunizationdashboard.displayOutput();
@@ -73,6 +73,7 @@ public class AdminMenuOutput {
 			consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			sel = loadScreenOptions(consoleObj);
 		}
+		
 		return sel;
 	}
 }

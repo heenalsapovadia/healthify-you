@@ -60,4 +60,7 @@ public class JSONConstants {
     public static final String COVID = "Covid";
     public static final String RTPCR = "RTPCR";
     public static final String SARS_COV2 = "SARs-CoV2";
+    
+    /* Tests constant */
+    public static final String TESTS = "tests";
 }

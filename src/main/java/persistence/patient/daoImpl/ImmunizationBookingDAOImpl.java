@@ -10,9 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import persistence.admin.dao.ImmunizationDoctorsDAO;
-import persistence.doctor.model.Doctor;
+import persistence.common.DatabaseConstants;
 import persistence.patient.dao.ImmunizationBookingDAO;
 import persistence.patient.model.ImmunizationBooking;
 import persistence.patient.model.Patient;
@@ -25,7 +24,7 @@ import presentation.startup.DatabaseConnection;
  */
 public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, ImmunizationDoctorsDAO {
 
-	Connection conn = DatabaseConnection.getConnection();
+	Connection connection = DatabaseConnection.getConnection();
 	ResultSet resultSet = null;
 	PreparedStatement preparedStatement = null;
 
@@ -34,7 +33,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		List<String> vaccinesInSlot = new ArrayList<>();
 		ResultSet resultSet = null;
 		String sql = "SELECT vaccine_name from vaccination_stock";
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			resultSet = ps.executeQuery();
 			while (resultSet.next()) {
 				String vaccine = resultSet.getString("vaccine_name");
@@ -51,7 +50,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 
 		ArrayList<String> vaccineDetails = new ArrayList<>();
 		String sql = "SELECT * from vaccination_stock where vaccine_name = ?";
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, vaccineName);
 			resultSet = ps.executeQuery();
 			while (resultSet.next()) {
@@ -71,7 +70,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		ResultSet resultSet = null;
 		ArrayList<String> appointmentdates = new ArrayList<>();
 		String sql = "SELECT * from immunization_appointments where patient_id = ? and vaccine_id = ?";
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, patientId);
 			ps.setInt(2, vaccineId);
 			resultSet = ps.executeQuery();
@@ -97,7 +96,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		Date date = new Date();
 		String currentDate = formatter.format(date);
 		String sql = "SELECT * from immunization_slots where patient_id is null and slot_date > ?";
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, currentDate);
 			resultSet = ps.executeQuery();
 			if (resultSet.next() == false) {
@@ -133,13 +132,13 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 
 		try {
 
-			preparedStatement = conn.prepareStatement(sql);
+			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, patientId);
 			preparedStatement.setString(2, slotDate);
 			preparedStatement.setString(3, weekday);
 			preparedStatement.setString(4, slotTime);
 			preparedStatement.executeUpdate();
-			preparedStatement = conn.prepareStatement(sql1);
+			preparedStatement = connection.prepareStatement(sql1);
 			preparedStatement.setInt(1, patientId);
 			preparedStatement.setInt(2, doctorId);
 			preparedStatement.setString(3, slotDate);
@@ -159,7 +158,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		ResultSet resultSet = null;
 		String sql = "SELECT doctor_assigned from immunization_slots WHERE weekday = ? and slot_time = ?";
 		int doctorId = 0;
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, weekday);
 			ps.setString(2, slotTime);
 			resultSet = ps.executeQuery();
@@ -176,18 +175,20 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 	@Override
 	public Map<Integer, String> getVaccineDetailById(List<Integer> vaccineIdList) {
 		String wildcard = "?,".repeat(vaccineIdList.size());
-		String sql = "SELECT vaccine_id, vaccine_name from vaccination_stock where vaccine_id in ("+ wildcard.substring(0, wildcard.length()-1)+")";
+		String sqlStatement = "SELECT vaccine_id, vaccine_name from vaccination_stock where vaccine_id in (" 
+				+ wildcard.substring(0, wildcard.length()-1)+")";
 		Map<Integer, String> vaccineMap = new HashMap<>();
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try {
+			preparedStatement = connection.prepareStatement(sqlStatement);
 			for(int i=0; i<vaccineIdList.size(); i++) {
-				ps.setInt(i+1, vaccineIdList.get(i));
+				preparedStatement.setInt(i+1, vaccineIdList.get(i));
 			}
-			resultSet = ps.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				vaccineMap.put(resultSet.getInt("vaccine_id"), resultSet.getString("vaccine_name"));
+				vaccineMap.put(resultSet.getInt(DatabaseConstants.VACCINE_ID), resultSet.getString(DatabaseConstants.VACCINE_NAME));
 			}
-		} catch (SQLException e) {
-			e.getLocalizedMessage();
+		} catch (SQLException exception) {
+			exception.getLocalizedMessage();
 		}
 		return vaccineMap;
 	}
@@ -196,17 +197,18 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 	public List<ImmunizationBooking> getVaccineIdByPatientId() {
 		List<ImmunizationBooking> bookingList = new ArrayList<>();
 		String sqlStatement = "SELECT * from immunization_appointments where patient_id = ?";
-		try (PreparedStatement preparedStatement = conn.prepareStatement(sqlStatement)) {
+		try {
+			preparedStatement = connection.prepareStatement(sqlStatement);
 			preparedStatement.setInt(1, Patient.getPatient().getPatientId());
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				ImmunizationBooking booking = new ImmunizationBooking();
-				booking.setAppointmentId(resultSet.getInt("appointment_id"));
-				booking.setPatientId(resultSet.getInt("patient_id"));
-				booking.setDoctorId(resultSet.getInt("doctor_id"));
-				booking.setBookedForDate(resultSet.getDate("booked_for_date"));
-				booking.setBookedForTime(resultSet.getTime("booked_for_time"));
-				booking.setVaccineId(resultSet.getInt("vaccine_id"));
+				booking.setAppointmentId(resultSet.getInt(DatabaseConstants.APPOINTMENT_ID));
+				booking.setPatientId(resultSet.getInt(DatabaseConstants.PATIENT_ID));
+				booking.setDoctorId(resultSet.getInt(DatabaseConstants.DOCTOR_ID));
+				booking.setBookedForDate(resultSet.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+				booking.setBookedForTime(resultSet.getTime(DatabaseConstants.BOOKED_ON_DATE));
+				booking.setVaccineId(resultSet.getInt(DatabaseConstants.VACCINE_ID));
 				bookingList.add(booking);
 			}
 		} catch (SQLException exception) {

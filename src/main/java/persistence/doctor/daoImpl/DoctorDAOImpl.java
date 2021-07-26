@@ -84,10 +84,10 @@ public class DoctorDAOImpl implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
             	doctorName = new StringBuilder();
-                doctorName.append(rs.getString("first_name"));
+                doctorName.append(rs.getString(DatabaseConstants.FIRST_NAME));
                 doctorName.append(" ");
-                doctorName.append(rs.getString("last_name"));
-                doctorMap.put(rs.getInt("doctor_id"), doctorName.toString());
+                doctorName.append(rs.getString(DatabaseConstants.LAST_NAME));
+                doctorMap.put(rs.getInt(DatabaseConstants.DOCTOR_ID), doctorName.toString());
             }
         }
         catch (SQLException e){

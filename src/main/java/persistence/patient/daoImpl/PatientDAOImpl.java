@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import persistence.common.DatabaseConstants;
 import persistence.patient.dao.PatientDAO;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
@@ -28,19 +30,19 @@ public class PatientDAOImpl implements PatientDAO {
 
 	@Override
 	public Patient getPatient(Patient patient) {
-		Connection conn = DatabaseConnection.getConnection();
-        String sql = "select * from patients where patient_email = ?";
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setString(1, patient.getPatientEmail());
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
-            	patient.setPatientId(rs.getInt("patient_id"));
-            	patient.setPatientName(rs.getString("patient_name"));
-            	patient.setPatientGender(rs.getString("patient_gender"));
-            	patient.setPatientDob(rs.getDate("patient_dob").toString());
-            	patient.setPatientEmail(rs.getString("patient_email"));
-            	patient.setPatientAddress(rs.getString("patient_address"));
-            	patient.setPatientContact(rs.getLong("patient_contact"));
+		Connection connection = DatabaseConnection.getConnection();
+        String sqlStatement = "select * from patients where patient_email = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
+        	preparedStatement.setString(1, patient.getPatientEmail());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+            	patient.setPatientId(resultSet.getInt(DatabaseConstants.PATIENT_ID));
+            	patient.setPatientName(resultSet.getString(DatabaseConstants.PATIENT_NAME));
+            	patient.setPatientGender(resultSet.getString(DatabaseConstants.PATIENT_GENDER));
+            	patient.setPatientDob(resultSet.getDate(DatabaseConstants.PATIENT_DOB).toString());
+            	patient.setPatientEmail(resultSet.getString(DatabaseConstants.PATIENT_EMAIL));
+            	patient.setPatientAddress(resultSet.getString(DatabaseConstants.PATIENT_ADDRESS));
+            	patient.setPatientContact(resultSet.getLong(DatabaseConstants.PATIENT_CONTACT));
             }
         }
         catch (SQLException e){
