@@ -43,7 +43,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE patient_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+            preparedStatement.setInt(1, Patient.instance().getPatientId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 LabCheckBooking labCheckBooking = new LabCheckBooking();

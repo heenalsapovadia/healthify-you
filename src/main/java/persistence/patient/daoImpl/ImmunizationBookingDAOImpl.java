@@ -121,7 +121,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 	public boolean assignPatientinDatabase(String slotChosen, int vaccineId) {
 
 		String[] slotDetails = slotChosen.split(",");
-		Patient patient = Patient.getPatient();
+		Patient patient = Patient.instance();
 		int patientId = patient.getPatientId();
 		String slotDate = slotDetails[0];
 		String weekday = slotDetails[1];
@@ -199,7 +199,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
 		String sqlStatement = "SELECT * from immunization_appointments where patient_id = ?";
 		try {
 			preparedStatement = connection.prepareStatement(sqlStatement);
-			preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+			preparedStatement.setInt(1, Patient.instance().getPatientId());
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				ImmunizationBooking booking = new ImmunizationBooking();

@@ -111,7 +111,7 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
         Connection connection = DatabaseConnection.getConnection();
         String sqlStatement = "SELECT * FROM prescription WHERE patient_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
-            preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+            preparedStatement.setInt(1, Patient.instance().getPatientId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 Prescription prescription = new Prescription();

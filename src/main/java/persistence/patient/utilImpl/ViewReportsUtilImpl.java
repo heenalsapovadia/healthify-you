@@ -30,7 +30,7 @@ public class ViewReportsUtilImpl implements ViewReportsUtil {
 	
 	public ViewReportsUtilImpl() {
 		jsonReportParser = new JsonPatientReportParserImpl();
-		patientReports = jsonReportParser.getPatientReport(Patient.getPatient().getPatientId());
+		patientReports = jsonReportParser.getPatientReport(Patient.instance().getPatientId());
 		tests = (JSONArray) patientReports.get(JSONConstants.TESTS);
 	}
 

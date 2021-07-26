@@ -27,7 +27,7 @@ public class ScheduledaAppointmentsDAOImpl {
         String sql = "SELECT * FROM doctor_appointment WHERE booked_for_date = ? and doctor_id = ?";
         try( PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setDate(1, (java.sql.Date) appoitmentDate);
-            ps.setInt(2, Doctor.getDoctor().getDoctorId());
+            ps.setInt(2, Doctor.instance().getDoctorId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appointment appointment = new Appointment();

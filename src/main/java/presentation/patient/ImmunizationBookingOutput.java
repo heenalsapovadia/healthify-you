@@ -96,7 +96,7 @@ public class ImmunizationBookingOutput {
 
   private void confirmationStatus(String slot) {
     print.printScreenFields("________________");
-    Patient patient = Patient.getPatient();
+    Patient patient = Patient.instance();
     print.printScreenFields("Successfully booked immunization appointment !");
     String patientName = patient.getPatientName();
     int patientAge = util.getAge(patient.getPatientDob());

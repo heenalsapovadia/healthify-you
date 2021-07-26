@@ -23,7 +23,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     public Appointment validateAppointmentId(Appointment appointment) {
         Connection conn = DatabaseConnection.getConnection();
 
-        int doctor_id = Doctor.getDoctor().getDoctorId();
+        int doctor_id = Doctor.instance().getDoctorId();
 
         String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ? AND doctor_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -53,7 +53,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     @Override
     public void updateAppointment(Appointment appointment) {
         Connection conn = DatabaseConnection.getConnection();
-        int patientId = Patient.getPatient().getPatientId();
+        int patientId = Patient.instance().getPatientId();
         String sql = "UPDATE doctor_appointment " +
                         "SET rescheduled_date = ? " +
                         "WHERE appointment_id = ?";
@@ -72,7 +72,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     @Override
     public List<Appointment> fetchAppointmentsForPatient(){
         Connection conn = DatabaseConnection.getConnection();
-        int patientId = Patient.getPatient().getPatientId();
+        int patientId = Patient.instance().getPatientId();
         List<Appointment> appointmentList = new ArrayList<>();
         String sql = "SELECT * FROM doctor_appointment WHERE patient_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){

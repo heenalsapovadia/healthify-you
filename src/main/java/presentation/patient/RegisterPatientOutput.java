@@ -45,7 +45,7 @@ public class RegisterPatientOutput {
       return false;
     }
     Patient.setPatient(userId);
-    Patient p = Patient.getPatient();
+    Patient p = Patient.instance();
     p.setPassword(password);
     p.setPatientEmail(userId);
     p.setPatientType("P");

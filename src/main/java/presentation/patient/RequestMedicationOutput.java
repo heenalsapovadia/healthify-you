@@ -27,7 +27,7 @@ public class RequestMedicationOutput {
     public String requestMedicationDetails() {
         RequestMedicationDAOImpl requestMedication = new RequestMedicationDAOImpl();
 
-            int patientId = Patient.getPatient().getPatientId();
+            int patientId = Patient.instance().getPatientId();
             Prescription prescription =  new Prescription();
             int prescriptionId = prescription.getPrescriptionId();
 
@@ -48,7 +48,7 @@ public class RequestMedicationOutput {
         List<Prescription> prescriptions = requestMedication.getPrescriptionDetails(current_PrescriptionId);
         double finalAmountForPayment = 0.0;
         ArrayList<MedicationsToUpdate> medicationsToUpdate = new ArrayList<>();
-        System.out.println("Current logged in Patient Name = " + Patient.getPatient().getPatientName());
+        System.out.println("Current logged in Patient Name = " + Patient.instance().getPatientName());
 
         if (!prescriptions.isEmpty()) {
         for (Prescription currentPrescription : prescriptions) {

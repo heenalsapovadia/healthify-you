@@ -18,6 +18,10 @@ import persistence.admin.model.PharmaInvoice;
 import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 
+/**
+ * @author Gurleen Saluja
+ *
+ */
 public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	private static final Logger LOGGER = Logger.getLogger(PharmaInvoiceDAOImpl.class.getName());

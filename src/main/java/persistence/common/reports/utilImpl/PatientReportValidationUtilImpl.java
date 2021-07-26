@@ -36,7 +36,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
         patientReports = new HashMap();
         try {
             idealReports = jsonIdealReportParser.parseIdealReports();
-            patientReports = jsonPatientReportParser.getPatientReport(Patient.getPatient().getPatientId());
+            patientReports = jsonPatientReportParser.getPatientReport(Patient.instance().getPatientId());
         }
         catch (Exception e){
             System.out.println("Exception in JSON parsing : "+e.getMessage());

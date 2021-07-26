@@ -24,7 +24,7 @@ public class RequestMedicationDAOImpl {
 
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, prescriptionId);
-                ps.setInt(2, Patient.getPatient().getPatientId());
+                ps.setInt(2, Patient.instance().getPatientId());
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     Prescription prescription = new Prescription();
