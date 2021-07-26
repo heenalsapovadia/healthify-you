@@ -8,6 +8,9 @@ import persistence.common.reports.model.Kidney;
 import persistence.common.reports.model.Liver;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Map;
 
 public class JsonIdealReportParserImpl implements JsonIdealReportParser {
@@ -24,7 +27,9 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
     @Override
     public Map parseIdealReports() {
         try {
-            Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
+        	InputStream fileInputStream = JsonPatientReportParserImpl.class.getClassLoader().getResourceAsStream(fileName);
+        	Reader reader = new InputStreamReader(fileInputStream);
+            Object obj = new JSONParser().parse(reader);
             return (JSONObject) obj;
         }
         catch (Exception e){
