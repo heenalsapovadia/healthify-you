@@ -15,12 +15,9 @@ import java.util.Map;
 
 public class JsonPatientReportParserImpl implements JsonPatientReportParser {
 
-    private String pathToResources;
-
     private String fileName;
 
     public JsonPatientReportParserImpl(){
-        pathToResources = "src/main/resources";
         fileName = "patientHistory.json";
     }
 
