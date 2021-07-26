@@ -71,7 +71,7 @@ public class ApplicationOutput {
 			System.exit(0);
 		}
 		else {
-			consoleObj.printError(CommonErrors.invalidSelection);
+			consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			loadMainScreenContent(consoleObj);
 		}
 	}

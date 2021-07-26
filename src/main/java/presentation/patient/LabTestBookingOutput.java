@@ -142,7 +142,7 @@ public class LabTestBookingOutput {
                 else
                     return healthCheckId;
             } else
-                consoleObj.printError(CommonErrors.invalidSelection);
+                consoleObj.printError(CommonErrors.INVALID_SELECTION);
         }
     }
 
@@ -160,7 +160,7 @@ public class LabTestBookingOutput {
                     return bookingdate;
             }
             catch(IllegalArgumentException illegalArgumentException) {
-                consoleObj.printError(CommonErrors.invalidDateFormat);
+                consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
             }
         }
     }

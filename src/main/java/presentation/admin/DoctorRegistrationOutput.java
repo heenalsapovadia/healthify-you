@@ -3,14 +3,11 @@ package presentation.admin;
 import persistence.admin.daoImpl.DoctorRegistrationDAOImpl;
 import persistence.admin.model.DoctorRegistration;
 import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
-import presentation.common.CommonConstants;
 import presentation.common.PrintToConsole;
-
-import static presentation.common.CommonErrors.emailError;
+import static presentation.common.CommonErrors.*;
 import static presentation.common.ScreenFields.*;
-import static presentation.common.ScreenTitles.doctorRegistration;
+import static presentation.common.ScreenTitles.DOCTOR_REGISTRATION;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -30,20 +27,20 @@ public class DoctorRegistrationOutput {
         DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
         DoctorRegistrationUtilImpl doctorRegistrationUtilImpl = new DoctorRegistrationUtilImpl();
         PrintToConsole consoleObj = PrintToConsole.getInstance();
-        consoleObj.printHeader(doctorRegistration);
+        consoleObj.printHeader(DOCTOR_REGISTRATION);
 
         consoleObj.printSingleNewLine();
         consoleObj.printScreenFields("Please enter the details below:\n");
 
-        consoleObj.printScreenFields(emailInput);
+        consoleObj.printScreenFields(EMAIL_INPUT);
 
         String email = sc.nextLine().trim();
         boolean checkEmail = doctorRegistrationUtilImpl.validateEmail(email);
 
         if(!checkEmail) {
           do {
-            consoleObj.printError(emailError);
-            consoleObj.printScreenFields(emailInput);
+            consoleObj.printError(EMAIL_ERROR);
+            consoleObj.printScreenFields(EMAIL_INPUT);
             email = sc.nextLine().trim();
             checkEmail = doctorRegistrationUtilImpl.validateEmail(email);
           } while (!checkEmail);
@@ -53,14 +50,14 @@ public class DoctorRegistrationOutput {
             doc.setEmail(email);
         }
 
-        consoleObj.printScreenFields(firstNameInput);
+        consoleObj.printScreenFields(FIRST_NAME_INPUT);
         String fname = sc.nextLine().trim();
         boolean checkFName = doctorRegistrationUtilImpl.validateFirstName(fname);
 
         if(!checkFName) {
             do {
                 consoleObj.printError("Invalid First Name! Enter valid First Name (only alphabets))!");
-                consoleObj.printScreenFields(firstNameInput);
+                consoleObj.printScreenFields(FIRST_NAME_INPUT);
                 fname = sc.nextLine().trim();
                 checkFName = doctorRegistrationUtilImpl.validateFirstName(fname);
             } while (!checkFName);
@@ -70,14 +67,14 @@ public class DoctorRegistrationOutput {
                 doc.setFirstName(fname);
         }
 
-        consoleObj.printScreenFields(lastNameInput);
+        consoleObj.printScreenFields(LAST_NAME_INPUT);
         String lname = sc.nextLine().trim();
         boolean checkLName = doctorRegistrationUtilImpl.validateLastName(lname);
 
         if(!checkLName) {
             do {
                 consoleObj.printError("Invalid Last Name! Enter valid Last Name (only alphabets))!");
-                consoleObj.printScreenFields(lastNameInput);
+                consoleObj.printScreenFields(LAST_NAME_INPUT);
                 lname = sc.nextLine().trim();
                 checkLName = doctorRegistrationUtilImpl.validateLastName(lname);
             } while (!checkLName);
@@ -87,14 +84,14 @@ public class DoctorRegistrationOutput {
             doc.setLastName(lname);
         }
 
-        consoleObj.printScreenFields(passwordInput);
+        consoleObj.printScreenFields(PASSWORD_INPUT);
         String password = sc.nextLine().trim();
         boolean checkPassword = doctorRegistrationUtilImpl.validatePassword(password);
 
         if(!checkPassword) {
             do {
-                consoleObj.printError("Invalid Password! Enter valid password! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)");
-                consoleObj.printScreenFields(passwordInput);
+                consoleObj.printError(INVALID_PASSWORD);
+                consoleObj.printScreenFields(PASSWORD_INPUT);
                 password = sc.nextLine().trim();
                 checkPassword = doctorRegistrationUtilImpl.validatePassword(password);
             } while (!checkPassword);
@@ -104,14 +101,14 @@ public class DoctorRegistrationOutput {
             doc.setPassword(password);
         }
 
-        consoleObj.printScreenFields(joiningDateInput);
+        consoleObj.printScreenFields(JOINING_DATE_INPUT);
         String jDate = sc.nextLine().trim();
         boolean checkJDate = doctorRegistrationUtilImpl.validateDate(jDate);
 
         if(!checkJDate) {
             do {
-                consoleObj.printError("Invalid Date! Enter date in valid format! (should be YYYY-MM-DD)");
-                consoleObj.printScreenFields(joiningDateInput);
+                consoleObj.printError(INVALID_DATE_FORMAT);
+                consoleObj.printScreenFields(JOINING_DATE_INPUT);
                 jDate = sc.nextLine().trim();
                 checkJDate = doctorRegistrationUtilImpl.validateDate(jDate);
             } while (!checkJDate);
@@ -121,14 +118,14 @@ public class DoctorRegistrationOutput {
             doc.setJoiningDate(jDate);
         }
 
-        consoleObj.printScreenFields(degreeInput);
+        consoleObj.printScreenFields(DEGREE_INPUT);
         String degree = sc.nextLine().trim();
         boolean checkDegree = doctorRegistrationUtilImpl.validateDegree(degree);
 
         if(!checkDegree) {
             do {
                 consoleObj.printError("Invalid Degree! Enter valid Graduation Degree (only alphabets and spaces))!");
-                consoleObj.printScreenFields(degreeInput);
+                consoleObj.printScreenFields(DEGREE_INPUT);
                 degree = sc.nextLine().trim();
                 checkDegree = doctorRegistrationUtilImpl.validateDegree(degree);
             } while (!checkDegree);
@@ -138,14 +135,14 @@ public class DoctorRegistrationOutput {
             doc.setDegree(degree);
         }
 
-        consoleObj.printScreenFields(specializationInput);
+        consoleObj.printScreenFields(SPECIALIZATION_INPUT);
         String specialization = sc.nextLine().trim();
         boolean checkSpecialization = doctorRegistrationUtilImpl.validateSpecialization(specialization);
 
         if(!checkSpecialization) {
             do {
                 consoleObj.printError("Invalid specialization! Enter valid specialization (only alphabets and spaces))!");
-                consoleObj.printScreenFields(specializationInput);
+                consoleObj.printScreenFields(SPECIALIZATION_INPUT);
 
                 specialization = sc.nextLine().trim();
                 checkSpecialization = doctorRegistrationUtilImpl.validateSpecialization(specialization);
@@ -156,14 +153,14 @@ public class DoctorRegistrationOutput {
             doc.setSpecialization(specialization);
         }
 
-        consoleObj.printScreenFields(birthDateInput);
+        consoleObj.printScreenFields(BIRTH_DATE_INPUT);
         String bdate = sc.nextLine().trim();
         boolean checkBDate = doctorRegistrationUtilImpl.validateDate(bdate);
 
         if(!checkBDate) {
             do {
-                consoleObj.printError("Invalid Date! Enter date in valid format! (should be YYYY-MM-DD");
-                consoleObj.printScreenFields(birthDateInput);
+                consoleObj.printError(INVALID_DATE_FORMAT);
+                consoleObj.printScreenFields(BIRTH_DATE_INPUT);
                 bdate = sc.nextLine().trim();
                 checkBDate = doctorRegistrationUtilImpl.validateDate(bdate);
             } while (!checkBDate);
@@ -173,13 +170,13 @@ public class DoctorRegistrationOutput {
             doc.setBirthDate(bdate);
         }
 
-        consoleObj.printScreenFields(contactInput);
+        consoleObj.printScreenFields(CONTACT_INPUT);
         Long contactNumber = sc.nextLong();
         boolean checkContact = doctorRegistrationUtilImpl.validateContact(contactNumber);
 
         if(!checkContact) {
             do {
-                consoleObj.printScreenFields(contactInput);
+                consoleObj.printScreenFields(CONTACT_INPUT);
                 contactNumber = sc.nextLong();
                 checkContact = doctorRegistrationUtilImpl.validateContact(contactNumber);
             } while (!checkContact);
@@ -189,7 +186,7 @@ public class DoctorRegistrationOutput {
             doc.setContactNumber(contactNumber);
         }
 
-        consoleObj.printScreenFields(cityInput);
+        consoleObj.printScreenFields(CITY_INPUT);
         Scanner sc1 = new Scanner(System.in);
         String city = sc1.nextLine().trim();
         boolean checkCity = doctorRegistrationUtilImpl.validateCity(city);
@@ -197,7 +194,7 @@ public class DoctorRegistrationOutput {
         if(!checkCity) {
             do {
                 consoleObj.printError("Invalid city! Enter valid city (only alphabets and spaces))!");
-                consoleObj.printScreenFields(cityInput);
+                consoleObj.printScreenFields(CITY_INPUT);
                 city = sc.nextLine().trim();
                 checkCity = doctorRegistrationUtilImpl.validateCity(city);
             } while (!checkCity);
@@ -224,7 +221,7 @@ public class DoctorRegistrationOutput {
             System.out.println("Thank you for using our service!");
             return;
         } else {
-            System.out.println("Invalid choice!");
+            consoleObj.printError(INVALID_SELECTION);
             return;
         }
     }

@@ -54,7 +54,7 @@ public class PrintToConsole {
       if (sc.hasNextInt()) {
         selected = sc.nextInt();
       } else {
-        printError(CommonErrors.invalidSelection);
+        printError(CommonErrors.INVALID_SELECTION);
         selected = printSelection(selectionOptions);
       }
     } else {

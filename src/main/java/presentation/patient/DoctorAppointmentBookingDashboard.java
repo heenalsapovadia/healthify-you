@@ -23,7 +23,7 @@ public class DoctorAppointmentBookingDashboard {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
     consoleObj.printHeader("Book an appointment with doctor");
 
-    consoleObj.printScreenFields(ScreenFields.selectionField);
+    consoleObj.printScreenFields(ScreenFields.SELECTION_FIELD);
     List<String> selectionOptions = new ArrayList<>();
     selectionOptions.add("Get Doctor recommendations based on symptoms");
     selectionOptions.add("Visit a specific doctor");
