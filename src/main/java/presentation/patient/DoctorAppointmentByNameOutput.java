@@ -99,7 +99,8 @@ public class DoctorAppointmentByNameOutput {
                     case 1:
                       // Call Payment Interface screen code
                       double checkoutAmount = doctorAppointmentBookingByNameDAOImpl.fetchDoctorCharges(doctorID);
-                      Patient.setPatient(patientEmail);
+                      Patient patient = Patient.getPatient();
+                      patient.setPatient(patientEmail);
                       PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
                       billingId = paymentInterfaceOutput.processPayment(PaymentBillingCategory.D, checkoutAmount, "");
                       int appointmentID = doctorAppointmentBookingByNameDAOImpl.addDoctorAppointment(patientID, doctorID, bookedDate, appointmentDate, billingId);
@@ -138,6 +139,6 @@ public class DoctorAppointmentByNameOutput {
       doctorAppointmentBookingDashboard.display();
     }
   }
-  
+
 }
 
