@@ -21,8 +21,8 @@ public class PrintToConsole {
 	private static PrintToConsole printInstance;
 	
 	private Scanner scanner;
-
-	private PrintToConsole() {
+    
+    private PrintToConsole() {
 	}
 
 	public static PrintToConsole getInstance() {

@@ -31,13 +31,13 @@ public class ScheduledaAppointmentsDAOImpl {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appointment appointment = new Appointment();
-                appointment.setPatient_id(rs.getInt("patient_id"));
-                appointment.setDoctor_id(rs.getInt("doctor_id"));
-                appointment.setBooked_on_date(rs.getDate("booked_on_date"));
-                appointment.setBooked_for_date(rs.getDate("booked_for_date"));
-                appointment.setRescheduled_date(rs.getDate("rescheduled_date"));
-                appointment.setBilling_id(rs.getInt("billing_id"));
-                appointment.setAppointment_id(rs.getInt("appointment_id"));
+                appointment.setPatientId(rs.getInt("patient_id"));
+                appointment.setDoctorId(rs.getInt("doctor_id"));
+                appointment.setBookedOnDate(rs.getDate("booked_on_date"));
+                appointment.setBookedForDate(rs.getDate("booked_for_date"));
+                appointment.setRescheduledDate(rs.getDate("rescheduled_date"));
+                appointment.setBillingId(rs.getInt("billing_id"));
+                appointment.setAppointmentId(rs.getInt("appointment_id"));
                 appointmentList.add(appointment);
             }
         }

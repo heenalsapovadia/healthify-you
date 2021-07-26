@@ -83,7 +83,7 @@ public class DoctorAppointmentBookingBySpecializationUtilImpl implements DoctorA
     int identifier;
 
     if (matcher.matches() == false || email == null || email == "") {
-      System.err.println(CommonErrors.emailError);
+      System.err.println(CommonErrors.EMAIL_ERROR);
       return -1;
     } else {
       identifier = doctorAppointmentBookingBySpecializationDAO.checkPatientExists(email);

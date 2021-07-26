@@ -43,7 +43,7 @@ public class RedeemableVoucherOutput {
 						loadVoucher(voucher);
 						break;
 				case 2: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 2);

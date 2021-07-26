@@ -1,5 +1,6 @@
 package persistence.doctor.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.doctor.dao.DoctorDAO;
 import persistence.doctor.model.Doctor;
 import presentation.startup.DatabaseConnection;
@@ -57,9 +58,9 @@ public class DoctorDAOImpl implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                doctorName.append(rs.getString("first_name"));
+                doctorName.append(rs.getString(DatabaseConstants.FIRST_NAME));
                 doctorName.append(" ");
-                doctorName.append(rs.getString("last_name"));
+                doctorName.append(rs.getString(DatabaseConstants.LAST_NAME));
             }
         }
         catch (SQLException e){

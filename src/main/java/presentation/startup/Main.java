@@ -26,6 +26,5 @@ public class Main {
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
 		applicationOutput.displayOutput();
-		DatabaseConnection.closeConnection();
 	}
 }

@@ -44,7 +44,7 @@ public class PrescribeMedicineOutput {
         /*
         Prepopulate patient Id from the fetched appointment object
          */
-        int patient_id = validAppointment.getPatient_id();
+        int patient_id = validAppointment.getPatientId();
 
         System.out.print(ScreenFields.MEDICINE_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
         int medicineNumber = scanner.nextInt();
