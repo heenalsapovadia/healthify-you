@@ -43,7 +43,7 @@ public class JSONConstants {
     public static final String RBC = "RBC";
     public static final String CBC = "CBC";
     public static final String WBC = "WBC";
-    public static final String PLATELETS = "platelets";
+    public static final String PLATELETS = "Platelets";
     public static final String HAEMOGLOBIN = "Haemoglobin";
     public static final String HEMATOCRIT = "Hematocrit";
     public static final String DATE_OF_COLLECTION = "DateOfCollection";
