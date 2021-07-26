@@ -5,8 +5,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import persistence.common.jsonUtil.util.JsonPatientReportParser;
 import persistence.common.reports.model.*;
-import java.io.File;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,9 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
     @Override
     public Map getPatientReport(int patientId) {
         try {
-            Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
+        	InputStream fileInputStream = JsonPatientReportParserImpl.class.getClassLoader().getResourceAsStream(fileName);
+        	Reader reader = new InputStreamReader(fileInputStream);
+            Object obj = new JSONParser().parse(reader);
             JSONObject jo = (JSONObject) obj;
             JSONArray patients = (JSONArray) jo.get("patient");
 
