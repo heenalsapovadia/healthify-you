@@ -57,7 +57,7 @@ public class BookingDashboard {
         }
         else if(sel == 4) {
             //Book a blood bank service - blood donation
-            Patient patient = Patient.getPatient();
+            Patient patient = Patient.instance();
             patient.getPatientEmail();
             BloodBankServiceOutput bloodBankServiceOutput = new BloodBankServiceOutput();
             bloodBankServiceOutput.bloodBankService(patient);

@@ -19,7 +19,7 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
 
     @Override
     public List<Map<String, Object>> getVaccinationData(){
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         List<Map<String, Object>> dataRecords = new ArrayList<>();
 
         String sql = "SELECT appointment_id, Vaccine.patient_id, doctor_id, booked_for_date,\n" +

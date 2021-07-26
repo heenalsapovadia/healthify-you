@@ -20,7 +20,7 @@ public class PaymentInterfaceUtilImpl {
         PaymentInterface paymentDetails = new PaymentInterface();
         paymentDetails.setCurrentPaymentMode(persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface.payment_mode.C);
         paymentDetails.setStatusOfPayment(persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface.status.C);
-        paymentDetails.setPatient_id(Patient.getPatient().getPatientId());
+        paymentDetails.setPatient_id(Patient.instance().getPatientId());
         paymentDetails.setVoucher_id(voucherID);
 
         Date d1 = new Date();
@@ -41,7 +41,7 @@ public class PaymentInterfaceUtilImpl {
         int updatedRecords = paymentPersistence.insertPaymentInterfaceDetails(paymentDetails);
         if(updatedRecords > 0 && voucherID != null && !voucherID.isEmpty() && !voucherID.isBlank()) {
         	PatientDAO patientDAO = new PatientDAOImpl();
-        	patientDAO.updateVouchersForPatients("", null, Patient.getPatient().getPatientId());
+        	patientDAO.updateVouchersForPatients("", null, Patient.instance().getPatientId());
         }
         return updatedRecords;
     }

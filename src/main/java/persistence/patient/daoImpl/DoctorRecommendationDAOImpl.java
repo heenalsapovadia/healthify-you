@@ -21,7 +21,7 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
 
   @Override
   public ArrayList<Integer> fetchDoctorList(String symptom) {
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();
@@ -68,7 +68,7 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
       }
     }
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();

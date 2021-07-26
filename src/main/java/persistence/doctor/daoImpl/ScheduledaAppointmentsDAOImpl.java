@@ -23,11 +23,11 @@ public class ScheduledaAppointmentsDAOImpl {
     // As per Appointment Date will display Appointment schedule
     public List<Appointment> getAppointmentsDetails(Date appoitmentDate) {
         List<Appointment> appointmentList = new ArrayList<>();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "SELECT * FROM doctor_appointment WHERE booked_for_date = ? and doctor_id = ?";
         try( PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setDate(1, (java.sql.Date) appoitmentDate);
-            ps.setInt(2, Doctor.getDoctor().getDoctorId());
+            ps.setInt(2, Doctor.instance().getDoctorId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appointment appointment = new Appointment();
@@ -49,7 +49,7 @@ public class ScheduledaAppointmentsDAOImpl {
     }
 
     public PatientDetailsModel getPatient(int patientId) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "select * from patients where patient_id = ?";
         ImmunizationBookingUtilImpl immunizationBookingUtil = new ImmunizationBookingUtilImpl();
         try(PreparedStatement ps = conn.prepareStatement(sql)){

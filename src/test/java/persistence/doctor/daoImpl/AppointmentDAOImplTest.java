@@ -21,7 +21,7 @@ public class AppointmentDAOImplTest {
 
         //Set current doctor's id
         Doctor.setDoctor("biswa.roy@healthifyyou.com");
-        int doctor_id = Doctor.getDoctor().getDoctorId();
+        int doctor_id = Doctor.instance().getDoctorId();
 
 
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();

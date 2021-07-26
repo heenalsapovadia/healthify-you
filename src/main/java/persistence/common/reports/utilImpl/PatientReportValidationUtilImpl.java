@@ -1,6 +1,7 @@
 package persistence.common.reports.utilImpl;
 
 import org.json.simple.JSONArray;
+import persistence.common.JSONConstants;
 import persistence.common.jsonUtil.util.JsonIdealReportParser;
 import persistence.common.jsonUtil.util.JsonPatientReportParser;
 import persistence.common.jsonUtil.utilImpl.JsonIdealReportParserImpl;
@@ -35,7 +36,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
         patientReports = new HashMap();
         try {
             idealReports = jsonIdealReportParser.parseIdealReports();
-            patientReports = jsonPatientReportParser.getPatientReport(Patient.getPatient().getPatientId());
+            patientReports = jsonPatientReportParser.getPatientReport(Patient.instance().getPatientId());
         }
         catch (Exception e){
             System.out.println("Exception in JSON parsing : "+e.getMessage());
@@ -45,7 +46,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
     @Override
     public boolean validateBloodReports(){
         if(patientReports == null || patientReports.isEmpty()) return true;
-        JSONArray tests = (JSONArray) patientReports.get("tests");
+        JSONArray tests = (JSONArray) patientReports.get(JSONConstants.TESTS);
         List<Blood> bloodReportsList = jsonPatientReportParser.parseBloodReports((Map) tests.get(0));
         Map bloodPanel = (Map) idealReports.get("Blood");
         Map CBCPanel = (Map) bloodPanel.get("CBC");
@@ -68,7 +69,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
     @Override
     public boolean validateKidneyReports(){
         if(patientReports == null || patientReports.isEmpty()) return true;
-        JSONArray tests = (JSONArray) patientReports.get("tests");
+        JSONArray tests = (JSONArray) patientReports.get(JSONConstants.TESTS);
         List<Kidney> kidneyReportsList = jsonPatientReportParser.parseKidneyReports((Map) tests.get(0));
         Map kidneyPanel = (Map) idealReports.get("KidneyFunction");
         Kidney kidneyPanelMin = jsonIdealReportParser.getKidneyMin(kidneyPanel);
@@ -90,7 +91,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
     @Override
     public boolean validateLiverReports(){
         if(patientReports == null || patientReports.isEmpty()) return true;
-        JSONArray tests = (JSONArray) patientReports.get("tests");
+        JSONArray tests = (JSONArray) patientReports.get(JSONConstants.TESTS);
         List<Liver> liverReportsList = jsonPatientReportParser.parseLiverReports((Map) tests.get(0));
         Map liverPanel = (Map) idealReports.get("LiverFunction");
         Liver liverPanelMin = jsonIdealReportParser.getLiverMin(liverPanel);
@@ -112,7 +113,7 @@ public class PatientReportValidationUtilImpl implements PatientReportValidationU
     @Override
     public boolean validateEyeReports(){
         if(patientReports == null || patientReports.isEmpty()) return true;
-        JSONArray tests = (JSONArray) patientReports.get("tests");
+        JSONArray tests = (JSONArray) patientReports.get(JSONConstants.TESTS);
         List<Vision> visionReportsList = jsonPatientReportParser.parseEyeReports((Map) tests.get(0));
         LocalDate today = LocalDate.now();
         boolean visionIsNormal = true;
