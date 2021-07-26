@@ -7,14 +7,10 @@ import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 import persistence.patient.util.BloodBankServiceUtil;
-import presentation.common.ScreenFields;
-
 import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import static presentation.common.ScreenFields.bloodGroupInput;
 
 public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
 
@@ -59,7 +55,7 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
     public boolean checkIfReportsAreNormalForDonation() {
         Boolean reportsAreNormalForBloodDonations = true;
         JsonPatientReportParserImpl reportParser = new JsonPatientReportParserImpl();
-        Map report = reportParser.getPatientReport(Patient.getPatient().getPatientId());
+        Map report = reportParser.getPatientReport(Patient.instance().getPatientId());
         if(report == null){
             return true;
         }

@@ -42,7 +42,7 @@ public class BloodBankServiceOutput {
         System.out.println(ScreenFields.BLOOD_DONATION_CRITERIA);
 
         BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
+        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.instance());
         BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
         System.out.println(ScreenFields.YOUR_BLOOD_GROUP);
         String actualBloodGroup = null;
@@ -61,7 +61,7 @@ public class BloodBankServiceOutput {
                 System.out.println(ScreenFields.TOKEN_GENERATED + bloodBankServiceUtil.getTokenIdForDonation());
                 System.out.println(ScreenFields.DONATION_DATE + java.time.LocalDate.now());
                 System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
-                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.getPatient(), bloodGroupInput);
+                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.instance(), bloodGroupInput);
             }
             if (actualBloodGroup != null && bloodGroupInput.equals(actualBloodGroup)) {
                 System.out.println("Blood Group Validated");
@@ -79,7 +79,7 @@ public class BloodBankServiceOutput {
 
     public static String validateDonationDataAndReport(String bloodGroupInput) {
         BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
+        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.instance());
         BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
 
 
@@ -98,7 +98,7 @@ public class BloodBankServiceOutput {
                 System.out.println(ScreenFields.DONATION_DATE + java.time.LocalDate.now());
                 System.out.println(ScreenFields.HOURS_OF_OPERATION);
                 System.out.println(CommonConstants.NEW_LINE);
-                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.getPatient(), bloodGroupInput);
+                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.instance(), bloodGroupInput);
             } else {
                 System.out.println(ScreenFields.PATIENT_ALREADY_DONATED);
                 System.out.println("\n");
@@ -111,7 +111,7 @@ public class BloodBankServiceOutput {
     // user will be able to view their previous donations if any exists
     private static void viewPreviousDonations() {
         BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.getPatient());
+        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.instance());
         if(donations.size()>0) {
             for ( BloodBankService service : donations ) {
                 System.out.println("Patient-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Donation-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Date" + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Blood group" + CommonConstants.SINGLE_TAB);
