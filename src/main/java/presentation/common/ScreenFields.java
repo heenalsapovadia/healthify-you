@@ -137,8 +137,9 @@ public class ScreenFields {
 	public static final String yourBloodGroup = "Please enter your blood group:";
 
 	/* Blood Bank Registration fields */
-	public static final String registerPatientForBloodDonation = "1. Register for Blood Donation";
-	public static final String viewDonationHistory = "2. My Donations";
+	public static final String registerPatientForBloodDonation = "Register for Blood Donation";
+	public static final String viewDonationHistory = "My Donations";
+	public static final String exitFromBloodDonation = "Exit";
 	public static final String enterYourSelection = "Please enter your selection below:";
 	public static final String checkingEligibility = "Checking Eligibility....";
 	public static final String patientIsEligible = "Eligible...No previous donations found for the Patient!";
@@ -147,7 +148,11 @@ public class ScreenFields {
 	public static final String donationDate = "Donation Date: ";
 	public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
 	public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
-
+	public static final String bloodDonationCriteria ="Blood donation criteria: a) Minimum 6 month after previous donation, b) Blood report should be normal.";
+	public static final String reportNormal = "Eligible....Patient test reports are normal...";
+	public static final String hoursOfOperation =  "We operate on Tuesdays and Sundays. Visit anytime.";
+	public static final String reportsNotNormal = "Reports are not normal for Blood donation. Sorry please donate after recovery. ";
+	public static final String noDontionRecordsFound = "No donation record exits for the patient.";
 	/* Payment Interface fields */
 	public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
     public static final String expirydate = "Enter expiry date(yyyy-mm): ";

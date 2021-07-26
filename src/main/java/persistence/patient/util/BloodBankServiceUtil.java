@@ -15,6 +15,6 @@ public interface BloodBankServiceUtil {
     // above method for generating token
     public String getRandomStringForDonationId();
 
-    public String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient, String bloodGroupInput);
+    public String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient,String bloodGroupInput);
 
 }

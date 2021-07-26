@@ -8,7 +8,6 @@ public class BloodBankService {
     private String donationId;
     private String bloodGrp;
     private Date date;
-    private static List<BloodTestReport> bloodtests;
 
 
     public int getPatientId() {
@@ -42,11 +41,4 @@ public class BloodBankService {
         this.date = date;
     }
 
-    // Added BloodTestReport methods
-    public List<BloodTestReport> getBloodTests() {
-        return bloodtests;
-    }
-    public void setBloodTests(List<BloodTestReport> tests) {
-        bloodtests = tests;
-    }
 }

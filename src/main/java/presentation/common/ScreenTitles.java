@@ -109,4 +109,5 @@ public class ScreenTitles {
 	public static final String PHARMACY_RECEIPT = "Pharmacy Receipt";
 	public static final String IMMUNIZATION_RECEIPT = "Immunization Appointment Receipt";
 	public static final String LAB_TEST_RECEIPT = "Laboratory Test Receipt";
+
 }
