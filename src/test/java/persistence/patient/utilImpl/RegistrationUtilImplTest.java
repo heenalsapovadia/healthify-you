@@ -26,11 +26,11 @@ public class RegistrationUtilImplTest {
     String date4 = "12/092019";
     String date5 = "12092019";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
-    assertEquals("The DOB is invalid.Please enter a valid DOB", register.validateDate(date1));
-    assertEquals("The DOB is invalid.Please enter a valid DOB", register.validateDate(date2));
-    assertEquals("The DOB is invalid.Please enter a valid DOB", register.validateDate(date3));
-    assertEquals("The DOB is invalid.Please enter a valid DOB", register.validateDate(date4));
-    assertEquals("The DOB is invalid.Please enter a valid DOB", register.validateDate(date5));
+    assertEquals("Invalid Date Format! Date should be formatted as yyyy-mm-dd!", register.validateDate(date1));
+    assertEquals("Invalid Date Format! Date should be formatted as yyyy-mm-dd!", register.validateDate(date2));
+    assertEquals("Invalid Date Format! Date should be formatted as yyyy-mm-dd!", register.validateDate(date3));
+    assertEquals("Invalid Date Format! Date should be formatted as yyyy-mm-dd!", register.validateDate(date4));
+    assertEquals("Invalid Date Format! Date should be formatted as yyyy-mm-dd!", register.validateDate(date5));
 
   }
 
@@ -63,12 +63,12 @@ public class RegistrationUtilImplTest {
     String cName6 = "";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
 
-    assertEquals("Incorrect City name", register.validateCity(cName));
-    assertEquals("Incorrect City name", register.validateCity(cName2));
-    assertEquals("Incorrect City name", register.validateCity(cName3));
-    assertEquals("Incorrect City name", register.validateCity(cName4));
-    assertEquals("Incorrect City name", register.validateCity(cName5));
-    assertEquals("Incorrect City name", register.validateCity(cName6));
+    assertEquals("Invalid city. Contains characters other than alphabets", register.validateCity(cName));
+    assertEquals("Invalid city. Contains characters other than alphabets", register.validateCity(cName2));
+    assertEquals("Invalid city. Contains characters other than alphabets", register.validateCity(cName3));
+    assertEquals("Invalid city. Contains characters other than alphabets", register.validateCity(cName4));
+    assertEquals("Invalid city. Contains characters other than alphabets", register.validateCity(cName5));
+    assertEquals("Invalid city. Contains characters other than alphabets", register.validateCity(cName6));
   }
 
   @Test
@@ -112,11 +112,11 @@ public class RegistrationUtilImplTest {
     String email4 = "sofia@yahoo..com";
     String email5 = " sofia@gmailcom";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
-    assertEquals("The email ID is invalid.Please enter a valid email address", register.validateEmail(email1));
-    assertEquals("The email ID is invalid.Please enter a valid email address", register.validateEmail(email2));
-    assertEquals("The email ID is invalid.Please enter a valid email address", register.validateEmail(email3));
-    assertEquals("The email ID is invalid.Please enter a valid email address", register.validateEmail(email4));
-    assertEquals("The email ID is invalid.Please enter a valid email address", register.validateEmail(email5));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email1));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email2));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email3));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email4));
+    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email5));
 
   }
 
@@ -137,11 +137,11 @@ public class RegistrationUtilImplTest {
     String password4 = "sofia1234@";
     String password5 = "SofiaVargeres12345678901@";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
-    assertEquals("The password is invalid. Please enter a valid password", register.validatePassword(password1));
-    assertEquals("The password is invalid. Please enter a valid password", register.validatePassword(password2));
-    assertEquals("The password is invalid. Please enter a valid password", register.validatePassword(password3));
-    assertEquals("The password is invalid. Please enter a valid password", register.validatePassword(password4));
-    assertEquals("The password is invalid. Please enter a valid password", register.validatePassword(password5));
+    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password1));
+    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password2));
+    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password3));
+    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password4));
+    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password5));
 
   }
 
@@ -165,11 +165,11 @@ public class RegistrationUtilImplTest {
     String Name4 = "1234";
     String Name5 = "";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
-    assertEquals("Contains characters other than alphabets. Please retry", register.validateNames(Name));
-    assertEquals("Contains characters other than alphabets. Please retry", register.validateNames(Name2));
-    assertEquals("Contains characters other than alphabets. Please retry", register.validateNames(Name3));
-    assertEquals("Contains characters other than alphabets. Please retry", register.validateNames(Name4));
-    assertEquals("Contains characters other than alphabets. Please retry", register.validateNames(Name5));
+    assertEquals("Invalid name. Contains characters other than alphabets", register.validateNames(Name));
+    assertEquals("Invalid name. Contains characters other than alphabets", register.validateNames(Name2));
+    assertEquals("Invalid name. Contains characters other than alphabets", register.validateNames(Name3));
+    assertEquals("Invalid name. Contains characters other than alphabets", register.validateNames(Name4));
+    assertEquals("Invalid name. Contains characters other than alphabets", register.validateNames(Name5));
 
   }
 

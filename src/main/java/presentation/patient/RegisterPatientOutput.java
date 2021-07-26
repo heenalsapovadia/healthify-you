@@ -1,6 +1,5 @@
 package presentation.patient;
 
-import static presentation.common.ScreenFields.birthDateInput;
 import static presentation.common.ScreenFields.cityInput;
 import static presentation.common.ScreenFields.contactInput;
 import static presentation.common.ScreenFields.firstNameInput;
@@ -64,7 +63,7 @@ public class RegisterPatientOutput {
     print.printScreenFields(ScreenFields.passwordOutput + "= " + hidden);
     print.printDoubleNewlines();
 
-    List<String> selection = Arrays.asList(ScreenFields.proceed, ScreenFields.login, ScreenFields.exit);
+    List<String> selection = Arrays.asList(ScreenFields.proceed, ScreenFields.LOGIN, ScreenFields.EXIT);
     sel = print.printSelection(selection);
     switch (sel) {
     case 1:
@@ -94,7 +93,7 @@ public class RegisterPatientOutput {
         if (util.validateNames(lname) != null) {
           do {
             print.printMethodReturns(util.validateNames(lname));
-            print.printScreenFields(ScreenFields.firstNameInput);
+            print.printScreenFields(ScreenFields.lastNameInput);
             lname = sc.next();
             
           } while (util.validateNames(lname) != null);
@@ -174,7 +173,6 @@ public class RegisterPatientOutput {
       break;
 
     case 3:
-      print.printScreenFields(ScreenFields.exit);
       return false;
     }
     return true;

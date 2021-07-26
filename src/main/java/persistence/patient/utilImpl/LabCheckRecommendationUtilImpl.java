@@ -1,5 +1,7 @@
 package persistence.patient.utilImpl;
 
+import persistence.common.reports.util.PatientReportValidationUtil;
+import persistence.common.reports.utilImpl.PatientReportValidationUtilImpl;
 import persistence.patient.dao.LabCheckDAO;
 import persistence.patient.daoImpl.LabCheckDAOImpl;
 import persistence.patient.model.LabCheck;
@@ -11,12 +13,18 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUtil {
-    HashMap<Integer, LabCheck> labCheckMap;
+    Map<Integer, LabCheck> labCheckMap;
+
+    public LabCheckRecommendationUtilImpl() {
+        labCheckMap = new HashMap<>();
+    }
+
     @Override
     public List<LabCheck> genderBasedRecommendation() {
-        if(labCheckMap == null)
+        if(labCheckMap.isEmpty())
             setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
         if(Patient.getPatient().getPatientGender().equals("F"))
@@ -26,7 +34,7 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
 
     @Override
     public List<LabCheck> ageBasedRecommendation() {
-        if(labCheckMap == null)
+        if(labCheckMap.isEmpty())
             setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
         Date dob = Date.valueOf(Patient.getPatient().getPatientDob());
@@ -47,11 +55,32 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
         return recommendations;
     }
 
+    @Override
+    public List<LabCheck> historyBasedRecommendation(){
+        if(labCheckMap.isEmpty())
+            setLabCheckMap();
+        List<LabCheck> recommendations = new ArrayList<>();
+
+        PatientReportValidationUtil patientReportValidationUtil = new PatientReportValidationUtilImpl();
+
+        boolean bloodIsNormal = patientReportValidationUtil.validateBloodReports();
+        boolean kidneyIsNormal = patientReportValidationUtil.validateKidneyReports();
+        boolean liverIsNormal = patientReportValidationUtil.validateLiverReports();
+        boolean visionIsNormal = patientReportValidationUtil.validateEyeReports();
+
+        if(!bloodIsNormal) recommendations.add(labCheckMap.get(7));
+        if(!kidneyIsNormal) recommendations.add(labCheckMap.get(9));
+        if(!liverIsNormal) recommendations.add(labCheckMap.get(8));
+        if(!visionIsNormal) recommendations.add(labCheckMap.get(10));
+
+        return recommendations;
+    }
+
     private void setLabCheckMap(){
         LabCheckDAO labCheckDao = new LabCheckDAOImpl();
         List<LabCheck> labCheckList = labCheckDao.getAvailablePlans();
         labCheckMap = new HashMap<>();
         for(LabCheck labCheck : labCheckList)
-            labCheckMap.put(labCheck.getCheckup_id(), labCheck);
+            labCheckMap.put(labCheck.getCheckupId(), labCheck);
     }
 }

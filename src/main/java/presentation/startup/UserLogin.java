@@ -45,7 +45,7 @@ public class UserLogin {
     print.printDoubleNewlines();
     int sel;
     while (true) {
-      List<String> selectionOptions = Arrays.asList(ScreenFields.proceed, "Patient Sign Up", ScreenFields.exit);
+      List<String> selectionOptions = Arrays.asList(ScreenFields.proceed, "Patient Sign Up", ScreenFields.EXIT);
       sel = print.printSelection(selectionOptions);
       switch (sel) {
       case 1:
@@ -60,12 +60,13 @@ public class UserLogin {
             int sel2 = print.printSelection(selectionOptions2);
             if (sel2 == 1) {
               loginUser();
-              break;
+              return false;
             } else if (sel2 == 2) {
               RegisterPatientOutput obj = new RegisterPatientOutput();
               obj.registerPatient();
               break;
             } else if (sel2 == 3) {
+              System.exit(0);
               return false;
             }
           } else if (dao.getuserDetails(l).equals(ScreenFields.successLogin)) {
@@ -100,7 +101,7 @@ public class UserLogin {
         break;
         
       case 3:
-        print.printScreenFields(ScreenFields.exit);
+        print.printScreenFields(ScreenFields.EXIT);
         return false;
 
       }

@@ -1,8 +1,4 @@
-/**
- * 
- */
 package persistence.admin.model;
-
 
 /**
  * <pre>
@@ -13,7 +9,7 @@ package persistence.admin.model;
  *
  */
 public enum PaymentMode {
-	Cash, Cheque, Other;
+	Cash, Cheque, CreditCard, DebitCard, Other;
 	String mop;
 	PaymentMode(){}
 	public static PaymentMode getMop(String paymentModeFromDB) {
@@ -21,6 +17,10 @@ public enum PaymentMode {
 			return Cash;
 		else if("CH".equals(paymentModeFromDB))
 			return Cheque;
+		else if("CC".equals(paymentModeFromDB))
+			return CreditCard;
+		else if("DC".equals(paymentModeFromDB))
+			return DebitCard;
 		return Other;
 	}
 }

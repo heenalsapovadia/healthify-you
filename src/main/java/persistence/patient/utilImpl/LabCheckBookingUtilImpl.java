@@ -16,12 +16,13 @@ public class LabCheckBookingUtilImpl implements LabCheckBookingUtil {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 
     @Override
-    public void makeBooking(int healthCheckId, Date bookingDate) {
+    public void makeBooking(int healthCheckId, Date bookingDate, int billingId) {
         LabCheckBooking labCheckBooking = new LabCheckBooking();
 
-        labCheckBooking.setPatient_id(Patient.getPatient().getPatientId());
-        labCheckBooking.setHealthcheck_id(healthCheckId);
-        labCheckBooking.setBooked_for_date(bookingDate);
+        labCheckBooking.setPatientId(Patient.getPatient().getPatientId());
+        labCheckBooking.setHealthcheckId(healthCheckId);
+        labCheckBooking.setBookedForDate(bookingDate);
+        labCheckBooking.setBillingId(billingId);
 
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);

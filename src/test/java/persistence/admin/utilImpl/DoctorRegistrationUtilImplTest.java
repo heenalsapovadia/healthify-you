@@ -1,6 +1,5 @@
 package persistence.admin.utilImpl;
 
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -10,6 +9,15 @@ import presentation.startup.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+/**
+* <pre>
+* Perform tests for registering doctor in the system
+* </pre>
+*
+* @author Samiksha Salgaonkar
+*
+*/
 
 public class DoctorRegistrationUtilImplTest {
 

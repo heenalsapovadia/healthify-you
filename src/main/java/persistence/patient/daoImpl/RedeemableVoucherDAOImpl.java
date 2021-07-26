@@ -1,0 +1,68 @@
+package persistence.patient.daoImpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistence.patient.dao.RedeemableVoucherDAO;
+import persistence.patient.model.RedeemableVoucher;
+import presentation.startup.DatabaseConnection;
+
+/**
+ * @author Gurleen Saluja
+ *
+ */
+public class RedeemableVoucherDAOImpl implements RedeemableVoucherDAO {
+	
+	private static final Logger LOGGER = Logger.getLogger(RedeemableVoucherDAOImpl.class.getName());
+
+	@Override
+	public RedeemableVoucher getVoucherByBloodGroup(String bloodGroup) {
+		Connection connection = DatabaseConnection.getConnection();
+		RedeemableVoucher voucher = null;
+		ResultSet resultSet = null;
+		StringBuilder sqlStatement = new StringBuilder();
+		sqlStatement.append("select * from vouchers where blood_group = ?");
+		try (PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement.toString())){
+			preparedStatement.setString(1, bloodGroup);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				voucher = new RedeemableVoucher();
+				voucher.setVoucherId(resultSet.getString("voucher_id"));
+				voucher.setBloodGroup(resultSet.getString("blood_group"));
+				voucher.setPoints(resultSet.getDouble("points"));
+				voucher.setValidityInDays(resultSet.getInt("validity_in_days"));
+			}
+		}
+		catch(SQLException exception) {
+			LOGGER.log(Level.SEVERE, exception.toString());
+		}
+		return voucher;
+	}
+
+	@Override
+	public RedeemableVoucher getVoucherByPatient(int patientId) {
+		Connection connection = DatabaseConnection.getConnection();
+		RedeemableVoucher voucher = null;
+		ResultSet resultSet = null;
+		StringBuilder sqlStatement = new StringBuilder();
+		sqlStatement.append("select * from vouchers where voucher_id = (select voucher_id from patients where patient_id = ?)");
+		try (PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement.toString())){
+			preparedStatement.setInt(1, patientId);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				voucher = new RedeemableVoucher();
+				voucher.setVoucherId(resultSet.getString("voucher_id"));
+				voucher.setBloodGroup(resultSet.getString("blood_group"));
+				voucher.setPoints(resultSet.getDouble("points"));
+				voucher.setValidityInDays(resultSet.getInt("validity_in_days"));
+			}
+		}
+		catch(SQLException exception) {
+			LOGGER.log(Level.SEVERE, exception.toString());
+		}
+		return voucher;
+	}
+}
