@@ -1,5 +1,6 @@
 package persistence.doctor.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.doctor.dao.AppointmentDAO;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Doctor;
@@ -32,12 +33,12 @@ public class AppointmentDAOImpl implements AppointmentDAO {
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
-                appointment.setPatient_id(rs.getInt("patient_id"));
-                appointment.setDoctor_id(rs.getInt("doctor_id"));
-                appointment.setBooked_on_date(rs.getDate("booked_on_date"));
-                appointment.setBooked_for_date(rs.getDate("booked_for_date"));
-                appointment.setRescheduled_date(rs.getDate("rescheduled_date"));
-                appointment.setBilling_id(rs.getInt("billing_id"));
+                appointment.setPatient_id(rs.getInt(DatabaseConstants.PATIENT_ID));
+                appointment.setDoctor_id(rs.getInt(DatabaseConstants.DOCTOR_ID));
+                appointment.setBooked_on_date(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
+                appointment.setBooked_for_date(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                appointment.setRescheduled_date(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                appointment.setBilling_id(rs.getInt(DatabaseConstants.BILLING_ID));
 
                 return appointment;
             }
@@ -80,13 +81,13 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
             while (rs.next()) {
                 Appointment appointment = new Appointment();
-                appointment.setAppointment_id(rs.getInt("appointment_id"));
+                appointment.setAppointment_id(rs.getInt(DatabaseConstants.APPOINTMENT_ID));
                 appointment.setPatient_id(patientId);
-                appointment.setDoctor_id(rs.getInt("doctor_id"));
-                appointment.setBooked_on_date(rs.getDate("booked_on_date"));
-                appointment.setBooked_for_date(rs.getDate("booked_for_date"));
-                appointment.setRescheduled_date(rs.getDate("rescheduled_date"));
-                appointment.setBilling_id(rs.getInt("billing_id"));
+                appointment.setDoctor_id(rs.getInt(DatabaseConstants.DOCTOR_ID));
+                appointment.setBooked_on_date(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
+                appointment.setBooked_for_date(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                appointment.setRescheduled_date(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                appointment.setBilling_id(rs.getInt(DatabaseConstants.BILLING_ID));
                 appointmentList.add(appointment);
             }
         }
