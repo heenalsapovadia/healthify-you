@@ -8,7 +8,9 @@ import persistence.doctor.daoImpl.DoctorAvailabilityDAOImpl;
 import persistence.doctor.daoImpl.DoctorDAOImpl;
 import persistence.doctor.model.Appointment;
 import presentation.common.CommonConstants;
+import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
+import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -48,19 +50,19 @@ public class DoctorAppointmentBookingOutput {
         int appointmentId = validateAppointmentIdToReschedule(appointmentMap);
         consoleObj.printSingleNewLine();
 
-        System.out.println("------------------------ Appointment to be rescheduled ------------------------ ");
+        System.out.println("------------------------ " + ScreenFields.APPOINTMENT_TO_RESCHEDULE + " ------------------------ ");
         Appointment appointmentToReschedule = appointmentMap.get(appointmentId);
-        System.out.println("Appointment Id : "+appointmentId);
-        System.out.println("Doctor Name : "+ doctorMap.get(appointmentToReschedule.getDoctorId()));
+        System.out.println(ScreenFields.APPOINTMENT_ID + " : "+appointmentId);
+        System.out.println(ScreenFields.DOCTOR_NAME + " : "+ doctorMap.get(appointmentToReschedule.getDoctorId()));
         Date currentAppointmentDate = appointmentToReschedule.getRescheduledDate()==null ? appointmentToReschedule.getBookedForDate() : appointmentToReschedule.getRescheduledDate();
-        System.out.println("Appointment Date : "+currentAppointmentDate);
+        System.out.println(ScreenFields.APPOINTMENT_DATE + " : "+currentAppointmentDate);
 
         consoleObj.printSingleNewLine();
 
         Scanner scanner = new Scanner(System.in);
         List<String> daysAvailable = doctorAvailability(appointmentToReschedule.getDoctorId());
         List<String> datesOptions = datesGenerator(daysAvailable, 0);
-        System.out.println("Doctor is available on the following dates : ");
+        System.out.println(ScreenFields.DOCTOR_AVAILABILITY);
         for(int i=0; i<datesOptions.size(); i++){
             String availableDate = datesOptions.get(i);
             if(availableDate.equals(currentAppointmentDate.toString()))
@@ -69,7 +71,7 @@ public class DoctorAppointmentBookingOutput {
                 System.out.println((i+1) + ". " + availableDate);
         }
         consoleObj.printSingleNewLine();
-        System.out.println("Do you want dates for the week after ?");
+        System.out.println(ScreenFields.DATES_NEXT_WEEK);
         System.out.println("1. Yes\n2. No");
         if(scanner.hasNextInt()) {
             int option = scanner.nextInt();
@@ -92,23 +94,23 @@ public class DoctorAppointmentBookingOutput {
         Scanner scanner = new Scanner(System.in);
         int appointmentId;
         while(true) {
-            System.out.print("Enter appointment Id to reschedule : ");
+            System.out.print(ScreenFields.APPOINTMENT_ID_TO_RESCHEDULE);
             if (scanner.hasNextInt()) {
                 appointmentId = scanner.nextInt();
                 if(appointmentMap.containsKey(appointmentId))
                     break;
                 else
-                    System.out.println("Invalid Appointment Id.. Please try again");
+                    System.out.println(CommonErrors.INVALID_APPOINTMENT_ID);
             }
             else
-                System.out.println("Invalid Appointment Id.. Please try again");
+                System.out.println(CommonErrors.INVALID_APPOINTMENT_ID);
         }
         return appointmentId;
     }
 
     public Map<Integer, Appointment> displayUpcomingAppointments(List<Appointment> appointmentList, Map<Integer, String> doctorMap){
         Map<Integer, Appointment> appointmentMap = new HashMap<>();
-        System.out.println("Your upcoming doctor appointments are : ");
+        System.out.println(ScreenFields.UPCOMING_APPOINTMENTS);
         consoleObj.printSingleNewLine();
         for(Appointment appointment : appointmentList){
             Date currentAppointmentDate = appointment.getRescheduledDate()==null ? appointment.getBookedForDate() : appointment.getRescheduledDate();
@@ -116,10 +118,10 @@ public class DoctorAppointmentBookingOutput {
             LocalDate appointmentDateLocal = appointment.getBookedForDate().toLocalDate();
             int differencePeriod = Period.between(today, appointmentDateLocal).getDays();
             if(differencePeriod > 0) {
-                System.out.println("AppointmentId : " + appointment.getAppointmentId()
-                        + ", DoctorName : " + doctorMap.get(appointment.getDoctorId())
-                        + ", AppointmentDate : " + currentAppointmentDate
-                        + ", BillingId : " + appointment.getBillingId());
+                System.out.println(ScreenFields.APPOINTMENT_ID + " : " + appointment.getAppointmentId()
+                        + ", " + ScreenFields.DOCTOR_NAME + " : " + doctorMap.get(appointment.getDoctorId())
+                        + ", "+ ScreenFields.APPOINTMENT_DATE +" : " + currentAppointmentDate
+                        + ", " + ScreenFields.BILL_ID + " : " + appointment.getBillingId());
                 appointmentMap.put(appointment.getAppointmentId(), appointment);
             }
         }
