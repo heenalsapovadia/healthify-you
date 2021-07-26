@@ -1,5 +1,6 @@
 package persistence.doctor.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.doctor.dao.PrescriptionDAO;
 import persistence.doctor.model.Prescription;
 import persistence.patient.model.Patient;
@@ -53,11 +54,11 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
     public int findMaxPrescriptionId() {
         Connection connection = DatabaseConnection.getConnection();
 
-        String sql = "SELECT MAX(prescription_id) FROM prescription";
+        String sql = "SELECT MAX(prescription_id) AS prescription_id FROM prescription";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next())
-                return resultSet.getInt("MAX(prescription_id)");
+                return resultSet.getInt(DatabaseConstants.PRESCRIPTION_ID);
         }
         catch (SQLException sqlException){
             LOGGER.log(Level.SEVERE, sqlException.toString());
@@ -78,17 +79,17 @@ public class PrescriptionDAOImpl implements PrescriptionDAO {
             while(resultSet.next()){
                 Prescription prescription = new Prescription();
                 prescription.setPrescriptionId(prescriptionId);
-                prescription.setAppointmentId(resultSet.getInt("appointment_id"));
-                prescription.setDoctorId(resultSet.getInt("doctor_id"));
-                prescription.setDoctorName(resultSet.getString("doctor_name"));
-                prescription.setPatientId(resultSet.getInt("patient_id"));
-                prescription.setMedicineName(resultSet.getString("medicine_name"));
-                prescription.setMorning(resultSet.getInt("morning_dose"));
-                prescription.setAfternoon(resultSet.getInt("afternoon_dose"));
-                prescription.setEvening(resultSet.getInt("evening_dose"));
-                prescription.setDosageDays(resultSet.getInt("dosage_days"));
-                prescription.setDate(resultSet.getDate("prescription_date"));
-                prescription.setBillingId(resultSet.getInt("billing_id"));
+                prescription.setAppointmentId(resultSet.getInt(DatabaseConstants.APPOINTMENT_ID));
+                prescription.setDoctorId(resultSet.getInt(DatabaseConstants.DOCTOR_ID));
+                prescription.setDoctorName(resultSet.getString(DatabaseConstants.DOCTOR_NAME));
+                prescription.setPatientId(resultSet.getInt(DatabaseConstants.PATIENT_ID));
+                prescription.setMedicineName(resultSet.getString(DatabaseConstants.MEDICINE_NAME));
+                prescription.setMorning(resultSet.getInt(DatabaseConstants.MORNING_DOSE));
+                prescription.setAfternoon(resultSet.getInt(DatabaseConstants.AFTERNOON_DOSE));
+                prescription.setEvening(resultSet.getInt(DatabaseConstants.EVENING_DOSE));
+                prescription.setDosageDays(resultSet.getInt(DatabaseConstants.DOSAGE_DAYS));
+                prescription.setDate(resultSet.getDate(DatabaseConstants.PRESCRIPTION_DATE));
+                prescription.setBillingId(resultSet.getInt(DatabaseConstants.BILLING_ID));
 
                 prescriptionList.add(prescription);
             }
