@@ -19,7 +19,7 @@ public class Doctor {
 
     private Doctor(){}
 
-    public static Doctor getDoctor(){
+    public static Doctor instance(){
         return doctor;
     }
 

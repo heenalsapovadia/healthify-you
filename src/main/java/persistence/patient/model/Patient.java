@@ -28,7 +28,7 @@ public class Patient {
 		}
 	}
 	
-	public static Patient getPatient() {
+	public static Patient instance() {
 		return patient;
 	}
   

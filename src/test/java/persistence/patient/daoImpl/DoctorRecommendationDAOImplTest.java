@@ -25,7 +25,7 @@ public class DoctorRecommendationDAOImplTest {
     public void fetchDoctorList() throws SQLException {
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList<>();
@@ -55,7 +55,7 @@ public class DoctorRecommendationDAOImplTest {
     public void fetchDoctorList2() throws SQLException {
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList<>();
@@ -71,7 +71,7 @@ public class DoctorRecommendationDAOImplTest {
     public void fetchIncorrectDoctorList() throws SQLException {
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList<>();
@@ -88,7 +88,7 @@ public class DoctorRecommendationDAOImplTest {
     public void fetchIncorrectDoctorList2() throws SQLException {
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList<>();
@@ -105,7 +105,7 @@ public class DoctorRecommendationDAOImplTest {
     public void fetchIncorrectDoctorList3() throws SQLException {
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList<>();
@@ -118,7 +118,7 @@ public class DoctorRecommendationDAOImplTest {
     public void fetchIncorrectDoctorList4() throws SQLException {
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
 
         ArrayList<Integer> doctorIDList = new ArrayList<>();
@@ -137,7 +137,7 @@ public class DoctorRecommendationDAOImplTest {
         /* Incorrect inputs */
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
         ArrayList<Integer> doctorIDList = new ArrayList<>();
 
@@ -158,7 +158,7 @@ public class DoctorRecommendationDAOImplTest {
         /* Control Flow for passed parameter */
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
         ArrayList<Integer> doctorIDList = new ArrayList<>();
 
@@ -179,7 +179,7 @@ public class DoctorRecommendationDAOImplTest {
         /* Control Flow for passed parameter */
 
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         DoctorRecommendationDAOImpl doctorRecommendationDAOImpl = new DoctorRecommendationDAOImpl();
         ArrayList<Integer> doctorIDList = new ArrayList<>();
 

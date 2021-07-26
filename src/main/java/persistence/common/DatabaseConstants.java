@@ -24,6 +24,9 @@ public class DatabaseConstants {
     public static final String PATIENT_GENDER = "patient_gender";
     public static final String PATIENT_DOB = "patient_dob";
     public static final String PATIENT_ADDRESS = "patient_address";
+    public static final String PATIENT_NAME = "patient_name";
+    public static final String PATIENT_EMAIL = "patient_email";
+    public static final String PATIENT_CONTACT = "patient_contact";
 
     /* Doctor Table constants */
     public static final String DOCTOR_ID = "doctor_id";
@@ -60,4 +63,26 @@ public class DatabaseConstants {
 
     /* Billing table constants */
     public static final String BILLING_ID = "billing_id";
+    
+    /* Pharma Invoice constants */
+    public static final String PHARMA_BILLING_ID = "pharma_billing_id";
+    public static final String PHARMA_NAME = "pharma_name";
+    public static final String PHARMA_ADDRESS = "pharma_address";
+    public static final String PHARMA_CONTACT = "pharma_contact";
+    public static final String PAYMENT_MODE = "payment_mode";
+    public static final String PHARMA_ITEM_NAME = "pharma_item_name";
+    public static final String PHARMA_ITEM_DOSAGE = "pharma_item_dosage";
+    public static final String PHARMA_MANUFACTURER = "pharma_manufacturer";
+    public static final String PHARMA_ITEM_QUANTITY = "pharma_item_quantity";
+    public static final String PHARMA_ITEM_UNIT_PRICE = "pharma_item_unit_price";
+    public static final String PHARMA_BILL_DATE = "pharma_bill_date";
+    public static final String PHARMA_BILL_TIME = "pharma_bill_time";
+    public static final String PHARMA_ITEM_UPDATED_QUANTITY = "pharma_item_updated_quantity";
+    public static final String EXPIRY_DATE = "expiry_date";
+    
+    /* Redeemabe=le Vouchers constants */
+    public static final String VOUCHER_ID = "voucher_id";
+    public static final String BLOOD_GROUP = "blood_group";
+    public static final String POINTS = "points";
+    public static final String VALIDITY_IN_DAYS = "validity_in_days";
 }

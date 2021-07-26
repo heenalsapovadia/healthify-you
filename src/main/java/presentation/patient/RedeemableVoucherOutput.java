@@ -50,7 +50,7 @@ public class RedeemableVoucherOutput {
 	}
 	
 	private RedeemableVoucher fetchAvailablePoints() {
-		int patientId = Patient.getPatient().getPatientId();
+		int patientId = Patient.instance().getPatientId();
 		RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
 		RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(patientId);
 		if(voucher != null) {

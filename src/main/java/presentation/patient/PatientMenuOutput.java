@@ -46,7 +46,6 @@ public class PatientMenuOutput {
 		List<String> selectionOptions = getSelectionOptions();
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
-			//make a booking
 			BookingDashboard bookingDashboard = new BookingDashboard();
 			bookingDashboard.displayOutput();
 			loadScreenOptions(consoleObj);
@@ -54,13 +53,11 @@ public class PatientMenuOutput {
 
 		}
 		else if(sel == 2) {
-			//invoices
 			InvoiceOutput invoiceOutput = new InvoiceOutput();
 			invoiceOutput.displayInvoice();
 			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 3) {
-			//request medication
 			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
 			requestMedicationDetails.requestMedicationDetails();
 			sel = loadScreenOptions(consoleObj);
@@ -76,6 +73,7 @@ public class PatientMenuOutput {
 			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 6) {
+			consoleObj.flushResources();
 			System.out.println(ScreenFields.LOGOUT_MESSAGE);
 			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
 			System.exit(0);

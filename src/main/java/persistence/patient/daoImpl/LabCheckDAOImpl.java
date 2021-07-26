@@ -21,7 +21,7 @@ public class LabCheckDAOImpl implements LabCheckDAO {
      */
     @Override
     public List<LabCheck> getAvailablePlans() {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<LabCheck> labCheckList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_plans";
