@@ -5,8 +5,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import persistence.common.jsonUtil.util.JsonPatientReportParser;
 import persistence.common.reports.model.*;
-import java.io.File;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +15,18 @@ import java.util.Map;
 
 public class JsonPatientReportParserImpl implements JsonPatientReportParser {
 
-    private String pathToResources;
-
     private String fileName;
 
     public JsonPatientReportParserImpl(){
-        pathToResources = "src/main/resources";
         fileName = "patientHistory.json";
     }
 
     @Override
     public Map getPatientReport(int patientId) {
         try {
-            Object obj = new JSONParser().parse(new FileReader(new File(pathToResources).getAbsolutePath() + "/" + fileName));
+        	InputStream fileInputStream = JsonPatientReportParserImpl.class.getClassLoader().getResourceAsStream(fileName);
+        	Reader reader = new InputStreamReader(fileInputStream);
+            Object obj = new JSONParser().parse(reader);
             JSONObject jo = (JSONObject) obj;
             JSONArray patients = (JSONArray) jo.get("patient");
 
@@ -39,7 +39,7 @@ public class JsonPatientReportParserImpl implements JsonPatientReportParser {
             }
         }
         catch (Exception e){
-            System.out.println("Json Parsing excepion : "+e.getMessage());
+            System.out.println("Json Parsing exception : "+e.getMessage());
         }
         return null;
     }

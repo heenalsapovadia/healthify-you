@@ -6,6 +6,7 @@ import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
 import persistence.patient.util.DoctorRecommendationUtil;
 import persistence.patient.utilImpl.DoctorRecommendationUtilImpl;
 import presentation.common.CommonConstants;
+import presentation.common.PrintToConsole;
 
 import static presentation.common.CommonErrors.emailError;
 import static presentation.common.ScreenFields.*;
@@ -29,20 +30,21 @@ public class DoctorRecommendationOutput {
 
     public void recommendDoctor() {
         Scanner sc = new Scanner(System.in);
+        PrintToConsole consoleObj = PrintToConsole.getInstance();
 
-        System.out.println(CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+CommonConstants.TITLE_SPACE+doctorRecommendation);
+        consoleObj.printHeader(doctorRecommendation);
 
         int choice = 0;
-        System.out.println();
+        consoleObj.printSingleNewLine();
 
         while(choice != 2) {
-            System.out.println();
-            System.out.println(selectionField);
+            consoleObj.printSingleNewLine();
+            consoleObj.printScreenFields(selectionField);
 
-            System.out.println(selectionOption1);
-            System.out.println(selectionOption2);
+            consoleObj.printScreenFields(selectionOption1);
+            consoleObj.printScreenFields(selectionOption2);
 
-            System.out.println(SELECTION);
+            consoleObj.printScreenFields(SELECTION);
             choice = sc.nextInt();
 
             if (choice == 1) {
@@ -50,12 +52,12 @@ public class DoctorRecommendationOutput {
                 String symptom = "";
                 Scanner sc1 = new Scanner(System.in);
 
-                System.out.println(symptomSelectionField);
-                System.out.println(symptomOption1);
-                System.out.println(symptomOption2);
-                System.out.println(symptomOption3);
-                System.out.println(symptomOption4);
-                System.out.println(symptomOption5);
+                consoleObj.printScreenFields(symptomSelectionField);
+                consoleObj.printScreenFields(symptomOption1);
+                consoleObj.printScreenFields(symptomOption2);
+                consoleObj.printScreenFields(symptomOption3);
+                consoleObj.printScreenFields(symptomOption4);
+                consoleObj.printScreenFields(symptomOption5);
 
                 symptomChoice = sc1.nextInt();
 
@@ -75,11 +77,11 @@ public class DoctorRecommendationOutput {
                 }
 
                 int support = 0;
-                System.out.println(supportInput);
+                consoleObj.printScreenFields(supportInput);
                 support = sc1.nextInt();
 
                 int numRec = 0;
-                System.out.println(recommendationInput);
+                consoleObj.printScreenFields(recommendationInput);
                 numRec = sc1.nextInt();
 
                 ArrayList<String> doctorList = new ArrayList<>();
@@ -88,7 +90,7 @@ public class DoctorRecommendationOutput {
 
                 if(doctorList != null){
 
-                    System.out.println();
+                    consoleObj.printSingleNewLine();
                     System.out.println("You may visit the following doctor(s) for :" +symptom);
 
                     for(String doctorName : doctorList) {
@@ -98,14 +100,16 @@ public class DoctorRecommendationOutput {
                 }
 
             } else if (choice == 2) {
-                System.out.println("Thank you for using our service!");
-                return;
+                DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+                try {
+                    doctorAppointmentBookingDashboard.display();
+                } catch (SQLException se) {
+                    return;
+                }
             } else {
                 System.out.println("Invalid choice!");
             }
-
         }
-
     }
 
 }

@@ -7,9 +7,9 @@ import persistence.patient.model.Patient;
 import persistence.patient.utilImpl.BloodBankServiceUtilImpl;
 
 public class BloodBankServiceOutput {
-    
+
     public static void bloodBankService() {
-        
+
         PrintToConsole consoleObj = PrintToConsole.getInstance();
         /*
           Main dashboard for bloodBankSerivce  options list
@@ -128,6 +128,7 @@ public class BloodBankServiceOutput {
         else{
             System.out.println(ScreenFields.noDontionRecordsFound);
         }
+        //return null;
     }
 
 }

@@ -21,8 +21,25 @@ public class DoctorMenuOutput {
     }
 
     public void displayOutput() {
-        consoleObj.printHeader(ScreenTitles.DOCTOR_DASHBOARD);
-        loadScreenOptions();
+        List<String> selectionOptions = getSelectionOptions();
+        while(true) {
+            consoleObj.printHeader(ScreenTitles.DOCTOR_DASHBOARD);
+            int option = consoleObj.printSelection(selectionOptions);
+
+            switch (option) {
+                case 1:
+                    PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
+                    prescribeMedicineOutput.prescribeMedication();
+                    break;
+                case 2:
+                    ScheduledAppointmentsOutput scheduledAppointmentsOutput = new ScheduledAppointmentsOutput();
+                    scheduledAppointmentsOutput.scheduledAppointmentsDetails();
+                    break;
+                case 3:
+                    System.out.println(ScreenFields.LOGOUT_MESSAGE);
+                    return;
+            }
+        }
     }
 
     private List<String> getSelectionOptions() {
@@ -31,31 +48,6 @@ public class DoctorMenuOutput {
         selectionOptions.add(ScreenFields.VIEW_APPOINTMENTS);
         selectionOptions.add(ScreenFields.LOGOUT);
         return selectionOptions;
-    }
-
-    private int loadScreenOptions() {
-        List<String> selectionOptions = getSelectionOptions();
-        int option = consoleObj.printSelection(selectionOptions);
-
-        if(option == 1) {
-            PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
-            prescribeMedicineOutput.prescribeMedication();
-        }
-        else if(option == 2) {
-            //add code for View Appointment for Doctor here
-            ScheduledAppointmentsOutput scheduledAppointmentsOutput = new ScheduledAppointmentsOutput();
-            scheduledAppointmentsOutput.scheduledAppointmentsDetails();
-        }
-        else if(option == 3) {
-            System.out.println(ScreenFields.LOGOUT_MESSAGE);
-            System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
-            System.exit(0);
-        }
-        else {
-            consoleObj.printError(CommonErrors.invalidSelection);
-            option = loadScreenOptions();
-        }
-        return option;
     }
 
 }
