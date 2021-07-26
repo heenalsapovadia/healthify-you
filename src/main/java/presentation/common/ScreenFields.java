@@ -44,16 +44,16 @@ public class ScreenFields {
 	public static final String MEDICINE_PRESCRIBE_MESSAGE = "Medicines prescribed successfully!";
 
 	/* Registration screen fields */
-	public static final String emailInput = "Enter email address";
-	public static final String firstNameInput = "Enter first name";
-	public static final String lastNameInput = "Enter last name";
-	public static final String passwordInput = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
-	public static final String joiningDateInput = "Enter doctor's joining date (YYYY-MM-DD)";
-	public static final String degreeInput = "Enter doctor's graduation degree";
-	public static final String specializationInput = "Enter doctor's specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS)";
-	public static final String birthDateInput = "Enter birth date (YYYY-MM-DD)";
-	public static final String contactInput = "Enter contact number (902#######)";
-	public static final String cityInput = "Enter city of residence";
+	public static final String EMAIL_INPUT = "Enter email address";
+	public static final String FIRST_NAME_INPUT = "Enter first name";
+	public static final String LAST_NAME_INPUT = "Enter last name";
+	public static final String PASSWORD_INPUT = "Enter password for account! (should contain atleast one digit, a lowercase alphabet, an uppercase alphabet, no white-spaces, at least 8 characters and at most 20 characters long, and any character from ?,=,.,*,[,@,#,$,%,^,&,-,+,=,(,)";
+	public static final String JOINING_DATE_INPUT = "Enter doctor's joining date (YYYY-MM-DD)";
+	public static final String DEGREE_INPUT = "Enter doctor's graduation degree";
+	public static final String SPECIALIZATION_INPUT = "Enter doctor's specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS)";
+	public static final String BIRTH_DATE_INPUT = "Enter birth date (YYYY-MM-DD)";
+	public static final String CONTACT_INPUT = "Enter contact number (902#######)";
+	public static final String CITY_INPUT = "Enter city of residence";
 	
     /* Login screen fields */
 	public static final String userEmailInput = "Enter your email address";
@@ -88,17 +88,17 @@ public class ScreenFields {
 	public static final String mostVaccinatedArea = "Most vaccinated Area";
 
 	/* Doctor recommendation screen fields */
-	public static final String selectionField= "Make selection from the options below:\n";
-	public static final String selectionOption1= "1. Select the symptoms for recommendation";
-	public static final String selectionOption2= "2. Exit";
-	public static final String symptomSelectionField= "Select one of the options below:";
-	public static final String symptomOption1= "1. Cough";
-	public static final String symptomOption2= "2. Cold";
-	public static final String symptomOption3= "3. Fever";
-	public static final String symptomOption4= "4. Nausea";
-	public static final String symptomOption5= "5. Digestive issues";
-	public static final String supportInput= "Enter the support for recommendation (enter integer value only)";
-	public static final String recommendationInput= "Enter the number of recommendations";
+	public static final String SELECTION_FIELD = "Make selection from the options below:\n";
+	public static final String SELECTION_OPTION_1 = "1. Select the symptoms for recommendation";
+	public static final String SELECTION_OPTION_2 = "2. Exit";
+	public static final String SYMPTOM_SELECTION_FIELD = "Select one of the options below:";
+	public static final String SYMPTOM_OPTION_1 = "1. Cough";
+	public static final String SYMPTOM_OPTION_2 = "2. Cold";
+	public static final String SYMPTOM_OPTION_3 = "3. Fever";
+	public static final String SYMPTOM_OPTION_4 = "4. Nausea";
+	public static final String SYMPTOM_OPTION_5 = "5. Digestive issues";
+	public static final String SUPPORT_INPUT = "Enter the support for recommendation (enter integer value only)";
+	public static final String RECOMMENDATION_INPUT = "Enter the number of recommendations";
 
 	/* Main Menu Fields */
 	public static final String LOGIN = "Login";
@@ -161,8 +161,9 @@ public class ScreenFields {
     public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
 
 	/* Blood Bank recommendation screen fields */
-	public static final String bloodGroupInput = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
-	public static final String numRecInput = "Please enter the number of recommendations";
+	public static final String BLOOD_GROUP_INPUT = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
+	public static final String NUM_REC_INPUT = "Please enter the number of recommendations";
+	public static final String BLOOD_BANK_MESSAGE = "The blood groups displayed are the in the order of most frequently ordered to least frequently ordered!";
 
 	/* Redeemable Voucher Fields */
 	public static final String VIEW_VOUCHER = "View Redeemable Vouchers";

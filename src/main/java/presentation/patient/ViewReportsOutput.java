@@ -51,7 +51,7 @@ public class ViewReportsOutput {
 				case 3: displayReportForDateRange(reportsUtil, consoleObj);
 						break;
 				case 4: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 4);
@@ -81,11 +81,11 @@ public class ViewReportsOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			parseDateInput(consoleObj, new Scanner(System.in));
 		}
 		if(date == null) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			date = parseDateInput(consoleObj, new Scanner(System.in));
 		}
 		return date;
@@ -151,11 +151,11 @@ public class ViewReportsOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			return;
 		}
 		if(startDate == null || endDate == null) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 		}
 	}
 }

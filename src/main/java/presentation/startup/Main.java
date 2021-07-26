@@ -30,8 +30,5 @@ public class Main {
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
 		applicationOutput.displayOutput();
-//		Patient.setPatient("samtran@gmail.com");
-//		RequestMedicationOutput output = new RequestMedicationOutput();
-//		output.requestMedicationDetails();
 	}
 }
