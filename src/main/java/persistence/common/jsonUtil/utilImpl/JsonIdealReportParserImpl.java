@@ -6,8 +6,6 @@ import persistence.common.jsonUtil.util.JsonIdealReportParser;
 import persistence.common.reports.model.CBC;
 import persistence.common.reports.model.Kidney;
 import persistence.common.reports.model.Liver;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -15,12 +13,9 @@ import java.util.Map;
 
 public class JsonIdealReportParserImpl implements JsonIdealReportParser {
 
-    private String pathToResources;
-
     private String fileName;
 
     public JsonIdealReportParserImpl(){
-        pathToResources = "src/main/resources";
         fileName = "IdealReports.json";
     }
 
@@ -33,7 +28,7 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
             return (JSONObject) obj;
         }
         catch (Exception e){
-            System.out.println("Json Parsing excepion : "+e.getMessage());
+            System.out.println("Json Parsing exception : "+e.getMessage());
         }
         return null;
     }
