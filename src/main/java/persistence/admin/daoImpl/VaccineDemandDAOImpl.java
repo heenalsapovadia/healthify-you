@@ -1,6 +1,7 @@
 package persistence.admin.daoImpl;
 
 import persistence.admin.dao.VaccineDemandDAO;
+import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,16 +37,16 @@ public class VaccineDemandDAOImpl implements VaccineDemandDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 Map<String, Object> dataRecord = new HashMap<>();
-                dataRecord.put("appointmentId", resultSet.getInt("appointment_id"));
-                dataRecord.put("patientId", resultSet.getInt("patient_id"));
-                dataRecord.put("doctorId", resultSet.getInt("doctor_id"));
-                dataRecord.put("date", resultSet.getDate("booked_for_date"));
-                dataRecord.put("vaccineId", resultSet.getInt("vaccine_id"));
-                dataRecord.put("gender", resultSet.getString("patient_gender"));
-                dataRecord.put("dob", resultSet.getDate("patient_dob"));
-                dataRecord.put("area", resultSet.getString("patient_address"));
-                dataRecord.put("vaccineName", resultSet.getString("vaccine_name"));
-                dataRecord.put("ageGroup", resultSet.getString("age_group_in_years"));
+                dataRecord.put("appointmentId", resultSet.getInt(DatabaseConstants.APPOINTMENT_ID));
+                dataRecord.put("patientId", resultSet.getInt(DatabaseConstants.PATIENT_ID));
+                dataRecord.put("doctorId", resultSet.getInt(DatabaseConstants.DOCTOR_ID));
+                dataRecord.put("date", resultSet.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                dataRecord.put("vaccineId", resultSet.getInt(DatabaseConstants.VACCINE_ID));
+                dataRecord.put("gender", resultSet.getString(DatabaseConstants.PATIENT_GENDER));
+                dataRecord.put("dob", resultSet.getDate(DatabaseConstants.PATIENT_DOB));
+                dataRecord.put("area", resultSet.getString(DatabaseConstants.PATIENT_ADDRESS));
+                dataRecord.put("vaccineName", resultSet.getString(DatabaseConstants.VACCINE_NAME));
+                dataRecord.put("ageGroup", resultSet.getString(DatabaseConstants.AGE_GROUP_IN_YEARS));
 
                 dataRecords.add(dataRecord);
             }
