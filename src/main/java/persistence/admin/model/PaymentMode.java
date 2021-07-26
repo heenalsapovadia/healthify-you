@@ -9,9 +9,13 @@ package persistence.admin.model;
  *
  */
 public enum PaymentMode {
+	
 	Cash, Cheque, CreditCard, DebitCard, Other;
+	
 	String mop;
+	
 	PaymentMode(){}
+	
 	public static PaymentMode getMop(String paymentModeFromDB) {
 		if("C".equals(paymentModeFromDB))
 			return Cash;
