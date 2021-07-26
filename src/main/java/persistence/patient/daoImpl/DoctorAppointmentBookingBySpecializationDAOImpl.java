@@ -131,7 +131,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
         if (!resultSet.next()) {
           return -1;
         } else {
-            doctorIDSet.add(resultSet.getInt("doctor_id"));
+            do {
+                doctorIDSet.add(resultSet.getInt("doctor_id"));
+            } while (resultSet.next());
             if (doctorIDSet.contains(doctorID))
               return 0;
             else

@@ -53,7 +53,7 @@ public class ViewReportsByTestOutput {
 						consoleObj.printLineSeparator();
 						break;
 				case 6: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 6);

@@ -81,7 +81,7 @@ public class PatientMenuOutput {
 			System.exit(0);
 		}
 		else {
-			consoleObj.printError(CommonErrors.invalidSelection);
+			consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			sel = loadScreenOptions(consoleObj);
 		}
 		return sel;

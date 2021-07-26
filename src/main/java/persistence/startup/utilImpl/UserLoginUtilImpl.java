@@ -19,7 +19,7 @@ public class UserLoginUtilImpl implements UserLoginUtil {
     Pattern pattern = Pattern.compile(emailregex);
     Matcher matcher = pattern.matcher(email);
     if (matcher.matches() == false) {
-      return CommonErrors.emailError;
+      return CommonErrors.EMAIL_ERROR;
     }
 
     return null;
@@ -31,7 +31,7 @@ public class UserLoginUtilImpl implements UserLoginUtil {
     Pattern pattern = Pattern.compile(passwordregex);
     Matcher matcher = pattern.matcher(password);
     if (matcher.matches() == false) {
-      return CommonErrors.invalidPassword;
+      return CommonErrors.INVALID_PASSWORD;
     }
 
     return null;
