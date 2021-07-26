@@ -38,4 +38,14 @@ public class DatabaseConnection {
 	public static Connection getConnection() {
 		return connection;
 	}
+	
+	public static void closeConnection() {
+		try {
+			if(connection != null) {
+				connection.close();
+			}
+		} catch (SQLException e) {
+			LOGGER.log(Level.SEVERE, "Exception in closing database connection!\n{0}", e.toString());
+		}
+	}
 }

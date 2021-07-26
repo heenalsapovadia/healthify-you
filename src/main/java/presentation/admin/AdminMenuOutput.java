@@ -55,10 +55,7 @@ public class AdminMenuOutput {
 			BloodBankRecommendationOutput bloodBankRecommendationOutput = new BloodBankRecommendationOutput();
 			bloodBankRecommendationOutput.getBloodBankRecommendations();
 			sel = loadScreenOptions(consoleObj);
-
-		}
-
-		else if (sel == 3) {
+		} else if (sel == 3) {
 			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
 			doctorRegistrationOutput.registerDoctor();
 			sel = loadScreenOptions(consoleObj);
@@ -67,10 +64,10 @@ public class AdminMenuOutput {
 			ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
 			immunizationdashboard.displayOutput();
 			sel = loadScreenOptions(consoleObj);
-
 		} else if (sel == 5) {
 			System.out.println(ScreenFields.LOGOUT_MESSAGE);
 			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
+			consoleObj.flushResources();
 			System.exit(0);
 		} else {
 			consoleObj.printError(CommonErrors.invalidSelection);
