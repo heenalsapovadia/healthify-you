@@ -79,7 +79,7 @@ public class DoctorRecommendationUtilImplTest {
 
         DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         ArrayList<String> doctorIDList = new ArrayList<>();
         doctorIDList.add("Samiksha Salgaonkar");
@@ -98,7 +98,7 @@ public class DoctorRecommendationUtilImplTest {
 
         DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         ArrayList<String> doctorIDList = new ArrayList<>();
         doctorIDList.add("Samiksha Salgaonkar");
@@ -116,7 +116,7 @@ public class DoctorRecommendationUtilImplTest {
 
         DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         ArrayList<String> doctorIDList = new ArrayList<>();
         doctorIDList.add("Samiksha Salgaonkar");
@@ -134,7 +134,7 @@ public class DoctorRecommendationUtilImplTest {
 
         DoctorRecommendationUtilImpl doctorRecommendationUtil = new DoctorRecommendationUtilImpl();
         DatabaseConnection.loadDatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         ArrayList<String> doctorIDList = new ArrayList<>();
         doctorIDList.add("Samiksha Salgaonkar");

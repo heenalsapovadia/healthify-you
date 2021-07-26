@@ -18,7 +18,7 @@ public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
 
     @Override
     public void insertBloodBankServiceDetails(BloodBankService bloodBankService) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "INSERT into blood_donations(donation_id, patient_id, blood_grp, blooddonation_date)" + "VALUES(?,?,?,?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, bloodBankService.getDonationId());
@@ -41,7 +41,7 @@ public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
 
     @Override
     public List<BloodBankService> getAllBloodDonationsForPatient(Patient patient) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "SELECT * FROM blood_donations where patient_id='" + patient.getPatientId() + "'";
         try {
             Statement statement = conn.createStatement();

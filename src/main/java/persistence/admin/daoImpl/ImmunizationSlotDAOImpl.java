@@ -27,7 +27,7 @@ import presentation.startup.DatabaseConnection;
 
 public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , ImmunizationDoctorsDAO{
 
-  Connection conn = DatabaseConnection.getConnection();
+  Connection conn = DatabaseConnection.instance();
 
   @Override
   public int getDoctorAssigned(String weekday , String slotTime) {

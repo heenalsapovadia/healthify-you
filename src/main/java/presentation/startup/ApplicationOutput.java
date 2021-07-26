@@ -41,15 +41,15 @@ public class ApplicationOutput {
 		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		consoleObj.printHeader(ScreenTitles.MAIN_SCREEN);
 		loadMainScreenContent(consoleObj);
-		if(Admin.getAdmin() != null) {
+		if(Admin.instance() != null) {
 			AdminMenuOutput adminMenuOutput = AdminMenuOutput.getInstance();
 			adminMenuOutput.displayOutput();
 		}
-		else if(Doctor.getDoctor() != null) {
+		else if(Doctor.instance() != null) {
 			DoctorMenuOutput doctorMenuOutput = DoctorMenuOutput.getInstance();
 			doctorMenuOutput.displayOutput();
 		}
-		else if(Patient.getPatient() != null) { 
+		else if(Patient.instance() != null) { 
 			PatientMenuOutput patientMenuOutput = PatientMenuOutput.getInstance();
 			patientMenuOutput.displayOutput();
 		} 
@@ -71,7 +71,7 @@ public class ApplicationOutput {
 			System.exit(0);
 		}
 		else {
-			consoleObj.printError(CommonErrors.invalidSelection);
+			consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			loadMainScreenContent(consoleObj);
 		}
 	}

@@ -21,24 +21,24 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public Appointment validateAppointmentId(Appointment appointment) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
-        int doctor_id = Doctor.getDoctor().getDoctorId();
+        int doctor_id = Doctor.instance().getDoctorId();
 
         String sql = "SELECT * FROM doctor_appointment WHERE appointment_id = ? AND doctor_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, appointment.getAppointment_id());
+            ps.setInt(1, appointment.getAppointmentId());
             ps.setInt(2, doctor_id);
 
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
-                appointment.setPatient_id(rs.getInt(DatabaseConstants.PATIENT_ID));
-                appointment.setDoctor_id(rs.getInt(DatabaseConstants.DOCTOR_ID));
-                appointment.setBooked_on_date(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
-                appointment.setBooked_for_date(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
-                appointment.setRescheduled_date(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
-                appointment.setBilling_id(rs.getInt(DatabaseConstants.BILLING_ID));
+                appointment.setPatientId(rs.getInt(DatabaseConstants.PATIENT_ID));
+                appointment.setDoctorId(rs.getInt(DatabaseConstants.DOCTOR_ID));
+                appointment.setBookedOnDate(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
+                appointment.setBookedForDate(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                appointment.setRescheduledDate(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                appointment.setBillingId(rs.getInt(DatabaseConstants.BILLING_ID));
 
                 return appointment;
             }
@@ -52,14 +52,14 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public void updateAppointment(Appointment appointment) {
-        Connection conn = DatabaseConnection.getConnection();
-        int patientId = Patient.getPatient().getPatientId();
+        Connection conn = DatabaseConnection.instance();
+        int patientId = Patient.instance().getPatientId();
         String sql = "UPDATE doctor_appointment " +
                         "SET rescheduled_date = ? " +
                         "WHERE appointment_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setDate(1, appointment.getRescheduled_date());
-            ps.setInt(2, appointment.getAppointment_id());
+            ps.setDate(1, appointment.getRescheduledDate());
+            ps.setInt(2, appointment.getAppointmentId());
 
             ps.executeUpdate();
         }
@@ -71,8 +71,8 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public List<Appointment> fetchAppointmentsForPatient(){
-        Connection conn = DatabaseConnection.getConnection();
-        int patientId = Patient.getPatient().getPatientId();
+        Connection conn = DatabaseConnection.instance();
+        int patientId = Patient.instance().getPatientId();
         List<Appointment> appointmentList = new ArrayList<>();
         String sql = "SELECT * FROM doctor_appointment WHERE patient_id = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -81,13 +81,13 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
             while (rs.next()) {
                 Appointment appointment = new Appointment();
-                appointment.setAppointment_id(rs.getInt(DatabaseConstants.APPOINTMENT_ID));
-                appointment.setPatient_id(patientId);
-                appointment.setDoctor_id(rs.getInt(DatabaseConstants.DOCTOR_ID));
-                appointment.setBooked_on_date(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
-                appointment.setBooked_for_date(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
-                appointment.setRescheduled_date(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
-                appointment.setBilling_id(rs.getInt(DatabaseConstants.BILLING_ID));
+                appointment.setAppointmentId(rs.getInt(DatabaseConstants.APPOINTMENT_ID));
+                appointment.setPatientId(patientId);
+                appointment.setDoctorId(rs.getInt(DatabaseConstants.DOCTOR_ID));
+                appointment.setBookedOnDate(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
+                appointment.setBookedForDate(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                appointment.setRescheduledDate(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                appointment.setBillingId(rs.getInt(DatabaseConstants.BILLING_ID));
                 appointmentList.add(appointment);
             }
         }

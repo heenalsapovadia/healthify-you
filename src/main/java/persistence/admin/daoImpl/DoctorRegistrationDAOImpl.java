@@ -18,7 +18,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 
   @Override
   public int updateDoctorDetails(DoctorRegistration doc) {
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();
@@ -43,7 +43,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
   @Override
   public boolean checkDoctorExists(String email) {
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();

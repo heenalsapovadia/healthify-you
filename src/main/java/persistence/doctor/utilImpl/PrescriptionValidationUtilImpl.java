@@ -11,7 +11,7 @@ public class PrescriptionValidationUtilImpl implements PrescriptionValidationUti
     @Override
     public Appointment validateAppointmentId(int id){
         Appointment appointment = new Appointment();
-        appointment.setAppointment_id(id);
+        appointment.setAppointmentId(id);
 
         AppointmentDAOImpl appointmentDAO = new AppointmentDAOImpl();
         return appointmentDAO.validateAppointmentId(appointment);

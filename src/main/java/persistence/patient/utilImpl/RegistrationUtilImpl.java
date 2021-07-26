@@ -21,7 +21,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
     Matcher matcher = pattern.matcher(Date);
     if (matcher.matches() == false || Date == null || Date == "") {
 
-      return CommonErrors.invalidDateFormat;
+      return CommonErrors.INVALID_DATE_FORMAT;
     }
 
     return null;
@@ -52,7 +52,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
 
     if (matcher.matches() == false || email == null || email == "") {
 
-      return CommonErrors.emailError;
+      return CommonErrors.EMAIL_ERROR;
     }
 
     return null;
@@ -65,7 +65,7 @@ public class RegistrationUtilImpl implements RegistrationUtil {
     Matcher matcher = pattern.matcher(password);
     if (matcher.matches() == false || password == null || password == "") {
 
-      return CommonErrors.invalidPassword;
+      return CommonErrors.INVALID_PASSWORD;
     }
     return null;
 

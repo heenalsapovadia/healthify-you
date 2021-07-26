@@ -1,10 +1,5 @@
 package presentation.startup;
 
-
-import persistence.patient.model.Patient;
-import presentation.patient.BloodBankServiceOutput;
-import presentation.patient.RequestMedicationOutput;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,12 +19,13 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		DatabaseConnection.loadDatabaseConnection();
-		Connection conn = DatabaseConnection.getConnection();
+		Connection conn = DatabaseConnection.instance();
 		if(conn == null) {
 			LOGGER.log(Level.SEVERE, "Could not establish connection with database.");
 			System.exit(0);
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
 		applicationOutput.displayOutput();
+		DatabaseConnection.closeConnection();
 	}
 }

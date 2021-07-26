@@ -2,6 +2,7 @@ package persistence.common.jsonUtil.utilImpl;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import persistence.common.JSONConstants;
 import persistence.common.jsonUtil.util.JsonIdealReportParser;
 import persistence.common.reports.model.CBC;
 import persistence.common.reports.model.Kidney;
@@ -16,7 +17,7 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
     private String fileName;
 
     public JsonIdealReportParserImpl(){
-        fileName = "IdealReports.json";
+        fileName = JSONConstants.IDEAL_REPORTS_FILENAME;
     }
 
     @Override
@@ -36,22 +37,22 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
     @Override
     public CBC getCBCMin(Map CBCPanel){
         CBC cbcMin = new CBC();
-        cbcMin.setRbc((float) (double) CBCPanel.get("RBCMin"));
-        cbcMin.setWbc((int) (long) CBCPanel.get("WBCMin"));
-        cbcMin.setPlatelets((int) (long) CBCPanel.get("plateletsMin"));
-        cbcMin.setHaemoglobin( (double) CBCPanel.get("HaemoglobinMin"));
-        cbcMin.setHematocrit((float) (double) CBCPanel.get("HematocritMin"));
+        cbcMin.setRbc((float) (double) CBCPanel.get(JSONConstants.RBC_MIN));
+        cbcMin.setWbc((int) (long) CBCPanel.get(JSONConstants.WBC_MIN));
+        cbcMin.setPlatelets((int) (long) CBCPanel.get(JSONConstants.PLATELETS_MIN));
+        cbcMin.setHaemoglobin((double) CBCPanel.get(JSONConstants.HAEMOGLOBIN_MIN));
+        cbcMin.setHematocrit((float) (double) CBCPanel.get(JSONConstants.HEMATOCRIT_MIN));
         return cbcMin;
     }
 
     @Override
     public CBC getCBCMax(Map CBCPanel){
         CBC cbcMax = new CBC();
-        cbcMax.setRbc((float) (double) CBCPanel.get("RBCMax"));
-        cbcMax.setWbc((int) (long) CBCPanel.get("WBCMax"));
-        cbcMax.setPlatelets((int) (long) CBCPanel.get("plateletsMax"));
-        cbcMax.setHaemoglobin( (double) CBCPanel.get("HaemoglobinMax"));
-        cbcMax.setHematocrit((float) (double) CBCPanel.get("HematocritMax"));
+        cbcMax.setRbc((float) (double) CBCPanel.get(JSONConstants.RBC_MAX));
+        cbcMax.setWbc((int) (long) CBCPanel.get(JSONConstants.WBC_MAX));
+        cbcMax.setPlatelets((int) (long) CBCPanel.get(JSONConstants.PLATELETS_MAX));
+        cbcMax.setHaemoglobin( (double) CBCPanel.get(JSONConstants.HAEMOGLOBIN_MAX));
+        cbcMax.setHematocrit((float) (double) CBCPanel.get(JSONConstants.HEMATOCRIT_MAX));
         return cbcMax;
     }
 
@@ -59,15 +60,15 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
     public Kidney getKidneyMin(Map kidneyPanel){
         Kidney kidneyPanelMin = new Kidney();
         kidneyPanelMin.setCreatinine(0);
-        kidneyPanelMin.setBun((int) (long) kidneyPanel.get("BUNMin"));
+        kidneyPanelMin.setBun((int) (long) kidneyPanel.get(JSONConstants.BUN_MIN));
         return kidneyPanelMin;
     }
 
     @Override
     public Kidney getKidneyMax(Map kidneyPanel){
         Kidney kidneyPanelMax = new Kidney();
-        kidneyPanelMax.setCreatinine((float) (double) kidneyPanel.get("CreatinineMax"));
-        kidneyPanelMax.setBun((int) (long) kidneyPanel.get("BUNMax"));
+        kidneyPanelMax.setCreatinine((float) (double) kidneyPanel.get(JSONConstants.CREATININE_MAX));
+        kidneyPanelMax.setBun((int) (long) kidneyPanel.get(JSONConstants.BUN_MAX));
         return kidneyPanelMax;
     }
 
@@ -77,19 +78,19 @@ public class JsonIdealReportParserImpl implements JsonIdealReportParser {
         liverPanelMin.setAlt(0);
         liverPanelMin.setAst(0);
         liverPanelMin.setAlp(0);
-        liverPanelMin.setAlbumin((float) (double) liverPanel.get("AlbuminMin"));
-        liverPanelMin.setBilirubin((float) (double) liverPanel.get("BilirubinMin"));
+        liverPanelMin.setAlbumin((float) (double) liverPanel.get(JSONConstants.ALBUMIN_MIN));
+        liverPanelMin.setBilirubin((float) (double) liverPanel.get(JSONConstants.BILIRUBIN_MIN));
         return liverPanelMin;
     }
 
     @Override
     public Liver getLiverMax(Map liverPanel){
         Liver liverPanelMax = new Liver();
-        liverPanelMax.setAlt((int) (long) liverPanel.get("ALTMax"));
-        liverPanelMax.setAst((int) (long) liverPanel.get("ASTMax"));
-        liverPanelMax.setAlp((int) (long) liverPanel.get("ALPMax"));
-        liverPanelMax.setAlbumin((float) (double) liverPanel.get("AlbuminMin"));
-        liverPanelMax.setBilirubin((float) (double) liverPanel.get("BilirubinMin"));
+        liverPanelMax.setAlt((int) (long) liverPanel.get(JSONConstants.ALT_MAX));
+        liverPanelMax.setAst((int) (long) liverPanel.get(JSONConstants.AST_MAX));
+        liverPanelMax.setAlp((int) (long) liverPanel.get(JSONConstants.ALP_MAX));
+        liverPanelMax.setAlbumin((float) (double) liverPanel.get(JSONConstants.ALBUMIN_MIN));
+        liverPanelMax.setBilirubin((float) (double) liverPanel.get(JSONConstants.BILIRUBIN_MIN));
         return liverPanelMax;
     }
 }

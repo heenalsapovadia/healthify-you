@@ -32,10 +32,10 @@ public class ScreenTitles {
 	public static final String registration= "Registration for patients of the hospital";
 
 	/* Doctor Registration screen title */
-	public static final String doctorRegistration= "Registration for doctors of the hospital";
+	public static final String DOCTOR_REGISTRATION = "Registration for doctors of the hospital";
 
 	/* Doctor Registration screen title */
-	public static final String doctorRecommendation= "Recommendations for Doctor based on symptoms";
+	public static final String DOCTOR_RECOMMENDATION = "Recommendations for Doctor based on symptoms";
 
 	public static final String immunizationDashboard ="Immunization - Admin Dashboard";
 
@@ -54,7 +54,7 @@ public class ScreenTitles {
 	public static final String BLOOD_BANK_SERVICE_DASHBOARD = "Register for Blood Bank";
 
 	/* Booking Dashboard Title */
-	public static final String bookingDashboard = "Make a Booking";
+	public static final String BOOKING_DASHBOARD = "Make a Booking";
 
 	/* Lab Test Booking screen titles */
 	public static final String BOOK_A_TEST = "Book a Health Check/Lab Test";
@@ -66,7 +66,7 @@ public class ScreenTitles {
 	/* Payment screen titles */
 	public static final String paymentInterface = "Proceed to Pay";
 	/* Blood Bank recommendation screen titles */
-	public static final String bloodBankRecommendation = "Recommendations for Blood Bank Management";
+	public static final String BLOOD_BANK_RECOMMENDATION = "Recommendations for Blood Bank Management";
 	
 	/* Book an Immunization */
 	public static final String bookImmunization = "Immunization booking";

@@ -25,7 +25,7 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
   @Override
   public boolean vaccineEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap) {
-    Patient patient = Patient.getPatient();
+    Patient patient = Patient.instance();
     String dob = patient.getPatientDob();
     int patientId = patient.getPatientId();
     int patientAge = getAge(dob);
