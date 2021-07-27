@@ -24,6 +24,9 @@ public class CurrentWeekdays {
     return dates;
   }
 
+  /**
+   * This method gets the weekdays
+   */
   public List<String> getDates() {
     Calendar now = Calendar.getInstance();
   
