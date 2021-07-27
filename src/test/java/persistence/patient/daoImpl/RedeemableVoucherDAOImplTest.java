@@ -3,6 +3,7 @@ package persistence.patient.daoImpl;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import persistence.patient.dao.RedeemableVoucherDAO;
+import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
 import presentation.startup.DatabaseConnection;
 
@@ -187,8 +188,9 @@ class RedeemableVoucherDAOImplTest {
 	@Test
 	void testGetVoucherByPatient() {
 		DatabaseConnection.loadDatabaseConnection();
+		Patient.setPatient("gs@gmail.com");
 		RedeemableVoucherDAO redeemableVoucherDAO = new RedeemableVoucherDAOImpl();
-		RedeemableVoucher actualVoucher = redeemableVoucherDAO.getVoucherByPatient(13);
+		RedeemableVoucher actualVoucher = redeemableVoucherDAO.getVoucherByPatient();
 		RedeemableVoucher expectedVoucher = new RedeemableVoucher();
 		expectedVoucher.setBloodGroup("AB-");
 		expectedVoucher.setVoucherId("R6NG5");

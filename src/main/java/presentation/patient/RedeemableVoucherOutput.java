@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
 import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
-import persistence.patient.dao.RedeemableVoucherDAO;
-import persistence.patient.daoImpl.RedeemableVoucherDAOImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
+import persistence.patient.util.RedeemableVoucherUtil;
+import persistence.patient.utilImpl.RedeemableVoucherUtilImpl;
 import presentation.common.CommonConstants;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
@@ -51,8 +51,8 @@ public class RedeemableVoucherOutput {
 	
 	private RedeemableVoucher fetchAvailablePoints() {
 		int patientId = Patient.instance().getPatientId();
-		RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
-		RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(patientId);
+		RedeemableVoucherUtil voucherUtil = new RedeemableVoucherUtilImpl();
+		RedeemableVoucher voucher = voucherUtil.fetchVoucherByPatientId();
 		if(voucher != null) {
 			pointsAvailable = voucher.getPoints();
 		}

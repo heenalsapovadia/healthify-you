@@ -55,7 +55,7 @@ public class PaymentInterfaceOutput  {
         // below is for redeem voucher and further process
         System.out.println(ScreenFields.CHECKOUT_AMOUNT + checkoutAmount);
         RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
-        RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(Patient.instance().getPatientId());
+        RedeemableVoucher voucher = voucherDAO.getVoucherByPatient();
 
         if (voucher != null) {
             System.out.println(ScreenFields.REDEEM_VOUCHER + voucher.getVoucherId());
@@ -91,7 +91,7 @@ public class PaymentInterfaceOutput  {
             // With voucher
             System.out.println(ScreenFields.ENTER_VOUCHERID);
             String enteredVoucherId = sc.next();
-            if (voucherDAO.getVoucherByPatient(Patient.instance().getPatientId()).getVoucherId().equals(enteredVoucherId)) {
+            if (voucher.getVoucherId().equals(enteredVoucherId)) {
 
                 // if voucher has less points than billing checkout amount then use voucher and remaining from credit card..
                 if (voucher.getPoints() < checkoutAmount) {
