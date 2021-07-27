@@ -3,7 +3,7 @@ package persistence.patient.utilImpl;
 import persistence.admin.model.PharmaInvoice;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.doctor.model.Prescription;
-import persistence.patient.daoImpl.RequestMedicationDAOImpl;
+import persistence.patient.dao.RequestMedicationDAO;
 import persistence.patient.model.RequestMedicationModel.RequestMedicationDetails;
 import persistence.patient.util.RequestMedicationUtil;
 import presentation.common.PaymentInterfaceOutput;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class RequestMedicationUtilImpl implements RequestMedicationUtil {
 
     public RequestMedicationDetails processPrescription(Prescription currentPrescription,
-                                                        RequestMedicationDAOImpl requestMedication) {
+                                                        RequestMedicationDAO requestMedication) {
         System.out.println("\n" );
         System.out.println(ScreenFields.PRESCRIBED_LIST_OF_MEDICINE);
         System.out.println(ScreenFields.NAME_OF_MEDICINE+ currentPrescription.getMedicineName());
@@ -62,7 +62,7 @@ public class RequestMedicationUtilImpl implements RequestMedicationUtil {
 
     public void makePaymentForPrescriptionsWithAmount(double amount,
                                                       ArrayList<MedicationsToUpdate> medicationsToUpdate,
-                                                      RequestMedicationDAOImpl requestMedication,
+                                                      RequestMedicationDAO requestMedication,
                                                       int current_PrescriptionId) {
         PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
         System.out.println("Total medicine checkout amount - " + amount);

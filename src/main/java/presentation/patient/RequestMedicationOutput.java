@@ -1,10 +1,12 @@
 package presentation.patient;
 
 import persistence.doctor.model.Prescription;
+import persistence.patient.dao.RequestMedicationDAO;
 import persistence.patient.daoImpl.RequestMedicationDAOImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.model.RequestMedicationModel.MedicationsToUpdate;
 import persistence.patient.model.RequestMedicationModel.RequestMedicationDetails;
+import persistence.patient.util.RequestMedicationUtil;
 import persistence.patient.utilImpl.RequestMedicationUtilImpl;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
@@ -45,8 +47,8 @@ public class RequestMedicationOutput {
 
     // this method displays list of medicine based on prescription id validation... and futher process
     public static String requestMedicationDetails() {
-        RequestMedicationDAOImpl requestMedication = new RequestMedicationDAOImpl();
-        RequestMedicationUtilImpl requestMedicationUtil = new RequestMedicationUtilImpl();
+        RequestMedicationDAO requestMedication = new RequestMedicationDAOImpl();
+        RequestMedicationUtil requestMedicationUtil = new RequestMedicationUtilImpl();
 
         // Enter valid prescription ID//
         Scanner sc = new Scanner(System.in);
