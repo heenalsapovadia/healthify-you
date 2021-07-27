@@ -1,9 +1,6 @@
 package persistence.common.paymentInterface.modelPaymentInterface;
 
-import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
-
 import java.util.Date;
-import java.util.List;
 
 public class PaymentInterface {
     private int billing_id;
