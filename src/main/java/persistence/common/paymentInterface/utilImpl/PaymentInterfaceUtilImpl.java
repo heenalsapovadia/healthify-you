@@ -1,7 +1,7 @@
 package persistence.common.paymentInterface.utilImpl;
 
 // author - saloni raythatha
-// this is class implementation for processing payment funcitonality
+// this is class implementation for processing payment functionality
 
 import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
