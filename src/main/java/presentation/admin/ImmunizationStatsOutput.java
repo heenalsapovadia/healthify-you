@@ -26,18 +26,18 @@ public class ImmunizationStatsOutput {
     public void dashboard(){
         consoleObj.printHeader(ScreenTitles.VACCINE_STATS);
 
-        System.out.println(ScreenFields.mostDemandedVaccine
+        System.out.println(ScreenFields.MOST_DEMANDED_VACCINE
                 + CommonConstants.COMMON_TEXT_SEPARATOR
                 + vaccineDemandStatsUtil.mostVaccinatedBy(VACCINE_NAME));
-        System.out.println(ScreenFields.mostVaccinatedAge
+        System.out.println(ScreenFields.MOST_VACCINATED_AGEGROUP
                 + CommonConstants.SINGLE_TAB
                 + ":"
                 + CommonConstants.MEDIUM_SPACE
                 + vaccineDemandStatsUtil.mostVaccinatedBy(AGE_GROUP));
-        System.out.println(ScreenFields.mostVaccinatedGender
+        System.out.println(ScreenFields.MOST_VACCINATED_GENDER
                 + CommonConstants.COMMON_TEXT_SEPARATOR
                 + vaccineDemandStatsUtil.mostVaccinatedBy(GENDER));
-        System.out.println(ScreenFields.mostVaccinatedArea
+        System.out.println(ScreenFields.MOST_VACCINATED_AREA
                 + CommonConstants.COMMON_TEXT_SEPARATOR
                 + vaccineDemandStatsUtil.mostVaccinatedBy(AREA));
 

@@ -72,7 +72,7 @@ public class ViewReportsOutput {
 		try {
 			date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 			}
 			else {
 				Calendar cal = Calendar.getInstance();
@@ -130,13 +130,13 @@ public class ViewReportsOutput {
 			System.out.println(ScreenFields.START_DATE);
 			startDate = Date.valueOf(sc.next());
 			if(startDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 				return;
 			}
 			System.out.println(ScreenFields.END_DATE);
 			endDate = Date.valueOf(sc.next());
 			if(endDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 				return;
 			}
 			else {

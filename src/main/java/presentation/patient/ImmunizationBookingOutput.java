@@ -26,18 +26,18 @@ public class ImmunizationBookingOutput {
 
   public void immunizationBooking() throws SQLException {
 
-    print.printHeader(ScreenTitles.bookImmunization);
+    print.printHeader(ScreenTitles.BOOK_IMMUNIZATION);
     List<String> selection = new ArrayList(dao.getVaccineStock());
-    selection.add(ScreenFields.goBack);
-    print.printSubHeading(ScreenTitles.vaccines);
+    selection.add(ScreenFields.GO_BACK);
+    print.printSubHeading(ScreenTitles.VACCINES);
     int sel = print.printSelection(selection);
     ArrayList<String> vaccinedetail = new ArrayList<>(dao.getVaccineDetail(selection.get(sel - 1)));
     if (sel != 17) {
       vaccineName = selection.get(sel - 1);
-      print.printHeader(ScreenTitles.bookImmunization);
-      print.printScreenFields(ScreenFields.vaccinename + "        =     " + selection.get(sel - 1));
-      print.printScreenFields(ScreenFields.doses + "     =     " + vaccinedetail.get(1));
-      print.printScreenFields(ScreenFields.agegroup + "     =     " + vaccinedetail.get(2));
+      print.printHeader(ScreenTitles.BOOK_IMMUNIZATION);
+      print.printScreenFields(ScreenFields.VACCINE_NAME + "        =     " + selection.get(sel - 1));
+      print.printScreenFields(ScreenFields.DOSES + "     =     " + vaccinedetail.get(1));
+      print.printScreenFields(ScreenFields.AGE_GROUP + "     =     " + vaccinedetail.get(2));
       immunizationEligibilityCheck(Integer.parseInt(vaccinedetail.get(0)), Integer.parseInt(vaccinedetail.get(1)),
               vaccinedetail.get(2), Integer.parseInt(vaccinedetail.get(3)));
     }
@@ -50,7 +50,7 @@ public class ImmunizationBookingOutput {
 
   public void immunizationEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap) {
     print.printSingleNewLine();
-    print.printScreenFields(ScreenFields.elibilitycheck);
+    print.printScreenFields(ScreenFields.ELIGIBILITY_CHECK);
 
     try {
       Thread.sleep(1000);
@@ -58,10 +58,10 @@ public class ImmunizationBookingOutput {
       e.getMessage();
     }
     if (util.vaccineEligibilityCheck(vaccineId, doses, ageGroup, vaccineGap) == true) {
-      print.printScreenFields(ScreenFields.success);
+      print.printScreenFields(ScreenFields.SUCCESS);
       bookVaccine(vaccineId);
     } else {
-      print.printScreenFields(ScreenFields.fail);
+      print.printScreenFields(ScreenFields.FAIL);
       print.printSingleNewLine();
     }
 
@@ -74,7 +74,7 @@ public class ImmunizationBookingOutput {
     int choice = print.printSelection(selection);
 
     if (choice == 1) {
-      print.printHeader(ScreenTitles.bookImmunization);
+      print.printHeader(ScreenTitles.BOOK_IMMUNIZATION);
       if (dao.getSlots().isEmpty()) {
         print.printScreenFields("Sorry. No slots are available. Try again next week");
       } else {
@@ -86,7 +86,7 @@ public class ImmunizationBookingOutput {
             confirmationStatus(slot);
           }
         } else {
-          print.printScreenFields(CommonErrors.errorMessage);
+          print.printScreenFields(CommonErrors.ERROR_MESSAGE);
         }
       }
 

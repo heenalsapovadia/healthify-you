@@ -29,9 +29,9 @@ public class BookingDashboard {
         List<String> selectionOptions = new ArrayList<>();
         selectionOptions.add(ScreenFields.APPOINTMENT_WITH_DOCTOR);
         selectionOptions.add(ScreenFields.BOOK_LAB_TEST);
-        selectionOptions.add(ScreenFields.bookImmunization);
+        selectionOptions.add(ScreenFields.BOOK_IMMUNIZATION);
         selectionOptions.add(ScreenFields.bookBloodBankService);
-        selectionOptions.add(ScreenFields.goBack);
+        selectionOptions.add(ScreenFields.GO_BACK);
         return selectionOptions;
     }
 

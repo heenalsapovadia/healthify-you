@@ -13,6 +13,12 @@ import presentation.common.ScreenFields;
 import presentation.startup.DatabaseConnection;
 import presentation.startup.SHA_Hash;
 
+/**
+ * This class is reponsible for getting a specific user details from the
+ * database
+ * 
+ * @author Deeksha Sareen
+ */
 public class UserLoginDAOImpl implements UserLoginDAO {
 
   @Override
@@ -31,23 +37,23 @@ public class UserLoginDAOImpl implements UserLoginDAO {
       if (resultSet.first()) {
         String pwd = resultSet.getObject(2).toString();
         String userType = resultSet.getObject(3).toString();
-        String hashedpassword = sha.getSHA(l.getUserPassword());
+        String hashedpassword = sha.getSHA(l.getUserPassword()); // matches the crypted password from the database
         if (!hashedpassword.equals(pwd))
-          return CommonErrors.userPasswordUnmatch;
+          return CommonErrors.PASSWORD_MISMATCH;
         else {
           UserUtil userUtil = new UserUtilImpl();
           userUtil.loadUser(l.getUserEmail(), userType);
-          return ScreenFields.successLogin;
+          return ScreenFields.SUCCESS_LOGIN;
         }
 
       } else {
-        return CommonErrors.userIDInvalid;
+        return CommonErrors.INVALID_USERID;
       }
     } catch (SQLException e) {
 
       e.printStackTrace();
     }
-    return CommonErrors.errorMessage;
+    return CommonErrors.ERROR_MESSAGE;
 
   }
 
