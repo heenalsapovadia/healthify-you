@@ -6,26 +6,19 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-
 import org.junit.jupiter.api.Test;
 import persistence.patient.model.BloodBankService;
 
 public class BloodBankServiceUtilImplTest {
 
     @Test
-    public void testGetRandomStringForDonationId2() {
-        (new BloodBankServiceUtilImpl()).getRandomStringForDonationId();
-    }
-
-    @Test
     public void testGetRandomStringForDonationId() {
-        (new BloodBankServiceUtilImpl()).getRandomStringForDonationId();
+        assertFalse(Boolean.parseBoolean((new BloodBankServiceUtilImpl()).getRandomStringForDonationId()));
     }
 
     @Test
     public void testValidateIfPreviousDonationMoreThanSixMonth() {
         BloodBankServiceUtilImpl bloodBankServiceUtilImpl = new BloodBankServiceUtilImpl();
-
         BloodBankService bloodBankService = new BloodBankService();
         LocalDateTime atStartOfDayResult = LocalDate.of(2019, 1, 1).atStartOfDay();
         bloodBankService.setDate(Date.from(atStartOfDayResult.atZone(ZoneId.systemDefault()).toInstant()));
@@ -39,6 +32,4 @@ public class BloodBankServiceUtilImplTest {
     public void testGetTokenIdForDonation() {
         (new BloodBankServiceUtilImpl()).getTokenIdForDonation();
     }
-
-
 }
