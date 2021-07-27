@@ -14,6 +14,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorDAOImpl implements DoctorDAO {
     private static final Logger LOGGER = Logger.getLogger(DoctorDAOImpl.class.getName());
 

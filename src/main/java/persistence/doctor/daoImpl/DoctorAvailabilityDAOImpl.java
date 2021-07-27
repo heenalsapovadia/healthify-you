@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorAvailabilityDAOImpl implements DoctorAvailabilityDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DoctorAvailabilityDAOImpl.class.getName());

@@ -18,6 +18,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+/**
+ * <pre>
+ * Loads Doctor Appointment dashboard in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorAppointmentBookingOutput {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
 

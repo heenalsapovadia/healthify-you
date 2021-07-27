@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class PrescriptionDAOImpl implements PrescriptionDAO {
 
     private static final Logger LOGGER = Logger.getLogger(PrescriptionDAOImpl.class.getName());

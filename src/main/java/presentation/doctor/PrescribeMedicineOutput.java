@@ -16,6 +16,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * <pre>
+ * Loads Prescribe Medication in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class PrescribeMedicineOutput {
 
     PrintToConsole consoleObj = PrintToConsole.getInstance();

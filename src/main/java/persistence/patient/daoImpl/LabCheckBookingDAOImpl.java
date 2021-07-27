@@ -13,6 +13,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
     private static final Logger LOGGER = Logger.getLogger(LabCheckBookingDAOImpl.class.getName());
 

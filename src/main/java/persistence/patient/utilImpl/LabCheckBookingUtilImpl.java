@@ -9,6 +9,10 @@ import presentation.common.PrintToConsole;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheckBookingUtilImpl implements LabCheckBookingUtil {
     /*
     take user input, set LabCheckBooking obj, call insertBooking(obj)

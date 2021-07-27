@@ -15,6 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUtil {
     Map<Integer, LabCheck> labCheckMap;
 

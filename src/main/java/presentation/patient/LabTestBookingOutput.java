@@ -15,6 +15,14 @@ import presentation.common.PaymentInterfaceOutput;
 import java.sql.Date;
 import java.util.*;
 
+/**
+ * <pre>
+ * Loads Lab Test Booking dashboard in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabTestBookingOutput {
 
     private PrintToConsole consoleObj = PrintToConsole.getInstance();

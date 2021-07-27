@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class JsonPatientReportParserImpl implements JsonPatientReportParser {
 
     private String fileName;

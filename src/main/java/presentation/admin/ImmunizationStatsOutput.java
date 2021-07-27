@@ -12,6 +12,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * <pre>
+ * Loads Immunization Statistics dashboard in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class ImmunizationStatsOutput {
 
     PrintToConsole consoleObj = PrintToConsole.getInstance();
