@@ -14,83 +14,72 @@ import java.util.Scanner;
 
 public class ImmunizationStatsOutput {
 
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
-    VaccineDemandStatsUtilImpl vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+	PrintToConsole consoleObj = PrintToConsole.getInstance();
+	VaccineDemandStatsUtilImpl vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
 
-    private static final String VACCINE_NAME = "vaccineName";
-    private static final String AGE_GROUP = "ageGroup";
-    private static final String GENDER = "gender";
-    private static final String AREA = "area";
-    private static final String COVISHIELD = "covishield";
+	private static final String VACCINE_NAME = "vaccineName";
+	private static final String AGE_GROUP = "ageGroup";
+	private static final String GENDER = "gender";
+	private static final String AREA = "area";
+	private static final String COVISHIELD = "covishield";
 
-    public void dashboard(){
-        consoleObj.printHeader(ScreenTitles.VACCINE_STATS);
+	public void dashboard() {
+		consoleObj.printHeader(ScreenTitles.VACCINE_STATS);
 
-        System.out.println(ScreenFields.MOST_DEMANDED_VACCINE
-                + CommonConstants.COMMON_TEXT_SEPARATOR
-                + vaccineDemandStatsUtil.mostVaccinatedBy(VACCINE_NAME));
-        System.out.println(ScreenFields.MOST_VACCINATED_AGEGROUP
-                + CommonConstants.SINGLE_TAB
-                + ":"
-                + CommonConstants.MEDIUM_SPACE
-                + vaccineDemandStatsUtil.mostVaccinatedBy(AGE_GROUP));
-        System.out.println(ScreenFields.MOST_VACCINATED_GENDER
-                + CommonConstants.COMMON_TEXT_SEPARATOR
-                + vaccineDemandStatsUtil.mostVaccinatedBy(GENDER));
-        System.out.println(ScreenFields.MOST_VACCINATED_AREA
-                + CommonConstants.COMMON_TEXT_SEPARATOR
-                + vaccineDemandStatsUtil.mostVaccinatedBy(AREA));
+		System.out.println(ScreenFields.MOST_DEMANDED_VACCINE + CommonConstants.COMMON_TEXT_SEPARATOR
+				+ vaccineDemandStatsUtil.mostVaccinatedBy(VACCINE_NAME));
+		System.out.println(ScreenFields.MOST_VACCINATED_AGEGROUP + CommonConstants.SINGLE_TAB + ":"
+				+ CommonConstants.MEDIUM_SPACE + vaccineDemandStatsUtil.mostVaccinatedBy(AGE_GROUP));
+		System.out.println(ScreenFields.MOST_VACCINATED_GENDER + CommonConstants.COMMON_TEXT_SEPARATOR
+				+ vaccineDemandStatsUtil.mostVaccinatedBy(GENDER));
+		System.out.println(ScreenFields.MOST_VACCINATED_AREA + CommonConstants.COMMON_TEXT_SEPARATOR
+				+ vaccineDemandStatsUtil.mostVaccinatedBy(AREA));
 
-        consoleObj.printDoubleNewlines();
+		consoleObj.printDoubleNewlines();
 
-        covidAnalysis();
+		covidAnalysis();
 
-        consoleObj.printDoubleNewlines();
+		consoleObj.printDoubleNewlines();
 
-        dosesAdministered();
-    }
+		dosesAdministered();
+	}
 
-    public void covidAnalysis(){
-        Map<String, Integer> covidAnalysis = vaccineDemandStatsUtil.covidVaccineDistribution();
+	public void covidAnalysis() {
+		Map<String, Integer> covidAnalysis = vaccineDemandStatsUtil.covidVaccineDistribution();
 
-        System.out.println(ScreenTitles.COVID_ANALYSIS);
-        if(covidAnalysis.isEmpty())
-            System.out.println(CommonErrors.NO_DATA_FOR_COVID);
-        else {
-            for (Map.Entry<String, Integer> entry : covidAnalysis.entrySet()) {
-                if(entry.getKey().equals(COVISHIELD)) System.out.println(entry.getKey()
-                        + CommonConstants.SINGLE_TAB
-                        + ":"
-                        + CommonConstants.MEDIUM_SPACE
-                        + entry.getValue());
-                else
-                    System.out.println(entry.getKey()
-                            + CommonConstants.COMMON_TEXT_SEPARATOR
-                            + entry.getValue());
-            }
-        }
-    }
+		System.out.println(ScreenTitles.COVID_ANALYSIS);
+		if (covidAnalysis.isEmpty())
+			System.out.println(CommonErrors.NO_DATA_FOR_COVID);
+		else {
+			for (Map.Entry<String, Integer> entry : covidAnalysis.entrySet()) {
+				if (entry.getKey().equals(COVISHIELD))
+					System.out.println(entry.getKey() + CommonConstants.SINGLE_TAB + ":" + CommonConstants.MEDIUM_SPACE
+							+ entry.getValue());
+				else
+					System.out.println(entry.getKey() + CommonConstants.COMMON_TEXT_SEPARATOR + entry.getValue());
+			}
+		}
+	}
 
-    public void dosesAdministered(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(ScreenFields.CHECK_DOSE_STATISTICS);
-        List<String> options = Arrays.asList("Yes", "No");
-        int option = consoleObj.printSelection(options);
+	public void dosesAdministered() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println(ScreenFields.CHECK_DOSE_STATISTICS);
+		List<String> options = Arrays.asList("Yes", "No");
+		int option = consoleObj.printSelection(options);
 
-        switch (option) {
-            case 1:
-                System.out.print(ScreenFields.ENTER_MONTHS + CommonConstants.COMMON_TEXT_SEPARATOR);
-                int months;
-                if(scanner.hasNextInt()) {
-                    months = scanner.nextInt();
-                    int doses = vaccineDemandStatsUtil.dosesAdministered(months);
-                    System.out.println("Doses administered in the last " + months + " months"
-                            + CommonConstants.COMMON_TEXT_SEPARATOR
-                            + doses);
-                }
-                break;
-            case 2:
-                return;
-        }
-    }
+		switch (option) {
+		case 1:
+			System.out.print(ScreenFields.ENTER_MONTHS + CommonConstants.COMMON_TEXT_SEPARATOR);
+			int months;
+			if (scanner.hasNextInt()) {
+				months = scanner.nextInt();
+				int doses = vaccineDemandStatsUtil.dosesAdministered(months);
+				System.out.println("Doses administered in the last " + months + " months"
+						+ CommonConstants.COMMON_TEXT_SEPARATOR + doses);
+			}
+			break;
+		case 2:
+			return;
+		}
+	}
 }
