@@ -1,5 +1,6 @@
 package persistence.patient.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.patient.dao.DoctorAppointmentBookingByNameDAO;
 import persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl;
 import presentation.patient.DoctorAppointmentBookingOutput;
@@ -50,9 +51,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
           return null;
         } else {
             do {
-              int doctorID = resultSet.getInt("doctor_id");
+              int doctorID = resultSet.getInt(DatabaseConstants.DOCTOR_ID);
               String doctorName = "";
-              doctorName = doctorName + resultSet.getString("first_name") + " " + resultSet.getString("last_name");
+              doctorName = doctorName + resultSet.getString(DatabaseConstants.FIRST_NAME) + " " + resultSet.getString(DatabaseConstants.LAST_NAME);
               doctorName = doctorName.trim();
               doctorIdentifierList.put(doctorID, doctorName);
             } while(resultSet.next());
@@ -94,7 +95,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
             return null;
           } else {
               do {
-                daysAvailable.add(resultSet.getString("weekday"));
+                daysAvailable.add(resultSet.getString(DatabaseConstants.WEEKDAY));
               } while (resultSet.next());
             }
 
@@ -165,7 +166,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
         return -1;
       } else {
           do {
-            appointmentID = resultSet1.getInt("appointment_id");
+            appointmentID = resultSet1.getInt(DatabaseConstants.APPOINTMENT_ID);
           } while(resultSet1.next());
           return appointmentID;
       }
@@ -197,7 +198,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
         return -1;
       } else {
           do {
-            doctorIDSet.add(resultSet.getInt("doctor_id"));
+            doctorIDSet.add(resultSet.getInt(DatabaseConstants.DOCTOR_ID));
           } while(resultSet.next());
           if (doctorIDSet.contains(doctorID))
             return 0;
@@ -232,7 +233,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
         return -1;
       } else {
         do {
-          identifier = resultSet.getInt("patient_id");
+          identifier = resultSet.getInt(DatabaseConstants.PATIENT_ID);
         } while (resultSet.next());
       }
     } catch (SQLException se) {
@@ -265,7 +266,7 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
               return -1;
             } else {
                 do {
-                  charges = resultSet.getDouble("charges");
+                  charges = resultSet.getDouble(DatabaseConstants.CHARGES);
                 } while (resultSet.next());
             }
         } catch (SQLException se) {

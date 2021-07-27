@@ -3,7 +3,6 @@ package presentation.doctor;
 import presentation.common.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * <pre>
@@ -17,16 +16,8 @@ public class DoctorMenuOutput {
 
 	private PrintToConsole consoleObj;
 
-	private DoctorMenuOutput() {
-		consoleObj  = PrintToConsole.getInstance();
-	}
-
-	private static DoctorMenuOutput doctorMenuOutput;
-
-	public static DoctorMenuOutput getInstance() {
-		if (doctorMenuOutput == null)
-			doctorMenuOutput = new DoctorMenuOutput();
-		return doctorMenuOutput;
+	public DoctorMenuOutput(){
+		consoleObj = PrintToConsole.getInstance();
 	}
 
 	public void displayOutput() {
@@ -61,5 +52,4 @@ public class DoctorMenuOutput {
 		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
 	}
-
 }
