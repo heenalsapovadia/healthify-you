@@ -1,12 +1,15 @@
 package persistence.admin.daoImpl;
 
 import persistence.admin.dao.BloodBankRecommendationDAO;
+import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+
+import static persistence.common.DatabaseConstants.ORDER_NUMBER;
 
 /**
 * <pre>
@@ -53,7 +56,7 @@ public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDA
         return null;
       } else {
           do {
-            orderNumberSet.add(resultSet.getInt("order_number"));
+            orderNumberSet.add(resultSet.getInt(DatabaseConstants.ORDER_NUMBER));
           } while (resultSet.next());
       }
 
@@ -78,7 +81,7 @@ public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDA
         return null;
       } else {
           do {
-            Order o = new Order(resultSet.getInt("order_number"), resultSet.getString("blood_group"));
+            Order o = new Order(resultSet.getInt(DatabaseConstants.ORDER_NUMBER), resultSet.getString(DatabaseConstants.BLOOD_GROUP));
             orders.add(o);
           } while(resultSet.next());
       }

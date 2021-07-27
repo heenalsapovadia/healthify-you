@@ -1,6 +1,8 @@
 package persistence.patient.utilImpl;
 
 import persistence.patient.daoImpl.DoctorRecommendationDAOImpl;
+import persistence.patient.util.DoctorRecommendationUtil;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,7 +15,7 @@ import java.util.stream.Collectors;
 *
 */
 
-public class DoctorRecommendationUtilImpl {
+public class DoctorRecommendationUtilImpl implements DoctorRecommendationUtil {
 
   public ArrayList<String> getDoctorRecommendations(String symptom, int support, int numRec) {
 
