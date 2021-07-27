@@ -27,6 +27,7 @@ import java.util.*;
  *
  */
 public class DoctorAppointmentBookingOutput {
+
     private PrintToConsole consoleObj;
 
     public DoctorAppointmentBookingOutput() {

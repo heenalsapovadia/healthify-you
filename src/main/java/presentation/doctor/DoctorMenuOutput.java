@@ -15,8 +15,6 @@ import java.util.logging.Logger;
  */
 public class DoctorMenuOutput {
 
-	private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
-
 	private PrintToConsole consoleObj;
 
 	private DoctorMenuOutput() {
