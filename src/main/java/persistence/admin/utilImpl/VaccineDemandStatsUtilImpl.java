@@ -1,7 +1,5 @@
 package persistence.admin.utilImpl;
 
-import persistence.admin.dao.VaccineDemandDAO;
-import persistence.admin.daoImpl.VaccineDemandDAOImpl;
 import persistence.admin.util.VaccineDemandStatsUtil;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,21 +13,16 @@ import java.util.Map;
  *
  */
 public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
-
-    private List<Map<String, Object>> dataRecords;
     
     private final static String COVAXIN = "covaxin";
     private final static String COVISHIELD = "covishield";
     private final static String PFIZER = "pfizer";
     private final static String MODERNA = "moderna";
 
-    public VaccineDemandStatsUtilImpl(){
-        VaccineDemandDAO vaccineDemandDAO = new VaccineDemandDAOImpl();
-        dataRecords = vaccineDemandDAO.getVaccinationData();
-    }
+    public VaccineDemandStatsUtilImpl(){ }
 
     @Override
-    public String mostVaccinatedBy(String factor){
+    public String mostVaccinatedBy(String factor, List<Map<String, Object>> dataRecords){
         Map<String, Integer> factorFrequency = new HashMap<>();
         String mostVaccinatedValue = (String) dataRecords.get(0).get(factor);
 
@@ -45,7 +38,7 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
     }
 
     @Override
-    public int dosesAdministered(int timePeriodInMonths){
+    public int dosesAdministered(int timePeriodInMonths, List<Map<String, Object>> dataRecords){
         int dosesInGivenPeriod = 0;
         LocalDate today = LocalDate.now();
         for(Map<String, Object> dataRecord : dataRecords){
@@ -58,7 +51,7 @@ public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
     }
     
     @Override
-    public Map<String, Integer> covidVaccineDistribution(){
+    public Map<String, Integer> covidVaccineDistribution(List<Map<String, Object>> dataRecords){
         Map<String, Integer> covidAnalysis = new HashMap<>();
         for(Map<String, Object> dataRecord : dataRecords) {
             String vaccine = ((String) dataRecord.get("vaccineName")).toLowerCase();

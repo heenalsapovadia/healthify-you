@@ -6,7 +6,6 @@ import persistence.patient.model.LabCheckBooking;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckBookingUtil;
 import java.sql.Date;
-import java.util.List;
 
 /**
  * @author Heenal Sapovadia
