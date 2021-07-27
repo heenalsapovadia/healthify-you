@@ -7,7 +7,6 @@ import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterfac
 import persistence.patient.dao.PatientDAO;
 import persistence.patient.daoImpl.PatientDAOImpl;
 import persistence.patient.model.Patient;
-
 import java.util.Date;
 
 

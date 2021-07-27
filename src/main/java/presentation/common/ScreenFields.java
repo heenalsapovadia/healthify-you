@@ -245,4 +245,15 @@ public class ScreenFields {
   public static final String CHECKOUT_AMOUNT_NOT_ELIGIBLE = "Checkout amount is not eligible for payment.";
   public static final String NOT_ENOUGH_DOSES = "Not enough dose available in inventory. Unable to add to checkout amount.";
   public static final String EXIT_FROM_REQUEST_MEDICATION = "EXIT";
+
+  /* Scheduled Appoinments fields */
+  public static final String CURRENT_APPOINTMENT_DATE = "Enter the date of appointment(yyyy-mm-dd): ";
+  public static final String WRONG_DATE = "Wrong date";
+  public static final String INVALID_DATE_FORMAT_FOR_SCHEDULEDAPPOINTMENTS = "Invalid Date Format";
+  public static final String NO_SCHEDULED_APPOINTMENTS = "No scheduled appointments on the entered date.";
+  public static final String ENTER_TO_EXIT = "Enter 1 to Exit:";
+  public static final String PATIENT_NAME_IN_APPOINTMENT  = "Patient Name";
+  public static final String PATIENT_AGE  = "Patient Age ";
+
+
 }
