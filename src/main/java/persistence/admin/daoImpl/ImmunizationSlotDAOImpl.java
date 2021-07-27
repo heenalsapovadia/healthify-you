@@ -19,7 +19,8 @@ import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 
 /**
- * @author Deeksha Sareen: This class is responsible for managing the immunization slots
+ * @author Deeksha Sareen: This class is responsible for managing the
+ *         immunization slots
  *
  */
 public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, ImmunizationDoctorsDAO {
@@ -80,7 +81,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, Immunizatio
       resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
         String slot = resultSet.getString(DatabaseConstants.SLOT_TIME);
-        if (!slotTime.contains(slot)) {
+        if (!slotTime.contains(slot)) {  //if slots do not contain the slot
           slotTime.add(slot);
         }
 
@@ -98,7 +99,8 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, Immunizatio
     if (date.compareTo(currentDate) < 0) {
       doctor = 0;
     } else {
-      if (slot.endsWith("am") && currentTime.toLowerCase().endsWith("am")
+      if (slot.endsWith("am") && currentTime.toLowerCase().endsWith("am") // comparing the current time with the slot
+                                                                          // time
               || slot.endsWith("pm") && currentTime.toLowerCase().endsWith("pm")) {
         if ((currentTime.toLowerCase()).compareTo(slot) > 0 && date.compareTo(currentDate) == 0) {
           doctor = 0;
@@ -130,9 +132,8 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, Immunizatio
         Calendar now = Calendar.getInstance();
         String currentDate = dateFormatter.format(now.getTime());
         String currentTime = timeFormatter.format(new Date());
-        if (updateChoice == 0) {
+        if (updateChoice == 0) { //when slots have not been assigned
           doctor = dateTimeComparator(slot, currentTime, currentDate, date, doctor);
-
         }
         String weekday = resultSet.getString(DatabaseConstants.SLOTWEEKDAY);
         if (doctorsPerDay.containsKey(weekday)) {
@@ -159,7 +160,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, Immunizatio
     int i = 0;
     for (Map.Entry<String, ArrayList<Integer>> entry : updatedRecords.entrySet()) {
       String weekday = entry.getKey();
-      ArrayList<Integer> slots = new ArrayList<>(entry.getValue());
+      ArrayList<Integer> slots = new ArrayList<>(entry.getValue()); //stores the slots
       String date = dates.get(i);
       int counter = 1;
       for (int slot : slots) {
@@ -168,7 +169,8 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, Immunizatio
           ps.setInt(1, slot);
           ps.setString(2, date);
           if (counter == 1) {
-            ps.setString(3, "11:00:00 am");
+            ps.setString(3, "11:00:00 am"); // since we have assumed only 3 slots are there per day, these values are
+                                            // fixed.
           }
           if (counter == 2) {
             ps.setString(3, "12:00:00 pm");

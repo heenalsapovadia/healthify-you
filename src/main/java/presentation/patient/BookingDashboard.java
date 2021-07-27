@@ -1,14 +1,17 @@
 package presentation.patient;
 
-import persistence.patient.model.Patient;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * <pre>
+ * This  class is responsible for representing booking module and further process related to it.
+ * </pre>
+ */
 
 public class BookingDashboard {
     private static class BookingDashboardHelper {
@@ -57,10 +60,8 @@ public class BookingDashboard {
         }
         else if(sel == 4) {
             //Book a blood bank service - blood donation
-            Patient patient = Patient.instance();
-            patient.getPatientEmail();
             BloodBankServiceOutput bloodBankServiceOutput = new BloodBankServiceOutput();
-            bloodBankServiceOutput.bloodBankService(patient);
+            bloodBankServiceOutput.bloodBankService();
             sel = loadScreenOptions(consoleObj);
 
         }

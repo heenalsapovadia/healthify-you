@@ -12,12 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-//Through this feature, the logged in patient can register for donating blood
-// database entities
-//● DonationId
-//● PatientId
-//● BloodGrp
-//● Date
+
 public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
     private static final Logger LOGGER = Logger.getLogger(BloodBankServiceDAOImpl.class.getName());
 
@@ -31,13 +26,13 @@ public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
             ps.setString(3, bloodBankService.getBloodGrp());
             ps.setTimestamp(4,new Timestamp(System.currentTimeMillis()));
             if(ps.executeUpdate() > 0) {
-            	RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
-            	RedeemableVoucher voucher = voucherDAO.getVoucherByBloodGroup(bloodBankService.getBloodGrp());
-            	if(voucher != null) {
-            		PatientDAO patientDAO = new PatientDAOImpl();
-            		patientDAO.updateVouchersForPatients(voucher.getVoucherId(), new Timestamp(System.currentTimeMillis()), 
-            				bloodBankService.getPatientId());
-            	}
+                RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
+                RedeemableVoucher voucher = voucherDAO.getVoucherByBloodGroup(bloodBankService.getBloodGrp());
+                if(voucher != null) {
+                    PatientDAO patientDAO = new PatientDAOImpl();
+                    patientDAO.updateVouchersForPatients(voucher.getVoucherId(), new Timestamp(System.currentTimeMillis()),
+                    bloodBankService.getPatientId());
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
