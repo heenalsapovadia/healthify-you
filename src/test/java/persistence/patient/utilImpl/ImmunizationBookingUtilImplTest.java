@@ -32,5 +32,5 @@ public class ImmunizationBookingUtilImplTest {
     ImmunizationBookingUtilImpl util = new ImmunizationBookingUtilImpl();
     assertEquals(-1, util.getAge(dob));
   }
-
+  
 }

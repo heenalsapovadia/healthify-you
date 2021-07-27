@@ -113,11 +113,11 @@ public class RegistrationUtilImplTest {
     String email4 = "sofia@yahoo..com";
     String email5 = " sofia@gmailcom";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email1));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email2));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email3));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email4));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", register.validateEmail(email5));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", register.validateEmail(email1));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", register.validateEmail(email2));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", register.validateEmail(email3));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", register.validateEmail(email4));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", register.validateEmail(email5));
 
   }
 
@@ -138,11 +138,20 @@ public class RegistrationUtilImplTest {
     String password4 = "sofia1234@";
     String password5 = "SofiaVargeres12345678901@";
     RegistrationUtilImpl register = new RegistrationUtilImpl();
-    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password1));
-    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password2));
-    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password3));
-    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password4));
-    assertEquals("Password is invalid! Enter a valid password", register.validatePassword(password5));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces", register.validatePassword(password1));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces"
+	, register.validatePassword(password2));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces"
+	, register.validatePassword(password3));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces" 
+	, register.validatePassword(password4));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces"
+	, register.validatePassword(password5));
 
   }
 
