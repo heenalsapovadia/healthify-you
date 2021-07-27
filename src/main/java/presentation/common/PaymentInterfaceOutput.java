@@ -2,11 +2,11 @@ package presentation.common;
 /**
  * <pre>
  *
- * PaymentInterface Database Implementation
+ * this is presentation/output for payment interface
  * </pre>
  *
  * @author Saloni Raythatha
- *this is presentation/output for payment interface for payment interface
+ *
  */
 import persistence.common.paymentInterface.modelPaymentInterface.*;
 import persistence.common.paymentInterface.utilImpl.PaymentCategoryWiseBilling;

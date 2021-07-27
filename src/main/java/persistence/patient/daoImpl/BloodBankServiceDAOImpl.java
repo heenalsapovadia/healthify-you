@@ -11,8 +11,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-
+/**
+ * <pre>
+ * Blood Bank Service Database method implementation
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
     private static final Logger LOGGER = Logger.getLogger(BloodBankServiceDAOImpl.class.getName());
 

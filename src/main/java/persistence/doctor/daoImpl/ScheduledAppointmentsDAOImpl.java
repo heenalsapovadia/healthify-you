@@ -74,5 +74,4 @@ public class ScheduledAppointmentsDAOImpl implements SchedueledAppointsDAO {
         }
         return null;
     }
-
 }

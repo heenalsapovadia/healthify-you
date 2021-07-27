@@ -5,13 +5,12 @@ import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 /**
  * <pre>
- * Interface for Blood Bank Service implementation.
+ * Interface for Blood Bank Service functionality .
  * </pre>
  *
  * @author Saloni Raythatha
  *
  */
-
 public interface BloodBankServiceUtil {
 
     // Random string generated for donation id when patient registers
@@ -28,6 +27,5 @@ public interface BloodBankServiceUtil {
 
     // validation if patient's previous donation record is more than 6 months before they would be able to register.
     boolean validateIfPreviousDonationMoreThanSixMonth(BloodBankService donations);
-
 }
 

@@ -12,13 +12,11 @@ import java.util.Scanner;
 /**
  * <pre>
  *  Scheduled Appointments output class
- *
  * </pre>
  *
  * @author Saloni Raythatha
  *
  */
-
 public class ScheduledAppointmentsOutput {
 
     // below method will fetch appointments from doctor appointment table

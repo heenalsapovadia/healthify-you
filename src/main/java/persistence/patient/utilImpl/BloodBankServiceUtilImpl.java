@@ -11,16 +11,14 @@ import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 /**
  * <pre>
- * This is class is responsible for implementing functionalities realated to Blood Bank Serive feature.
+ * This class is responsible for implementing functionalities related to Blood Bank Serive feature.
  * </pre>
  *
  * @author Saloni Raythatha
  *
  */
-
 public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
 
     static final String randomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
