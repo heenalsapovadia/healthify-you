@@ -89,9 +89,7 @@ public class ImmunizationBookingOutput {
           print.printScreenFields(CommonErrors.ERROR_MESSAGE);
         }
       }
-
     }
-
   }
 
   private void confirmationStatus(String slot) {

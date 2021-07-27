@@ -86,11 +86,11 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
       resultSet = ps.executeQuery();
       if (resultSet.first() == false) {
         return appointmentdates;
-      }
-      while (resultSet.next()) {
-        String dateofbooking = resultSet.getString(DatabaseConstants.BOOKED_FOR_DATE);
-        appointmentdates.add(dateofbooking);
-
+      } else {
+        do {
+          String dateofbooking = resultSet.getString(DatabaseConstants.BOOKED_FOR_DATE);
+          appointmentdates.add(dateofbooking);
+        } while (resultSet.next());
       }
     } catch (SQLException e) {
       e.getLocalizedMessage();
@@ -187,7 +187,6 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
       if (resultSet.first()) {
         doctorId = resultSet.getInt(DatabaseConstants.DOCTOR_ASSIGNED);
       }
-
     } catch (SQLException e) {
       e.getLocalizedMessage();
     }
