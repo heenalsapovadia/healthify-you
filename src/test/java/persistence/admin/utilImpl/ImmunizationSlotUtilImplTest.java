@@ -15,7 +15,7 @@ public class ImmunizationSlotUtilImplTest {
 
   /**
    * Test method for
-   * {@link persistence.admin.utilImpl.ImmunizationSlotUtilImpl#validateWeekend()}.
+   * validateWeekend()}.
    */
   @Test
   public void testValidateWeekendFalse() {
