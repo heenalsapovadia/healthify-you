@@ -43,6 +43,7 @@ public class RequestMedicationOutput {
         }
     }
 
+    // this method displays list of medicine based on prescription id validation... and futher process
     public static String requestMedicationDetails() {
         RequestMedicationDAOImpl requestMedication = new RequestMedicationDAOImpl();
         RequestMedicationUtilImpl requestMedicationUtil = new RequestMedicationUtilImpl();

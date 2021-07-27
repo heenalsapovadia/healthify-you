@@ -12,12 +12,13 @@ import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingC
 import persistence.doctor.model.Prescription;
 import persistence.patient.daoImpl.RequestMedicationDAOImpl;
 import persistence.patient.model.RequestMedicationModel.RequestMedicationDetails;
+import persistence.patient.util.RequestMedicationUtil;
 import presentation.common.PaymentInterfaceOutput;
 import persistence.patient.model.RequestMedicationModel.MedicationsToUpdate;
 import presentation.common.ScreenFields;
 import java.util.ArrayList;
 
-public class RequestMedicationUtilImpl {
+public class RequestMedicationUtilImpl implements RequestMedicationUtil {
 
     public RequestMedicationDetails processPrescription(Prescription currentPrescription,
                                                         RequestMedicationDAOImpl requestMedication) {
@@ -46,6 +47,7 @@ public class RequestMedicationUtilImpl {
             System.out.println(ScreenFields.ENOUGH_DOSES_OF_MEDICINE_AVAILABLE);
             requestMedication.updatePharmaInvoice(currentPrescription.getMedicineName(), itemLeft);
 
+            // if price of the medication somehow total to zerp than amount wont be eligible for payment..
             if (totalPrice == 0.0) {
                 System.out.println(ScreenFields.CHECKOUT_AMOUNT_NOT_ELIGIBLE);
                 System.out.println("\n");
