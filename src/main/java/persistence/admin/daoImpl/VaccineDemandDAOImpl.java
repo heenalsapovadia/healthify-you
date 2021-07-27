@@ -14,6 +14,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class VaccineDemandDAOImpl implements VaccineDemandDAO {
     private static final Logger LOGGER = Logger.getLogger(VaccineDemandDAOImpl.class.getName());
 

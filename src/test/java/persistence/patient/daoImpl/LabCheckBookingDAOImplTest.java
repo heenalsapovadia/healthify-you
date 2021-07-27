@@ -43,8 +43,7 @@ public class LabCheckBookingDAOImplTest {
         LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
         labCheckBookingDao.insertBooking(labCheckBooking);
 
-        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
+        List<LabCheckBooking> labCheckBookingList = labCheckBookingDao.getAllBookings();
         assertTrue(labCheckBookingList.size() > 0);
     }
 }

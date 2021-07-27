@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class AppointmentDAOImpl implements AppointmentDAO {
 
     private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());

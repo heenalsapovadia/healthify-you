@@ -6,6 +6,10 @@ import persistence.doctor.util.PrescriptionValidationUtil;
 
 import java.util.Set;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class PrescriptionValidationUtilImpl implements PrescriptionValidationUtil {
 
     @Override

@@ -1,6 +1,10 @@
 package presentation.patient;
 
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
+import persistence.patient.dao.LabCheckBookingDAO;
+import persistence.patient.dao.LabCheckDAO;
+import persistence.patient.daoImpl.LabCheckBookingDAOImpl;
+import persistence.patient.daoImpl.LabCheckDAOImpl;
 import persistence.patient.model.*;
 import persistence.patient.util.*;
 import persistence.patient.utilImpl.*;
@@ -13,9 +17,27 @@ import presentation.common.PaymentInterfaceOutput;
 import java.sql.Date;
 import java.util.*;
 
+/**
+ * <pre>
+ * Loads Lab Test Booking dashboard in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabTestBookingOutput {
 
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
+    private PrintToConsole consoleObj;
+    private List<LabCheck> labCheckList;
+    private Map<Integer, LabCheck> labCheckMap;
+
+    public LabTestBookingOutput() {
+        consoleObj = PrintToConsole.getInstance();
+        LabCheckDAO labCheckDAO = new LabCheckDAOImpl();
+        labCheckList = labCheckDAO.getAvailablePlans();
+        LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
+        labCheckMap = labCheckUtil.fetchLabCheckMap(labCheckList);
+    }
 
     public void dashboard(){
         List<String> selectionOptions = Arrays.asList(ScreenTitles.AVAILABLE_PLANS, ScreenTitles.LAB_TEST_RECOMMENDATION,
@@ -48,8 +70,8 @@ public class LabTestBookingOutput {
     public void viewPlans(){
         consoleObj.printHeader(ScreenTitles.AVAILABLE_PLANS);
 
-        LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
-        List<LabCheck> labCheckList = labCheckUtil.fetchLabCheckPlans();
+        LabCheckDAO labCheckDAO = new LabCheckDAOImpl();
+        labCheckList = labCheckDAO.getAvailablePlans();
         for(LabCheck labCheck : labCheckList){
             System.out.println(""+labCheck.getCheckupId()+CommonConstants.COMMON_TEXT_SEPARATOR+labCheck.getCheckupName());
         }
@@ -57,7 +79,7 @@ public class LabTestBookingOutput {
         int option = consoleObj.printSelection(selectionOptions);
         switch (option){
             case 1:
-                labCheckUtil.fetchDetails();
+                fetchDetails();
                 break;
             case 2:
                 return;
@@ -71,7 +93,7 @@ public class LabTestBookingOutput {
         Date bookingdate;
 
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
-        Map<Integer, LabCheck> labCheckMap = labCheckUtil.fetchLabCheckMap();
+        labCheckMap = labCheckUtil.fetchLabCheckMap(labCheckList);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -100,11 +122,12 @@ public class LabTestBookingOutput {
     public void viewBookings(){
         consoleObj.printHeader(ScreenTitles.PREVIOUS_BOOKINGS);
 
-        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
+        LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
+        List<LabCheckBooking> labCheckBookingList = labCheckBookingDao.getAllBookings();
         System.out.println(ScreenFields.APPOINTMENT_ID + CommonConstants.VERTICAL_BAR
                 + ScreenFields.HEALTH_CHECK_ID + CommonConstants.VERTICAL_BAR
                 + ScreenFields.DATE);
+
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
             System.out.println(labCheckBooking.getAppointmentId() + CommonConstants.VERTICAL_BAR
                     + labCheckBooking.getHealthcheckId() + CommonConstants.VERTICAL_BAR
@@ -165,5 +188,18 @@ public class LabTestBookingOutput {
                 consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
             }
         }
+    }
+
+    private void fetchDetails(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(ScreenFields.HEALTH_CHECK_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
+        int checkup_id = sc.nextInt();
+        while(!labCheckMap.containsKey(checkup_id)) {
+            System.out.println(CommonErrors.INVALID_CHECK_UP_ID +CommonConstants.COMMON_TEXT_SEPARATOR);
+            checkup_id = sc.nextInt();
+        }
+        System.out.println("------------ "+"Details of "+labCheckMap.get(checkup_id).getCheckupName() + " ------------");
+        System.out.println("Description : "+labCheckMap.get(checkup_id).getDescription());
+        System.out.println("Charges : "+labCheckMap.get(checkup_id).getCharges());
     }
 }

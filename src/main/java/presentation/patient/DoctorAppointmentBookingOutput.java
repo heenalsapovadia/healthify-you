@@ -18,8 +18,21 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+/**
+ * <pre>
+ * Loads Doctor Appointment dashboard in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorAppointmentBookingOutput {
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
+
+    private PrintToConsole consoleObj;
+
+    public DoctorAppointmentBookingOutput() {
+        consoleObj = PrintToConsole.getInstance();
+    }
 
     public void dashboard() throws SQLException {
         consoleObj.printHeader(ScreenTitles.DOCTOR_APPOINTMENT);

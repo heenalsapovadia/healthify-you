@@ -2,6 +2,10 @@ package persistence.common.reports.model;
 
 import java.sql.Date;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class Vision {
     private String acuity;
     private Date date;

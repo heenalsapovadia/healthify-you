@@ -32,11 +32,10 @@ public class CommonErrors {
 	public static final String NO_REPORTS = "No Reports Found";
 	public static final String NO_RECEIPTS = "No Receipts Found";
 	public static final String NO_DATA_FOR_COVID = "No data available for Covid Shot analysis";
-
+	public static final String MEDICINE_NAME_NOT_FOUND = "Medicine Name Not Found! Try again";
 	public static final String INVALID_FIRST_NAME = "Invalid First Name! Enter valid First Name (only alphabets and spaces allowed)!";
 	public static final String INVALID_LAST_NAME = "Invalid Last Name! Enter valid Last Name (only alphabets and spaces allowed)!";
 	public static final String INVALID_CITY_NAME = "Invalid City Name! Enter valid City Name (only alphabets and spaces allowed)!";
-
 	public static final String NOT_AVAILABLE = "Not available!";
 
 }

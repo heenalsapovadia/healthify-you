@@ -3,13 +3,10 @@ package persistence.patient.utilImpl;
 import org.junit.Test;
 import persistence.patient.dao.LabCheckBookingDAO;
 import persistence.patient.daoImpl.LabCheckBookingDAOImpl;
-import persistence.patient.model.LabCheckBooking;
 import persistence.patient.model.Patient;
 import persistence.patient.util.LabCheckBookingUtil;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.Date;
-import java.util.List;
 import static org.junit.Assert.*;
 
 public class LabCheckBookingUtilImplTest {
@@ -29,22 +26,4 @@ public class LabCheckBookingUtilImplTest {
         assertNotNull(labCheckBookingDao.getBookingByDate(bookingdate));
     }
 
-    @Test
-    public void fetchBookings() {
-        DatabaseConnection.loadDatabaseConnection();
-        Patient.setPatient("ronnie@gma.com");
-
-        LabCheckBooking labCheckBooking = new LabCheckBooking();
-        labCheckBooking.setPatientId(1);
-        labCheckBooking.setHealthcheckId(2);
-        labCheckBooking.setBookedForDate(Date.valueOf("2021-05-21"));
-        labCheckBooking.setBillingId(123);
-
-        LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
-        labCheckBookingDao.insertBooking(labCheckBooking);
-
-        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
-        assertTrue(labCheckBookingList.size() > 0);
-    }
 }
