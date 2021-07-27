@@ -138,16 +138,23 @@ public class ScreenFields {
   public static final String yourBloodGroup = "Please enter your blood group:";
 
   /* Blood Bank Registration fields */
-  public static final String registerPatientForBloodDonation = "1. Register for Blood Donation";
-  public static final String viewDonationHistory = "2. My Donations";
-  public static final String enterYourSelection = "Please enter your selection below:";
-  public static final String checkingEligibility = "Checking Eligibility....";
-  public static final String patientIsEligible = "Eligible...No previous donations found for the Patient!";
-  public static final String registeringPatient = "Registering Patient!";
-  public static final String tokenGenerated = "Your Token is: ";
-  public static final String donationDate = "Donation Date: ";
-  public static final String donationRecord = "Record of patient exists. Please enter valid blood group.";
-  public static final String patientAlreadyDonated = "Patient has already Donated in last 6 months and is not eligible to donate again.";
+  public static final String REGISTER_PATIENT_FOR_BLOOD_DONATION = "Register for Blood Donation";
+  public static final String VIEW_DONATION_HISTORY = "My Donations";
+  public static final String EXIT_FROM_BLOOD_DONATION = "Exit";
+  public static final String CHECK_ELIGIBILITY = "Checking Eligibility....";
+  public static final String PATIENT_IS_ELIGIBLE = "Eligible...No previous donations found for the Patient!";
+  public static final String REGISTERING_PATIENT = "Registering Patient!";
+  public static final String TOKEN_GENERATED = "Your Token is: ";
+  public static final String DONATION_DATE = "Donation Date: ";
+  public static final String DONATION_RECORD = "Record of patient exists. Please enter valid blood group.";
+  public static final String PATIENT_ALREADY_DONATED = "Patient has already Donated in last 6 months and is not eligible to donate again.";
+  public static final String BLOOD_DONATION_CRITERIA = "Blood donation criteria: a) Minimum 6 month after previous donation, b) Blood report should be normal and available.";
+  public static final String HOURS_OF_OPERATION = "We operate on Tuesdays and Sundays. Visit anytime.";
+  public static final String REPORTS_ARE_NORMAL_FOR_BLOOD_DONATIONS = "Reports are not normal for Blood donation. Sorry please donate after recovery. ";
+  public static final String NO_DONATION_RECORDS_FOUND = "No donation record exits for the patient.";
+  public static final String PATIENT_DONATED_SIX_MONTH_BEFORE = "Patient donation history is more than 6 month so now registering them..";
+  public static final String YOUR_BLOOD_GROUP = "Please enter your blood group: [Blood Group format - 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O' ]";
+
 
   /* Payment Interface fields */
   public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
@@ -222,4 +229,20 @@ public class ScreenFields {
   public static final String APPOINTMENT_DATE = "DoctorName";
   public static final String APPOINTMENT_TO_RESCHEDULE = "Appointment to be rescheduled";
 
+  /* Request Medication fields */
+  public static final String ENTER_PRESCRIPTION_ID = "Enter Prescription ID: [Only enter numbers]";
+  public static final String GETTING_PRESCRIPTION_ID = "Enter 1 to insert Prescription ID";
+  public static final String CURRENT_LOGGEDIN_PATIENT = "Current logged in Patient Name = ";
+  public static final String INCORRECT_PRESCRIPTION_ID = "This is Incorrect prescription id for logged in patient. Please try again.";
+  public static final String PRESCRIBED_LIST_OF_MEDICINE = "Prescribed list of above prescription id is below:";
+  public static final String NAME_OF_MEDICINE = "Medicine Name: ";
+  public static final String DOSE_OF_MEDICINE = "Medicine Dose: ";
+  public static final String MEDICINE_DOSAGE_DAYS =  "Dosage is for : ";
+  public static final String DAYS = " days";
+  public static final String PAYMENT_NEEDED_FOR_PRESCRIPTION = "Payment needed of amount ";
+  public static final String TOTAL_DOSE = "Total dose requirement - ";
+  public static final String ENOUGH_DOSES_OF_MEDICINE_AVAILABLE = "Enough dose available in the pharmacy stock.";
+  public static final String CHECKOUT_AMOUNT_NOT_ELIGIBLE = "Checkout amount is not eligible for payment.";
+  public static final String NOT_ENOUGH_DOSES = "Not enough dose available in inventory. Unable to add to checkout amount.";
+  public static final String EXIT_FROM_REQUEST_MEDICATION = "EXIT";
 }

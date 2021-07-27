@@ -6,14 +6,19 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-
 import persistence.admin.daoImpl.ImmunizationSlotDAOImpl;
 import persistence.admin.util.ImmunizationSlotUtil;
-import presentation.common.CommonErrors;
-import presentation.common.ScreenFields;
 
+/**
+ * @author Deeksha Sareen: This class is responsbile for assigning slots to doctors
+ *
+ */
 public class ImmunizationSlotUtilImpl implements ImmunizationSlotUtil {
 
+  /**
+   * This method checks if the day of the week is a weekend
+   *
+   */
   @Override
   public boolean validateWeekend() {
     Calendar now = Calendar.getInstance();
@@ -37,6 +42,9 @@ public class ImmunizationSlotUtilImpl implements ImmunizationSlotUtil {
     return rearrangedQueue;
   }
 
+  /**
+   * This method is responsible for assigning doctors to the slots.
+   */
   @Override
   public void assignDoctors(Map<String, ArrayList<Integer>> assign, Queue<Integer> doctors) {
 

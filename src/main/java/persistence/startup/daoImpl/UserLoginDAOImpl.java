@@ -21,6 +21,7 @@ import presentation.startup.SHA_Hash;
  */
 public class UserLoginDAOImpl implements UserLoginDAO {
 
+  /* This method gets the user credentials of a user from the database*/
   @Override
   public String getuserDetails(Login l) {
     Connection conn = DatabaseConnection.instance();
