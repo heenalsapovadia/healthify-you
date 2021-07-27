@@ -1,7 +1,9 @@
 package presentation.patient;
 
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
+import persistence.patient.dao.LabCheckBookingDAO;
 import persistence.patient.dao.LabCheckDAO;
+import persistence.patient.daoImpl.LabCheckBookingDAOImpl;
 import persistence.patient.daoImpl.LabCheckDAOImpl;
 import persistence.patient.model.*;
 import persistence.patient.util.*;
@@ -120,11 +122,12 @@ public class LabTestBookingOutput {
     public void viewBookings(){
         consoleObj.printHeader(ScreenTitles.PREVIOUS_BOOKINGS);
 
-        LabCheckBookingUtil labCheckBookingUtil = new LabCheckBookingUtilImpl();
-        List<LabCheckBooking> labCheckBookingList = labCheckBookingUtil.fetchBookings();
+        LabCheckBookingDAO labCheckBookingDao = new LabCheckBookingDAOImpl();
+        List<LabCheckBooking> labCheckBookingList = labCheckBookingDao.getAllBookings();
         System.out.println(ScreenFields.APPOINTMENT_ID + CommonConstants.VERTICAL_BAR
                 + ScreenFields.HEALTH_CHECK_ID + CommonConstants.VERTICAL_BAR
                 + ScreenFields.DATE);
+
         for(LabCheckBooking labCheckBooking : labCheckBookingList){
             System.out.println(labCheckBooking.getAppointmentId() + CommonConstants.VERTICAL_BAR
                     + labCheckBooking.getHealthcheckId() + CommonConstants.VERTICAL_BAR
