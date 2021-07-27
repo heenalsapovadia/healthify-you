@@ -25,8 +25,13 @@ import presentation.common.ScreenTitles;
 
 public class InvoiceOutput {
 	
+	private PrintToConsole consoleObj;
+	
+	public InvoiceOutput() {
+		consoleObj = PrintToConsole.getInstance();
+	}
+	
 	public void displayInvoice(){
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
 		do {
@@ -34,16 +39,16 @@ public class InvoiceOutput {
 			sel = consoleObj.printSelection(selectionOptions);
 			switch(sel) {
 				case 1: AppointmentInvoiceOutput output = new AppointmentInvoiceOutput();
-						output.displayInvoice(parseDateInput(consoleObj, new Scanner(System.in)));
+						output.displayInvoice(parseDateInput(new Scanner(System.in)));
 						break;
 				case 2: PharmaInvoiceOutput invoiceOutput = new PharmaInvoiceOutput();
-						invoiceOutput.displayInvoice(parseDateInput(consoleObj, new Scanner(System.in)));
+						invoiceOutput.displayInvoice(parseDateInput(new Scanner(System.in)));
 						break;
 				case 3: ImmunizationInvoiceOutput immunizationOutput = new ImmunizationInvoiceOutput();
-						immunizationOutput.displayInvoice(parseDateInput(consoleObj, new Scanner(System.in)));
+						immunizationOutput.displayInvoice(parseDateInput(new Scanner(System.in)));
 						break;
 				case 4: LabTestInvoiceOutput labCheckInvoice = new LabTestInvoiceOutput();
-						labCheckInvoice.displayInvoice(parseDateInput(consoleObj, new Scanner(System.in)));
+						labCheckInvoice.displayInvoice(parseDateInput(new Scanner(System.in)));
 						break;
 				case 5: return;
 				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
@@ -52,7 +57,7 @@ public class InvoiceOutput {
 		while(sel != 5);
 	}
 	
-	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
+	private Date parseDateInput(Scanner sc) {
 		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
@@ -63,7 +68,7 @@ public class InvoiceOutput {
 		}
 		catch(IllegalArgumentException e) {
 			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
-			date = parseDateInput(consoleObj, new Scanner(System.in));
+			date = parseDateInput(new Scanner(System.in));
 		}
 		return date;
 	}
