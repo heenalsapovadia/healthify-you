@@ -1,6 +1,7 @@
 package presentation.patient;
 
 import persistence.admin.utilImpl.BloodBankRecommendationUtilImpl;
+import persistence.patient.dao.BloodBankServiceDAO;
 import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
@@ -55,7 +56,7 @@ public class BloodBankServiceOutput {
         Scanner sc1 = new Scanner(System.in);
         System.out.println(ScreenFields.BLOOD_DONATION_CRITERIA);
 
-        BloodBankServiceDAOImpl bloodBankServiceDaoImpl = new BloodBankServiceDAOImpl();
+        BloodBankServiceDAO bloodBankServiceDaoImpl = new BloodBankServiceDAOImpl();
         List<BloodBankService> donations = bloodBankServiceDaoImpl.getAllBloodDonationsForPatient(Patient.instance());
         BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
         BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
@@ -98,7 +99,7 @@ public class BloodBankServiceOutput {
     }
 
     public static String validateDonationDataAndReport(String bloodGroupInput) {
-        BloodBankServiceDAOImpl bloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();
+        BloodBankServiceDAO bloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();
         List<BloodBankService> donations = bloodBankServiceDAOImpl.getAllBloodDonationsForPatient(Patient.instance());
         BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
 
@@ -129,7 +130,7 @@ public class BloodBankServiceOutput {
 
     // user will be able to view their previous donations if any exists
     private static void viewPreviousDonations() {
-        BloodBankServiceDAOImpl BloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();
+        BloodBankServiceDAO BloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();
         List<BloodBankService> donations = BloodBankServiceDAOImpl.getAllBloodDonationsForPatient(Patient.instance());
         if(donations.size()>0) {
             for ( BloodBankService service : donations ) {
