@@ -12,6 +12,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
+import static presentation.common.CommonErrors.NOT_AVAILABLE;
+import static presentation.common.ScreenFields.*;
+import static presentation.common.ScreenTitles.*;
+
 /**
 * <pre>
 * Output class for doctor appointment booking by specialization
@@ -25,7 +29,7 @@ public class DoctorAppointmentBySpecializationOutput {
 
   public void displayOutput() throws SQLException {
     PrintToConsole consoleObj = PrintToConsole.getInstance();
-    consoleObj.printHeader("Book an appointment with doctor based on specialization");
+    consoleObj.printHeader(APPPOINTMENT_BY_SPECIALIZATION_TITLE);
 
     List<String> selectionOptions = new ArrayList<>();
     selectionOptions.add("Search doctor");
@@ -34,21 +38,21 @@ public class DoctorAppointmentBySpecializationOutput {
 
     while (choice != 2) {
       if (choice == 1) {
-        consoleObj.printHeader("Search doctor");
+        consoleObj.printHeader(SEARCH_DOCTOR);
 
         Scanner sc = new Scanner(System.in);
-        consoleObj.printScreenFields("Enter specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS) (case-insensitive)");
+        consoleObj.printScreenFields(DOCTOR_SPECIALIZATION_INPUT);
         String specialization = sc.nextLine().toUpperCase(Locale.ROOT);
 
         DoctorAppointmentBookingBySpecializationDAOImpl doctorAppointmentBookingBySpecializationDAOImpl = new DoctorAppointmentBookingBySpecializationDAOImpl();
         Map<Integer, String> doctorIdentifierList = doctorAppointmentBookingBySpecializationDAOImpl.fetchDoctorIdentifier(specialization);
         int doctorID = 0;
         if (doctorIdentifierList == null) {
-          System.err.println("Not available!");
+          System.err.println(NOT_AVAILABLE);
           return;
         } else {
-          consoleObj.printSubHeading("Doctors and Availability");
-          System.out.println("Enter doctor identifier from the list given below");
+          consoleObj.printSubHeading(SUBHEADING);
+          System.out.println(DOCTOR_IDENTIFIER_INPUT);
           for (Integer i : doctorIdentifierList.keySet()) {
             System.out.println(i + ": " + doctorIdentifierList.get(i));
           }
@@ -65,7 +69,7 @@ public class DoctorAppointmentBySpecializationOutput {
               DoctorAppointmentBookingBySpecializationUtilImpl doctorAppointmentBookingBySpecializationUtil = new DoctorAppointmentBookingBySpecializationUtilImpl();
               Scanner sc1 = new Scanner(System.in);
 
-              System.out.println("Next dates available for the requested doctor are as given below:");
+              System.out.println(DOCTOR_AVAILABILITY_DATE_INPUT);
               System.out.println(datesAvailable);
 
               System.out.println("Please enter your choice from the dates mentioned above");
@@ -74,16 +78,16 @@ public class DoctorAppointmentBySpecializationOutput {
               while (!doctorAppointmentBookingBySpecializationUtil.validateDate(appointmentDate, datesAvailable)) {
                 Scanner sc2 = new Scanner(System.in);
                 System.out.println(datesAvailable);
-                System.out.println("Please enter your choice from the dates mentioned above");
+                System.out.println(DOCTOR_AVAILABILITY_DATE_SELECTION);
                 appointmentDate = sc2.nextLine().trim();
               }
 
-              System.out.println("Enter registered patient email address for whom the appointment should be booked!");
+              System.out.println(EMAIL_ADDRESS_INPUT);
               String patientEmail = sc.next();
               int patientID = doctorAppointmentBookingBySpecializationUtil.validateEmail(patientEmail);
 
               while (patientID == -1) {
-                System.out.println("Email address entered is not registered with us! Please enter registered patient email address for whom the appointment should be booked!");
+                System.err.println("Email address entered is not registered with us! Please enter registered patient email address for whom the appointment should be booked!");
                 patientEmail = sc.next();
                 patientID = doctorAppointmentBookingBySpecializationUtil.validateEmail(patientEmail);
               }
@@ -125,7 +129,7 @@ public class DoctorAppointmentBySpecializationOutput {
         doctorAppointmentBookingDashboard.display();
       }
 
-      consoleObj.printHeader("Book an appointment with doctor based on specialization");
+      consoleObj.printHeader(APPPOINTMENT_BY_SPECIALIZATION_TITLE);
       choice = consoleObj.printSelection(selectionOptions);
 
     }

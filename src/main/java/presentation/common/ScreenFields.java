@@ -222,4 +222,15 @@ public class ScreenFields {
   public static final String APPOINTMENT_DATE = "DoctorName";
   public static final String APPOINTMENT_TO_RESCHEDULE = "Appointment to be rescheduled";
 
+  /* Doctor appointmnent booking fields */
+  /* by name */
+  public static final String DOCTOR_NAME_INPUT = "Enter doctor's firstname or lastname (case-insensitive)";
+  public static final String DOCTOR_IDENTIFIER_INPUT = "Enter doctor identifier from the list given below";
+  public static final String DOCTOR_AVAILABILITY_DATE_INPUT = "Next dates available for the requested doctor are as given below:";
+  public static final String DOCTOR_AVAILABILITY_DATE_SELECTION = "Please enter your choice from the dates mentioned above";
+  public static final String EMAIL_ADDRESS_INPUT = "Enter registered patient email address for whom the appointment should be booked!";
+
+  /* by specialization */
+  public static final String DOCTOR_SPECIALIZATION_INPUT = "Enter specialization (ENT SPECIALIST | CARDIOLOGIST | PHYSICIAN | OTHERS) (case-insensitive)";
+
 }

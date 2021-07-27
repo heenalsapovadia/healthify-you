@@ -92,6 +92,14 @@ public class ScreenTitles {
   public static final String BOOK_APPOINTMENT = "Book an appointment";
   public static final String RESCHEDULE_APPOINTMENT = "Reschedule an appointment";
 
+  /* Doctor Appointment Booking by Name titles */
+  public static final String APPPOINTMENT_BY_NAME_TITLE = "Visit a specific doctor";
+  public static final String SEARCH_DOCTOR = "Search doctor";
+  public static final String SUBHEADING = "Doctors and Availability";
+
+  /* Doctor Appointment Booking by Specialization titles */
+  public static final String APPPOINTMENT_BY_SPECIALIZATION_TITLE = "Book an appointment with doctor based on specialization";
+
   /* View Reports */
   public static final String VIEW_REPORTS = "View Reports";
   public static final String VIEW_REPORTS_BY_TEST = "View Reports by Test";
