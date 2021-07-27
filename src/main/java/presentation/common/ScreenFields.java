@@ -278,7 +278,7 @@ public class ScreenFields {
 
   /* Scheduled Appoinments fields */
   public static final String CURRENT_APPOINTMENT_DATE = "Enter the date of appointment(yyyy-mm-dd): ";
-  public static final String WRONG_DATE = "Wrong date";
+  public static final String WRONG_DATE_OF_APPOINTMENT = "Wrong date";
   public static final String INVALID_DATE_FORMAT_FOR_SCHEDULEDAPPOINTMENTS = "Invalid Date Format";
   public static final String NO_SCHEDULED_APPOINTMENTS = "No scheduled appointments on the entered date.";
   public static final String ENTER_TO_EXIT = "Enter 1 to Exit:";

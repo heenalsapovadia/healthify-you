@@ -39,6 +39,5 @@ public class PaymentCreditCardValidationTest {
         assertEquals("Card number should be 12 digit long",
                 (new PaymentCreditCardValidation()).validateCreditCardNumber(1L));
     }
-
 }
 

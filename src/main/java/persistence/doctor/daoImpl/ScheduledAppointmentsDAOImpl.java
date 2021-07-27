@@ -1,13 +1,10 @@
 package persistence.doctor.daoImpl;
 
-// author  - saloni raythatha
-// Class for all the database implementations
-
 import persistence.common.DatabaseConstants;
 import persistence.doctor.dao.SchedueledAppointsDAO;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Doctor;
-import persistence.doctor.model.PatientDetailsModel;
+import persistence.doctor.model.ScheduledAppointmentsModel;
 import persistence.patient.utilImpl.ImmunizationBookingUtilImpl;
 import presentation.startup.DatabaseConnection;
 import java.sql.ResultSet;
@@ -19,8 +16,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-public class ScheduledAppointmentsDAOImpl {
+/**
+ * <pre>
+ *  Scheduled Appointments database functionality
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
+public class ScheduledAppointmentsDAOImpl implements SchedueledAppointsDAO {
 
     private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
 
@@ -52,7 +56,7 @@ public class ScheduledAppointmentsDAOImpl {
         return appointmentList;
     }
 
-    public PatientDetailsModel getPatient(int patientId) {
+    public ScheduledAppointmentsModel getPatient(int patientId) {
         Connection conn = DatabaseConnection.instance();
         String sql = "select * from patients where patient_id = ?";
         ImmunizationBookingUtilImpl immunizationBookingUtil = new ImmunizationBookingUtilImpl();
@@ -62,7 +66,7 @@ public class ScheduledAppointmentsDAOImpl {
             if(rs.next()) {
                 Date dob = rs.getDate(DatabaseConstants.PATIENT_DOB);
                 int age = immunizationBookingUtil.getAge(dob.toString());
-                return new PatientDetailsModel(rs.getString(DatabaseConstants.PATIENT_NAME), age);
+                return new ScheduledAppointmentsModel(rs.getString(DatabaseConstants.PATIENT_NAME), age);
             }
         }
         catch (SQLException e){

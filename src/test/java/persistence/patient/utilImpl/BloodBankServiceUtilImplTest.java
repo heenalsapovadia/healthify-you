@@ -7,7 +7,14 @@ import java.time.ZoneId;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import persistence.patient.model.BloodBankService;
-
+/**
+ * <pre>
+ * Blood Bank Service Util Test method
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class BloodBankServiceUtilImplTest {
 
     @Test
