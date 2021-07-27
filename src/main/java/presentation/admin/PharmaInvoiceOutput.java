@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import persistence.admin.dao.PharmaInvoiceDAO;
-import persistence.admin.daoImpl.PharmaInvoiceDAOImpl;
 import persistence.admin.model.PaymentMode;
 import persistence.admin.model.PharmaInvoice;
 import persistence.admin.util.PharmaInvoiceUtil;
@@ -38,8 +36,7 @@ public class PharmaInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PharmaInvoiceUtil invoiceUtil = new PharmaInvoiceUtilImpl();
-		PharmaInvoiceDAO invoiceDAO = new PharmaInvoiceDAOImpl();
-		Map<String, List<PharmaInvoice>> invoicesMap = invoiceDAO.getInvoiceDetailsByDate(date);
+		Map<String, List<PharmaInvoice>> invoicesMap = invoiceUtil.fetchMapFromDatabase(date);
 		List<Double> pricesList;
 		consoleObj = PrintToConsole.getInstance();
 		if(invoicesMap != null && !invoicesMap.isEmpty()) {
