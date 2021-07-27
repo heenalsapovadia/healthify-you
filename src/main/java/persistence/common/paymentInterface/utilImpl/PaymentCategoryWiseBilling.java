@@ -1,20 +1,22 @@
 package persistence.common.paymentInterface.utilImpl;
 
+// author - saloni raythatha
+// this is class for representing enum values for category wise billing labtest, doctor appointment, request medication
+
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
-import persistence.patient.model.LabCheckBooking;
-import presentation.patient.LabTestBookingOutput;
+import presentation.common.ScreenFields;
 
 public class PaymentCategoryWiseBilling {
 
     public String enumInIf(PaymentBillingCategory category) {
         if(category == PaymentBillingCategory.L) {
-            return "Billing successful for Lab Health Check Booking. ";
+            return ScreenFields.BILL_SUCCESSFUL_FOR_LABTEST;
         }else if (category == PaymentBillingCategory.D) {
-            return "Billing successful for  Doctor Appointment.";
+            return ScreenFields.BILL_SUCCESSFUL_FOR_DOCTOR_APPOINTMENT;
         }else if (category == PaymentBillingCategory.M) {
-            return "Billing successful for  Request Medication.";
+            return ScreenFields.BILL_SUCCESSFUL_FOR_REQUEST_MEDICATION;
         }else{
-            return "Billing successful for Pharmacy.";
+            return ScreenFields.BILL_SUCCESSFUL_FOR_PHARMARCY;
         }
     }
 }
