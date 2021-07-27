@@ -1,5 +1,13 @@
 package persistence.common.paymentInterface.daoImpl;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Database Implementation
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;

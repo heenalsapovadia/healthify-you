@@ -1,14 +1,12 @@
 package persistence.common.paymentInterface.utilImpl;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import org.junit.Test;
-
 /**
  * Test cases for Payment Interface utility module.
  * @author Saloni Raythatha
  *
  */
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.junit.Test;
 
 public class PaymentCreditCardValidationTest {
 

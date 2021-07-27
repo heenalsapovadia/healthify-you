@@ -1,5 +1,13 @@
 package persistence.common.paymentInterface.dao;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Database DAO
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
 import persistence.patient.model.Patient;
 import java.util.List;

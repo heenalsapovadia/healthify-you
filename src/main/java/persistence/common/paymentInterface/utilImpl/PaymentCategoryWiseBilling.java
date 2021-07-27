@@ -2,7 +2,6 @@ package persistence.common.paymentInterface.utilImpl;
 
 // author - saloni raythatha
 // this is class for representing enum values for category wise billing labtest, doctor appointment, request medication
-
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import presentation.common.ScreenFields;
 
