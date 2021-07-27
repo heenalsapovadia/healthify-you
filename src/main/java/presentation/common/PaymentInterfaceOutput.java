@@ -1,8 +1,13 @@
 package presentation.common;
-
-// author - saloni raythatha
-// this is presentation/output for payment interface for payment interface
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Database Implementation
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *this is presentation/output for payment interface for payment interface
+ */
 import persistence.common.paymentInterface.modelPaymentInterface.*;
 import persistence.common.paymentInterface.utilImpl.PaymentCategoryWiseBilling;
 import persistence.common.paymentInterface.utilImpl.PaymentCreditCardValidation;
@@ -13,9 +18,7 @@ import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
 import java.util.Scanner;
 
-public class PaymentInterfaceOutput {
-    private PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
-
+public class PaymentInterfaceOutput  {
     private static class PaymentInterfaceOutputHelper {
         private static final PaymentInterfaceOutput instance = new PaymentInterfaceOutput();
     }

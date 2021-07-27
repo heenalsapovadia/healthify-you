@@ -51,14 +51,6 @@ public class PaymentInterface {
         this.patient_id = patient_id;
     }
 
-    public int getPrescription_id() {
-        return prescription_id;
-    }
-
-    public void setPrescription_id(int prescription_id) {
-        this.prescription_id = prescription_id;
-    }
-
     public String getVoucher_id() {
         return voucher_id;
     }
