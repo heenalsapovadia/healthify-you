@@ -4,9 +4,15 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import persistence.admin.model.PharmaInvoice;
 
+/**
+ * <pre>
+ * Fetches pharma supplies details from the database.
+ * </pre>
+ * @author Gurleen Saluja
+ *
+ */
 public interface PharmaInvoiceDAO {
 	/**
 	 * <pre>
@@ -28,5 +34,12 @@ public interface PharmaInvoiceDAO {
 	 */
 	List<PharmaInvoice> getPharmaSupplies(List<String> medicineName);
 
+	/**
+	 * <pre>
+	 * Returns a set of medicine names bought by the hospital.
+	 * </pre>
+	 * 
+	 * @return set
+	 */
 	Set<String> getMedicineList();
 }

@@ -8,6 +8,7 @@ import persistence.patient.dao.PatientDAO;
 import persistence.patient.daoImpl.PatientDAOImpl;
 import persistence.patient.model.Patient;
 import java.util.Date;
+import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
 /**
  * <pre>
  *
@@ -58,4 +59,10 @@ public class PaymentInterfaceUtilImpl implements PaymentInterfaceUtil {
         }
         return updatedRecords;
     }
+
+	@Override
+	public int getPointsRedeemed(int patientId) {
+		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
+		return paymentDAO.getVoucherRedemptionPoints(patientId);
+	}
 }

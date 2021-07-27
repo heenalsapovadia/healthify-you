@@ -17,7 +17,7 @@ public interface PharmaInvoiceUtil {
 	 * @param quantity
 	 * @return
 	 */
-	public double calculateTotalAmount(double unitPrice, int quantity);
+	double calculateTotalAmount(double unitPrice, int quantity);
 	
 	/**
 	 * <pre>
@@ -27,7 +27,7 @@ public interface PharmaInvoiceUtil {
 	 * @param prices
 	 * @return
 	 */
-	public double calculateGrandTotalAmount(List<Double> prices);
+	double calculateGrandTotalAmount(List<Double> prices);
 	
 	/**
 	 * <pre>
@@ -36,5 +36,5 @@ public interface PharmaInvoiceUtil {
 	 * 
 	 * @return
 	 */
-	public Map<String, List<PharmaInvoice>> fetchMapFromDatabase(Date date);
+	Map<String, List<PharmaInvoice>> fetchMapFromDatabase(Date date);
 }
