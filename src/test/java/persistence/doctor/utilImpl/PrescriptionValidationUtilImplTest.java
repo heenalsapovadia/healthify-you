@@ -14,19 +14,15 @@ public class PrescriptionValidationUtilImplTest {
     @Test
     public void testValidateAppointmentId_Valid() {
         DatabaseConnection.loadDatabaseConnection();
-
-        // set current doctor
         Doctor.setDoctor("biswa.roy@healthifyyou.com");
 
         PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();
-        Assert.assertNotNull(prescriptionValidationUtil.validateAppointmentId(17));
+        Assert.assertNotNull(prescriptionValidationUtil.validateAppointmentId(64));
     }
 
     @Test
     public void testValidateAppointmentId_Invalid() {
         DatabaseConnection.loadDatabaseConnection();
-
-        // set current doctor
         Doctor.setDoctor("biswa.roy@healthifyyou.com");
 
         PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();

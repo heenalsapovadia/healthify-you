@@ -21,20 +21,20 @@ public class PatientReportValidationUtilImplTest {
     public void validateKidneyReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateKidneyReports());
+        assertTrue(patientReportValidationUtil.validateKidneyReports());
     }
 
     @Test
     public void validateLiverReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateLiverReports());
+        assertTrue(patientReportValidationUtil.validateLiverReports());
     }
 
     @Test
     public void validateEyeReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateEyeReports());
+        assertTrue(patientReportValidationUtil.validateEyeReports());
     }
 }
