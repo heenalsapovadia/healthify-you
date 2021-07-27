@@ -12,20 +12,14 @@ import persistence.patient.model.BloodBankService;
 
 public class BloodBankServiceUtilImplTest {
 
-
-    @Test
-    public void testGetRandomStringForDonationId() {
-        (new BloodBankServiceUtilImpl()).getRandomStringForDonationId();
-    }
-
     @Test
     public void testGetRandomStringForDonationId2() {
         (new BloodBankServiceUtilImpl()).getRandomStringForDonationId();
     }
 
     @Test
-    public void testGetTokenIdForDonation() {
-        (new BloodBankServiceUtilImpl()).getTokenIdForDonation();
+    public void testGetRandomStringForDonationId() {
+        (new BloodBankServiceUtilImpl()).getRandomStringForDonationId();
     }
 
     @Test
@@ -40,4 +34,11 @@ public class BloodBankServiceUtilImplTest {
         bloodBankService.setPatientId(38);
         assertFalse(bloodBankServiceUtilImpl.validateIfPreviousDonationMoreThanSixMonth(bloodBankService));
     }
+
+    @Test
+    public void testGetTokenIdForDonation() {
+        (new BloodBankServiceUtilImpl()).getTokenIdForDonation();
+    }
+
+
 }
