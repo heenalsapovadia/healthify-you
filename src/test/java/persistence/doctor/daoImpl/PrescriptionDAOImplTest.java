@@ -58,16 +58,6 @@ public class PrescriptionDAOImplTest {
         Assert.assertEquals(2, prescriptionDAO.getPrescriptionById(prescriptionId).size());
     }
 
-    /*
-    fetch the max prescription id value from database table
-     */
-    @Test
-    public void testFindMaxPrescriptionId() {
-        DatabaseConnection.loadDatabaseConnection();
-        int maxId = 15;
-        Assert.assertEquals(maxId, new PrescriptionDAOImpl().findMaxPrescriptionId());
-    }
-
     @Test
     public void testGetPrescriptionById() {
         DatabaseConnection.loadDatabaseConnection();
