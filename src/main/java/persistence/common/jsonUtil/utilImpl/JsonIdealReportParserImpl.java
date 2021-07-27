@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Map;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class JsonIdealReportParserImpl implements JsonIdealReportParser {
 
     private String fileName;

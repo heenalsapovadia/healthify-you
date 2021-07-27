@@ -3,6 +3,12 @@ package persistence.doctor.model;
 import persistence.doctor.daoImpl.DoctorDAOImpl;
 import java.util.Date;
 
+/**
+ * Model class to set doctor details.
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class Doctor {
     private int doctorId;
     private String firstName;

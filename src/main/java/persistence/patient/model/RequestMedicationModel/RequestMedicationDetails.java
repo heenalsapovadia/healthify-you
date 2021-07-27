@@ -1,7 +1,14 @@
 package persistence.patient.model.RequestMedicationModel;
+/**
+ * <pre>
+ // Model for requesting medication for charges and itemsleft
+ // test method RequestMedicationDetailsDetailsTest written at package persistence.patient.model.RequestMedicationModel;
 
-// Model for requesting medication for charges and itemsleft
-
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class RequestMedicationDetails {
     public double totalCost;
     public int itemsLeft;

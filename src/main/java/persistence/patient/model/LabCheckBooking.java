@@ -2,6 +2,14 @@ package persistence.patient.model;
 
 import java.sql.Date;
 
+/**
+ * <pre>
+ * Model class to load Lab Check Bookings from database.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheckBooking {
     int appointmentId;
     int patientId;
