@@ -25,15 +25,29 @@ import presentation.startup.UserLogin;
  */
 public class RegisterPatientOutput {
 
+
+  PrintToConsole print = PrintToConsole.getInstance();
+  RegistrationUtil util = new RegistrationUtilImpl();
+  Scanner sc = new Scanner(System.in);
+  
+  private void loopWhile(String fname) {
+    if (util.validateNames(fname) != null) {
+      do {
+        print.printMethodReturns(util.validateNames(fname));
+        print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
+        fname = sc.next();
+        
+      } while (util.validateNames(fname) != null);
+    }
+  }
   public boolean registerPatient() {
 
-    PrintToConsole print = PrintToConsole.getInstance();
-    print.printHeader(ScreenTitles.signUp);
-    Scanner sc = new Scanner(System.in);
+    print.printHeader(ScreenTitles.SIGN_UP);
+    
     int sel;
-    print.printScreenFields(ScreenFields.userEmailInput);
+    print.printScreenFields(ScreenFields.USER_EMAIL_INPUT);
     String userId = sc.next();
-    print.printScreenFields(ScreenFields.userPasswordInput);
+    print.printScreenFields(ScreenFields.USER_PASSWORD_INPUT);
     String password = sc.next();
     int length = password.length();
     String hidden = "";
@@ -41,7 +55,7 @@ public class RegisterPatientOutput {
       hidden += "*";
     }
     if (userId.endsWith("healthifyyou.com")) {
-      print.printScreenFields(CommonErrors.invalidRegistration);
+      print.printScreenFields(CommonErrors.INVALID_REGISTRATION);
       return false;
     }
     Patient.setPatient(userId);
@@ -50,15 +64,14 @@ public class RegisterPatientOutput {
     p.setPatientEmail(userId);
     p.setPatientType("P");
     print.printSingleNewLine();
-    print.printScreenFields(ScreenFields.emailIdOutput + "= " + userId);
-    print.printScreenFields(ScreenFields.passwordOutput + "= " + hidden);
+    print.printScreenFields(ScreenFields.EMAILID_OUTPUT + "= " + userId);
+    print.printScreenFields(ScreenFields.PASSWORD_OUTPUT + "= " + hidden);
     print.printDoubleNewlines();
 
-    List<String> selection = Arrays.asList(ScreenFields.proceed, ScreenFields.LOGIN, ScreenFields.EXIT);
+    List<String> selection = Arrays.asList(ScreenFields.PROCEED, ScreenFields.LOGIN, ScreenFields.EXIT);
     sel = print.printSelection(selection);
     switch (sel) {
     case 1:
-      RegistrationUtil util = new RegistrationUtilImpl();
       if (util.validateEmail(userId) != null) {
         print.printMethodReturns(util.validateEmail(userId));
         break;
@@ -66,9 +79,9 @@ public class RegisterPatientOutput {
         print.printMethodReturns(util.validatePassword(password));
         break;
       } else {
-        print.printHeader(ScreenTitles.signUp);
-        print.printSubHeading(ScreenTitles.registration);
-        print.printScreenFields(ScreenFields.getInput);
+        print.printHeader(ScreenTitles.SIGN_UP);
+        print.printSubHeading(ScreenTitles.REGISTRATION);
+        print.printScreenFields(ScreenFields.GET_INPUT);
         print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
         String fname = sc.next();
         if (util.validateNames(fname) != null) {
@@ -139,14 +152,14 @@ public class RegisterPatientOutput {
         if (util.validateCity(city) == null) {
           p.setPatientAddress(city);
         }
-        print.printScreenFields(ScreenFields.gender);
+        print.printScreenFields(ScreenFields.GENDER);
         String gender = sc.next();
         p.setPatientGender(gender);
         p.setPatientType("P");
       }
       List<String> selectionOptions = new ArrayList<>();
-      selectionOptions.add(ScreenFields.proceed);
-      selectionOptions.add(ScreenFields.goBack);
+      selectionOptions.add(ScreenFields.PROCEED);
+      selectionOptions.add(ScreenFields.GO_BACK);
       int sel2 = print.printSelection(selectionOptions);
       switch (sel2) {
       case 1:
@@ -155,7 +168,7 @@ public class RegisterPatientOutput {
         return false;
 
       case 2:
-        print.printScreenFields(ScreenFields.goBack);
+        print.printScreenFields(ScreenFields.GO_BACK);
         return false;
       }
     case 2:
