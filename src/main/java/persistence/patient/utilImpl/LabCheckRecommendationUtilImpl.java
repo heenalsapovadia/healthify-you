@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * @author Heenal Sapovadia
- *
+ * This class is responsible for finding Lab Check recommendations based on different factors
  */
 public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUtil {
     Map<Integer, LabCheck> labCheckMap;

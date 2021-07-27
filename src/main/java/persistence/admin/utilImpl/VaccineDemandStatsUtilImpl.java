@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * @author Heenal Sapovadia
- *
+ * This class is responsible for handling the statistics calculations for Vaccination Demand
  */
 public class VaccineDemandStatsUtilImpl implements VaccineDemandStatsUtil {
     

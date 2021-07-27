@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * @author Heenal Sapovadia
- *
+ * This class is responsible for parsing the Patient reports JSON file
  */
 public class JsonPatientReportParserImpl implements JsonPatientReportParser {
 
