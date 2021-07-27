@@ -8,6 +8,16 @@ import java.util.Map;
 import java.util.Queue;
 
 public interface ImmunizationSlotUtil {
-	public void assignDoctors(Map<String, ArrayList<Integer>> assign, Queue<Integer> doctors);
-	public boolean validateWeekend();
+  
+  /**
+   * @param Map(assign), Queue(doctors)
+   * @return void
+   */
+  public void assignDoctors(Map<String, ArrayList<Integer>> assign, Queue<Integer> doctors);
+
+  /**
+   * @param 
+   * @return boolean
+   */
+  public boolean validateWeekend();
 }
