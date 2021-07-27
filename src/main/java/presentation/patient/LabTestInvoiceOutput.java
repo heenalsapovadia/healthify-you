@@ -22,6 +22,12 @@ import presentation.common.ScreenTitles;
  */
 public class LabTestInvoiceOutput {
 	
+	private PrintToConsole consoleObj;
+	
+	public LabTestInvoiceOutput() {
+		consoleObj = PrintToConsole.getInstance();
+	}
+	
 	/**
 	 * <pre>
 	 * Fetches data from database using DAO and prints output to console.
@@ -30,14 +36,13 @@ public class LabTestInvoiceOutput {
 	 * @param date
 	 */
 	public void displayInvoice(Date date) {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateLabCheckInvoice(date.toString(), invoice);
 		List<LabCheckBooking> labCheckBookings = invoice.getLabCheckBookingList();
 		if(labCheckBookings != null && !labCheckBookings.isEmpty()) {
 			consoleObj.printHeader(ScreenTitles.LAB_TEST_RECEIPT);
-			loadScreen(consoleObj, invoice, labCheckBookings);
+			loadScreen(invoice, labCheckBookings);
 		}
 		else {
 			System.err.println(CommonErrors.NO_RECEIPTS);
@@ -52,7 +57,7 @@ public class LabTestInvoiceOutput {
 	 * @param consoleObj
 	 * @param invoice
 	 */
-	private void loadScreen(PrintToConsole consoleObj, Invoice invoice, List<LabCheckBooking> labCheckBookings) {
+	private void loadScreen(Invoice invoice, List<LabCheckBooking> labCheckBookings) {
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());
