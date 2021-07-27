@@ -1,5 +1,7 @@
 package persistence.patient.util;
 
+import java.util.ArrayList;
+
 /**
 * <pre>
 * Perform operations for recommending doctor based on symptoms
@@ -11,5 +13,5 @@ package persistence.patient.util;
 
 public interface DoctorRecommendationUtil {
 
-  public void getDoctorRecommendations(String symptom, int support, int numRec);
+  public ArrayList<String> getDoctorRecommendations(String symptom, int support, int numRec);
 }
