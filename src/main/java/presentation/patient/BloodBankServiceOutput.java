@@ -1,6 +1,8 @@
 package presentation.patient;
 import java.util.*;
 
+import persistence.admin.utilImpl.BloodBankRecommendationUtilImpl;
+import persistence.patient.util.BloodBankServiceUtil;
 import presentation.common.*;
 import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
 import persistence.patient.model.BloodBankService;
@@ -38,18 +40,27 @@ public class BloodBankServiceOutput {
     }
 
     private static String registerForBloodDonation() {
+        PrintToConsole consoleObj = PrintToConsole.getInstance();
         Scanner sc1 = new Scanner(System.in);
         System.out.println(ScreenFields.BLOOD_DONATION_CRITERIA);
 
-        BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.instance());
+        BloodBankServiceDAOImpl bloodBankServiceDaoImpl = new BloodBankServiceDAOImpl();
+        List<BloodBankService> donations = bloodBankServiceDaoImpl.getAllBloodDonationsForPatient(Patient.instance());
         BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
+        BloodBankRecommendationUtilImpl bloodBankRecommendationUtil = new BloodBankRecommendationUtilImpl();
         System.out.println(ScreenFields.YOUR_BLOOD_GROUP);
         String actualBloodGroup = null;
         String bloodGroupInput = null;
         bloodGroupInput = sc1.next();
 
-        // validate blood group here
+        //validation for wrong blood group input
+        while (!bloodBankRecommendationUtil.validateBloodGroup(bloodGroupInput)) {
+            System.err.println("Enter blood group from the given list!");
+            consoleObj.printScreenFields(ScreenFields.BLOOD_GROUP_INPUT);
+            bloodGroupInput = sc1.next().toUpperCase(Locale.ROOT);
+        }
+
+        // validate blood group if user enter wrong blood group that doesnt match with previous entry
         for(BloodBankService bloodBankService : donations){
             actualBloodGroup = bloodBankService.getBloodGrp();
         }
@@ -61,7 +72,7 @@ public class BloodBankServiceOutput {
                 System.out.println(ScreenFields.TOKEN_GENERATED + bloodBankServiceUtil.getTokenIdForDonation());
                 System.out.println(ScreenFields.DONATION_DATE + java.time.LocalDate.now());
                 System.out.println("We operate on Tuesdays and Sundays. Visit anytime.");
-                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.instance(), bloodGroupInput);
+                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankServiceDaoImpl, Patient.instance(), bloodGroupInput);
             }
             if (actualBloodGroup != null && bloodGroupInput.equals(actualBloodGroup)) {
                 System.out.println("Blood Group Validated");
@@ -78,13 +89,12 @@ public class BloodBankServiceOutput {
 
 
     public static String validateDonationDataAndReport(String bloodGroupInput) {
-        BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.instance());
+        BloodBankServiceDAOImpl bloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();
+        List<BloodBankService> donations = bloodBankServiceDAOImpl.getAllBloodDonationsForPatient(Patient.instance());
         BloodBankServiceUtilImpl bloodBankServiceUtil = new BloodBankServiceUtilImpl();
 
-
         // if reports are not normal the user wont be able to register..
-        // also if there are no reports available for specific patient they would be simply able to register
+        // also if there are no reports available for specific patient they wont be able to register..program will exit from module
         if (!bloodBankServiceUtil.checkIfReportsAreNormalForDonation()) {
             System.out.println(ScreenFields.REPORTS_ARE_NORMAL_FOR_BLOOD_DONATIONS);
             return null;
@@ -98,7 +108,7 @@ public class BloodBankServiceOutput {
                 System.out.println(ScreenFields.DONATION_DATE + java.time.LocalDate.now());
                 System.out.println(ScreenFields.HOURS_OF_OPERATION);
                 System.out.println(CommonConstants.NEW_LINE);
-                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankDatabase, Patient.instance(), bloodGroupInput);
+                return bloodBankServiceUtil.registerPatientForBloodDonation(bloodBankServiceDAOImpl, Patient.instance(), bloodGroupInput);
             } else {
                 System.out.println(ScreenFields.PATIENT_ALREADY_DONATED);
                 System.out.println("\n");
@@ -110,8 +120,8 @@ public class BloodBankServiceOutput {
 
     // user will be able to view their previous donations if any exists
     private static void viewPreviousDonations() {
-        BloodBankServiceDAOImpl bloodBankDatabase = new BloodBankServiceDAOImpl();
-        List<BloodBankService> donations = bloodBankDatabase.getAllBloodDonationsForPatient(Patient.instance());
+        BloodBankServiceDAOImpl BloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();
+        List<BloodBankService> donations = BloodBankServiceDAOImpl.getAllBloodDonationsForPatient(Patient.instance());
         if(donations.size()>0) {
             for ( BloodBankService service : donations ) {
                 System.out.println("Patient-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Donation-Id" + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Date" + CommonConstants.SINGLE_TAB + CommonConstants.SINGLE_TAB + CommonConstants.VERTICAL_BAR + "Blood group" + CommonConstants.SINGLE_TAB);
@@ -120,7 +130,7 @@ public class BloodBankServiceOutput {
             }
         }
         else{
-            System.out.println(ScreenFields.NO_DONTION_RECORDS_FOUND);
+            System.out.println(ScreenFields.NO_DONATION_RECORDS_FOUND);
         }
     }
 }

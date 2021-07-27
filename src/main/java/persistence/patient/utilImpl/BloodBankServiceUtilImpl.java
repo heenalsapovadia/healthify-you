@@ -34,11 +34,6 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         return sb.toString();
     }
 
-    @Override
-    public String validatePatientReport(String s) {
-        return null;
-    }
-
     public String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient, String bloodGroupInput) {
         BloodBankService bbservice = new BloodBankService();
         BloodBankServiceUtilImpl serviceUtil = new BloodBankServiceUtilImpl();
@@ -62,7 +57,6 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         JSONArray allTestsArray = (JSONArray) report.get("tests");
         Map allTestsMap = (Map) allTestsArray.get(0);
 
-        // Blood reports
         List<Blood> bloodReports = reportParser.parseBloodReports(allTestsMap);
         for ( Blood blood : bloodReports ) {
             if (blood.getCbcPanel().getHaemoglobin() < 14) {
