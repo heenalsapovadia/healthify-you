@@ -1,5 +1,6 @@
 package persistence.patient.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.patient.dao.LabCheckBookingDAO;
 import persistence.patient.model.LabCheckBooking;
 import persistence.patient.model.Patient;
@@ -17,7 +18,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public void insertBooking(LabCheckBooking booking) {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         String sql = "INSERT INTO labcheck_appointments(patient_id, healthcheck_id, booked_for_date, billing_id) VALUES(?,?,?,?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -37,21 +38,21 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public List<LabCheckBooking> getAllBookings() {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE patient_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, Patient.getPatient().getPatientId());
+            preparedStatement.setInt(1, Patient.instance().getPatientId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 LabCheckBooking labCheckBooking = new LabCheckBooking();
-                labCheckBooking.setAppointmentId(resultSet.getInt("appointment_id"));
-                labCheckBooking.setHealthcheckId(resultSet.getInt("healthcheck_id"));
-                labCheckBooking.setPatientId(resultSet.getInt("patient_id"));
-                labCheckBooking.setBookedForDate(resultSet.getDate("booked_for_date"));
-                labCheckBooking.setRescheduledDate(resultSet.getDate("rescheduled_date"));
-                labCheckBooking.setBillingId(resultSet.getInt("billing_id"));
+                labCheckBooking.setAppointmentId(resultSet.getInt(DatabaseConstants.APPOINTMENT_ID));
+                labCheckBooking.setHealthcheckId(resultSet.getInt(DatabaseConstants.HEALTHCHECK_ID));
+                labCheckBooking.setPatientId(resultSet.getInt(DatabaseConstants.PATIENT_ID));
+                labCheckBooking.setBookedForDate(resultSet.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                labCheckBooking.setRescheduledDate(resultSet.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                labCheckBooking.setBillingId(resultSet.getInt(DatabaseConstants.BILLING_ID));
 
                 labCheckBookingList.add(labCheckBooking);
             }
@@ -66,7 +67,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
     @Override
     public List<LabCheckBooking> getBookingByDate(Date date) {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<LabCheckBooking> labCheckBookingList = new ArrayList<>();
         String sql = "SELECT * FROM labcheck_appointments WHERE booked_for_date = ?";
@@ -75,12 +76,12 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 LabCheckBooking labCheckBooking = new LabCheckBooking();
-                labCheckBooking.setAppointmentId(resultSet.getInt("appointment_id"));
-                labCheckBooking.setHealthcheckId(resultSet.getInt("healthcheck_id"));
-                labCheckBooking.setPatientId(resultSet.getInt("patient_id"));
-                labCheckBooking.setBookedForDate(resultSet.getDate("booked_for_date"));
-                labCheckBooking.setRescheduledDate(resultSet.getDate("rescheduled_date"));
-                labCheckBooking.setBillingId(resultSet.getInt("billing_id"));
+                labCheckBooking.setAppointmentId(resultSet.getInt(DatabaseConstants.APPOINTMENT_ID));
+                labCheckBooking.setHealthcheckId(resultSet.getInt(DatabaseConstants.HEALTHCHECK_ID));
+                labCheckBooking.setPatientId(resultSet.getInt(DatabaseConstants.PATIENT_ID));
+                labCheckBooking.setBookedForDate(resultSet.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                labCheckBooking.setRescheduledDate(resultSet.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                labCheckBooking.setBillingId(resultSet.getInt(DatabaseConstants.BILLING_ID));
 
                 labCheckBookingList.add(labCheckBooking);
             }
@@ -95,7 +96,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
 
 	@Override
 	public Map<Integer, String> getHealthChecks(List<Integer> healthCheckIdList) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
         Map<Integer, String> labCheckMap = new HashMap<>();
         String wildcard = "?,".repeat(healthCheckIdList.size());
         String sql = "SELECT * FROM labcheck_plans WHERE checkup_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
@@ -105,7 +106,7 @@ public class LabCheckBookingDAOImpl implements LabCheckBookingDAO {
         	}
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
-                labCheckMap.put(resultSet.getInt("checkup_id"), resultSet.getString("checkup_name"));
+                labCheckMap.put(resultSet.getInt(DatabaseConstants.CHECKUP_ID), resultSet.getString(DatabaseConstants.CHECKUP_NAME));
             }
         }
         catch (SQLException sqlException){

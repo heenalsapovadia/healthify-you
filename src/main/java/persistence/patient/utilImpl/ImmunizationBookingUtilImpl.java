@@ -15,17 +15,20 @@ import persistence.patient.util.ImmunizationBookingUtil;
 import presentation.common.PrintToConsole;
 
 /**
- * @author Deeksha Sareen 
- * This class contains methods responsible for checking
+ * @author Deeksha Sareen: This class contains methods responsible for checking
  *         the eligibility of patient to receive the vaccine shot
  */
 public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
   PrintToConsole print = PrintToConsole.getInstance();
 
+  /**
+   * This method is responsible for checking if the patient is eligible to recieve
+   * the vaccine
+   */
   @Override
   public boolean vaccineEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap) {
-    Patient patient = Patient.getPatient();
+    Patient patient = Patient.instance();
     String dob = patient.getPatientDob();
     int patientId = patient.getPatientId();
     int patientAge = getAge(dob);
@@ -37,9 +40,11 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
       }
     }
     return false;
-
   }
 
+  /**
+   * This method checks the vaccine dose eligibility
+   */
   private boolean checkDoses(int doses, int vaccineId, int patientId) {
     ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
     ArrayList<String> appointmentsdates = new ArrayList<>(dao.getAppointments(vaccineId, patientId));
@@ -51,6 +56,9 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
   }
 
+  /**
+   * This method gets the age from the date of birth
+   */
   public int getAge(String dob) {
     if (dob == null || dob.isEmpty()) {
       return -1;
@@ -76,6 +84,10 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
     return age;
   }
 
+  /**
+   * This method is responsible for checking if the patient is eligible to recieve
+   * the vaccine based on his age
+   */
   private boolean checkAge(int patientage, String agegroup) {
     String[] agerange = agegroup.split(" to ");
     double leftrange = Double.parseDouble(agerange[0]);
@@ -89,6 +101,10 @@ public class ImmunizationBookingUtilImpl implements ImmunizationBookingUtil {
 
   }
 
+  /**
+   * This method is responsible for checking if the patient is eligibile to
+   * recieve the vaccine based on his last dose for the same vaccine.
+   */
   private boolean checkLastDate(int vaccineId, int patientId, int vaccineGap) {
 
     ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();

@@ -12,6 +12,10 @@ import persistence.admin.dao.PharmaInvoiceDAO;
 import persistence.admin.model.PharmaInvoice;
 import presentation.startup.DatabaseConnection;
 
+/**
+ * @author Gurleen Saluja
+ *
+ */
 public class PharmaInvoiceDAOImplTest {
 
 	/**
@@ -55,7 +59,7 @@ public class PharmaInvoiceDAOImplTest {
 		pharmaInvoice.setPaymentMode("C");
 		pharmaInvoice.setItemName("Crocin");
 		pharmaInvoice.setItemDosage("500mg");
-		pharmaInvoice.setItemQuantity(3);
+		pharmaInvoice.setItemQuantity(10000);
 		pharmaInvoice.setItemUnitPrice(155.76);
 		pharmaInvoice.setItemManufacturer("GSKAP");
 		pharmaInvoice.setDate(Date.valueOf("2021-07-04"));
@@ -69,7 +73,7 @@ public class PharmaInvoiceDAOImplTest {
 		pharmaInvoiceNew.setPaymentMode("C");
 		pharmaInvoiceNew.setItemName("Combiflam");
 		pharmaInvoiceNew.setItemDosage("500mg");
-		pharmaInvoiceNew.setItemQuantity(10);
+		pharmaInvoiceNew.setItemQuantity(2000);
 		pharmaInvoiceNew.setItemUnitPrice(50.0);
 		pharmaInvoiceNew.setItemManufacturer("GSKAP");
 		pharmaInvoiceNew.setDate(Date.valueOf("2021-07-04"));
@@ -95,7 +99,7 @@ public class PharmaInvoiceDAOImplTest {
 		pharmaInvoiceLatest.setPaymentMode("OTH");
 		pharmaInvoiceLatest.setItemName("Dynapar");
 		pharmaInvoiceLatest.setItemDosage("50mg");
-		pharmaInvoiceLatest.setItemQuantity(20);
+		pharmaInvoiceLatest.setItemQuantity(2000);
 		pharmaInvoiceLatest.setItemUnitPrice(64.5);
 		pharmaInvoiceLatest.setItemManufacturer("Troikaa");
 		pharmaInvoiceLatest.setDate(Date.valueOf("2021-07-04"));

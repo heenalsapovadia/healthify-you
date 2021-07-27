@@ -34,7 +34,7 @@ public class InvoiceOutput {
 		try {
 			Date date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 			}
 			else {
 				Calendar cal = Calendar.getInstance();

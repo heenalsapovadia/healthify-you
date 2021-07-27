@@ -13,6 +13,9 @@ import presentation.common.CommonErrors;
 
 public class UserLoginUtilImpl implements UserLoginUtil {
 
+  /**
+   * This method validates the email format
+   */
   @Override
   public String validateEmail(String email) {
     String emailregex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
@@ -25,6 +28,9 @@ public class UserLoginUtilImpl implements UserLoginUtil {
     return null;
   }
 
+  /**
+   * This method validates the password format
+   */
   @Override
   public String validatePassword(String password) {
     String passwordregex = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$";

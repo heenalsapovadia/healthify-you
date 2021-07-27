@@ -6,7 +6,7 @@
 package persistence.startup.model;
 
 public class Login {
-  
+
   private static String userEmail;
   private static String userPassword;
   private static String userType;

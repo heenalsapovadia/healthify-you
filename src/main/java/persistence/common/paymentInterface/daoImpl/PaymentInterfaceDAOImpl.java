@@ -18,7 +18,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
     private static final Logger LOGGER = Logger.getLogger(PaymentInterfaceDAOImpl.class.getName());
 
     public int insertPaymentInterfaceDetails(PaymentInterface paymentInterface) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         int billingId = findMaxBillingId() + 1;
 
@@ -45,7 +45,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
 
     @Override
     public int findMaxBillingId() {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         String sql = "SELECT MAX(billing_id) FROM payment_billing";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -61,7 +61,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
     }
 
     public List<PaymentInterface> getAllPaymentInterfaceDetails(Patient patient) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         String sql = "SELECT * FROM payment_billing where patient_id=" + patient.getPatientId();
         try {
@@ -92,7 +92,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
 
     @Override
     public int getVoucherRedemptionPoints(int patientId) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         ResultSet rs = null;
         StringBuilder sql = new StringBuilder();
         sql.append("select sum(points) as pointSummation from vouchers where voucher_id in ");
@@ -112,7 +112,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
 
 	@Override
 	public Map<Integer, PaymentInterface> getPaymentDetails(List<Integer> billingIdList) {
-		 Connection conn = DatabaseConnection.getConnection();
+		 Connection conn = DatabaseConnection.instance();
 		 ResultSet rs = null;
 		 StringBuilder sql = new StringBuilder();
 		 PaymentInterface payment = null;

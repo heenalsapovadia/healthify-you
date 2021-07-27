@@ -4,7 +4,6 @@ import persistence.doctor.daoImpl.ScheduledaAppointmentsDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.PatientDetailsModel;
 import presentation.common.CommonConstants;
-import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
 import java.sql.Date;
 import java.util.List;
@@ -45,10 +44,10 @@ public class ScheduledAppointmentsOutput {
         if(!appointments.isEmpty()) {
 	        for (Appointment appointment: appointments) {
 	            //System.out.print("Appointment Id - " + appointment.getAppointment_id() + " ");
-	            PatientDetailsModel model = scheduledaAppointmentsDAOimpl.getPatient(appointment.getPatient_id());
+	            PatientDetailsModel model = scheduledaAppointmentsDAOimpl.getPatient(appointment.getPatientId());
 	            System.out.print("Appointment Id" + "    " + "Patient Name" +"    "+ "Patient Age ");
 	            System.out.println();
-	            System.out.print(appointment.getAppointment_id() +"               " + model.name + "               " + model.age );
+	            System.out.print(appointment.getAppointmentId() +"               " + model.name + "               " + model.age );
 	            System.out.println();
 	        }
         }

@@ -29,9 +29,9 @@ public class BookingDashboard {
         List<String> selectionOptions = new ArrayList<>();
         selectionOptions.add(ScreenFields.APPOINTMENT_WITH_DOCTOR);
         selectionOptions.add(ScreenFields.BOOK_LAB_TEST);
-        selectionOptions.add(ScreenFields.bookImmunization);
+        selectionOptions.add(ScreenFields.BOOK_IMMUNIZATION);
         selectionOptions.add(ScreenFields.bookBloodBankService);
-        selectionOptions.add(ScreenFields.goBack);
+        selectionOptions.add(ScreenFields.GO_BACK);
         return selectionOptions;
     }
 
@@ -57,7 +57,7 @@ public class BookingDashboard {
         }
         else if(sel == 4) {
             //Book a blood bank service - blood donation
-            Patient patient = Patient.getPatient();
+            Patient patient = Patient.instance();
             patient.getPatientEmail();
             BloodBankServiceOutput bloodBankServiceOutput = new BloodBankServiceOutput();
             bloodBankServiceOutput.bloodBankService(patient);

@@ -7,47 +7,52 @@ import java.util.logging.Logger;
 
 public class DoctorMenuOutput {
 
-    private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
+	private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
 
-    private DoctorMenuOutput(){}
+	private PrintToConsole consoleObj = PrintToConsole.getInstance();
 
-    private static DoctorMenuOutput doctorMenuOutput;
+	private DoctorMenuOutput() {
+	}
 
-    public static DoctorMenuOutput getInstance() {
-        if(doctorMenuOutput == null)
-            doctorMenuOutput = new DoctorMenuOutput();
-        return doctorMenuOutput;
-    }
+	private static DoctorMenuOutput doctorMenuOutput;
 
-    public void displayOutput() {
-        List<String> selectionOptions = getSelectionOptions();
-        while(true) {
-            consoleObj.printHeader(ScreenTitles.DOCTOR_DASHBOARD);
-            int option = consoleObj.printSelection(selectionOptions);
+	public static DoctorMenuOutput getInstance() {
+		if (doctorMenuOutput == null)
+			doctorMenuOutput = new DoctorMenuOutput();
+		return doctorMenuOutput;
+	}
 
-            switch (option) {
-                case 1:
-                    PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
-                    prescribeMedicineOutput.prescribeMedication();
-                    break;
-                case 2:
-                    ScheduledAppointmentsOutput scheduledAppointmentsOutput = new ScheduledAppointmentsOutput();
-                    scheduledAppointmentsOutput.scheduledAppointmentsDetails();
-                    break;
-                case 3:
-                    System.out.println(ScreenFields.LOGOUT_MESSAGE);
-                    return;
-            }
-        }
-    }
+	public void displayOutput() {
+		List<String> selectionOptions = getSelectionOptions();
+		while (true) {
+			consoleObj.printHeader(ScreenTitles.DOCTOR_DASHBOARD);
+			int option = consoleObj.printSelection(selectionOptions);
+			switch (option) {
+				case 1:
+					PrescribeMedicineOutput prescribeMedicineOutput = new PrescribeMedicineOutput();
+					prescribeMedicineOutput.prescribeMedication();
+					break;
+				case 2:
+					ScheduledAppointmentsOutput scheduledAppointmentsOutput = new ScheduledAppointmentsOutput();
+					scheduledAppointmentsOutput.scheduledAppointmentsDetails();
+					break;
+				case 3:
+					consoleObj.flushResources();
+					System.out.println(ScreenFields.LOGOUT_MESSAGE);
+					System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
+					return;
+				default:
+					consoleObj.printError(CommonErrors.INVALID_SELECTION);
+			}
+		}
+	}
 
-    private List<String> getSelectionOptions() {
-        List<String> selectionOptions = new ArrayList<>();
-        selectionOptions.add(ScreenFields.PRESCRIBE_MEDICATION);
-        selectionOptions.add(ScreenFields.VIEW_APPOINTMENTS);
-        selectionOptions.add(ScreenFields.LOGOUT);
-        return selectionOptions;
-    }
+	private List<String> getSelectionOptions() {
+		List<String> selectionOptions = new ArrayList<>();
+		selectionOptions.add(ScreenFields.PRESCRIBE_MEDICATION);
+		selectionOptions.add(ScreenFields.VIEW_APPOINTMENTS);
+		selectionOptions.add(ScreenFields.LOGOUT);
+		return selectionOptions;
+	}
 
 }

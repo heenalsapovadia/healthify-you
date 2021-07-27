@@ -38,7 +38,7 @@ public class AdminMenuOutput {
 		selectionOptions.add(ScreenFields.GET_INVOICES);
 		selectionOptions.add(ScreenFields.GET_RECOMMENDATIONS);
 		selectionOptions.add(ScreenFields.REGISTER_DOCTOR);
-		selectionOptions.add(ScreenFields.immunizationmanagement);
+		selectionOptions.add(ScreenFields.IMMUNIZATION_MANAGEMENT);
 		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
 	}
@@ -47,6 +47,7 @@ public class AdminMenuOutput {
 		consoleObj.printHeader(ScreenTitles.ADMIN_DASHBOARD);
 		List<String> selectionOptions = getSelectionOptions();
 		int sel = consoleObj.printSelection(selectionOptions);
+		
 		if (sel == 1) {
 			InvoiceOutput invoiceOutput = new InvoiceOutput();
 			invoiceOutput.displayInvoice();
@@ -55,27 +56,24 @@ public class AdminMenuOutput {
 			BloodBankRecommendationOutput bloodBankRecommendationOutput = new BloodBankRecommendationOutput();
 			bloodBankRecommendationOutput.getBloodBankRecommendations();
 			sel = loadScreenOptions(consoleObj);
-
-		}
-
-		else if (sel == 3) {
+		} else if (sel == 3) {
 			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
 			doctorRegistrationOutput.registerDoctor();
 			sel = loadScreenOptions(consoleObj);
-
 		} else if (sel == 4) {
 			ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
 			immunizationdashboard.displayOutput();
 			sel = loadScreenOptions(consoleObj);
-
 		} else if (sel == 5) {
 			System.out.println(ScreenFields.LOGOUT_MESSAGE);
 			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
+			consoleObj.flushResources();
 			System.exit(0);
 		} else {
 			consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			sel = loadScreenOptions(consoleObj);
 		}
+		
 		return sel;
 	}
 }
