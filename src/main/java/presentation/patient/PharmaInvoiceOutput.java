@@ -37,7 +37,7 @@ public class PharmaInvoiceOutput {
 	
 	/**
 	 * <pre>
-	 * Fetches data from database using DAO and prints output to console.
+	 * Fetches data from database using Utility and prints output to console.
 	 * </pre>
 	 * 
 	 * @param date

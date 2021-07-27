@@ -1,6 +1,9 @@
 package persistence.admin.util;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
+import persistence.admin.model.PharmaInvoice;
 
 public interface PharmaInvoiceUtil {
 	
@@ -25,4 +28,13 @@ public interface PharmaInvoiceUtil {
 	 * @return
 	 */
 	public double calculateGrandTotalAmount(List<Double> prices);
+	
+	/**
+	 * <pre>
+	 * Fetches data for all invoices for a given date from the database.
+	 * </pre>
+	 * 
+	 * @return
+	 */
+	public Map<String, List<PharmaInvoice>> fetchMapFromDatabase(Date date);
 }

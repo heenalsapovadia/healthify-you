@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistence.common.DatabaseConstants;
 import persistence.patient.dao.RedeemableVoucherDAO;
+import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
 import presentation.startup.DatabaseConnection;
 
@@ -41,14 +42,14 @@ public class RedeemableVoucherDAOImpl implements RedeemableVoucherDAO {
 	}
 
 	@Override
-	public RedeemableVoucher getVoucherByPatient(int patientId) {
+	public RedeemableVoucher getVoucherByPatient() {
 		Connection connection = DatabaseConnection.instance();
 		RedeemableVoucher voucher = null;
 		ResultSet resultSet = null;
 		StringBuilder sqlStatement = new StringBuilder();
 		sqlStatement.append("select * from vouchers where voucher_id = (select voucher_id from patients where patient_id = ?)");
 		try (PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement.toString())){
-			preparedStatement.setInt(1, patientId);
+			preparedStatement.setInt(1, Patient.instance().getPatientId());
 			resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()) {
 				voucher = new RedeemableVoucher();

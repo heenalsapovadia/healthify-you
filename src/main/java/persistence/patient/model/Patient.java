@@ -111,4 +111,8 @@ public class Patient {
 		this.patientType = patientType;
 	}
 
+	public static void resetPatient() {
+		if(patient != null)
+			patient = null;
+	}
 }

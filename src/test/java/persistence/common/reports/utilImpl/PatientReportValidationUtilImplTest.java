@@ -14,7 +14,8 @@ public class PatientReportValidationUtilImplTest {
     public void validateBloodReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateBloodReports());
+        assertTrue(patientReportValidationUtil.validateBloodReports());
+        Patient.resetPatient();
     }
 
     @Test
@@ -22,6 +23,7 @@ public class PatientReportValidationUtilImplTest {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
         assertTrue(patientReportValidationUtil.validateKidneyReports());
+        Patient.resetPatient();
     }
 
     @Test
@@ -29,6 +31,7 @@ public class PatientReportValidationUtilImplTest {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
         assertTrue(patientReportValidationUtil.validateLiverReports());
+        Patient.resetPatient();
     }
 
     @Test
@@ -36,5 +39,6 @@ public class PatientReportValidationUtilImplTest {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
         assertTrue(patientReportValidationUtil.validateEyeReports());
+        Patient.resetPatient();
     }
 }

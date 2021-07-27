@@ -23,8 +23,7 @@ public interface RedeemableVoucherDAO {
 	 * Fetches Redeemable Voucher Details using patient id of a patient.
 	 * </pre>
 	 * 
-	 * @param patientId
 	 * @return
 	 */
-	public RedeemableVoucher getVoucherByPatient(int patientId);
+	public RedeemableVoucher getVoucherByPatient();
 }
