@@ -4,6 +4,14 @@ import presentation.common.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <pre>
+ * Loads Doctor dashboard in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorMenuOutput {
 
 	private PrintToConsole consoleObj;

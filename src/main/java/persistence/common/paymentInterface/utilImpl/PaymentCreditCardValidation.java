@@ -1,5 +1,8 @@
 package persistence.common.paymentInterface.utilImpl;
 
+// author - saloni raythatha
+// this class implements for credit card validation
+import persistence.common.paymentInterface.util.PaymentCreditCardValidationUtil;
 import presentation.common.CommonErrors;
 import presentation.common.ScreenFields;
 import java.util.Arrays;
@@ -8,14 +11,12 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.lang.String.valueOf;
-
-public class PaymentCreditCardValidation {
+public class PaymentCreditCardValidation implements PaymentCreditCardValidationUtil {
 
     public String validateCreditCardNumber(Long creditCardNumber) {
         int length = (int) (Math.log10(creditCardNumber) + 1);
-        String result1 = "Should start with 512. Please enter again.";
-        String result2 = "Card number should be 12 digit long";
+        String result1 = ScreenFields.ENTER_VALID_CREDITCARD_Number;
+        String result2 = ScreenFields.MIN_CARD_NUMBER;
         if (length == 12) {
             String temp = creditCardNumber + "";
             if (temp.startsWith("512") && !temp.matches("^[ a-zA-Z]*$")) {
@@ -35,14 +36,13 @@ public class PaymentCreditCardValidation {
         if (matcher.matches() == false || Date == null || Date == "") {
             return CommonErrors.INVALID_DATE_FORMAT;
         }
-
         return null;
     }
 
     public String validateCvv(Long cvvNumber) {
         int length = (int) (Math.log10(cvvNumber) + 1);
-        String result1 = "Should start with 9. Please enter again.";
-        String result2 = "Cvv number should be 3 digit long";
+        String result1 = ScreenFields.ENTER_VALID_CVV;
+        String result2 = ScreenFields.MIN_CVV_NUMBER;
         if (length == 3) {
             String temp = cvvNumber + "";
             if (temp.startsWith("9") && !temp.matches("^[ a-zA-Z]*$")) {
@@ -58,28 +58,28 @@ public class PaymentCreditCardValidation {
     public final List<Object> ValidateCC(Long cardNumber, String expirtyDate, Long cvvNumber){
 
         Scanner sc = new Scanner(System.in);
-        System.out.println(ScreenFields.cardNumber);
+        System.out.println(ScreenFields.CARD_NUMBER);
         cardNumber = sc.nextLong();
         if(validateCreditCardNumber(cardNumber) != null){
             do {
-                System.out.println("Wrong credit card number. Please enter again");
+                System.out.println(ScreenFields.WRONG_CARD_NUMBER);
                 cardNumber = sc.nextLong();
             } while (validateCreditCardNumber(cardNumber) != null);
         }
 
-        System.out.println(ScreenFields.expirydate);
+        System.out.println(ScreenFields.EXPIRY_DATE);
         expirtyDate= sc.next();
         if(validateExpiryDate(expirtyDate) != null){
             do {
-                System.out.println("Wrong date. Please enter again");
+                System.out.println(ScreenFields.WRONG_DATE);
                 expirtyDate= sc.next();
             } while (validateExpiryDate(expirtyDate) != null);
         }
-        System.out.println(ScreenFields.cvvNumber);
+        System.out.println(ScreenFields.CVV_NUMBER);
         cvvNumber = sc.nextLong();
             if(validateCvv(cvvNumber) != null){
             do {
-                System.out.println("Wrong Cvv. Please start with 9 and make sure its 3 digit long.");
+                System.out.println(ScreenFields.WRONG_CVV_NUMBER);
                 cvvNumber = sc.nextLong();
             } while (validateCvv(cvvNumber) != null);
         }

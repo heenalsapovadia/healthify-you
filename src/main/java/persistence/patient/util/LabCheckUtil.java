@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface LabCheckUtil {
-    List<LabCheck> fetchLabCheckPlans();
 
-    void fetchDetails();
+    Map<Integer, LabCheck> fetchLabCheckMap(List<LabCheck> labCheckList);
 
-    Map<Integer, LabCheck> fetchLabCheckMap();
 }

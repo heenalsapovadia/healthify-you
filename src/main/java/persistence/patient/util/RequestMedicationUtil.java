@@ -1,5 +1,4 @@
 package persistence.patient.util;
-
 /**
  * <pre>
  * Request Medication Interface
@@ -18,11 +17,11 @@ import java.util.ArrayList;
 public interface RequestMedicationUtil {
 
     // this method is for collection precription id and process the payment based on stock, name, dosage, charges..
-    public RequestMedicationDetails processPrescription(Prescription currentPrescription,
+    RequestMedicationDetails processPrescription(Prescription currentPrescription,
                                                         RequestMedicationDAOImpl requestMedication);
 
     // this method is for processing payment all the data from prescription and pharma table collected
-    public void makePaymentForPrescriptionsWithAmount(double amount,
+     void makePaymentForPrescriptionsWithAmount(double amount,
                                                       ArrayList<MedicationsToUpdate> medicationsToUpdate,
                                                       RequestMedicationDAOImpl requestMedication,
                                                       int current_PrescriptionId);

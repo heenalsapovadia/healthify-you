@@ -13,6 +13,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheckDAOImpl implements LabCheckDAO {
     private static final Logger LOGGER = Logger.getLogger(LabCheckDAOImpl.class.getName());
 

@@ -1,6 +1,6 @@
 package presentation.doctor;
 
-import persistence.doctor.daoImpl.ScheduledaAppointmentsDAOImpl;
+import persistence.doctor.daoImpl.ScheduledAppointmentsDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.PatientDetailsModel;
 import persistence.doctor.utilImpl.ScheduledAppointmentsUtilImpl;
@@ -14,8 +14,7 @@ import java.util.Scanner;
 public class ScheduledAppointmentsOutput {
     public void scheduledAppointmentsDetails() {
 
-        ScheduledaAppointmentsDAOImpl scheduledaAppointmentsDAOimpl = new ScheduledaAppointmentsDAOImpl();
-
+        ScheduledAppointmentsDAOImpl scheduledAppointmentsDAOimpl = new ScheduledAppointmentsDAOImpl();
         Scanner sc = new Scanner(System.in);
         for ( int i = 0; i < 100; i++ )
             System.out.print(CommonConstants.HEADING_CHAR);
@@ -45,6 +44,7 @@ public class ScheduledAppointmentsOutput {
         }
 
         List<Appointment> appointments = scheduledaAppointmentsDAOimpl.getAppointmentsDetails(current_appointment_date);
+        List<Appointment> appointments = scheduledAppointmentsDAOimpl.getAppointmentsDetails(current_appointment_date);
         if(!appointments.isEmpty()) {
 	        for (Appointment appointment: appointments) {
                 PatientDetailsModel model = scheduledaAppointmentsDAOimpl.getPatient(appointment.getPatientId());
@@ -59,6 +59,7 @@ public class ScheduledAppointmentsOutput {
             return;
         }
         int selection;
+        System.out.print("Enter 1 to Exit:");
         selection = sc.nextInt();
         if(selection == 1) {
         	return;

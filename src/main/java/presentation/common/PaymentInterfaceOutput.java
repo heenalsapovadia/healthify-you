@@ -1,5 +1,13 @@
 package presentation.common;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Database Implementation
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *this is presentation/output for payment interface for payment interface
+ */
 import persistence.common.paymentInterface.modelPaymentInterface.*;
 import persistence.common.paymentInterface.utilImpl.PaymentCategoryWiseBilling;
 import persistence.common.paymentInterface.utilImpl.PaymentCreditCardValidation;
@@ -8,14 +16,9 @@ import persistence.patient.dao.RedeemableVoucherDAO;
 import persistence.patient.daoImpl.RedeemableVoucherDAOImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class PaymentInterfaceOutput {
-    private PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
-
+public class PaymentInterfaceOutput  {
     private static class PaymentInterfaceOutputHelper {
         private static final PaymentInterfaceOutput instance = new PaymentInterfaceOutput();
     }
@@ -30,17 +33,18 @@ public class PaymentInterfaceOutput {
         return loadScreenOptions(consoleObj, billingCategory,checkoutAmount);
     }
 
-    private int loadScreenOptions(PrintToConsole consoleObj,
+    public int loadScreenOptions(PrintToConsole consoleObj,
                                   PaymentBillingCategory billingCategory,
                                   double checkoutAmount) {
-        List<String> selectionOptions = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
 
-        // Credit card validation
+
+        // Enter - credit details and it will go through validation..
+        Scanner sc = new Scanner(System.in);
         Long cardNumber = null;
         String expirtyDate = null;
         Long cvvNumber = null;
 
+        //PaymentCreditCardValidation - for validating credit card
         PaymentCreditCardValidation paymentCreditCardValidation = new PaymentCreditCardValidation();
         paymentCreditCardValidation.ValidateCC(cardNumber, expirtyDate, cvvNumber);
         PaymentCardDetails cardDetails = new PaymentCardDetails();
@@ -49,98 +53,98 @@ public class PaymentInterfaceOutput {
         cardDetails.setExpirtyDate(expirtyDate);
 
         // below is for redeem voucher and further process
-        System.out.println(ScreenFields.checkoutAmount + checkoutAmount);
+        System.out.println(ScreenFields.CHECKOUT_AMOUNT + checkoutAmount);
         RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
         RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(Patient.instance().getPatientId());
+
         if (voucher != null) {
-            System.out.println(ScreenFields.redeemVoucher + voucher.getVoucherId());
-            return launhScreenOptionsWithVoucher(consoleObj, sc, voucherDAO, billingCategory, cardDetails, checkoutAmount, voucher);
+            System.out.println(ScreenFields.REDEEM_VOUCHER + voucher.getVoucherId());
+            return launhScreenOptionsWithVoucher(consoleObj, sc, voucherDAO, billingCategory, checkoutAmount, voucher);
         } else {
-            return launhScreenOptionsWithoutVoucher(consoleObj, sc, billingCategory, cardDetails, checkoutAmount);
+            return launhScreenOptionsWithoutVoucher(consoleObj, sc, billingCategory, checkoutAmount);
         }
     }
 
+    // below method to display the option when voucher is available in patients database
     private int launhScreenOptionsWithVoucher(PrintToConsole consoleObj,
-                                              Scanner sc,
-                                              RedeemableVoucherDAO voucherDAO,
-                                              PaymentBillingCategory billingCategory,
-                                              PaymentCardDetails cardDetails,
-                                              double checkoutAmount, RedeemableVoucher voucher) {
-        System.out.println(ScreenFields.voucherIdOption1);
-        System.out.println(ScreenFields.voucherIdOption2);
+                                             Scanner sc,
+                                             RedeemableVoucherDAO voucherDAO,
+                                             PaymentBillingCategory billingCategory,
+                                             double checkoutAmount, RedeemableVoucher voucher) {
+
+        System.out.println(ScreenFields.VOUCHER_ID_OPTION1);
+        System.out.println(ScreenFields.VOUCHER_ID_OPTION2);
+
+        PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
+        PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
 
         int sel = sc.nextInt();
         PaymentCategoryWiseBilling categoryEnumValues = new PaymentCategoryWiseBilling();
 
         if (sel == 1) {
             // Without voucher
-            int billingId = paymentUtil.processPayment(billingCategory, cardDetails, checkoutAmount, "");
+            int billingId = paymentUtil.processPayment(billingCategory, checkoutAmount, "");
             System.out.println(categoryEnumValues.enumInIf(billingCategory));
             System.out.println("Billing id is: " + billingId);
             return billingId;
-        }
-
-        else if (sel == 2) {
+        } else if (sel == 2) {
             // With voucher
-            System.out.println(ScreenFields.enterVoucherId);
+            System.out.println(ScreenFields.ENTER_VOUCHERID);
             String enteredVoucherId = sc.next();
             if (voucherDAO.getVoucherByPatient(Patient.instance().getPatientId()).getVoucherId().equals(enteredVoucherId)) {
 
-                // if voucher has less points than billing checkout amount
+                // if voucher has less points than billing checkout amount then use voucher and remaining from credit card..
                 if (voucher.getPoints() < checkoutAmount) {
                     double remainingAmount = checkoutAmount - voucher.getPoints();
-                    int billingIdWithVoucher = paymentUtil.processPayment(billingCategory, cardDetails, voucher.getPoints(), voucher.getVoucherId());
-                    int billingId2WithCreditCard = paymentUtil.processPayment(billingCategory, cardDetails, remainingAmount, "");
-                    // Print out message as needed
+                    int billingIdWithVoucher = paymentUtil.processPayment(billingCategory, voucher.getPoints(), voucher.getVoucherId());
+                    int billingId2WithCreditCard = paymentUtil.processPayment(billingCategory, remainingAmount, "");
                     System.out.println(categoryEnumValues.enumInIf(billingCategory));
-                    System.out.println( voucher.getPoints() + " -- Voucher points used for billing and billing id is: " + billingIdWithVoucher);
-                    System.out.println( "Remaining balance of " + remainingAmount + " paid through credit card and billing id is: " + billingId2WithCreditCard);
+                    System.out.println(voucher.getPoints() + ScreenFields.VOUCHER_POINTS_USED_FOR_BILLING + billingIdWithVoucher);
+                    System.out.println(ScreenFields.BALANCE_REMAINING_FROM_CHECKOUT + remainingAmount + ScreenFields.REMAINING_BALANCE_PAID_THROUGH_CREDITCARD + billingId2WithCreditCard);
                 } else {
                     // if voucher has enough points for billing amount
                     double remainingAmount = voucher.getPoints() - checkoutAmount;
                     if (remainingAmount < 0) {
                         remainingAmount = 0;
                     }
-                    int billingId = paymentUtil.processPayment(billingCategory, cardDetails, remainingAmount, voucher.getVoucherId());
+                    int billingId = paymentUtil.processPayment(billingCategory, remainingAmount, voucher.getVoucherId());
                     System.out.println(categoryEnumValues.enumInIf(billingCategory));
-                    System.out.println("Payment Successful and billing id is: " + billingId);
+                    System.out.println(ScreenFields.BILLING_ID_GENERATED + billingId);
                     return billingId;
                 }
-
             } else {
                 // if voucher is invalid
-                System.out.println("Invalid Voucher. Please pay through credit card.");
+                System.out.println(ScreenFields.INVALID_VOUCHER);
             }
-           // System.out.println("Invalid Voucher. Please pay through credit card.");
-        }
-        else {
+        } else {
             consoleObj.printError(CommonErrors.INVALID_SELECTION);
-            sel = loadScreenOptions(consoleObj, billingCategory ,checkoutAmount);
+            sel = paymentInterfaceOutput.loadScreenOptions(consoleObj, billingCategory, checkoutAmount);
         }
         return sel;
     }
 
+    // below method to display the option when voucher is not available in patients database
     private int launhScreenOptionsWithoutVoucher(PrintToConsole consoleObj,
-                                                 Scanner sc,
-                                                 PaymentBillingCategory billingCategory,
-                                                 PaymentCardDetails cardDetails,
-                                                 double checkoutAmount) {
-        System.out.println(ScreenFields.voucherIdOption1);
-        System.out.println(ScreenFields.voucherIdOption2);
+                                                Scanner sc,
+                                                PaymentBillingCategory billingCategory,
+                                                double checkoutAmount) {
+        System.out.println(ScreenFields.VOUCHER_ID_OPTION1);
+        System.out.println(ScreenFields.VOUCHER_ID_OPTION2);
+        PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
+        PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
 
         int sel = sc.nextInt();
         PaymentCategoryWiseBilling categoryEnumValues = new PaymentCategoryWiseBilling();
-
         if (sel == 1) {
             // Without voucher
-            int billingId = paymentUtil.processPayment(billingCategory, cardDetails,checkoutAmount, "");
+            int billingId = paymentUtil.processPayment(billingCategory,checkoutAmount, "");
             System.out.println(categoryEnumValues.enumInIf(billingCategory));
-            System.out.println("Billing id is: " + billingId);
+            System.out.println(ScreenFields.BILLING_ID + billingId);
             return billingId;
         }
         else {
-            consoleObj.printError("Voucher not available. Please enter details again.");
-            sel = loadScreenOptions(consoleObj, billingCategory ,checkoutAmount);
+            consoleObj.printError(ScreenFields.VOUCHER_NOT_AVAILABLE);
+            sel = paymentInterfaceOutput.loadScreenOptions(consoleObj, billingCategory ,checkoutAmount);
         }
         return sel;
     }

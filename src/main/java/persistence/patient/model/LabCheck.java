@@ -1,5 +1,13 @@
 package persistence.patient.model;
 
+/**
+ * <pre>
+ * Model class to load Lab Check Plans from database.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheck {
     private int checkupId;
     private String checkupName;

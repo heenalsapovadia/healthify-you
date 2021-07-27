@@ -2,6 +2,14 @@ package persistence.doctor.model;
 
 import java.sql.Date;
 
+/**
+ * <pre>
+ * Model class to load Doctor Appointments from database.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class Appointment {
     private int appointmentId;
     private int patientId;

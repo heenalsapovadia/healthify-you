@@ -2,6 +2,10 @@ package persistence.common.reports.model;
 
 import java.sql.Date;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class Blood {
     private CBC cbcPanel;
     private Date date;
