@@ -66,8 +66,7 @@ public class BookingDashboard {
 
         }
         else if(sel == 5) {
-              PatientMenuOutput patientMenu = PatientMenuOutput.getInstance();
-              patientMenu.displayOutput();
+              return sel;
         }
         else {
             consoleObj.printError(CommonErrors.INVALID_SELECTION);
