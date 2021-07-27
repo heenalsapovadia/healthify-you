@@ -229,14 +229,20 @@ public class ScreenFields {
   public static final String APPOINTMENT_DATE = "DoctorName";
   public static final String APPOINTMENT_TO_RESCHEDULE = "Appointment to be rescheduled";
 
-  /* Scheduled Appoinments fields */
-  public static final String CURRENT_APPOINTMENT_DATE = "Enter the date of appointment(yyyy-mm-dd): ";
-  public static final String WRONG_DATE = "Wrong date";
-  public static final String INVALID_DATE_FORMAT_FOR_SCHEDULEDAPPOINTMENTS = "Invalid Date Format";
-  public static final String NO_SCHEDULED_APPOINTMENTS = "No scheduled appointments on the entered date.";
-  public static final String ENTER_TO_EXIT = "Enter 1 to Exit:";
-  public static final String PATIENT_NAME_IN_APPOINTMENT  = "Patient Name";
-  public static final String PATIENT_AGE  = "Patient Age ";
-
-
+  /* Request Medication fields */
+  public static final String ENTER_PRESCRIPTION_ID = "Enter Prescription ID: [Only enter numbers]";
+  public static final String GETTING_PRESCRIPTION_ID = "Enter 1 to insert Prescription ID";
+  public static final String CURRENT_LOGGEDIN_PATIENT = "Current logged in Patient Name = ";
+  public static final String INCORRECT_PRESCRIPTION_ID = "This is Incorrect prescription id for logged in patient. Please try again.";
+  public static final String PRESCRIBED_LIST_OF_MEDICINE = "Prescribed list of above prescription id is below:";
+  public static final String NAME_OF_MEDICINE = "Medicine Name: ";
+  public static final String DOSE_OF_MEDICINE = "Medicine Dose: ";
+  public static final String MEDICINE_DOSAGE_DAYS =  "Dosage is for : ";
+  public static final String DAYS = " days";
+  public static final String PAYMENT_NEEDED_FOR_PRESCRIPTION = "Payment needed of amount ";
+  public static final String TOTAL_DOSE = "Total dose requirement - ";
+  public static final String ENOUGH_DOSES_OF_MEDICINE_AVAILABLE = "Enough dose available in the pharmacy stock.";
+  public static final String CHECKOUT_AMOUNT_NOT_ELIGIBLE = "Checkout amount is not eligible for payment.";
+  public static final String NOT_ENOUGH_DOSES = "Not enough dose available in inventory. Unable to add to checkout amount.";
+  public static final String EXIT_FROM_REQUEST_MEDICATION = "EXIT";
 }

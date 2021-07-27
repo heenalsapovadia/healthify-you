@@ -59,7 +59,7 @@ public class PatientMenuOutput {
 		}
 		else if(sel == 3) {
 			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
-			requestMedicationDetails.requestMedicationDetails();
+			requestMedicationDetails.requestMedicationDashboard();
 			sel = loadScreenOptions(consoleObj);
 		}
 		else if(sel == 4) {
