@@ -5,24 +5,52 @@ import java.util.Map;
 import persistence.patient.model.ImmunizationBooking;
 
 /**
- * @author Deeksha Sareen
- * interface DAO class for booking of immunization for patients
+ * @author Deeksha Sareen interface DAO class for booking of immunization for
+ *         patients
  */
 
 public interface ImmunizationBookingDAO {
 
-	public List<String> getVaccineStock();
+  /**
+   * @param 
+   * @return List<String>
+   */
+  public List<String> getVaccineStock();
 
-	public List<String> getVaccineDetail(String vaccineName);
+  /**
+   * @param vaccineName
+   * @return List<String>
+   */
+  public List<String> getVaccineDetail(String vaccineName);
 
-	public List<String> getAppointments(int vaccineId, int patientId);
+  /**
+   * @param vaccineId, patientId
+   * @return List<String>
+   */
+  public List<String> getAppointments(int vaccineId, int patientId);
 
-	public List<String> getSlots();
+  /**
+   * @param 
+   * @return List<String>
+   */
+  public List<String> getSlots();
 
-	public boolean assignPatientinDatabase(String slotChosen, int vaccineId);
+  /**
+   * @param slotsChosen, vaccineId
+   * @return boolean
+   */
+  public boolean assignPatientinDatabase(String slotChosen, int vaccineId);
 
-	public Map<Integer, String> getVaccineDetailById(List<Integer> vaccineId);
+  /**
+   * @param List of vaccineId
+   * @return Map<Integer, String>
+   */
+  public Map<Integer, String> getVaccineDetailById(List<Integer> vaccineId);
 
-	public List<ImmunizationBooking> getVaccineIdByPatientId();
+  /**
+   * @param 
+   * @return List<ImmunizationBooking>
+   */
+  public List<ImmunizationBooking> getVaccineIdByPatientId();
 
 }

@@ -24,8 +24,8 @@ public class ImmunizationBookingOutput {
   ImmunizationBookingDAOImpl dao = new ImmunizationBookingDAOImpl();
   String vaccineName;
 
+  /* This method is responsible for booking the immunization*/
   public void immunizationBooking() throws SQLException {
-
     print.printHeader(ScreenTitles.BOOK_IMMUNIZATION);
     List<String> selection = new ArrayList(dao.getVaccineStock());
     selection.add(ScreenFields.GO_BACK);
@@ -35,7 +35,7 @@ public class ImmunizationBookingOutput {
     if (sel != 17) {
       vaccineName = selection.get(sel - 1);
       print.printHeader(ScreenTitles.BOOK_IMMUNIZATION);
-      print.printScreenFields(ScreenFields.VACCINE_NAME + "        =     " + selection.get(sel - 1));
+      print.printScreenFields(ScreenFields.VACCINE_NAME + "          =     " + selection.get(sel - 1));
       print.printScreenFields(ScreenFields.DOSES + "     =     " + vaccinedetail.get(1));
       print.printScreenFields(ScreenFields.AGE_GROUP + "     =     " + vaccinedetail.get(2));
       immunizationEligibilityCheck(Integer.parseInt(vaccinedetail.get(0)), Integer.parseInt(vaccinedetail.get(1)),
@@ -48,6 +48,7 @@ public class ImmunizationBookingOutput {
 
   }
 
+  /* This method is responsbile for checking the eligibility of the user for immunization*/
   public void immunizationEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap) {
     print.printSingleNewLine();
     print.printScreenFields(ScreenFields.ELIGIBILITY_CHECK);
@@ -67,6 +68,7 @@ public class ImmunizationBookingOutput {
 
   }
 
+  /* This method is responsible for booking the slot for a particular vaccine id*/
   public void bookVaccine(int vaccineId) {
     print.printScreenFields("Book an appointment? Yes / No");
     print.printScreenFields(ScreenFields.SELECTION);
@@ -89,13 +91,12 @@ public class ImmunizationBookingOutput {
           print.printScreenFields(CommonErrors.ERROR_MESSAGE);
         }
       }
-
     }
-
   }
 
+  /* This method is responsible for printing the confirmation booking message on the screen */
   private void confirmationStatus(String slot) {
-    print.printScreenFields("________________");
+    print.printHorizontalLine();
     Patient patient = Patient.instance();
     print.printScreenFields("Successfully booked immunization appointment !");
     String patientName = patient.getPatientName();
