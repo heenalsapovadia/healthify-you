@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * @author Heenal Sapovadia
- *
+ * This class is responsible for Doctor Prescription related Validations
  */
 public class PrescriptionValidationUtilImpl implements PrescriptionValidationUtil {
 

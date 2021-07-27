@@ -1,7 +1,7 @@
 package persistence.doctor.daoImpl;
 
 import persistence.common.DatabaseConstants;
-import persistence.doctor.dao.SchedueledAppointsDAO;
+import persistence.doctor.dao.ScheduledAppointmentsDAO;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Doctor;
 import persistence.doctor.model.ScheduledAppointmentsModel;
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author Saloni Raythatha
  *
  */
-public class ScheduledAppointmentsDAOImpl implements SchedueledAppointsDAO {
+public class ScheduledAppointmentsDAOImpl implements ScheduledAppointmentsDAO {
 
     private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
 

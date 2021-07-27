@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  * @author Heenal Sapovadia
- *
+ * This class is responsible for managing doctor appointments
  */
 public class AppointmentDAOImpl implements AppointmentDAO {
 

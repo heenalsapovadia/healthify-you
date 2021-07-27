@@ -1,5 +1,6 @@
 package presentation.doctor;
 
+import persistence.doctor.dao.ScheduledAppointmentsDAO;
 import persistence.doctor.daoImpl.ScheduledAppointmentsDAOImpl;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.ScheduledAppointmentsModel;
@@ -49,7 +50,7 @@ public class ScheduledAppointmentsOutput {
         }
 
         // if not appointment found returns and if found loops to given date and goes to processScheduledAppointment method
-        ScheduledAppointmentsDAOImpl scheduledaAppointmentsDAOimpl = new ScheduledAppointmentsDAOImpl();
+        ScheduledAppointmentsDAO scheduledaAppointmentsDAOimpl = new ScheduledAppointmentsDAOImpl();
         List<Appointment> appointments = scheduledaAppointmentsDAOimpl.getAppointmentsDetails(current_appointment_date);
         if(!appointments.isEmpty()) {
             for (Appointment appointment: appointments) {
@@ -69,7 +70,7 @@ public class ScheduledAppointmentsOutput {
 
     // check appointments on the mentioned date and display result
     void processScheduledAppointment(Appointment appointment) {
-        ScheduledAppointmentsDAOImpl scheduledaAppointmentsDAOimpl = new ScheduledAppointmentsDAOImpl();
+        ScheduledAppointmentsDAO scheduledaAppointmentsDAOimpl = new ScheduledAppointmentsDAOImpl();
         ScheduledAppointmentsModel model = scheduledaAppointmentsDAOimpl.getPatient(appointment.getPatientId());
         System.out.print(ScreenFields.APPOINTMENT_ID + CommonConstants.TITLE_SPACE + ScreenFields.PATIENT_NAME_IN_APPOINTMENT + CommonConstants.TITLE_SPACE + ScreenFields.PATIENT_AGE);
         System.out.println();

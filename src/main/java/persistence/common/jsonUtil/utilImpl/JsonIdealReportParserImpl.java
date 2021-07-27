@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * @author Heenal Sapovadia
- *
+ * This class is responsible for parsing the Ideal reports JSON file
  */
 public class JsonIdealReportParserImpl implements JsonIdealReportParser {
 

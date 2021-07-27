@@ -25,5 +25,14 @@ public interface PatientDAO {
 	 */
 	public Patient getPatient(Patient patient);
 	
+	/**
+	 * <pre>
+	 * Fetches vouchers associated with a patient.
+	 * </pre>
+	 * 
+	 * @param voucherId
+	 * @param datetime
+	 * @param patientId
+	 */
 	public void updateVouchersForPatients(String voucherId, Timestamp datetime, int patientId);
 }
