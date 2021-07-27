@@ -23,6 +23,7 @@ import persistence.admin.dao.ImmunizationDoctorsDAO;
 import persistence.admin.dao.ImmunizationSlotDAO;
 import persistence.admin.util.CurrentWeekdays;
 import persistence.admin.utilImpl.ImmunizationSlotUtilImpl;
+import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 
 public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , ImmunizationDoctorsDAO{
@@ -39,7 +40,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
       ps.setString(2, slotTime);
       resultSet = ps.executeQuery();
       if (resultSet.first()) {
-        doctorId = resultSet.getInt("doctor_assigned");
+        doctorId = resultSet.getInt(DatabaseConstants.DOCTOR_ASSIGNED);
       }
 
     } catch (SQLException e) {
@@ -59,7 +60,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
       preparedStatement = conn.prepareStatement(sql);
       resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
-        int id = resultSet.getInt("doctor_id");
+        int id = resultSet.getInt(DatabaseConstants.DOCTOR_ID);
         doctorsID.add(id);
       }
     } catch (SQLException | NullPointerException e) {
@@ -79,7 +80,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
       preparedStatement = conn.prepareStatement(sql);
       resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
-        String slot = resultSet.getString("slot_time");
+        String slot = resultSet.getString(DatabaseConstants.SLOT_TIME);
         if (!slotTime.contains(slot)) {
           slotTime.add(slot);
         }
@@ -120,9 +121,9 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
       preparedStatement = conn.prepareStatement(sql);
       resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
-        String slot = resultSet.getString("slot_time");
-        int doctor = resultSet.getInt("doctor_assigned");
-        String date = resultSet.getString("slot_date");
+        String slot = resultSet.getString(DatabaseConstants.SLOT_TIME);
+        int doctor = resultSet.getInt(DatabaseConstants.DOCTOR_ASSIGNED);
+        String date = resultSet.getString(DatabaseConstants.SLOT_DATE);
         SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss aa");
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar now = Calendar.getInstance();
@@ -132,7 +133,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
           doctor = dateTimeComparator(slot, currentTime, currentDate, date, doctor);
 
         }
-        String weekday = resultSet.getString("weekday");
+        String weekday = resultSet.getString(DatabaseConstants.SLOTWEEKDAY);
         if (doctorsPerDay.containsKey(weekday)) {
           ArrayList<Integer> doctors = new ArrayList<>(doctorsPerDay.get(weekday));
           doctors.add(doctor);

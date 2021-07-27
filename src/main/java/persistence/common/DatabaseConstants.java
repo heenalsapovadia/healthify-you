@@ -60,6 +60,8 @@ public class DatabaseConstants {
     public static final String VACCINE_NAME = "vaccine_name";
     public static final String VACCINE_ID = "vaccine_id";
     public static final String AGE_GROUP_IN_YEARS = "age_group_in_years";
+    public static final String GAP_IN_DAYS = "gap_in_days";
+    public static final String DOSES = "doses";
 
     /* Billing table constants */
     public static final String BILLING_ID = "billing_id";
@@ -80,9 +82,18 @@ public class DatabaseConstants {
     public static final String PHARMA_ITEM_UPDATED_QUANTITY = "pharma_item_updated_quantity";
     public static final String EXPIRY_DATE = "expiry_date";
     
-    /* Redeemabe=le Vouchers constants */
+    /* Redeemable Vouchers constants */
     public static final String VOUCHER_ID = "voucher_id";
     public static final String BLOOD_GROUP = "blood_group";
     public static final String POINTS = "points";
     public static final String VALIDITY_IN_DAYS = "validity_in_days";
+    
+    /* Immunization slot table constants */
+    public static final String DOCTOR_ASSIGNED = "doctor_assigned"; 
+    public static final String SLOT_TIME = "slot_time";
+    public static final String SLOT_DATE = "slot_date";
+    public static final String SLOTWEEKDAY = "weekday";
+    
+    
+    
 }

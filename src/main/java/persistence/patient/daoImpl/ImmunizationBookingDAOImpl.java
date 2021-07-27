@@ -39,7 +39,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
     try (PreparedStatement ps = connection.prepareStatement(sql)) {
       resultSet = ps.executeQuery();
       while (resultSet.next()) {
-        String vaccine = resultSet.getString("vaccine_name");
+        String vaccine = resultSet.getString(DatabaseConstants.VACCINE_NAME);
         vaccinesInSlot.add(vaccine);
       }
     } catch (SQLException e) {
@@ -61,10 +61,10 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
       ps.setString(1, vaccineName);
       resultSet = ps.executeQuery();
       while (resultSet.next()) {
-        vaccineDetails.add(resultSet.getInt("vaccine_id") + "");
-        vaccineDetails.add(resultSet.getInt("doses") + "");
-        vaccineDetails.add(resultSet.getString("age_group_in_years"));
-        vaccineDetails.add(resultSet.getInt("gap_in_days") + "");
+        vaccineDetails.add(resultSet.getInt(DatabaseConstants.VACCINE_ID) + "");
+        vaccineDetails.add(resultSet.getInt(DatabaseConstants.DOSES) + "");
+        vaccineDetails.add(resultSet.getString(DatabaseConstants.AGE_GROUP_IN_YEARS));
+        vaccineDetails.add(resultSet.getInt(DatabaseConstants.GAP_IN_DAYS) + "");
       }
     } catch (SQLException e) {
       e.getLocalizedMessage();
@@ -88,7 +88,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
         return appointmentdates;
       }
       while (resultSet.next()) {
-        String dateofbooking = resultSet.getString("booked_for_date");
+        String dateofbooking = resultSet.getString(DatabaseConstants.BOOKED_FOR_DATE);
         appointmentdates.add(dateofbooking);
 
       }
@@ -117,9 +117,9 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
         return appointmentdates;
       } else {
         do {
-          String slotDate = resultSet.getString("slot_date");
-          String weekday = resultSet.getString("weekday");
-          String slotTime = resultSet.getString("slot_time");
+          String slotDate = resultSet.getString(DatabaseConstants.SLOT_DATE);
+          String weekday = resultSet.getString(DatabaseConstants.SLOTWEEKDAY);
+          String slotTime = resultSet.getString(DatabaseConstants.SLOT_TIME);
           String slot = slotDate + "," + weekday + "," + slotTime;
           appointmentdates.add(slot);
         } while (resultSet.next());
@@ -185,7 +185,7 @@ public class ImmunizationBookingDAOImpl implements ImmunizationBookingDAO, Immun
       ps.setString(2, slotTime);
       resultSet = ps.executeQuery();
       if (resultSet.first()) {
-        doctorId = resultSet.getInt("doctor_assigned");
+        doctorId = resultSet.getInt(DatabaseConstants.DOCTOR_ASSIGNED);
       }
 
     } catch (SQLException e) {
