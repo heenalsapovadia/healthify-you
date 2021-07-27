@@ -22,14 +22,19 @@ import java.util.Scanner;
  */
 public class ImmunizationStatsOutput {
 
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
-    VaccineDemandStatsUtilImpl vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+    private PrintToConsole consoleObj;
+    private VaccineDemandStatsUtilImpl vaccineDemandStatsUtil;
 
     private static final String VACCINE_NAME = "vaccineName";
     private static final String AGE_GROUP = "ageGroup";
     private static final String GENDER = "gender";
     private static final String AREA = "area";
     private static final String COVISHIELD = "covishield";
+
+    public ImmunizationStatsOutput() {
+        consoleObj = PrintToConsole.getInstance();
+        vaccineDemandStatsUtil = new VaccineDemandStatsUtilImpl();
+    }
 
     public void dashboard(){
         consoleObj.printHeader(ScreenTitles.VACCINE_STATS);

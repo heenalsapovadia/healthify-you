@@ -27,7 +27,11 @@ import java.util.*;
  *
  */
 public class DoctorAppointmentBookingOutput {
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
+    private PrintToConsole consoleObj;
+
+    public DoctorAppointmentBookingOutput() {
+        consoleObj = PrintToConsole.getInstance();
+    }
 
     public void dashboard() throws SQLException {
         consoleObj.printHeader(ScreenTitles.DOCTOR_APPOINTMENT);

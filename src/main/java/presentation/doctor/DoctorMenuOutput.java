@@ -17,9 +17,10 @@ public class DoctorMenuOutput {
 
 	private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
 
-	private PrintToConsole consoleObj = PrintToConsole.getInstance();
+	private PrintToConsole consoleObj;
 
 	private DoctorMenuOutput() {
+		consoleObj  = PrintToConsole.getInstance();
 	}
 
 	private static DoctorMenuOutput doctorMenuOutput;

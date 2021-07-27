@@ -26,7 +26,11 @@ import java.util.Set;
  */
 public class PrescribeMedicineOutput {
 
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
+    private PrintToConsole consoleObj;
+
+    public PrescribeMedicineOutput() {
+        consoleObj = PrintToConsole.getInstance();
+    }
 
     public void prescribeMedication(){
         consoleObj.printHeader(ScreenTitles.MEDICINE_PRESCRIPTION);

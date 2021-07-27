@@ -25,11 +25,12 @@ import java.util.*;
  */
 public class LabTestBookingOutput {
 
-    private PrintToConsole consoleObj = PrintToConsole.getInstance();
+    private PrintToConsole consoleObj;
     private List<LabCheck> labCheckList;
     private Map<Integer, LabCheck> labCheckMap;
 
     public LabTestBookingOutput() {
+        consoleObj = PrintToConsole.getInstance();
         LabCheckDAO labCheckDAO = new LabCheckDAOImpl();
         labCheckList = labCheckDAO.getAvailablePlans();
         LabCheckUtil labCheckUtil = new LabCheckUtilImpl();
