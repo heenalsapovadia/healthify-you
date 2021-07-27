@@ -13,7 +13,7 @@ import java.util.List;
  * @author Saloni Raythatha
  *
  */
-public interface SchedueledAppointsDAO {
+public interface ScheduledAppointmentsDAO {
 
     // method to get all appointment details from doctor appointment table
      List<Appointment> getAppointmentsDetails(Date appoitmentDate);

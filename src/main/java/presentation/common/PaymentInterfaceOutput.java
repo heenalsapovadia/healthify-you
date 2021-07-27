@@ -9,12 +9,12 @@ package presentation.common;
  *
  */
 import persistence.common.paymentInterface.modelPaymentInterface.*;
+import persistence.common.paymentInterface.util.PaymentInterfaceUtil;
 import persistence.common.paymentInterface.utilImpl.PaymentCategoryWiseBilling;
 import persistence.common.paymentInterface.utilImpl.PaymentCreditCardValidation;
 import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import persistence.patient.dao.RedeemableVoucherDAO;
 import persistence.patient.daoImpl.RedeemableVoucherDAOImpl;
-import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
 import java.util.Scanner;
 
@@ -75,7 +75,7 @@ public class PaymentInterfaceOutput  {
         System.out.println(ScreenFields.VOUCHER_ID_OPTION1);
         System.out.println(ScreenFields.VOUCHER_ID_OPTION2);
 
-        PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
+        PaymentInterfaceUtil paymentUtil = new PaymentInterfaceUtilImpl();
         PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
 
         int sel = sc.nextInt();
@@ -130,7 +130,7 @@ public class PaymentInterfaceOutput  {
                                                 double checkoutAmount) {
         System.out.println(ScreenFields.VOUCHER_ID_OPTION1);
         System.out.println(ScreenFields.VOUCHER_ID_OPTION2);
-        PaymentInterfaceUtilImpl paymentUtil = new PaymentInterfaceUtilImpl();
+        PaymentInterfaceUtil paymentUtil = new PaymentInterfaceUtilImpl();
         PaymentInterfaceOutput paymentInterfaceOutput = new PaymentInterfaceOutput();
 
         int sel = sc.nextInt();

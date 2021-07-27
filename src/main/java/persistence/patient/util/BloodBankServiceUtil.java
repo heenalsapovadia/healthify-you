@@ -1,6 +1,6 @@
 package persistence.patient.util;
 
-import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
+import persistence.patient.dao.BloodBankServiceDAO;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 /**
@@ -20,7 +20,7 @@ public interface BloodBankServiceUtil {
     String getTokenIdForDonation();
 
     // register logged in patient for blood donation.
-    String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient,String bloodGroupInput);
+    String registerPatientForBloodDonation(BloodBankServiceDAO bloodBankDatabase, Patient patient,String bloodGroupInput);
 
     // check if reports are normal for patients if exists any... else patient wont be able to register for donation.
     boolean checkIfReportsAreNormalForDonation();

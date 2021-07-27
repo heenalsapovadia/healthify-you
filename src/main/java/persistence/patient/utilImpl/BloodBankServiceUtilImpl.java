@@ -3,7 +3,7 @@ package persistence.patient.utilImpl;
 import org.json.simple.JSONArray;
 import persistence.common.jsonUtil.utilImpl.JsonPatientReportParserImpl;
 import persistence.common.reports.model.Blood;
-import persistence.patient.daoImpl.BloodBankServiceDAOImpl;
+import persistence.patient.dao.BloodBankServiceDAO;
 import persistence.patient.model.BloodBankService;
 import persistence.patient.model.Patient;
 import persistence.patient.util.BloodBankServiceUtil;
@@ -41,7 +41,7 @@ public class BloodBankServiceUtilImpl implements BloodBankServiceUtil {
         return sb.toString();
     }
 
-    public String registerPatientForBloodDonation(BloodBankServiceDAOImpl bloodBankDatabase, Patient patient, String bloodGroupInput) {
+    public String registerPatientForBloodDonation(BloodBankServiceDAO bloodBankDatabase, Patient patient, String bloodGroupInput) {
         BloodBankService bbservice = new BloodBankService();
         BloodBankServiceUtilImpl serviceUtil = new BloodBankServiceUtilImpl();
         String donationId = serviceUtil.getRandomStringForDonationId();
