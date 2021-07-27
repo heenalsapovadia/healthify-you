@@ -2,6 +2,7 @@ package presentation.startup;
 
 
 import persistence.patient.model.Patient;
+import presentation.patient.BloodBankServiceOutput;
 import presentation.patient.RequestMedicationOutput;
 
 import java.sql.Connection;
@@ -30,8 +31,5 @@ public class Main {
 		}
 		ApplicationOutput applicationOutput = ApplicationOutput.getInstance();
 		applicationOutput.displayOutput();
-//		Patient.setPatient("samtran@gmail.com");
-//		RequestMedicationOutput output = new RequestMedicationOutput();
-//		output.requestMedicationDetails();
 	}
 }
