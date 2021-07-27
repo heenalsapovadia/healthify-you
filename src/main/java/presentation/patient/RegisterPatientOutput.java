@@ -25,25 +25,14 @@ import presentation.startup.UserLogin;
  */
 public class RegisterPatientOutput {
 
-
   PrintToConsole print = PrintToConsole.getInstance();
   RegistrationUtil util = new RegistrationUtilImpl();
   Scanner sc = new Scanner(System.in);
-  
-  private void loopWhile(String fname) {
-    if (util.validateNames(fname) != null) {
-      do {
-        print.printMethodReturns(util.validateNames(fname));
-        print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
-        fname = sc.next();
-        
-      } while (util.validateNames(fname) != null);
-    }
-  }
+
   public boolean registerPatient() {
 
     print.printHeader(ScreenTitles.SIGN_UP);
-    
+
     int sel;
     print.printScreenFields(ScreenFields.USER_EMAIL_INPUT);
     String userId = sc.next();
@@ -89,7 +78,7 @@ public class RegisterPatientOutput {
             print.printMethodReturns(util.validateNames(fname));
             print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
             fname = sc.next();
-            
+
           } while (util.validateNames(fname) != null);
         }
         print.printScreenFields(ScreenFields.LAST_NAME_INPUT);
@@ -99,14 +88,14 @@ public class RegisterPatientOutput {
             print.printMethodReturns(util.validateNames(lname));
             print.printScreenFields(ScreenFields.LAST_NAME_INPUT);
             lname = sc.next();
-            
+
           } while (util.validateNames(lname) != null);
         }
-
         if (util.validateNames(fname) == null && util.validateNames(lname) == null) {
           String name = fname + " " + lname;
           p.setPatientName(name);
         }
+        
         print.printScreenFields(ScreenFields.BIRTH_DATE_INPUT);
         String DOB = sc.next();
 
@@ -115,14 +104,12 @@ public class RegisterPatientOutput {
             print.printMethodReturns(util.validateDate(DOB));
             print.printScreenFields(ScreenFields.BIRTH_DATE_INPUT);
             DOB = sc.next();
-
           } while (util.validateDate(DOB) != null);
         }
-
         if (util.validateDate(DOB) == null) {
           p.setPatientDob(DOB);
         }
-        
+
         print.printScreenFields(ScreenFields.CONTACT_INPUT);
         Long contact = sc.nextLong();
         if (util.validateContact(contact) != null) {
@@ -137,7 +124,7 @@ public class RegisterPatientOutput {
         if (util.validateContact(contact) == null) {
           p.setPatientContact(contact);
         }
-        
+
         print.printScreenFields(ScreenFields.CITY_INPUT);
         String city = sc.next();
         if (util.validateCity(city) != null) {
@@ -145,7 +132,7 @@ public class RegisterPatientOutput {
             print.printMethodReturns(util.validateCity(city));
             print.printScreenFields(ScreenFields.CITY_INPUT);
             city = sc.next();
-            
+
           } while (util.validateCity(city) != null);
         }
 

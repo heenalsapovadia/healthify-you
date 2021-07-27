@@ -22,9 +22,6 @@ import presentation.patient.RegisterPatientOutput;
  */
 public class UserLogin {
 
-  public void retryOptions() {
-    
-  }
   public boolean loginUser() {
 
     PrintToConsole print = PrintToConsole.getInstance();
