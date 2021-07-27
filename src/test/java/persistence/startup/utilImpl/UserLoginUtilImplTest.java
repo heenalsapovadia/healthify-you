@@ -32,12 +32,11 @@ public class UserLoginUtilImplTest {
     String email4 = "sofia@yahoo..com";
     String email5 = " sofia@gmailcom";
     UserLoginUtilImpl login = new UserLoginUtilImpl();
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email1));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email2));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email3));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email4));
-    assertEquals("Invalid Email address! Enter valid email address! (should contain @ and . mandatorily! Can contain alphanumeric characters and special characters except spaces!)", login.validateEmail(email5));
-
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", login.validateEmail(email1));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", login.validateEmail(email2));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", login.validateEmail(email3));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", login.validateEmail(email4));
+    assertEquals("Invalid Email address!(should contain @ and ., alphanumeric characters and special characters except spaces!)", login.validateEmail(email5));
   }
 
   /*
@@ -62,11 +61,16 @@ public class UserLoginUtilImplTest {
     String password4 = "sofia1234@";
     String password5 = "SofiaVargeres12345678901@";
     UserLoginUtilImpl login = new UserLoginUtilImpl();
-    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password1));
-    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password2));
-    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password3));
-    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password4));
-    assertEquals("Password is invalid! Enter a valid password", login.validatePassword(password5));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces", login.validatePassword(password1));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces", login.validatePassword(password2));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces", login.validatePassword(password3));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces", login.validatePassword(password4));
+    assertEquals("Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
+            "digit, a lowercase and uppercase alphabet, one special character except white-spaces", login.validatePassword(password5));
 
   }
 
