@@ -1,11 +1,12 @@
 package persistence.doctor.daoImpl;
 
+import persistence.common.DatabaseConstants;
+import persistence.doctor.dao.SchedueledAppointsDAO;
 import persistence.doctor.model.Appointment;
 import persistence.doctor.model.Doctor;
-import persistence.doctor.model.PatientDetailsModel;
+import persistence.doctor.model.ScheduledAppointmentsModel;
 import persistence.patient.utilImpl.ImmunizationBookingUtilImpl;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,8 +16,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-public class ScheduledaAppointmentsDAOImpl {
+/**
+ * <pre>
+ *  Scheduled Appointments database functionality
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
+public class ScheduledAppointmentsDAOImpl implements SchedueledAppointsDAO {
 
     private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
 
@@ -31,13 +39,13 @@ public class ScheduledaAppointmentsDAOImpl {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appointment appointment = new Appointment();
-                appointment.setPatientId(rs.getInt("patient_id"));
-                appointment.setDoctorId(rs.getInt("doctor_id"));
-                appointment.setBookedOnDate(rs.getDate("booked_on_date"));
-                appointment.setBookedForDate(rs.getDate("booked_for_date"));
-                appointment.setRescheduledDate(rs.getDate("rescheduled_date"));
-                appointment.setBillingId(rs.getInt("billing_id"));
-                appointment.setAppointmentId(rs.getInt("appointment_id"));
+                appointment.setPatientId(rs.getInt(DatabaseConstants.PATIENT_ID));
+                appointment.setDoctorId(rs.getInt(DatabaseConstants.DOCTOR_ID));
+                appointment.setBookedOnDate(rs.getDate(DatabaseConstants.BOOKED_ON_DATE));
+                appointment.setBookedForDate(rs.getDate(DatabaseConstants.BOOKED_FOR_DATE));
+                appointment.setRescheduledDate(rs.getDate(DatabaseConstants.RESCHEDULED_DATE));
+                appointment.setBillingId(rs.getInt(DatabaseConstants.BILLING_ID));
+                appointment.setAppointmentId(rs.getInt(DatabaseConstants.APPOINTMENT_ID));
                 appointmentList.add(appointment);
             }
         }
@@ -48,7 +56,7 @@ public class ScheduledaAppointmentsDAOImpl {
         return appointmentList;
     }
 
-    public PatientDetailsModel getPatient(int patientId) {
+    public ScheduledAppointmentsModel getPatient(int patientId) {
         Connection conn = DatabaseConnection.instance();
         String sql = "select * from patients where patient_id = ?";
         ImmunizationBookingUtilImpl immunizationBookingUtil = new ImmunizationBookingUtilImpl();
@@ -56,9 +64,9 @@ public class ScheduledaAppointmentsDAOImpl {
             ps.setInt(1, patientId);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                Date dob = rs.getDate("patient_dob");
+                Date dob = rs.getDate(DatabaseConstants.PATIENT_DOB);
                 int age = immunizationBookingUtil.getAge(dob.toString());
-                return new PatientDetailsModel(rs.getString("patient_name"), age);
+                return new ScheduledAppointmentsModel(rs.getString(DatabaseConstants.PATIENT_NAME), age);
             }
         }
         catch (SQLException e){

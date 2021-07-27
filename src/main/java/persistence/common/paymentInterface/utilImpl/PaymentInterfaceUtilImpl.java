@@ -2,7 +2,6 @@ package persistence.common.paymentInterface.utilImpl;
 
 // author - saloni raythatha
 // this is class implementation for processing payment functionality
-
 import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
@@ -11,7 +10,6 @@ import persistence.patient.dao.PatientDAO;
 import persistence.patient.daoImpl.PatientDAOImpl;
 import persistence.patient.model.Patient;
 import java.util.Date;
-
 
 public class PaymentInterfaceUtilImpl implements PaymentInterfaceUtil {
 

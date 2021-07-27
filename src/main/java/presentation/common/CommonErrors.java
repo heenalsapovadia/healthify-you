@@ -19,7 +19,7 @@ public class CommonErrors {
 	public static final String INVALID_SELECTION = "Invalid Selection! Enter a valid value!";
 	public static final String ERROR_MESSAGE= "Error Occured";
 	public static final String INVALID_PASSWORD = "Invalid Password!(should be atleast 8 and atmost 20 characters long, contains atleast one " +
-			                                     "digit, a lowercase and uppercase alphabet, one special character except white-spaces, " ;
+			                                     "digit, a lowercase and uppercase alphabet, one special character except white-spaces" ;
 	public static final String INVALID_NAME= "Invalid name. Contains characters other than alphabets";
 	public static final String INVALID_CITY = "Invalid city. Contains characters other than alphabets";
 	public static final String INVALID_DISPLAY = "No option set to display";
