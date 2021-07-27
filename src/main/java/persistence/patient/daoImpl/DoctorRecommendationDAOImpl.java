@@ -1,5 +1,6 @@
 package persistence.patient.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.patient.dao.DoctorRecommendationDAO;
 import presentation.startup.DatabaseConnection;
 import java.sql.Connection;
@@ -39,7 +40,7 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
 
       ArrayList<Integer> doctorIDList = new ArrayList<>();
       while (resultSet.next()) {
-        doctorIDList.add(resultSet.getInt("doctor_id"));
+        doctorIDList.add(resultSet.getInt(DatabaseConstants.DOCTOR_ID));
       }
       return doctorIDList;
     } catch (SQLException se) {
@@ -86,7 +87,7 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
       ArrayList<String> doctorList = new ArrayList<>();
       while (resultSet.next()) {
         String name = "";
-        name = resultSet.getString("first_name") + " " +resultSet.getString("last_name");
+        name = resultSet.getString(DatabaseConstants.FIRST_NAME) + " " +resultSet.getString(DatabaseConstants.LAST_NAME);
         doctorList.add(name);
       }
       return doctorList;

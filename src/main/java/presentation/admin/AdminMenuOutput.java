@@ -16,21 +16,45 @@ import presentation.common.ScreenTitles;
  *
  */
 public class AdminMenuOutput {
+	
+	private PrintToConsole consoleObj;
 
-	private AdminMenuOutput() {
+	public AdminMenuOutput() {
+		consoleObj = PrintToConsole.getInstance();
 	}
 
-	private static class AdminMenuOutputHelper {
-		private static final AdminMenuOutput instance = new AdminMenuOutput();
-	}
-
-	public static AdminMenuOutput getInstance() {
-		return AdminMenuOutputHelper.instance;
-	}
-
-	public void displayOutput() {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
-		loadScreenOptions(consoleObj);
+	public int displayOutput() {
+		consoleObj.printHeader(ScreenTitles.ADMIN_DASHBOARD);
+		List<String> selectionOptions = getSelectionOptions();
+		int sel = consoleObj.printSelection(selectionOptions);
+		
+		if (sel == 1) {
+			InvoiceOutput invoiceOutput = new InvoiceOutput();
+			invoiceOutput.displayInvoice();
+			sel = displayOutput();
+		} else if (sel == 2) {
+			BloodBankRecommendationOutput bloodBankRecommendationOutput = new BloodBankRecommendationOutput();
+			bloodBankRecommendationOutput.getBloodBankRecommendations();
+			sel = displayOutput();
+		} else if (sel == 3) {
+			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
+			doctorRegistrationOutput.registerDoctor();
+			sel = displayOutput();
+		} else if (sel == 4) {
+			ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
+			immunizationdashboard.displayOutput();
+			sel = displayOutput();
+		} else if (sel == 5) {
+			System.out.println(ScreenFields.LOGOUT_MESSAGE);
+			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
+			consoleObj.flushResources();
+			System.exit(0);
+		} else {
+			consoleObj.printError(CommonErrors.INVALID_SELECTION);
+			sel = displayOutput();
+		}
+		
+		return sel;
 	}
 
 	private List<String> getSelectionOptions() {
@@ -41,39 +65,5 @@ public class AdminMenuOutput {
 		selectionOptions.add(ScreenFields.IMMUNIZATION_MANAGEMENT);
 		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
-	}
-
-	private int loadScreenOptions(PrintToConsole consoleObj) {
-		consoleObj.printHeader(ScreenTitles.ADMIN_DASHBOARD);
-		List<String> selectionOptions = getSelectionOptions();
-		int sel = consoleObj.printSelection(selectionOptions);
-		
-		if (sel == 1) {
-			InvoiceOutput invoiceOutput = new InvoiceOutput();
-			invoiceOutput.displayInvoice();
-			sel = loadScreenOptions(consoleObj);
-		} else if (sel == 2) {
-			BloodBankRecommendationOutput bloodBankRecommendationOutput = new BloodBankRecommendationOutput();
-			bloodBankRecommendationOutput.getBloodBankRecommendations();
-			sel = loadScreenOptions(consoleObj);
-		} else if (sel == 3) {
-			DoctorRegistrationOutput doctorRegistrationOutput = new DoctorRegistrationOutput();
-			doctorRegistrationOutput.registerDoctor();
-			sel = loadScreenOptions(consoleObj);
-		} else if (sel == 4) {
-			ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
-			immunizationdashboard.displayOutput();
-			sel = loadScreenOptions(consoleObj);
-		} else if (sel == 5) {
-			System.out.println(ScreenFields.LOGOUT_MESSAGE);
-			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
-			consoleObj.flushResources();
-			System.exit(0);
-		} else {
-			consoleObj.printError(CommonErrors.INVALID_SELECTION);
-			sel = loadScreenOptions(consoleObj);
-		}
-		
-		return sel;
 	}
 }
