@@ -7,7 +7,7 @@ class AdminMenuOutputTest {
 
 	@Test
 	void testGetInstance() {
-		AdminMenuOutput adminMenuOutput = AdminMenuOutput.getInstance();
+		AdminMenuOutput adminMenuOutput = new AdminMenuOutput();
 		assertTrue(adminMenuOutput instanceof AdminMenuOutput);
 	}
 }
