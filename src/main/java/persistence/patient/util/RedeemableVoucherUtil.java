@@ -16,5 +16,5 @@ public interface RedeemableVoucherUtil {
 	 * 
 	 * @return voucher
 	 */
-	public RedeemableVoucher fetchVoucherByPatientId();
+	RedeemableVoucher fetchVoucherByPatientId();
 }

@@ -16,7 +16,7 @@ public interface RedeemableVoucherDAO {
 	 * @param bloodGroup
 	 * @return Voucher
 	 */
-	public RedeemableVoucher getVoucherByBloodGroup(String bloodGroup);
+	RedeemableVoucher getVoucherByBloodGroup(String bloodGroup);
 	
 	/**
 	 * <pre>
@@ -25,5 +25,5 @@ public interface RedeemableVoucherDAO {
 	 * 
 	 * @return
 	 */
-	public RedeemableVoucher getVoucherByPatient();
+	RedeemableVoucher getVoucherByPatient();
 }

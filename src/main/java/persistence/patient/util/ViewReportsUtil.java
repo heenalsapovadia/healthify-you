@@ -22,7 +22,7 @@ public interface ViewReportsUtil {
 	 * @param date
 	 * @return Map
 	 */
-	public Map<String, List<String>> fetchReportByDate(String date);
+	Map<String, List<String>> fetchReportByDate(String date);
 	
 	/**
 	 * <pre>
@@ -35,7 +35,7 @@ public interface ViewReportsUtil {
 	 * @param toDate
 	 * @return Map
 	 */
-	public Map<String, List<String>> fetchReportByDateRange(String fromDate, String toDate);
+	Map<String, List<String>> fetchReportByDateRange(String fromDate, String toDate);
 	
 	/**
 	 * <pre>
@@ -44,7 +44,7 @@ public interface ViewReportsUtil {
 	 * 
 	 * @return string
 	 */
-	public String getBloodReportByTest();
+	String getBloodReportByTest();
 	
 	/**
 	 * <pre>
@@ -56,7 +56,7 @@ public interface ViewReportsUtil {
 	 * 
 	 * @return string
 	 */
-	public String getKidneyReportByTest();
+	String getKidneyReportByTest();
 	
 	/**
 	 * <pre>
@@ -68,7 +68,7 @@ public interface ViewReportsUtil {
 	 * 
 	 * @return
 	 */
-	public String getLiverReportByTest();
+	String getLiverReportByTest();
 	
 	/**
 	 * <pre>
@@ -80,7 +80,7 @@ public interface ViewReportsUtil {
 	 * 
 	 * @return string
 	 */
-	public String getVisionReportByTest();
+	String getVisionReportByTest();
 	
 	/**
 	 * <pre>
@@ -92,5 +92,5 @@ public interface ViewReportsUtil {
 	 * 
 	 * @return string
 	 */
-	public String getCovidReportByTest();
+	String getCovidReportByTest();
 }

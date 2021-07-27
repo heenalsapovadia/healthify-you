@@ -2,8 +2,8 @@ package presentation.patient;
 
 import java.util.ArrayList;
 import java.util.List;
-import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
-import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
+import persistence.common.paymentInterface.util.PaymentInterfaceUtil;
+import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
 import persistence.patient.util.RedeemableVoucherUtil;
@@ -57,8 +57,8 @@ public class RedeemableVoucherOutput {
 			pointsAvailable = voucher.getPoints();
 		}
 		System.out.println(ScreenFields.POINTS_AVAILABLE+CommonConstants.COMMON_TEXT_SEPARATOR+pointsAvailable);
-		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
-		pointsRedeemed = paymentDAO.getVoucherRedemptionPoints(patientId);
+		PaymentInterfaceUtil paymentUtil = new PaymentInterfaceUtilImpl();
+		pointsRedeemed = paymentUtil.getPointsRedeemed(patientId);
 		if(pointsRedeemed > 0) { 
 			System.out.println(ScreenFields.POINTS_REDEEMED+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+pointsRedeemed);
 		}

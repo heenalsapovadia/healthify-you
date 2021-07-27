@@ -1,5 +1,6 @@
 package persistence.common.paymentInterface.utilImpl;
 
+import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
 // author - saloni raythatha
 // this is class implementation for processing payment functionality
 import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
@@ -51,4 +52,10 @@ public class PaymentInterfaceUtilImpl implements PaymentInterfaceUtil {
         }
         return updatedRecords;
     }
+
+	@Override
+	public int getPointsRedeemed(int patientId) {
+		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
+		return paymentDAO.getVoucherRedemptionPoints(patientId);
+	}
 }
