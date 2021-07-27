@@ -10,26 +10,8 @@ import presentation.startup.DatabaseConnection;
 public class AppointmentDAOImplTest {
 
     /*
-    Check the Appointment object returned... null for no valid record, not null for valid record
+    Check the Appointment Id validity
      */
-    @Test
-    public void testValidateAppointmentId_Invalid() {
-        DatabaseConnection.loadDatabaseConnection();
-
-        Appointment appointment = new Appointment();
-        appointment.setAppointmentId(17);
-
-        //Set current doctor's id
-        Doctor.setDoctor("biswa.roy@healthifyyou.com");
-        int doctor_id = Doctor.instance().getDoctorId();
-
-
-        AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
-        appointment = appointmentDAO.validateAppointmentId(appointment);
-
-        Assert.assertNotNull(appointment);
-        Assert.assertEquals(doctor_id, appointment.getDoctorId());
-    }
 
     @Test
     public void testValidateAppointmentId_Valid() {
