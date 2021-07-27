@@ -15,10 +15,10 @@ public class BloodBankService {
     private String bloodGrp;
     private Date date;
 
-
     public int getPatientId() {
         return patientId;
     }
+
     public void setPatientId(int patientId) {
         this.patientId = patientId;
     }

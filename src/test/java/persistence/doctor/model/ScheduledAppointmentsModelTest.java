@@ -9,12 +9,10 @@ import org.junit.Test;
  * @author Saloni Raythatha
  *
  */
-
 public class ScheduledAppointmentsModelTest {
     @Test
     public void testConstructor() {
         ScheduledAppointmentsModel actualScheduledAppointmentsModel = new ScheduledAppointmentsModel("Name", 1);
-
         assertEquals(1, actualScheduledAppointmentsModel.age);
         assertEquals("Name", actualScheduledAppointmentsModel.name);
     }

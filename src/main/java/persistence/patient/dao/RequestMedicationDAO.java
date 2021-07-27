@@ -3,9 +3,14 @@ package persistence.patient.dao;
 import persistence.admin.model.PharmaInvoice;
 import persistence.doctor.model.Prescription;
 import java.util.List;
-
+/**
+ * <pre>
+ * Request Medication DAO Interface - fetches data from prescription, pharma_invoice and processes
+ * </pre>
+ * @author Saloni Raythatha
+ *
+ */
 public interface RequestMedicationDAO {
-    // For the Request Medication feature below are the database methods..
 
     // get prescription details(prescription id, prescription name, morning, evening, afternoon dose, dosage days) from prescription table
     public List<Prescription> getPrescriptionDetails(int prescriptionId);
@@ -18,5 +23,4 @@ public interface RequestMedicationDAO {
 
     // updating prescription based on successful purchase
     public void updatePrescription(int prescription_id, int billing_id);
-
 }

@@ -1,13 +1,5 @@
 package persistence.common.paymentInterface.daoImpl;
-/**
- * <pre>
- *
- * PaymentInterface Database Implementation
- * </pre>
- *
- * @author Saloni Raythatha
- *
- */
+
 import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterface;
@@ -20,7 +12,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Database Implementation
+ * This class inserts all payment billing records, fetches all records from payment billing
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
 
     private static final Logger LOGGER = Logger.getLogger(PaymentInterfaceDAOImpl.class.getName());
@@ -103,7 +104,7 @@ public class PaymentInterfaceDAOImpl implements PaymentInterfaceDAO {
         Connection conn = DatabaseConnection.instance();
         ResultSet rs = null;
         StringBuilder sql = new StringBuilder();
-        sql.append("select sum(points) as pointSummation from vouchers where voucher_id in ");
+        sql.append("select sum(points) as pointSummation from vouchers where voucher_id in");
         sql.append("(select voucher_id from payment_billing where patient_id = ?)");
         try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
             ps.setInt(1, patientId);

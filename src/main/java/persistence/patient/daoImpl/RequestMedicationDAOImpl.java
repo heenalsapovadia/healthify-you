@@ -1,4 +1,17 @@
 package persistence.patient.daoImpl;
+
+import persistence.admin.model.PharmaInvoice;
+import persistence.common.DatabaseConstants;
+import persistence.doctor.daoImpl.AppointmentDAOImpl;
+import persistence.doctor.model.Prescription;
+import persistence.patient.dao.RequestMedicationDAO;
+import persistence.patient.model.Patient;
+import presentation.startup.DatabaseConnection;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * <pre>
  * Request Medication Database method implementation
@@ -7,19 +20,7 @@ package persistence.patient.daoImpl;
  * @author Saloni Raythatha
  *
  */
-import persistence.admin.model.PharmaInvoice;
-import persistence.common.DatabaseConstants;
-import persistence.doctor.daoImpl.AppointmentDAOImpl;
-import persistence.doctor.model.Prescription;
-import persistence.patient.model.Patient;
-import presentation.startup.DatabaseConnection;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-public class RequestMedicationDAOImpl {
+public class RequestMedicationDAOImpl implements RequestMedicationDAO {
 
     private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
 

@@ -8,7 +8,6 @@ package persistence.common.paymentInterface.modelPaymentInterface;
  * @author Saloni Raythatha
  */
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class PaymentBillingCategoryTest {
@@ -32,7 +31,6 @@ public class PaymentBillingCategoryTest {
     public void testValueOf4() {
         assertEquals(PaymentBillingCategory.P, PaymentBillingCategory.valueOf("P"));
     }
-
 
     @Test
     public void testValues() {

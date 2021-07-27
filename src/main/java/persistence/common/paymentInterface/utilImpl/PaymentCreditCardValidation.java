@@ -1,7 +1,5 @@
 package persistence.common.paymentInterface.utilImpl;
 
-// author - saloni raythatha
-// this class implements for credit card validation
 import persistence.common.paymentInterface.util.PaymentCreditCardValidationUtil;
 import presentation.common.CommonErrors;
 import presentation.common.ScreenFields;
@@ -10,7 +8,16 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Credit card validation implementation
+ *
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class PaymentCreditCardValidation implements PaymentCreditCardValidationUtil {
 
     public String validateCreditCardNumber(Long creditCardNumber) {
@@ -85,6 +92,4 @@ public class PaymentCreditCardValidation implements PaymentCreditCardValidationU
         }
         return Arrays.asList(cardNumber, expirtyDate, cvvNumber);
     }
-
-
 }

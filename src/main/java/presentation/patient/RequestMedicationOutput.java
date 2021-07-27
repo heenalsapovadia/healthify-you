@@ -1,12 +1,5 @@
 package presentation.patient;
-/**
- * <pre>
- * Request Medication Presentation - output of all methods for user interaction
- * </pre>
- *
- * @author Saloni Raythatha
- *
- */
+
 import persistence.doctor.model.Prescription;
 import persistence.patient.daoImpl.RequestMedicationDAOImpl;
 import persistence.patient.model.Patient;
@@ -17,7 +10,14 @@ import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
 import java.util.*;
-
+/**
+ * <pre>
+ * Request Medication Presentation - output of all methods
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class RequestMedicationOutput {
 
     public static void requestMedicationDashboard() {

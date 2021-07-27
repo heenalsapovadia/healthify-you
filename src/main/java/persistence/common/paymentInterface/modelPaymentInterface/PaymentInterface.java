@@ -1,11 +1,18 @@
 package persistence.common.paymentInterface.modelPaymentInterface;
 
 import java.util.Date;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface model class
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class PaymentInterface {
     private int billing_id;
     private int patient_id;
-    private int prescription_id;
     private String voucher_id;
     private Date billing_date;
     public static PaymentBillingCategory bill_category;
