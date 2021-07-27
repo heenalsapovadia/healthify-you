@@ -31,7 +31,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     } else {
         String sql = "select * from doctors where ";
 
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         Statement statement = null;
         try {
           statement = connection.createStatement();
@@ -74,7 +74,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
           if (!doctorAppointmentBookingBySpecializationUtil.validateID(doctorID)) {
             return null;
           } else {
-              Connection connection = DatabaseConnection.getConnection();
+              Connection connection = DatabaseConnection.instance();
               Statement statement = connection.createStatement();
               ResultSet resultSet = null;
 
@@ -113,7 +113,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
   public int checkDoctorExists(int doctorID) {
       String sql = "select distinct doctor_id from doctors;";
 
-      Connection connection = DatabaseConnection.getConnection();
+      Connection connection = DatabaseConnection.instance();
       Statement statement = null;
       try {
         statement = connection.createStatement();
@@ -131,7 +131,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
         if (!resultSet.next()) {
           return -1;
         } else {
-            doctorIDSet.add(resultSet.getInt("doctor_id"));
+            do {
+                doctorIDSet.add(resultSet.getInt("doctor_id"));
+            } while (resultSet.next());
             if (doctorIDSet.contains(doctorID))
               return 0;
             else
@@ -147,7 +149,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     String sql = "select patient_id from patients where patient_email = ";
     int identifier;
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();
@@ -186,7 +188,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
           String sql = "select charges from doctor_specific_charges where doctor_id = ";
           double charges;
 
-          Connection connection = DatabaseConnection.getConnection();
+          Connection connection = DatabaseConnection.instance();
           Statement statement = connection.createStatement();
           ResultSet resultSet = null;
 
@@ -220,7 +222,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     } else {
         String sql = "update doctor_appointment set billing_id = ";
 
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -240,36 +242,36 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
   }
 
   @Override
-  public List<Integer> addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) throws SQLException {
+  public int addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) throws SQLException {
 
     DoctorAppointmentBookingBySpecializationUtilImpl doctorAppointmentBookingBySpecializationUtil = new DoctorAppointmentBookingBySpecializationUtilImpl();
 
     if (!doctorAppointmentBookingBySpecializationUtil.validateID(doctorID)) {
-      return null;
+      return -1;
     }
 
     if (bookedOnDate == null) {
-      return null;
+      return -1;
     }
 
     if (bookedOnDate != null && bookedOnDate.isEmpty()) {
-      return null;
+      return -1;
     }
 
     if (appointmentDate == null) {
-      return null;
+      return -1;
     }
 
     if (appointmentDate != null && appointmentDate.isEmpty()) {
-      return null;
+      return -1;
     }
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = connection.createStatement();
     ResultSet resultSet = null;
     ResultSet resultSet1 = null;
 
-    List<Integer> appointmentIDList = new ArrayList<>();
+    int appointmentID;
 
     try {
       /* retrieves doctor list for the symptoms */
@@ -277,15 +279,15 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
       resultSet1 = statement.executeQuery("select * from doctor_appointment where patient_id = " + patientID + " and doctor_id=" + doctorID + " and booked_for_date=\"" + appointmentDate + "\" and booked_on_date=\"" + bookedOnDate + "\";");
 
       if(!resultSet1.next()) {
-        return null;
+        return -1;
       } else {
           do {
-            appointmentIDList.add(resultSet1.getInt("appointment_id"));
+            appointmentID = resultSet1.getInt("appointment_id");
           } while(resultSet1.next());
-          return appointmentIDList;
+          return appointmentID;
       }
     } catch (SQLException sqlException) {
-        return null;
+        return -1;
     }
   }
 

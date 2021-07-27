@@ -32,7 +32,7 @@ public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDA
   @Override
   public List<Order> fetchBloodGroupList(String bloodGroup) {
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();

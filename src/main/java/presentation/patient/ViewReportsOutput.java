@@ -51,7 +51,7 @@ public class ViewReportsOutput {
 				case 3: displayReportForDateRange(reportsUtil, consoleObj);
 						break;
 				case 4: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 4);
@@ -72,7 +72,7 @@ public class ViewReportsOutput {
 		try {
 			date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 			}
 			else {
 				Calendar cal = Calendar.getInstance();
@@ -81,11 +81,11 @@ public class ViewReportsOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			parseDateInput(consoleObj, new Scanner(System.in));
 		}
 		if(date == null) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			date = parseDateInput(consoleObj, new Scanner(System.in));
 		}
 		return date;
@@ -130,13 +130,13 @@ public class ViewReportsOutput {
 			System.out.println(ScreenFields.START_DATE);
 			startDate = Date.valueOf(sc.next());
 			if(startDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 				return;
 			}
 			System.out.println(ScreenFields.END_DATE);
 			endDate = Date.valueOf(sc.next());
 			if(endDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 				return;
 			}
 			else {
@@ -151,11 +151,11 @@ public class ViewReportsOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			return;
 		}
 		if(startDate == null || endDate == null) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 		}
 	}
 }

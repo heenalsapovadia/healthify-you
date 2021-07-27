@@ -1,6 +1,3 @@
-/**
- * 
- */
 package persistence.admin.model;
 
 /**
@@ -8,6 +5,7 @@ package persistence.admin.model;
  *
  */
 public class Admin {
+	
 	private String email;
 	
 	private static Admin admin;
@@ -21,7 +19,7 @@ public class Admin {
 		}
 	}
 	
-	public static Admin getAdmin() {
+	public static Admin instance() {
 		return admin;
 	}
 

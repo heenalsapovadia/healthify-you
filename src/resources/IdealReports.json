@@ -1,0 +1,34 @@
+{
+  "info": "Ideal Test Results",
+  "Blood": {
+    "CBC": {
+      "RBCMin": 4.32,
+      "RBCMax": 5.72,
+      "WBCMin": 3500,
+      "WBCMax": 10500,
+      "plateletsMin": 150000,
+      "plateletsMax": 450000,
+      "HaemoglobinMin": 13.5,
+      "HaemoglobinMax": 17.5,
+      "HematocritMin": 38.8,
+      "HematocritMax": 50.0
+    }
+  },
+  "LiverFunction": {
+    "ALTMax": 33,
+    "ASTMax": 40,
+    "ALPMax": 120,
+    "AlbuminMin": 3.5,
+    "AlbuminMax": 5.0,
+    "BilirubinMin": 0.1,
+    "BilirubinMax": 1.2
+  },
+  "KidneyFunction": {
+    "CreatinineMax": 1.4,
+    "BUNMin": 7,
+    "BUNMax": 20
+  },
+  "VisualAcuity": {
+    "Vision": "20/20"
+  }
+}

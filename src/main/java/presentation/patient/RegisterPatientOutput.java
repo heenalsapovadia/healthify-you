@@ -1,9 +1,5 @@
 package presentation.patient;
 
-import static presentation.common.ScreenFields.cityInput;
-import static presentation.common.ScreenFields.contactInput;
-import static presentation.common.ScreenFields.firstNameInput;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,11 +10,6 @@ import persistence.patient.daoImpl.RegistrationDAOImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.util.RegistrationUtil;
 import persistence.patient.utilImpl.RegistrationUtilImpl;
-import persistence.startup.dao.UserLoginDAO;
-import persistence.startup.daoImpl.UserLoginDAOImpl;
-import persistence.startup.util.UserLoginUtil;
-import persistence.startup.utilImpl.UserLoginUtilImpl;
-import presentation.common.CommonConstants;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
@@ -34,15 +25,29 @@ import presentation.startup.UserLogin;
  */
 public class RegisterPatientOutput {
 
+
+  PrintToConsole print = PrintToConsole.getInstance();
+  RegistrationUtil util = new RegistrationUtilImpl();
+  Scanner sc = new Scanner(System.in);
+  
+  private void loopWhile(String fname) {
+    if (util.validateNames(fname) != null) {
+      do {
+        print.printMethodReturns(util.validateNames(fname));
+        print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
+        fname = sc.next();
+        
+      } while (util.validateNames(fname) != null);
+    }
+  }
   public boolean registerPatient() {
 
-    PrintToConsole print = PrintToConsole.getInstance();
-    print.printHeader(ScreenTitles.signUp);
-    Scanner sc = new Scanner(System.in);
+    print.printHeader(ScreenTitles.SIGN_UP);
+    
     int sel;
-    print.printScreenFields(ScreenFields.userEmailInput);
+    print.printScreenFields(ScreenFields.USER_EMAIL_INPUT);
     String userId = sc.next();
-    print.printScreenFields(ScreenFields.userPasswordInput);
+    print.printScreenFields(ScreenFields.USER_PASSWORD_INPUT);
     String password = sc.next();
     int length = password.length();
     String hidden = "";
@@ -50,24 +55,23 @@ public class RegisterPatientOutput {
       hidden += "*";
     }
     if (userId.endsWith("healthifyyou.com")) {
-      print.printScreenFields(CommonErrors.invalidRegistration);
+      print.printScreenFields(CommonErrors.INVALID_REGISTRATION);
       return false;
     }
     Patient.setPatient(userId);
-    Patient p = Patient.getPatient();
+    Patient p = Patient.instance();
     p.setPassword(password);
     p.setPatientEmail(userId);
     p.setPatientType("P");
     print.printSingleNewLine();
-    print.printScreenFields(ScreenFields.emailIdOutput + "= " + userId);
-    print.printScreenFields(ScreenFields.passwordOutput + "= " + hidden);
+    print.printScreenFields(ScreenFields.EMAILID_OUTPUT + "= " + userId);
+    print.printScreenFields(ScreenFields.PASSWORD_OUTPUT + "= " + hidden);
     print.printDoubleNewlines();
 
-    List<String> selection = Arrays.asList(ScreenFields.proceed, ScreenFields.LOGIN, ScreenFields.EXIT);
+    List<String> selection = Arrays.asList(ScreenFields.PROCEED, ScreenFields.LOGIN, ScreenFields.EXIT);
     sel = print.printSelection(selection);
     switch (sel) {
     case 1:
-      RegistrationUtil util = new RegistrationUtilImpl();
       if (util.validateEmail(userId) != null) {
         print.printMethodReturns(util.validateEmail(userId));
         break;
@@ -75,25 +79,25 @@ public class RegisterPatientOutput {
         print.printMethodReturns(util.validatePassword(password));
         break;
       } else {
-        print.printHeader(ScreenTitles.signUp);
-        print.printSubHeading(ScreenTitles.registration);
-        print.printScreenFields(ScreenFields.getInput);
-        print.printScreenFields(ScreenFields.firstNameInput);
+        print.printHeader(ScreenTitles.SIGN_UP);
+        print.printSubHeading(ScreenTitles.REGISTRATION);
+        print.printScreenFields(ScreenFields.GET_INPUT);
+        print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
         String fname = sc.next();
         if (util.validateNames(fname) != null) {
           do {
             print.printMethodReturns(util.validateNames(fname));
-            print.printScreenFields(ScreenFields.firstNameInput);
+            print.printScreenFields(ScreenFields.FIRST_NAME_INPUT);
             fname = sc.next();
             
           } while (util.validateNames(fname) != null);
         }
-        print.printScreenFields(ScreenFields.lastNameInput);
+        print.printScreenFields(ScreenFields.LAST_NAME_INPUT);
         String lname = sc.next();
         if (util.validateNames(lname) != null) {
           do {
             print.printMethodReturns(util.validateNames(lname));
-            print.printScreenFields(ScreenFields.lastNameInput);
+            print.printScreenFields(ScreenFields.LAST_NAME_INPUT);
             lname = sc.next();
             
           } while (util.validateNames(lname) != null);
@@ -103,13 +107,13 @@ public class RegisterPatientOutput {
           String name = fname + " " + lname;
           p.setPatientName(name);
         }
-        print.printScreenFields(ScreenFields.birthDateInput);
+        print.printScreenFields(ScreenFields.BIRTH_DATE_INPUT);
         String DOB = sc.next();
 
         if (util.validateDate(DOB) != null) {
           do {
             print.printMethodReturns(util.validateDate(DOB));
-            print.printScreenFields(ScreenFields.birthDateInput);
+            print.printScreenFields(ScreenFields.BIRTH_DATE_INPUT);
             DOB = sc.next();
 
           } while (util.validateDate(DOB) != null);
@@ -119,12 +123,12 @@ public class RegisterPatientOutput {
           p.setPatientDob(DOB);
         }
         
-        print.printScreenFields(ScreenFields.contactInput);
+        print.printScreenFields(ScreenFields.CONTACT_INPUT);
         Long contact = sc.nextLong();
         if (util.validateContact(contact) != null) {
           do {
             print.printMethodReturns(util.validateContact(contact));
-            print.printScreenFields(ScreenFields.contactInput);
+            print.printScreenFields(ScreenFields.CONTACT_INPUT);
             contact = sc.nextLong();
 
           } while (util.validateContact(contact) != null);
@@ -134,12 +138,12 @@ public class RegisterPatientOutput {
           p.setPatientContact(contact);
         }
         
-        print.printScreenFields(ScreenFields.cityInput);
+        print.printScreenFields(ScreenFields.CITY_INPUT);
         String city = sc.next();
         if (util.validateCity(city) != null) {
           do {
             print.printMethodReturns(util.validateCity(city));
-            print.printScreenFields(ScreenFields.cityInput);
+            print.printScreenFields(ScreenFields.CITY_INPUT);
             city = sc.next();
             
           } while (util.validateCity(city) != null);
@@ -148,14 +152,14 @@ public class RegisterPatientOutput {
         if (util.validateCity(city) == null) {
           p.setPatientAddress(city);
         }
-        print.printScreenFields(ScreenFields.gender);
+        print.printScreenFields(ScreenFields.GENDER);
         String gender = sc.next();
         p.setPatientGender(gender);
         p.setPatientType("P");
       }
       List<String> selectionOptions = new ArrayList<>();
-      selectionOptions.add(ScreenFields.proceed);
-      selectionOptions.add(ScreenFields.goBack);
+      selectionOptions.add(ScreenFields.PROCEED);
+      selectionOptions.add(ScreenFields.GO_BACK);
       int sel2 = print.printSelection(selectionOptions);
       switch (sel2) {
       case 1:
@@ -164,7 +168,7 @@ public class RegisterPatientOutput {
         return false;
 
       case 2:
-        print.printScreenFields(ScreenFields.goBack);
+        print.printScreenFields(ScreenFields.GO_BACK);
         return false;
       }
     case 2:

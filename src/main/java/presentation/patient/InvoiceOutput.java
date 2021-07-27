@@ -46,7 +46,7 @@ public class InvoiceOutput {
 						labCheckInvoice.displayInvoice(parseDateInput(consoleObj, new Scanner(System.in)));
 						break;
 				case 5: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 5);
@@ -62,7 +62,7 @@ public class InvoiceOutput {
 			System.out.println("Fetching invoices for date "+((cal.get(Calendar.YEAR))+"-"+(cal.get(Calendar.MONTH)+1))+"-"+(cal.get(Calendar.DAY_OF_MONTH)));
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			date = parseDateInput(consoleObj, new Scanner(System.in));
 		}
 		return date;

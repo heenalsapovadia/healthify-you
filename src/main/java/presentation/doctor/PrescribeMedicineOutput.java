@@ -44,7 +44,7 @@ public class PrescribeMedicineOutput {
         /*
         Prepopulate patient Id from the fetched appointment object
          */
-        int patient_id = validAppointment.getPatient_id();
+        int patient_id = validAppointment.getPatientId();
 
         System.out.print(ScreenFields.MEDICINE_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
         int medicineNumber = scanner.nextInt();
@@ -82,8 +82,8 @@ public class PrescribeMedicineOutput {
             prescription.setDosageDays(dosageDays);
             prescription.setDate(Date.valueOf(LocalDate.now()));
 
-            prescription.setDoctorId(Doctor.getDoctor().getDoctorId());
-            prescription.setDoctorName(Doctor.getDoctor().getFirstName()+" "+Doctor.getDoctor().getLastName());
+            prescription.setDoctorId(Doctor.instance().getDoctorId());
+            prescription.setDoctorName(Doctor.instance().getFirstName()+" "+Doctor.instance().getLastName());
 
             prescriptionList.add(prescription);
             medicineNumber--;

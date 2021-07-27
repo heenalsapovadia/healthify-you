@@ -15,15 +15,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistence.admin.dao.PharmaInvoiceDAO;
 import persistence.admin.model.PharmaInvoice;
+import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 
+/**
+ * @author Gurleen Saluja
+ *
+ */
 public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	private static final Logger LOGGER = Logger.getLogger(PharmaInvoiceDAOImpl.class.getName());
 	
 	@Override
 	public Map<String, List<PharmaInvoice>> getInvoiceDetailsByDate(Date date) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		ResultSet resultSet = null;
 		Map<String, List<PharmaInvoice>> invoicesMap = new HashMap<>();
 		StringBuilder sqlStatement = new StringBuilder();
@@ -33,19 +38,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				PharmaInvoice invoice = new PharmaInvoice();
-				invoice.setInvoiceId(resultSet.getInt("pharma_billing_id"));
-				invoice.setPharmaName(resultSet.getString("pharma_name"));
-				invoice.setPharmaAddress(resultSet.getString("pharma_address"));
-				invoice.setPharmaContact(resultSet.getString("pharma_contact"));
-				invoice.setPaymentMode(resultSet.getString("payment_mode"));
-				invoice.setItemName(resultSet.getString("pharma_item_name"));
-				invoice.setItemDosage(resultSet.getString("pharma_item_dosage"));
-				invoice.setItemManufacturer(resultSet.getString("pharma_manufacturer"));
-				invoice.setItemQuantity(resultSet.getInt("pharma_item_quantity"));
-				invoice.setItemUnitPrice(resultSet.getDouble("pharma_item_unit_price"));
-				invoice.setDate(resultSet.getDate("pharma_bill_date"));
-				invoice.setTime(resultSet.getTime("pharma_bill_time"));
-				invoice.setItemQuantity(resultSet.getInt("pharma_item_updated_quantity"));
+				setInvoiceObject(resultSet, invoice);
 				if(invoicesMap.containsKey(invoice.getPharmaName())) {
 					invoicesMap.get(invoice.getPharmaName()).add(invoice);
 				}
@@ -64,7 +57,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 	
 	@Override
 	public List<PharmaInvoice> getPharmaSupplies(List<String> medicineNameList) {
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		ResultSet resultSet = null;
 		List<PharmaInvoice> invoicesList = new ArrayList<>();
 		StringBuilder sqlStatement = new StringBuilder();
@@ -77,20 +70,7 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				PharmaInvoice invoice = new PharmaInvoice();
-				invoice.setInvoiceId(resultSet.getInt("pharma_billing_id"));
-				invoice.setPharmaName(resultSet.getString("pharma_name"));
-				invoice.setPharmaAddress(resultSet.getString("pharma_address"));
-				invoice.setPharmaContact(resultSet.getString("pharma_contact"));
-				invoice.setPaymentMode(resultSet.getString("payment_mode"));
-				invoice.setItemName(resultSet.getString("pharma_item_name"));
-				invoice.setItemDosage(resultSet.getString("pharma_item_dosage"));
-				invoice.setItemManufacturer(resultSet.getString("pharma_manufacturer"));
-				invoice.setItemQuantity(resultSet.getInt("pharma_item_quantity"));
-				invoice.setItemUnitPrice(resultSet.getDouble("pharma_item_unit_price"));
-				invoice.setDate(resultSet.getDate("pharma_bill_date"));
-				invoice.setTime(resultSet.getTime("pharma_bill_time"));
-				invoice.setExpiryDate(resultSet.getDate("expiry_date"));
-				invoice.setOrderedQuantity(resultSet.getInt("ordered_quantity"));
+				setInvoiceObject(resultSet, invoice);
 				invoicesList.add(invoice);
 			}
 		}
@@ -100,16 +80,33 @@ public class PharmaInvoiceDAOImpl implements PharmaInvoiceDAO {
 		return invoicesList;
 	}
 
+	private void setInvoiceObject(ResultSet resultSet, PharmaInvoice invoice) throws SQLException {
+		invoice.setInvoiceId(resultSet.getInt(DatabaseConstants.PHARMA_BILLING_ID));
+		invoice.setPharmaName(resultSet.getString(DatabaseConstants.PHARMA_NAME));
+		invoice.setPharmaAddress(resultSet.getString(DatabaseConstants.PHARMA_ADDRESS));
+		invoice.setPharmaContact(resultSet.getString(DatabaseConstants.PHARMA_CONTACT));
+		invoice.setPaymentMode(resultSet.getString(DatabaseConstants.PAYMENT_MODE));
+		invoice.setItemName(resultSet.getString(DatabaseConstants.PHARMA_ITEM_NAME));
+		invoice.setItemDosage(resultSet.getString(DatabaseConstants.PHARMA_ITEM_DOSAGE));
+		invoice.setItemManufacturer(resultSet.getString(DatabaseConstants.PHARMA_MANUFACTURER));
+		invoice.setItemQuantity(resultSet.getInt(DatabaseConstants.PHARMA_ITEM_QUANTITY));
+		invoice.setItemUnitPrice(resultSet.getDouble(DatabaseConstants.PHARMA_ITEM_UNIT_PRICE));
+		invoice.setDate(resultSet.getDate(DatabaseConstants.PHARMA_BILL_DATE));
+		invoice.setTime(resultSet.getTime(DatabaseConstants.PHARMA_BILL_TIME));
+		invoice.setItemUpdatedQuantity(resultSet.getInt(DatabaseConstants.PHARMA_ITEM_UPDATED_QUANTITY));
+		invoice.setExpiryDate(resultSet.getDate(DatabaseConstants.EXPIRY_DATE));
+	}
+	
 	@Override
 	public Set<String> getMedicineList(){
-		Connection connection = DatabaseConnection.getConnection();
+		Connection connection = DatabaseConnection.instance();
 		Set<String> medicineSet = new HashSet<>();
 
 		String sql = "SELECT * FROM pharma_supplies";
 		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				String medicineName = resultSet.getString("pharma_item_name");
+				String medicineName = resultSet.getString(DatabaseConstants.PHARMA_ITEM_NAME);
 				medicineSet.add(medicineName.toLowerCase());
 			}
 		}

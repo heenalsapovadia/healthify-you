@@ -28,7 +28,7 @@ class ViewReportsUtilImplTest {
 		Map<String, List<String>> actualReportsMap = viewReportsUtil.fetchReportByDate("2021-04-20");
 		Map<String, List<String>> expectedReportsMap = new HashMap<>();
 		List<String> bloodValuesList = new ArrayList<>();
-		String report = "Date of Collection		:		2021-04-19\n"
+		String report = "DateOfCollection		:		2021-04-19\n"
 				+ "Date				:		2021-04-20\n"
 				+ "CBC:\n"
 				+ "	RBC			:		4.32\n"
@@ -65,7 +65,7 @@ class ViewReportsUtilImplTest {
 		Map<String, List<String>> actualReportsMap = viewReportsUtil.fetchReportByDateRange("2021-04-01", "2021-04-21");
 		Map<String, List<String>> expectedReportsMap = new HashMap<>();
 		List<String> bloodValuesList = new ArrayList<>();
-		String report = "Date of Collection		:		2021-04-19\n"
+		String report = "DateOfCollection		:		2021-04-19\n"
 				+ "Date				:		2021-04-20\n"
 				+ "CBC:\n"
 				+ "	RBC			:		4.32\n"
@@ -100,7 +100,7 @@ class ViewReportsUtilImplTest {
 		Patient.setPatient("gs@gmail.com");
 		viewReportsUtil = new ViewReportsUtilImpl();
 		String actualReport = viewReportsUtil.getBloodReportByTest();
-		String expectedReport = "Date of Collection		:		2020-05-20\n"
+		String expectedReport = "DateOfCollection		:		2020-05-20\n"
 				+ "Date				:		2021-05-21\n"
 				+ "CBC:\n"
 				+ "	RBC			:		4.35\n"
@@ -127,7 +127,7 @@ class ViewReportsUtilImplTest {
 		Patient.setPatient("gs@gmail.com");
 		viewReportsUtil = new ViewReportsUtilImpl();
 		String actualReport = viewReportsUtil.getKidneyReportByTest();
-		String expectedReport = "Date of Collection		:		2021-05-20\n"
+		String expectedReport = "DateOfCollection		:		2021-05-20\n"
 				+ "Date				:		2021-05-21\n"
 				+ "Creatinine			:		1.5\n"
 				+ "BUN				:		10\n";
@@ -150,7 +150,7 @@ class ViewReportsUtilImplTest {
 		Patient.setPatient("gs@gmail.com");
 		viewReportsUtil = new ViewReportsUtilImpl();
 		String actualReport = viewReportsUtil.getLiverReportByTest();
-		String expectedReport = "Date of Collection		:		2021-05-20\n"
+		String expectedReport = "DateOfCollection		:		2021-05-20\n"
 				+ "Date				:		2021-05-21\n"
 				+ "ALT				:		30\n"
 				+ "AST				:		40\n"
@@ -176,7 +176,7 @@ class ViewReportsUtilImplTest {
 		Patient.setPatient("gs@gmail.com");
 		viewReportsUtil = new ViewReportsUtilImpl();
 		String actualReport = viewReportsUtil.getVisionReportByTest();
-		String expectedReport = "Date of Collection		:		2021-05-20\n"
+		String expectedReport = "DateOfCollection		:		2021-05-20\n"
 				+ "Date				:		2021-05-21\n"
 				+ "Vision				:		20/40\n"
 				+ "";
@@ -197,7 +197,7 @@ class ViewReportsUtilImplTest {
 		Patient.setPatient("gs@gmail.com");
 		viewReportsUtil = new ViewReportsUtilImpl();
 		String actualReport = viewReportsUtil.getCovidReportByTest();
-		String expectedReport = "Date of Collection		:		2021-04-29\n"
+		String expectedReport = "DateOfCollection		:		2021-04-29\n"
 				+ "Date				:		2021-05-01\n"
 				+ "Covid				:		Detected\n";
 		if(actualReport != null) {

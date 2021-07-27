@@ -23,21 +23,21 @@ public class ScheduledaAppointmentsDAOImpl {
     // As per Appointment Date will display Appointment schedule
     public List<Appointment> getAppointmentsDetails(Date appoitmentDate) {
         List<Appointment> appointmentList = new ArrayList<>();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "SELECT * FROM doctor_appointment WHERE booked_for_date = ? and doctor_id = ?";
         try( PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setDate(1, (java.sql.Date) appoitmentDate);
-            ps.setInt(2, Doctor.getDoctor().getDoctorId());
+            ps.setInt(2, Doctor.instance().getDoctorId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appointment appointment = new Appointment();
-                appointment.setPatient_id(rs.getInt("patient_id"));
-                appointment.setDoctor_id(rs.getInt("doctor_id"));
-                appointment.setBooked_on_date(rs.getDate("booked_on_date"));
-                appointment.setBooked_for_date(rs.getDate("booked_for_date"));
-                appointment.setRescheduled_date(rs.getDate("rescheduled_date"));
-                appointment.setBilling_id(rs.getInt("billing_id"));
-                appointment.setAppointment_id(rs.getInt("appointment_id"));
+                appointment.setPatientId(rs.getInt("patient_id"));
+                appointment.setDoctorId(rs.getInt("doctor_id"));
+                appointment.setBookedOnDate(rs.getDate("booked_on_date"));
+                appointment.setBookedForDate(rs.getDate("booked_for_date"));
+                appointment.setRescheduledDate(rs.getDate("rescheduled_date"));
+                appointment.setBillingId(rs.getInt("billing_id"));
+                appointment.setAppointmentId(rs.getInt("appointment_id"));
                 appointmentList.add(appointment);
             }
         }
@@ -49,7 +49,7 @@ public class ScheduledaAppointmentsDAOImpl {
     }
 
     public PatientDetailsModel getPatient(int patientId) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "select * from patients where patient_id = ?";
         ImmunizationBookingUtilImpl immunizationBookingUtil = new ImmunizationBookingUtilImpl();
         try(PreparedStatement ps = conn.prepareStatement(sql)){

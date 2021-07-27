@@ -3,15 +3,9 @@ package persistence.patient.utilImpl;
 import persistence.patient.daoImpl.DoctorAppointmentBookingByNameDAOImpl;
 import persistence.patient.util.DoctorAppointmentBookingByNameUtil;
 import presentation.common.CommonErrors;
-import presentation.startup.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,7 +80,7 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
     int identifier;
 
     if (matcher.matches() == false || email == null || email == "") {
-      System.err.println(CommonErrors.emailError);
+      System.err.println(CommonErrors.EMAIL_ERROR);
       return -1;
     } else {
         identifier = doctorAppointmentBookingByNameDAO.checkPatientExists(email);

@@ -1,17 +1,11 @@
 package presentation.patient;
 
-import persistence.admin.daoImpl.DoctorRegistrationDAOImpl;
-import persistence.admin.model.DoctorRegistration;
-import persistence.admin.utilImpl.DoctorRegistrationUtilImpl;
-import persistence.patient.util.DoctorRecommendationUtil;
 import persistence.patient.utilImpl.DoctorRecommendationUtilImpl;
-import presentation.common.CommonConstants;
 import presentation.common.PrintToConsole;
 
-import static presentation.common.CommonErrors.emailError;
+import static presentation.common.CommonErrors.INVALID_SELECTION;
 import static presentation.common.ScreenFields.*;
-import static presentation.common.ScreenTitles.doctorRecommendation;
-import static presentation.common.ScreenTitles.doctorRegistration;
+import static presentation.common.ScreenTitles.DOCTOR_RECOMMENDATION;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,17 +26,17 @@ public class DoctorRecommendationOutput {
         Scanner sc = new Scanner(System.in);
         PrintToConsole consoleObj = PrintToConsole.getInstance();
 
-        consoleObj.printHeader(doctorRecommendation);
+        consoleObj.printHeader(DOCTOR_RECOMMENDATION);
 
         int choice = 0;
         consoleObj.printSingleNewLine();
 
         while(choice != 2) {
             consoleObj.printSingleNewLine();
-            consoleObj.printScreenFields(selectionField);
+            consoleObj.printScreenFields(SELECTION_FIELD);
 
-            consoleObj.printScreenFields(selectionOption1);
-            consoleObj.printScreenFields(selectionOption2);
+            consoleObj.printScreenFields(SELECTION_OPTION_1);
+            consoleObj.printScreenFields(SELECTION_OPTION_2);
 
             consoleObj.printScreenFields(SELECTION);
             choice = sc.nextInt();
@@ -52,12 +46,12 @@ public class DoctorRecommendationOutput {
                 String symptom = "";
                 Scanner sc1 = new Scanner(System.in);
 
-                consoleObj.printScreenFields(symptomSelectionField);
-                consoleObj.printScreenFields(symptomOption1);
-                consoleObj.printScreenFields(symptomOption2);
-                consoleObj.printScreenFields(symptomOption3);
-                consoleObj.printScreenFields(symptomOption4);
-                consoleObj.printScreenFields(symptomOption5);
+                consoleObj.printScreenFields(SYMPTOM_SELECTION_FIELD);
+                consoleObj.printScreenFields(SYMPTOM_OPTION_1);
+                consoleObj.printScreenFields(SYMPTOM_OPTION_2);
+                consoleObj.printScreenFields(SYMPTOM_OPTION_3);
+                consoleObj.printScreenFields(SYMPTOM_OPTION_4);
+                consoleObj.printScreenFields(SYMPTOM_OPTION_5);
 
                 symptomChoice = sc1.nextInt();
 
@@ -77,11 +71,11 @@ public class DoctorRecommendationOutput {
                 }
 
                 int support = 0;
-                consoleObj.printScreenFields(supportInput);
+                consoleObj.printScreenFields(SUPPORT_INPUT);
                 support = sc1.nextInt();
 
                 int numRec = 0;
-                consoleObj.printScreenFields(recommendationInput);
+                consoleObj.printScreenFields(RECOMMENDATION_INPUT);
                 numRec = sc1.nextInt();
 
                 ArrayList<String> doctorList = new ArrayList<>();
@@ -100,14 +94,16 @@ public class DoctorRecommendationOutput {
                 }
 
             } else if (choice == 2) {
-                System.out.println("Thank you for using our service!");
-                return;
+                DoctorAppointmentBookingDashboard doctorAppointmentBookingDashboard = new DoctorAppointmentBookingDashboard();
+                try {
+                    doctorAppointmentBookingDashboard.display();
+                } catch (SQLException se) {
+                    return;
+                }
             } else {
-                System.out.println("Invalid choice!");
+                System.out.println(INVALID_SELECTION);
             }
-
         }
-
     }
 
 }
