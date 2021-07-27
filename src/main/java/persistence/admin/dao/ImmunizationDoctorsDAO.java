@@ -4,10 +4,11 @@
 package persistence.admin.dao;
 
 /**
- * @author Deeksha Sareen
+ * @author Deeksha Sareen:This interface has 1 method that is responsible for
+ *         getting the doctor assigned for a particular weekday and slottime
  *
  */
 public interface ImmunizationDoctorsDAO {
 
-  public int getDoctorAssigned(String weekday , String slotTime);
+  public int getDoctorAssigned(String weekday, String slotTime);
 }

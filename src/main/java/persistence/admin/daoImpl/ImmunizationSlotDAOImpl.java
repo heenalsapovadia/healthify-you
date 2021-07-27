@@ -6,32 +6,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
-import java.util.logging.Level;
-
 import persistence.admin.dao.ImmunizationDoctorsDAO;
 import persistence.admin.dao.ImmunizationSlotDAO;
 import persistence.admin.util.CurrentWeekdays;
-import persistence.admin.utilImpl.ImmunizationSlotUtilImpl;
 import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 
-public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , ImmunizationDoctorsDAO{
+/**
+ * @author Deeksha Sareen: This class is responsible for managing the immunization slots
+ *
+ */
+public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO, ImmunizationDoctorsDAO {
 
   Connection conn = DatabaseConnection.instance();
 
+  /* This method gets the doctor assigned to a specific slot */
   @Override
-  public int getDoctorAssigned(String weekday , String slotTime) {
+  public int getDoctorAssigned(String weekday, String slotTime) {
     ResultSet resultSet = null;
     String sql = "SELECT doctor_assigned from immunization_slots WHERE weekday = ? and slot_time = ?";
     int doctorId = 0;
@@ -50,6 +47,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
 
   }
 
+  /* This method gets the doctors available */
   @Override
   public Queue<Integer> getDoctorsAvailable() {
     Queue<Integer> doctorsID = new LinkedList<>();
@@ -70,6 +68,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
     return doctorsID;
   }
 
+  /* This method gets all the slots timings available */
   @Override
   public ArrayList<String> getSlotTiming() {
     ArrayList<String> slotTime = new ArrayList<>();
@@ -93,6 +92,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
 
   }
 
+  /* This is a helper method to compare dates and times */
   private int dateTimeComparator(String slot, String currentTime, String currentDate, String date, int doctor) {
 
     if (date.compareTo(currentDate) < 0) {
@@ -111,6 +111,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
 
   }
 
+  /* This method gets all the doctors assigned to slots */
   @Override
   public LinkedHashMap<String, ArrayList<Integer>> getAssignedDoctors(int updateChoice) {
     PreparedStatement preparedStatement;
@@ -150,6 +151,7 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
     return doctorsPerDay;
   }
 
+  /* This method updates the slots in the database */
   @Override
   public void updateSlotsInDatabase(LinkedHashMap<String, ArrayList<Integer>> updatedRecords) {
     CurrentWeekdays week = new CurrentWeekdays();
@@ -184,6 +186,5 @@ public class ImmunizationSlotDAOImpl implements ImmunizationSlotDAO , Immunizati
       i++;
     }
   }
-
 
 }
