@@ -19,6 +19,12 @@ import presentation.common.ScreenTitles;
  */
 public class AppointmentInvoiceOutput {
 	
+	private PrintToConsole consoleObj;
+	
+	public AppointmentInvoiceOutput() {
+		consoleObj = PrintToConsole.getInstance();
+	}
+	
 	/**
 	 * <pre>
 	 * Fetches data from database using DAO and prints output to console.
@@ -27,13 +33,12 @@ public class AppointmentInvoiceOutput {
 	 * @param date
 	 */
 	public void displayInvoice(Date date) {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateAppointmentInvoice(date.toString(), invoice);
 		List<Appointment> appointments = invoice.getAppointmentList();
 		if(appointments != null && !appointments.isEmpty()) {
-			loadScreen(consoleObj, invoice, appointments);
+			loadScreen(invoice, appointments);
 		}
 		else {
 			System.err.println(CommonErrors.NO_RECEIPTS);
@@ -48,7 +53,7 @@ public class AppointmentInvoiceOutput {
 	 * @param consoleObj
 	 * @param invoice
 	 */
-	private void loadScreen(PrintToConsole consoleObj, Invoice invoice, List<Appointment> appointments) {
+	private void loadScreen(Invoice invoice, List<Appointment> appointments) {
 		consoleObj.printHeader(ScreenTitles.APPOINTMENT_RECEIPT);
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());

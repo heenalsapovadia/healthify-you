@@ -93,7 +93,11 @@ public class DatabaseConstants {
     public static final String SLOT_TIME = "slot_time";
     public static final String SLOT_DATE = "slot_date";
     public static final String SLOTWEEKDAY = "weekday";
-    
-    
-    
+
+    /* Blood bank recommendation table constants */
+    public static final String ORDER_NUMBER = "order_number";
+
+    /* Doctor registration table constants */
+    public static final String USER_ID = "User_Id";
+
 }

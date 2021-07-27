@@ -3,23 +3,13 @@ package presentation.doctor;
 import presentation.common.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class DoctorMenuOutput {
 
-	private static final Logger LOGGER = Logger.getLogger(DoctorMenuOutput.class.getName());
+	private PrintToConsole consoleObj;
 
-	private PrintToConsole consoleObj = PrintToConsole.getInstance();
-
-	private DoctorMenuOutput() {
-	}
-
-	private static DoctorMenuOutput doctorMenuOutput;
-
-	public static DoctorMenuOutput getInstance() {
-		if (doctorMenuOutput == null)
-			doctorMenuOutput = new DoctorMenuOutput();
-		return doctorMenuOutput;
+	public DoctorMenuOutput(){
+		consoleObj = PrintToConsole.getInstance();
 	}
 
 	public void displayOutput() {
@@ -54,5 +44,4 @@ public class DoctorMenuOutput {
 		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
 	}
-
 }
