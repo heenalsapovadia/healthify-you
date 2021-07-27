@@ -1,14 +1,18 @@
 package persistence.common.paymentInterface.modelPaymentInterface;
 
-import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
-
 import java.util.Date;
-import java.util.List;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface model class
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class PaymentInterface {
     private int billing_id;
     private int patient_id;
-    private int prescription_id;
     private String voucher_id;
     private Date billing_date;
     public static PaymentBillingCategory bill_category;
@@ -52,14 +56,6 @@ public class PaymentInterface {
 
     public void setPatient_id(int patient_id) {
         this.patient_id = patient_id;
-    }
-
-    public int getPrescription_id() {
-        return prescription_id;
-    }
-
-    public void setPrescription_id(int prescription_id) {
-        this.prescription_id = prescription_id;
     }
 
     public String getVoucher_id() {

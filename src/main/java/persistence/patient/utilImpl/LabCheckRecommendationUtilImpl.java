@@ -15,6 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUtil {
     Map<Integer, LabCheck> labCheckMap;
 
@@ -27,7 +31,7 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
         if(labCheckMap.isEmpty())
             setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
-        if(Patient.getPatient().getPatientGender().equals("F"))
+        if(Patient.instance().getPatientGender().equals("F"))
             recommendations.add(labCheckMap.get(4));
         return recommendations;
     }
@@ -37,7 +41,7 @@ public class LabCheckRecommendationUtilImpl implements LabCheckRecommendationUti
         if(labCheckMap.isEmpty())
             setLabCheckMap();
         List<LabCheck> recommendations = new ArrayList<>();
-        Date dob = Date.valueOf(Patient.getPatient().getPatientDob());
+        Date dob = Date.valueOf(Patient.instance().getPatientDob());
         LocalDate today = LocalDate.now();
         LocalDate dobLocal = dob.toLocalDate();
 

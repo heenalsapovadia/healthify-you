@@ -1,20 +1,28 @@
 package persistence.common.paymentInterface.util;
 
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
-import persistence.common.paymentInterface.modelPaymentInterface.PaymentCardDetails;
-import persistence.doctor.model.Prescription;
-import persistence.patient.model.Patient;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Util - method to process all the payment through the interface
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public interface PaymentInterfaceUtil {
 
-    void processPayment(PaymentBillingCategory billingCategory,
+    // this method is the complete functionality for processing payment based on credit card, voucher and further generating billing
+    int processPayment(PaymentBillingCategory billingCategory,
                         double checkoutAmount, String voucherId);
-
-
-    public String validateCreditCardNumber(Long creditCardNumber);
-
-    public String validateExpiryDate(String Date);
-
-    public String validateCvv(Long cvvNumber);
-
+    
+    /**
+     * <pre>
+     * Calculates points redeemed by patient till date
+     * whenever a payment was made.
+     * </pre>
+     * 
+     * @return points
+     */
+    int getPointsRedeemed(int patientId);
 }

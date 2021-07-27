@@ -21,6 +21,12 @@ import presentation.common.ScreenTitles;
  */
 public class ImmunizationInvoiceOutput {
 	
+private PrintToConsole consoleObj;
+	
+	public ImmunizationInvoiceOutput() {
+		consoleObj = PrintToConsole.getInstance();
+	}
+	
 	/**
 	 * <pre>
 	 * Fetches data from database using DAO and prints output to console.
@@ -29,14 +35,13 @@ public class ImmunizationInvoiceOutput {
 	 * @param date
 	 */
 	public void displayInvoice(Date date) {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generateImmunizationInvoice(date.toString(), invoice);
 		Map<Integer, String> vaccineMap = invoice.getVaccineMap();
 		if(vaccineMap != null && !vaccineMap.isEmpty()) {
 			consoleObj.printHeader(ScreenTitles.IMMUNIZATION_RECEIPT);
-			loadTableHeader(consoleObj, invoice, vaccineMap);
+			loadTableHeader(invoice, vaccineMap);
 		}
 		else {
 			System.err.println(CommonErrors.NO_RECEIPTS);
@@ -50,7 +55,7 @@ public class ImmunizationInvoiceOutput {
 	 * 
 	 * @param invoice
 	 */
-	private void loadTableHeader(PrintToConsole consoleObj, Invoice invoice, Map<Integer, String> vaccineMap) {
+	private void loadTableHeader(Invoice invoice, Map<Integer, String> vaccineMap) {
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());
 		System.out.println(ScreenFields.ADDRESS+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getAddress());
 		System.out.println(ScreenFields.CONTACT+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getContactNumber());

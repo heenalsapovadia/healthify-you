@@ -9,7 +9,6 @@ import persistence.doctor.model.Doctor;
 import persistence.doctor.model.Prescription;
 import persistence.doctor.utilImpl.PrescriptionValidationUtilImpl;
 import presentation.common.*;
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,9 +16,21 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * <pre>
+ * Loads Prescribe Medication in the application.
+ * </pre>
+ *
+ * @author Heenal Sapovadia
+ *
+ */
 public class PrescribeMedicineOutput {
 
-    PrintToConsole consoleObj = PrintToConsole.getInstance();
+    private PrintToConsole consoleObj;
+
+    public PrescribeMedicineOutput() {
+        consoleObj = PrintToConsole.getInstance();
+    }
 
     public void prescribeMedication(){
         consoleObj.printHeader(ScreenTitles.MEDICINE_PRESCRIPTION);
@@ -28,15 +39,12 @@ public class PrescribeMedicineOutput {
         System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
         int appointmentId = scanner.nextInt();
 
-        /*
-        Call for Validation of appointment ID
-         */
         PrescriptionValidationUtilImpl prescriptionValidationUtil = new PrescriptionValidationUtilImpl();
         Appointment validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
 
         while(validAppointment==null){
-            System.out.println(CommonErrors.INVALID_APPOINTMENT_ID);
-            System.out.print(ScreenFields.APPOINTMENT_NO + CommonConstants.COMMON_TEXT_SEPARATOR);
+            consoleObj.printError(CommonErrors.INVALID_APPOINTMENT_ID);
+            System.out.print(ScreenFields.APPOINTMENT_ID + CommonConstants.COMMON_TEXT_SEPARATOR);
             appointmentId = scanner.nextInt();
             validAppointment = prescriptionValidationUtil.validateAppointmentId(appointmentId);
         }
@@ -44,7 +52,7 @@ public class PrescribeMedicineOutput {
         /*
         Prepopulate patient Id from the fetched appointment object
          */
-        int patient_id = validAppointment.getPatient_id();
+        int patient_id = validAppointment.getPatientId();
 
         System.out.print(ScreenFields.MEDICINE_NUMBER + CommonConstants.COMMON_TEXT_SEPARATOR);
         int medicineNumber = scanner.nextInt();
@@ -60,7 +68,7 @@ public class PrescribeMedicineOutput {
             System.out.print(ScreenFields.MEDICINE_NAME + CommonConstants.COMMON_TEXT_SEPARATOR);
             String medicineName = scanner.next();
             if(!prescriptionValidationUtil.validateMedicineName(medicineName, medicineList)) {
-                System.out.println("Medicine Name Not Found! Try again");
+                consoleObj.printError(CommonErrors.MEDICINE_NAME_NOT_FOUND);
                 continue;
             }
             System.out.print(ScreenFields.MORNING_DOSE + CommonConstants.COMMON_TEXT_SEPARATOR);
@@ -82,8 +90,8 @@ public class PrescribeMedicineOutput {
             prescription.setDosageDays(dosageDays);
             prescription.setDate(Date.valueOf(LocalDate.now()));
 
-            prescription.setDoctorId(Doctor.getDoctor().getDoctorId());
-            prescription.setDoctorName(Doctor.getDoctor().getFirstName()+" "+Doctor.getDoctor().getLastName());
+            prescription.setDoctorId(Doctor.instance().getDoctorId());
+            prescription.setDoctorName(Doctor.instance().getFirstName()+" "+Doctor.instance().getLastName());
 
             prescriptionList.add(prescription);
             medicineNumber--;

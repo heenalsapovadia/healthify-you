@@ -16,15 +16,14 @@ public interface RedeemableVoucherDAO {
 	 * @param bloodGroup
 	 * @return Voucher
 	 */
-	public RedeemableVoucher getVoucherByBloodGroup(String bloodGroup);
+	RedeemableVoucher getVoucherByBloodGroup(String bloodGroup);
 	
 	/**
 	 * <pre>
 	 * Fetches Redeemable Voucher Details using patient id of a patient.
 	 * </pre>
 	 * 
-	 * @param patientId
 	 * @return
 	 */
-	public RedeemableVoucher getVoucherByPatient(int patientId);
+	RedeemableVoucher getVoucherByPatient();
 }

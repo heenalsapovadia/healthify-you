@@ -20,6 +20,8 @@ public class PrintToConsole {
 
   private static PrintToConsole printInstance;
 
+  private Scanner scanner;
+
   private PrintToConsole() {
   }
 
@@ -50,15 +52,15 @@ public class PrintToConsole {
                 (option + 1) + CommonConstants.PERIOD + CommonConstants.SINGLE_SPACE + selectionOptions.get(option));
       }
       System.out.println(ScreenFields.SELECTION);
-      Scanner sc = new Scanner(System.in);
-      if (sc.hasNextInt()) {
-        selected = sc.nextInt();
+      scanner = new Scanner(System.in);
+      if (scanner.hasNextInt()) {
+        selected = scanner.nextInt();
       } else {
-        printError(CommonErrors.invalidSelection);
+        printError(CommonErrors.INVALID_SELECTION);
         selected = printSelection(selectionOptions);
       }
     } else {
-      printError(CommonErrors.invalidDisplay);
+      printError(CommonErrors.INVALID_DISPLAY);
     }
     return selected;
   }
@@ -87,17 +89,20 @@ public class PrintToConsole {
             + CommonConstants.SUBHEADING + CommonConstants.TITLE_SPACE);
     System.out.println();
   }
-  
-  public void printDoubleNewlines () {
+
+  public void printDoubleNewlines() {
     System.out.println();
     System.out.println();
   }
+
   public void printSingleNewLine() {
     System.out.println();
   }
+
   public void printScreenFieldsSameLine(String field) {
     System.out.print(field);
   }
+
   public void printHorizontalLine() {
     for (int i = 0; i < 100; i++) {
       System.out.print(CommonConstants.HORIZONTAL_DASH);
@@ -105,4 +110,9 @@ public class PrintToConsole {
     System.out.println();
   }
 
+  public void flushResources() {
+    if (scanner != null) {
+      scanner.close();
+    }
+  }
 }

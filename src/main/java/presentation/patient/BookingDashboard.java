@@ -1,14 +1,17 @@
 package presentation.patient;
 
-import persistence.patient.model.Patient;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
 import presentation.common.ScreenFields;
 import presentation.common.ScreenTitles;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * <pre>
+ * This  class is responsible for representing booking module and further process related to it.
+ * </pre>
+ */
 
 public class BookingDashboard {
     private static class BookingDashboardHelper {
@@ -29,14 +32,14 @@ public class BookingDashboard {
         List<String> selectionOptions = new ArrayList<>();
         selectionOptions.add(ScreenFields.APPOINTMENT_WITH_DOCTOR);
         selectionOptions.add(ScreenFields.BOOK_LAB_TEST);
-        selectionOptions.add(ScreenFields.bookImmunization);
+        selectionOptions.add(ScreenFields.BOOK_IMMUNIZATION);
         selectionOptions.add(ScreenFields.bookBloodBankService);
-        selectionOptions.add(ScreenFields.goBack);
+        selectionOptions.add(ScreenFields.GO_BACK);
         return selectionOptions;
     }
 
     private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
-        consoleObj.printHeader(ScreenTitles.bookingDashboard);
+        consoleObj.printHeader(ScreenTitles.BOOKING_DASHBOARD);
         List<String> selectionOptions = getSelectionOptions();
         int sel = consoleObj.printSelection(selectionOptions);
         if(sel == 1) {
@@ -57,19 +60,16 @@ public class BookingDashboard {
         }
         else if(sel == 4) {
             //Book a blood bank service - blood donation
-            Patient patient = Patient.getPatient();
-            patient.getPatientEmail();
             BloodBankServiceOutput bloodBankServiceOutput = new BloodBankServiceOutput();
-            bloodBankServiceOutput.bloodBankService(patient);
+            bloodBankServiceOutput.bloodBankService();
             sel = loadScreenOptions(consoleObj);
 
         }
         else if(sel == 5) {
-              PatientMenuOutput patientMenu = PatientMenuOutput.getInstance();
-              patientMenu.displayOutput();
+              return sel;
         }
         else {
-            consoleObj.printError(CommonErrors.invalidSelection);
+            consoleObj.printError(CommonErrors.INVALID_SELECTION);
             sel = loadScreenOptions(consoleObj);
         }
         return sel;

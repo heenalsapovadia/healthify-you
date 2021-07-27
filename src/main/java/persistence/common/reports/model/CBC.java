@@ -1,5 +1,9 @@
 package persistence.common.reports.model;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class CBC {
     private float rbc;
     private int wbc;

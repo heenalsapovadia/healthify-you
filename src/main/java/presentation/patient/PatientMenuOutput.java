@@ -16,18 +16,53 @@ import presentation.common.ScreenTitles;
  */
 public class PatientMenuOutput {
 	
-	private static class PatientMenuOutputHelper {
-		private static final PatientMenuOutput instance = new PatientMenuOutput();
+	private PrintToConsole consoleObj;
+	
+	public PatientMenuOutput() {
+		consoleObj = PrintToConsole.getInstance();
 	}
 	
-	public static PatientMenuOutput getInstance() {
-		return PatientMenuOutputHelper.instance;
-	}
-	
-	public void displayOutput() throws SQLException {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
-
-		loadScreenOptions(consoleObj);
+	public int displayOutput() throws SQLException {
+		consoleObj.printHeader(ScreenTitles.PATIENT_DASHBOARD);
+		List<String> selectionOptions = getSelectionOptions();
+		int sel = consoleObj.printSelection(selectionOptions);
+		if(sel == 1) {
+			BookingDashboard bookingDashboard = new BookingDashboard();
+			bookingDashboard.displayOutput();
+			displayOutput();
+			sel = displayOutput();
+		}
+		else if(sel == 2) {
+			InvoiceOutput invoiceOutput = new InvoiceOutput();
+			invoiceOutput.displayInvoice();
+			sel = displayOutput();
+		}
+		else if(sel == 3) {
+			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
+			requestMedicationDetails.requestMedicationDashboard();
+			sel = displayOutput();
+		}
+		else if(sel == 4) {
+			ViewReportsOutput viewReports = new ViewReportsOutput();
+			viewReports.displayOutput();
+			sel = displayOutput();
+		}
+		else if(sel == 5) {
+			RedeemableVoucherOutput redeemableVoucherOutput = new RedeemableVoucherOutput();
+			redeemableVoucherOutput.displayOutput();
+			sel = displayOutput();
+		}
+		else if(sel == 6) {
+			consoleObj.flushResources();
+			System.out.println(ScreenFields.LOGOUT_MESSAGE);
+			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
+			System.exit(0);
+		}
+		else {
+			consoleObj.printError(CommonErrors.INVALID_SELECTION);
+			sel = displayOutput();
+		}
+		return sel;
 	}
 	
 	private List<String> getSelectionOptions() {
@@ -39,51 +74,5 @@ public class PatientMenuOutput {
 		selectionOptions.add(ScreenFields.VOUCHERS);
 		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
-	}
-	
-	private int loadScreenOptions(PrintToConsole consoleObj) throws SQLException {
-		consoleObj.printHeader(ScreenTitles.PATIENT_DASHBOARD);
-		List<String> selectionOptions = getSelectionOptions();
-		int sel = consoleObj.printSelection(selectionOptions);
-		if(sel == 1) {
-			//make a booking
-			BookingDashboard bookingDashboard = new BookingDashboard();
-			bookingDashboard.displayOutput();
-			loadScreenOptions(consoleObj);
-			sel = loadScreenOptions(consoleObj);
-
-		}
-		else if(sel == 2) {
-			//invoices
-			InvoiceOutput invoiceOutput = new InvoiceOutput();
-			invoiceOutput.displayInvoice();
-			sel = loadScreenOptions(consoleObj);
-		}
-		else if(sel == 3) {
-			//request medication
-			RequestMedicationOutput requestMedicationDetails = new RequestMedicationOutput();
-			requestMedicationDetails.requestMedicationDetails();
-			sel = loadScreenOptions(consoleObj);
-		}
-		else if(sel == 4) {
-			ViewReportsOutput viewReports = new ViewReportsOutput();
-			viewReports.displayOutput();
-			sel = loadScreenOptions(consoleObj);
-		}
-		else if(sel == 5) {
-			RedeemableVoucherOutput redeemableVoucherOutput = new RedeemableVoucherOutput();
-			redeemableVoucherOutput.displayOutput();
-			sel = loadScreenOptions(consoleObj);
-		}
-		else if(sel == 6) {
-			System.out.println(ScreenFields.LOGOUT_MESSAGE);
-			System.out.println(ScreenFields.APPLICATION_TERMINATION_MESSAGE);
-			System.exit(0);
-		}
-		else {
-			consoleObj.printError(CommonErrors.invalidSelection);
-			sel = loadScreenOptions(consoleObj);
-		}
-		return sel;
 	}
 }

@@ -21,6 +21,7 @@ public class LabCheckRecommendationUtilImplTest {
         List<LabCheck> labCheckList = labCheckRecommendationUtil.genderBasedRecommendation();
         assertEquals(1, labCheckList.size());
         assertEquals(4, labCheckList.get(0).getCheckupId());
+        Patient.resetPatient();
     }
 
     @Test
@@ -31,6 +32,7 @@ public class LabCheckRecommendationUtilImplTest {
         LabCheckRecommendationUtil labCheckRecommendationUtil = new LabCheckRecommendationUtilImpl();
         List<LabCheck> labCheckList = labCheckRecommendationUtil.genderBasedRecommendation();
         assertEquals(0, labCheckList.size());
+        Patient.resetPatient();
     }
 
     @Test
@@ -42,6 +44,7 @@ public class LabCheckRecommendationUtilImplTest {
         List<LabCheck> labCheckList = labCheckRecommendationUtil.ageBasedRecommendation();
         assertEquals(1, labCheckList.size());
         assertEquals(3, labCheckList.get(0).getCheckupId());
+        Patient.resetPatient();
     }
 
     @Test
@@ -53,6 +56,7 @@ public class LabCheckRecommendationUtilImplTest {
         List<LabCheck> labCheckList = labCheckRecommendationUtil.ageBasedRecommendation();
         assertEquals(1, labCheckList.size());
         assertEquals(1, labCheckList.get(0).getCheckupId());
+        Patient.resetPatient();
     }
 
     @Test
@@ -71,6 +75,7 @@ public class LabCheckRecommendationUtilImplTest {
 
         assertTrue(labCheckHashMap.containsKey(2));
         assertTrue(labCheckHashMap.containsKey(5));
+        Patient.resetPatient();
     }
 
     @Test
@@ -89,5 +94,6 @@ public class LabCheckRecommendationUtilImplTest {
         assertTrue(labCheckHashMap.containsKey(8));
         assertTrue(labCheckHashMap.containsKey(9));
         assertTrue(labCheckHashMap.containsKey(10));
+        Patient.resetPatient();
     }
 }

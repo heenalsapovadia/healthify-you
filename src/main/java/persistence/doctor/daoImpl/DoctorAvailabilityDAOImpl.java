@@ -1,5 +1,6 @@
 package persistence.doctor.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.doctor.dao.DoctorAvailabilityDAO;
 import presentation.startup.DatabaseConnection;
 import java.sql.Connection;
@@ -11,13 +12,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorAvailabilityDAOImpl implements DoctorAvailabilityDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DoctorAvailabilityDAOImpl.class.getName());
 
     @Override
     public List<String> getAvailabilityByDoctor(int doctorId) {
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
 
         List<String> daysList = new ArrayList<>();
 
@@ -28,7 +33,7 @@ public class DoctorAvailabilityDAOImpl implements DoctorAvailabilityDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                daysList.add(resultSet.getString("weekday"));
+                daysList.add(resultSet.getString(DatabaseConstants.WEEKDAY));
             }
         }
         catch (SQLException sqlException){

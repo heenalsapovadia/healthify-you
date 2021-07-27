@@ -2,12 +2,12 @@ package presentation.patient;
 
 import java.util.ArrayList;
 import java.util.List;
-import persistence.common.paymentInterface.dao.PaymentInterfaceDAO;
-import persistence.common.paymentInterface.daoImpl.PaymentInterfaceDAOImpl;
-import persistence.patient.dao.RedeemableVoucherDAO;
-import persistence.patient.daoImpl.RedeemableVoucherDAOImpl;
+import persistence.common.paymentInterface.util.PaymentInterfaceUtil;
+import persistence.common.paymentInterface.utilImpl.PaymentInterfaceUtilImpl;
 import persistence.patient.model.Patient;
 import persistence.patient.model.RedeemableVoucher;
+import persistence.patient.util.RedeemableVoucherUtil;
+import persistence.patient.utilImpl.RedeemableVoucherUtilImpl;
 import presentation.common.CommonConstants;
 import presentation.common.CommonErrors;
 import presentation.common.PrintToConsole;
@@ -43,22 +43,22 @@ public class RedeemableVoucherOutput {
 						loadVoucher(voucher);
 						break;
 				case 2: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 2);
 	}
 	
 	private RedeemableVoucher fetchAvailablePoints() {
-		int patientId = Patient.getPatient().getPatientId();
-		RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
-		RedeemableVoucher voucher = voucherDAO.getVoucherByPatient(patientId);
+		int patientId = Patient.instance().getPatientId();
+		RedeemableVoucherUtil voucherUtil = new RedeemableVoucherUtilImpl();
+		RedeemableVoucher voucher = voucherUtil.fetchVoucherByPatientId();
 		if(voucher != null) {
 			pointsAvailable = voucher.getPoints();
 		}
 		System.out.println(ScreenFields.POINTS_AVAILABLE+CommonConstants.COMMON_TEXT_SEPARATOR+pointsAvailable);
-		PaymentInterfaceDAO paymentDAO = new PaymentInterfaceDAOImpl();
-		pointsRedeemed = paymentDAO.getVoucherRedemptionPoints(patientId);
+		PaymentInterfaceUtil paymentUtil = new PaymentInterfaceUtilImpl();
+		pointsRedeemed = paymentUtil.getPointsRedeemed(patientId);
 		if(pointsRedeemed > 0) { 
 			System.out.println(ScreenFields.POINTS_REDEEMED+CommonConstants.SINGLE_SPACE+CommonConstants.COMMON_TEXT_SEPARATOR+pointsRedeemed);
 		}

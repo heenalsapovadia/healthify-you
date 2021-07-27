@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import persistence.admin.dao.PharmaInvoiceDAO;
-import persistence.admin.daoImpl.PharmaInvoiceDAOImpl;
 import persistence.admin.model.PaymentMode;
 import persistence.admin.model.PharmaInvoice;
 import persistence.admin.util.PharmaInvoiceUtil;
@@ -27,6 +25,8 @@ import presentation.common.ScreenTitles;
  */
 public class PharmaInvoiceOutput {
 	
+	private PrintToConsole consoleObj;
+	
 	/**
 	 * <pre>
 	 * Fetches data from database using DAO and prints output to console.
@@ -36,14 +36,13 @@ public class PharmaInvoiceOutput {
 	 */
 	public void displayInvoice(Date date) {
 		PharmaInvoiceUtil invoiceUtil = new PharmaInvoiceUtilImpl();
-		PharmaInvoiceDAO invoiceDAO = new PharmaInvoiceDAOImpl();
-		Map<String, List<PharmaInvoice>> invoicesMap = invoiceDAO.getInvoiceDetailsByDate(date);
+		Map<String, List<PharmaInvoice>> invoicesMap = invoiceUtil.fetchMapFromDatabase(date);
 		List<Double> pricesList;
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
+		consoleObj = PrintToConsole.getInstance();
 		if(invoicesMap != null && !invoicesMap.isEmpty()) {
 			consoleObj.printHeader(ScreenTitles.PHARMA_INVOICE);
 			for(Map.Entry<String, List<PharmaInvoice>> entry: invoicesMap.entrySet()) {
-				loadTableHeader(consoleObj, entry.getValue().get(0), fetchAllReceipts(entry.getValue()));
+				loadTableHeader(entry.getValue().get(0), fetchAllReceipts(entry.getValue()));
 				pricesList = new ArrayList<>();
 				for(PharmaInvoice invoice: entry.getValue()) {
 					Double totalPrice = invoiceUtil.calculateTotalAmount(invoice.getItemUnitPrice(), invoice.getItemQuantity());
@@ -82,7 +81,7 @@ public class PharmaInvoiceOutput {
 	 * 
 	 * @param invoice
 	 */
-	private void loadTableHeader(PrintToConsole consoleObj, PharmaInvoice invoice, List<Integer> receiptList) {
+	private void loadTableHeader(PharmaInvoice invoice, List<Integer> receiptList) {
 		Iterator<Integer> itr = receiptList.iterator();
 		System.out.print(ScreenFields.RECEIPT_NO+CommonConstants.COMMON_TEXT_SEPARATOR);
 		while(itr.hasNext()) {

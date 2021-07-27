@@ -11,19 +11,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-//Through this feature, the logged in patient can register for donating blood
-// database entities
-//● DonationId
-//● PatientId
-//● BloodGrp
-//● Date
+/**
+ * <pre>
+ * Blood Bank Service Database method implementation
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
     private static final Logger LOGGER = Logger.getLogger(BloodBankServiceDAOImpl.class.getName());
 
     @Override
     public void insertBloodBankServiceDetails(BloodBankService bloodBankService) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "INSERT into blood_donations(donation_id, patient_id, blood_grp, blooddonation_date)" + "VALUES(?,?,?,?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, bloodBankService.getDonationId());
@@ -31,13 +32,13 @@ public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
             ps.setString(3, bloodBankService.getBloodGrp());
             ps.setTimestamp(4,new Timestamp(System.currentTimeMillis()));
             if(ps.executeUpdate() > 0) {
-            	RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
-            	RedeemableVoucher voucher = voucherDAO.getVoucherByBloodGroup(bloodBankService.getBloodGrp());
-            	if(voucher != null) {
-            		PatientDAO patientDAO = new PatientDAOImpl();
-            		patientDAO.updateVouchersForPatients(voucher.getVoucherId(), new Timestamp(System.currentTimeMillis()), 
-            				bloodBankService.getPatientId());
-            	}
+                RedeemableVoucherDAO voucherDAO = new RedeemableVoucherDAOImpl();
+                RedeemableVoucher voucher = voucherDAO.getVoucherByBloodGroup(bloodBankService.getBloodGrp());
+                if(voucher != null) {
+                    PatientDAO patientDAO = new PatientDAOImpl();
+                    patientDAO.updateVouchersForPatients(voucher.getVoucherId(), new Timestamp(System.currentTimeMillis()),
+                    bloodBankService.getPatientId());
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -46,7 +47,7 @@ public class BloodBankServiceDAOImpl implements BloodBankServiceDAO {
 
     @Override
     public List<BloodBankService> getAllBloodDonationsForPatient(Patient patient) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "SELECT * FROM blood_donations where patient_id='" + patient.getPatientId() + "'";
         try {
             Statement statement = conn.createStatement();

@@ -31,6 +31,8 @@ public class ApplicationOutput {
 	
 	private static ApplicationOutput applicationOutput;
 	
+	private PrintToConsole consoleObj;
+	
 	public static ApplicationOutput getInstance() {
 		if(applicationOutput == null)
 			applicationOutput = new ApplicationOutput();
@@ -38,24 +40,24 @@ public class ApplicationOutput {
 	}
 	
 	void displayOutput() throws SQLException {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
+		consoleObj = PrintToConsole.getInstance();
 		consoleObj.printHeader(ScreenTitles.MAIN_SCREEN);
-		loadMainScreenContent(consoleObj);
-		if(Admin.getAdmin() != null) {
-			AdminMenuOutput adminMenuOutput = AdminMenuOutput.getInstance();
+		loadMainScreenContent();
+		if(Admin.instance() != null) {
+			AdminMenuOutput adminMenuOutput = new AdminMenuOutput();
 			adminMenuOutput.displayOutput();
 		}
-		else if(Doctor.getDoctor() != null) {
-			DoctorMenuOutput doctorMenuOutput = DoctorMenuOutput.getInstance();
+		else if(Doctor.instance() != null) {
+			DoctorMenuOutput doctorMenuOutput = new DoctorMenuOutput();
 			doctorMenuOutput.displayOutput();
 		}
-		else if(Patient.getPatient() != null) { 
-			PatientMenuOutput patientMenuOutput = PatientMenuOutput.getInstance();
+		else if(Patient.instance() != null) { 
+			PatientMenuOutput patientMenuOutput = new PatientMenuOutput();
 			patientMenuOutput.displayOutput();
 		} 
 	}
 	
-	private void loadMainScreenContent(PrintToConsole consoleObj) {
+	private void loadMainScreenContent() {
 		List<String> selectionOptions = getSelectionOptions();
 		int sel = consoleObj.printSelection(selectionOptions);
 		if(sel == 1) {
@@ -65,14 +67,14 @@ public class ApplicationOutput {
 		else if(sel == 2) {
 			RegisterPatientOutput registerPatient = new RegisterPatientOutput();
 			registerPatient.registerPatient();
-			loadMainScreenContent(consoleObj);
+			loadMainScreenContent();
 		}
 		else if(sel == 3) {
 			System.exit(0);
 		}
 		else {
-			consoleObj.printError(CommonErrors.invalidSelection);
-			loadMainScreenContent(consoleObj);
+			consoleObj.printError(CommonErrors.INVALID_SELECTION);
+			loadMainScreenContent();
 		}
 	}
 	

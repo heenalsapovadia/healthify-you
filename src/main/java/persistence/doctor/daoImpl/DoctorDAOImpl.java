@@ -1,5 +1,6 @@
 package persistence.doctor.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.doctor.dao.DoctorDAO;
 import persistence.doctor.model.Doctor;
 import presentation.startup.DatabaseConnection;
@@ -13,12 +14,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class DoctorDAOImpl implements DoctorDAO {
     private static final Logger LOGGER = Logger.getLogger(DoctorDAOImpl.class.getName());
 
     @Override
     public Doctor getDoctor(Doctor doctor) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
 
         String sql = "SELECT * FROM doctors WHERE email = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -48,7 +53,7 @@ public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
     public String getDoctorNameById(int doctorId){
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         StringBuilder doctorName = new StringBuilder();
 
         String sql = "SELECT * FROM doctors WHERE doctor_id = ?";
@@ -57,9 +62,9 @@ public class DoctorDAOImpl implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                doctorName.append(rs.getString("first_name"));
+                doctorName.append(rs.getString(DatabaseConstants.FIRST_NAME));
                 doctorName.append(" ");
-                doctorName.append(rs.getString("last_name"));
+                doctorName.append(rs.getString(DatabaseConstants.LAST_NAME));
             }
         }
         catch (SQLException e){
@@ -72,7 +77,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     @Override
     public Map<Integer, String> getDoctorNameById(List<Integer> doctorId){
     	Map<Integer, String> doctorMap = new HashMap<>();
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         StringBuilder doctorName;
         String wildcard = "?,".repeat(doctorId.size());
         String sql = "SELECT * FROM doctors WHERE doctor_id in ("+wildcard.substring(0, wildcard.length()-1)+")";
@@ -83,10 +88,10 @@ public class DoctorDAOImpl implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
             	doctorName = new StringBuilder();
-                doctorName.append(rs.getString("first_name"));
+                doctorName.append(rs.getString(DatabaseConstants.FIRST_NAME));
                 doctorName.append(" ");
-                doctorName.append(rs.getString("last_name"));
-                doctorMap.put(rs.getInt("doctor_id"), doctorName.toString());
+                doctorName.append(rs.getString(DatabaseConstants.LAST_NAME));
+                doctorMap.put(rs.getInt(DatabaseConstants.DOCTOR_ID), doctorName.toString());
             }
         }
         catch (SQLException e){

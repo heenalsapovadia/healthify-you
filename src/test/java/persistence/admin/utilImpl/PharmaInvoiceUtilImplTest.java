@@ -6,6 +6,17 @@ import java.util.List;
 import org.junit.Test;
 import persistence.admin.util.PharmaInvoiceUtil;
 
+/**
+ * <pre>
+ * Tests for pharma supplies util.
+ * 
+ * Test for fetchMapFromDatabase is covered 
+ * in PharmaInvpiceDAOImplTest.
+ * </pre>
+ * 
+ * @author Gurleen Saluja
+ *
+ */
 public class PharmaInvoiceUtilImplTest {
 
 	/**

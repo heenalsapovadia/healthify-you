@@ -29,15 +29,20 @@ import presentation.common.ScreenTitles;
  */
 public class PharmaInvoiceOutput {
 	
+	private PrintToConsole consoleObj;
+	
+	public PharmaInvoiceOutput() {
+		consoleObj = PrintToConsole.getInstance();
+	}
+	
 	/**
 	 * <pre>
-	 * Fetches data from database using DAO and prints output to console.
+	 * Fetches data from database using Utility and prints output to console.
 	 * </pre>
 	 * 
 	 * @param date
 	 */
 	public void displayInvoice(Date date) {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		PatientInvoiceUtil invoiceUtil = new PatientInvoiceUtilImpl();
 		Invoice invoice = invoiceUtil.getGenericInvoiceDetails();
 		invoice = invoiceUtil.generatePharmaInvoice(date.toString(), invoice);
@@ -46,7 +51,7 @@ public class PharmaInvoiceOutput {
 		List<PharmaInvoice> invoicesList = invoice.getPharmaInvoiceList();
 		if(invoicesList != null && !invoicesList.isEmpty()) {
 			consoleObj.printHeader(ScreenTitles.PHARMACY_RECEIPT);
-			loadScreen(consoleObj, invoice);
+			loadScreen(invoice);
 			for(int i=0; i<invoicesList.size(); i++) {
 				System.out.println(
 						invoicesList.get(i).getItemName()+CommonConstants.SINGLE_SPACE
@@ -75,7 +80,7 @@ public class PharmaInvoiceOutput {
 	 * @param consoleObj
 	 * @param invoice
 	 */
-	private void loadScreen(PrintToConsole consoleObj, Invoice invoice) {
+	private void loadScreen(Invoice invoice) {
 		System.out.println(ScreenFields.PRESCRIPTION_ID+CommonConstants.SINGLE_TAB+CommonConstants.COLON
 				+CommonConstants.DOUBLE_TAB+invoice.getPrescriptionId());
 		System.out.println(ScreenFields.PATIENT_NAME+CommonConstants.COMMON_TEXT_SEPARATOR+invoice.getPatientName());

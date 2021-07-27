@@ -9,6 +9,10 @@ package persistence.patient.util;
  */
 public interface ImmunizationBookingUtil {
 
-  public boolean vaccineEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap);
-  
+	/**
+	 * @param vaccineId, doses, ageGroup, vaccineGap
+	 * @return boolean
+	 */
+	public boolean vaccineEligibilityCheck(int vaccineId, int doses, String ageGroup, int vaccineGap);
+
 }

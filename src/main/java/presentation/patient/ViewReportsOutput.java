@@ -1,6 +1,3 @@
-/**
- * 
- */
 package presentation.patient;
 
 import java.sql.Date;
@@ -31,10 +28,16 @@ import presentation.common.ScreenTitles;
 public class ViewReportsOutput {
 	
 	private Date startDate = null;
+	
 	private Date endDate = null;
 	
+	private PrintToConsole consoleObj;
+	
+	public ViewReportsOutput() {
+		consoleObj = PrintToConsole.getInstance();
+	}
+	
 	public void displayOutput() {
-		PrintToConsole consoleObj = PrintToConsole.getInstance();
 		consoleObj.printSingleNewLine();
 		List<String> selectionOptions = getSelectionOptions();
 		int sel;
@@ -46,12 +49,12 @@ public class ViewReportsOutput {
 				case 1: ViewReportsByTestOutput viewReportsByTest = new ViewReportsByTestOutput();
 						viewReportsByTest.displayOutput();
 						break;
-				case 2: displayReportForParticularDate(reportsUtil, consoleObj);						
+				case 2: displayReportForParticularDate(reportsUtil);						
 						break;
-				case 3: displayReportForDateRange(reportsUtil, consoleObj);
+				case 3: displayReportForDateRange(reportsUtil);
 						break;
 				case 4: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 4);
@@ -66,13 +69,13 @@ public class ViewReportsOutput {
 		return selectionOptions;
 	}
 	
-	private Date parseDateInput(PrintToConsole consoleObj, Scanner sc) {
+	private Date parseDateInput(Scanner sc) {
 		System.out.println(ScreenFields.DATEINPUT);
 		Date date = null;
 		try {
 			date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 			}
 			else {
 				Calendar cal = Calendar.getInstance();
@@ -81,18 +84,18 @@ public class ViewReportsOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
-			parseDateInput(consoleObj, new Scanner(System.in));
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
+			parseDateInput(new Scanner(System.in));
 		}
 		if(date == null) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
-			date = parseDateInput(consoleObj, new Scanner(System.in));
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
+			date = parseDateInput(new Scanner(System.in));
 		}
 		return date;
 	}
 	
-	private void displayReportForParticularDate(ViewReportsUtil reportsUtil, PrintToConsole consoleObj) {
-		Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDate(parseDateInput(consoleObj, new Scanner(System.in)).toString());
+	private void displayReportForParticularDate(ViewReportsUtil reportsUtil) {
+		Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDate(parseDateInput(new Scanner(System.in)).toString());
 		if(!reportsMap.isEmpty()) {
 			for(Map.Entry<String, List<String>> entry: reportsMap.entrySet()) {
 				consoleObj.printHeader(entry.getKey());
@@ -106,8 +109,8 @@ public class ViewReportsOutput {
 		}
 	}
 	
-	private void displayReportForDateRange(ViewReportsUtil reportsUtil, PrintToConsole consoleObj) {
-		parseDateRange(consoleObj, new Scanner(System.in));
+	private void displayReportForDateRange(ViewReportsUtil reportsUtil) {
+		parseDateRange(new Scanner(System.in));
 		if(startDate != null && endDate != null) {
 			Map<String, List<String>> reportsMap = reportsUtil.fetchReportByDateRange(startDate.toString(), endDate.toString());
 			if(!reportsMap.isEmpty()) {
@@ -125,18 +128,18 @@ public class ViewReportsOutput {
 		}
 	}
 	
-	private void parseDateRange(PrintToConsole consoleObj, Scanner sc) {
+	private void parseDateRange(Scanner sc) {
 		try {
 			System.out.println(ScreenFields.START_DATE);
 			startDate = Date.valueOf(sc.next());
 			if(startDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 				return;
 			}
 			System.out.println(ScreenFields.END_DATE);
 			endDate = Date.valueOf(sc.next());
 			if(endDate.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 				return;
 			}
 			else {
@@ -151,11 +154,8 @@ public class ViewReportsOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			return;
-		}
-		if(startDate == null || endDate == null) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package persistence.patient.daoImpl;
 
+import persistence.common.DatabaseConstants;
 import persistence.patient.dao.DoctorAppointmentBookingBySpecializationDAO;
 import persistence.patient.utilImpl.DoctorAppointmentBookingBySpecializationUtilImpl;
 import presentation.patient.DoctorAppointmentBookingOutput;
@@ -31,7 +32,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     } else {
         String sql = "select * from doctors where ";
 
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         Statement statement = null;
         try {
           statement = connection.createStatement();
@@ -50,9 +51,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
             return null;
           } else {
               do {
-                int doctorID = resultSet.getInt("doctor_id");
+                int doctorID = resultSet.getInt(DatabaseConstants.DOCTOR_ID);
                 String doctorName = "";
-                doctorName = doctorName + resultSet.getString("first_name") + " " + resultSet.getString("last_name");
+                doctorName = doctorName + resultSet.getString(DatabaseConstants.FIRST_NAME) + " " + resultSet.getString(DatabaseConstants.LAST_NAME);
                 doctorName = doctorName.trim();
                 doctorIdentifierList.put(doctorID, doctorName);
               } while(resultSet.next());
@@ -74,7 +75,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
           if (!doctorAppointmentBookingBySpecializationUtil.validateID(doctorID)) {
             return null;
           } else {
-              Connection connection = DatabaseConnection.getConnection();
+              Connection connection = DatabaseConnection.instance();
               Statement statement = connection.createStatement();
               ResultSet resultSet = null;
 
@@ -89,7 +90,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
                   return null;
                 } else {
                     do {
-                      daysAvailable.add(resultSet.getString("weekday"));
+                      daysAvailable.add(resultSet.getString(DatabaseConstants.WEEKDAY));
                     } while (resultSet.next());
                 }
 
@@ -113,7 +114,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
   public int checkDoctorExists(int doctorID) {
       String sql = "select distinct doctor_id from doctors;";
 
-      Connection connection = DatabaseConnection.getConnection();
+      Connection connection = DatabaseConnection.instance();
       Statement statement = null;
       try {
         statement = connection.createStatement();
@@ -131,7 +132,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
         if (!resultSet.next()) {
           return -1;
         } else {
-            doctorIDSet.add(resultSet.getInt("doctor_id"));
+            do {
+                doctorIDSet.add(resultSet.getInt(DatabaseConstants.DOCTOR_ID));
+            } while (resultSet.next());
             if (doctorIDSet.contains(doctorID))
               return 0;
             else
@@ -147,7 +150,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     String sql = "select patient_id from patients where patient_email = ";
     int identifier;
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = null;
     try {
       statement = connection.createStatement();
@@ -165,7 +168,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
         return -1;
       } else {
           do {
-            identifier = resultSet.getInt("patient_id");
+            identifier = resultSet.getInt(DatabaseConstants.PATIENT_ID);
           } while (resultSet.next());
       }
     } catch (SQLException se) {
@@ -186,7 +189,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
           String sql = "select charges from doctor_specific_charges where doctor_id = ";
           double charges;
 
-          Connection connection = DatabaseConnection.getConnection();
+          Connection connection = DatabaseConnection.instance();
           Statement statement = connection.createStatement();
           ResultSet resultSet = null;
 
@@ -198,7 +201,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
               return -1;
             } else {
                 do {
-                  charges = resultSet.getDouble("charges");
+                  charges = resultSet.getDouble(DatabaseConstants.CHARGES);
                 } while (resultSet.next());
             }
           } catch (SQLException se) {
@@ -220,7 +223,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     } else {
         String sql = "update doctor_appointment set billing_id = ";
 
-        Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.instance();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -264,7 +267,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
       return -1;
     }
 
-    Connection connection = DatabaseConnection.getConnection();
+    Connection connection = DatabaseConnection.instance();
     Statement statement = connection.createStatement();
     ResultSet resultSet = null;
     ResultSet resultSet1 = null;
@@ -280,7 +283,7 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
         return -1;
       } else {
           do {
-            appointmentID = resultSet1.getInt("appointment_id");
+            appointmentID = resultSet1.getInt(DatabaseConstants.APPOINTMENT_ID);
           } while(resultSet1.next());
           return appointmentID;
       }

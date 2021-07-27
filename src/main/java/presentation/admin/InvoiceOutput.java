@@ -23,7 +23,7 @@ public class InvoiceOutput {
 				case 1: parseDateInput(consoleObj, new Scanner(System.in));
 						break;
 				case 2: return;
-				default: consoleObj.printError(CommonErrors.invalidSelection);
+				default: consoleObj.printError(CommonErrors.INVALID_SELECTION);
 			}
 		}
 		while(sel != 2);
@@ -34,7 +34,7 @@ public class InvoiceOutput {
 		try {
 			Date date = Date.valueOf(sc.next());
 			if(date.compareTo(new Date(System.currentTimeMillis())) > 0) {
-				System.err.println(CommonErrors.greaterDate);
+				System.err.println(CommonErrors.GREATER_DATE);
 			}
 			else {
 				Calendar cal = Calendar.getInstance();
@@ -45,7 +45,7 @@ public class InvoiceOutput {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			consoleObj.printError(CommonErrors.invalidDateFormat);
+			consoleObj.printError(CommonErrors.INVALID_DATE_FORMAT);
 			parseDateInput(consoleObj, new Scanner(System.in));
 		}
 	}

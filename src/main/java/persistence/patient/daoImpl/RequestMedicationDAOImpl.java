@@ -1,53 +1,59 @@
 package persistence.patient.daoImpl;
 
 import persistence.admin.model.PharmaInvoice;
+import persistence.common.DatabaseConstants;
 import persistence.doctor.daoImpl.AppointmentDAOImpl;
 import persistence.doctor.model.Prescription;
+import persistence.patient.dao.RequestMedicationDAO;
 import persistence.patient.model.Patient;
 import presentation.startup.DatabaseConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+/**
+ * <pre>
+ * Request Medication Database method implementation
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
+public class RequestMedicationDAOImpl implements RequestMedicationDAO {
 
-public class RequestMedicationDAOImpl {
+    private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
 
-        private static final Logger LOGGER = Logger.getLogger(AppointmentDAOImpl.class.getName());
+    public List<Prescription> getPrescriptionDetails(int prescriptionId) {
+        List<Prescription> prescriptionList = new ArrayList<>();
+        Connection conn = DatabaseConnection.instance();
+        String sql = "SELECT * FROM prescription WHERE prescription_id = ? and patient_id = ?";
 
-        // As per Prescription Id validation getting prescription name, dose per day
-        public List<Prescription> getPrescriptionDetails(int prescriptionId) {
-            List<Prescription> prescriptionList = new ArrayList<>();
-            Connection conn = DatabaseConnection.getConnection();
-            String sql = "SELECT * FROM prescription WHERE prescription_id = ? and patient_id = ?";
-
-            try(PreparedStatement ps = conn.prepareStatement(sql)){
-                ps.setInt(1, prescriptionId);
-                ps.setInt(2, Patient.getPatient().getPatientId());
-                ResultSet rs = ps.executeQuery();
-                while(rs.next()){
-                    Prescription prescription = new Prescription();
-                    prescription.setPrescriptionId(prescriptionId);
-                    prescription.setPatientId(rs.getInt("patient_id"));
-                    prescription.setMedicineName(rs.getString("medicine_name"));
-                    prescription.setMorning(rs.getInt("morning_dose"));
-                    prescription.setAfternoon(rs.getInt("afternoon_dose"));
-                    prescription.setEvening(rs.getInt("evening_dose"));
-                    prescription.setDosageDays(rs.getInt("dosage_days"));
-                    prescriptionList.add(prescription);
-                }
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, prescriptionId);
+            ps.setInt(2, Patient.instance().getPatientId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Prescription prescription = new Prescription();
+                prescription.setPrescriptionId(prescriptionId);
+                prescription.setPatientId(rs.getInt(DatabaseConstants.PATIENT_ID));
+                prescription.setMedicineName(rs.getString(DatabaseConstants.MEDICINE_NAME));
+                prescription.setMorning(rs.getInt(DatabaseConstants.MORNING_DOSE));
+                prescription.setAfternoon(rs.getInt(DatabaseConstants.AFTERNOON_DOSE));
+                prescription.setEvening(rs.getInt(DatabaseConstants.EVENING_DOSE));
+                prescription.setDosageDays(rs.getInt(DatabaseConstants.DOSAGE_DAYS));
+                prescriptionList.add(prescription);
             }
-            catch (SQLException e) {
-                LOGGER.log(Level.SEVERE, e.toString());
-                System.out.println("SQL ERROR:"+e.getMessage());
-            }
-            return prescriptionList;
         }
+        catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString());
+            System.out.println("SQL ERROR:"+e.getMessage());
+        }
+        return prescriptionList;
+    }
 
-    // In order to check stock based on medicine name
     public PharmaInvoice getPharmaInvoice(String medicationName) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         ResultSet rs = null;
         PharmaInvoice invoice = null;
         StringBuilder sql = new StringBuilder();
@@ -58,19 +64,19 @@ public class RequestMedicationDAOImpl {
             rs = ps.executeQuery();
             if(rs.next()) {
                 invoice = new PharmaInvoice();
-                invoice.setInvoiceId(rs.getInt("pharma_billing_id"));
-                invoice.setPharmaName(rs.getString("pharma_name"));
-                invoice.setPharmaAddress(rs.getString("pharma_address"));
-                invoice.setPharmaContact(rs.getString("pharma_contact"));
-                invoice.setPaymentMode(rs.getString("payment_mode"));
-                invoice.setItemName(rs.getString("pharma_item_name"));
-                invoice.setItemDosage(rs.getString("pharma_item_dosage"));
-                invoice.setItemManufacturer(rs.getString("pharma_manufacturer"));
-                invoice.setItemQuantity(rs.getInt("pharma_item_quantity"));
-                invoice.setItemUnitPrice(rs.getDouble("pharma_item_unit_price"));
-                invoice.setDate(rs.getDate("pharma_bill_date"));
-                invoice.setTime(rs.getTime("pharma_bill_time"));
-                invoice.setItemUpdatedQuantity(rs.getInt("pharma_item_updated_quantity"));
+                invoice.setInvoiceId(rs.getInt(DatabaseConstants.PHARMA_BILLING_ID));
+                invoice.setPharmaName(rs.getString(DatabaseConstants.PHARMA_NAME));
+                invoice.setPharmaAddress(rs.getString(DatabaseConstants.PHARMA_ADDRESS));
+                invoice.setPharmaContact(rs.getString(DatabaseConstants.PHARMA_CONTACT));
+                invoice.setPaymentMode(rs.getString(DatabaseConstants.PAYMENT_MODE));
+                invoice.setItemName(rs.getString(DatabaseConstants.PHARMA_ITEM_NAME));
+                invoice.setItemDosage(rs.getString(DatabaseConstants.PHARMA_ITEM_DOSAGE));
+                invoice.setItemManufacturer(rs.getString(DatabaseConstants.PHARMA_MANUFACTURER));
+                invoice.setItemQuantity(rs.getInt(DatabaseConstants.PHARMA_ITEM_QUANTITY));
+                invoice.setItemUnitPrice(rs.getDouble(DatabaseConstants.PHARMA_ITEM_UNIT_PRICE));
+                invoice.setDate(rs.getDate(DatabaseConstants.PHARMA_BILL_DATE));
+                invoice.setTime(rs.getTime(DatabaseConstants.PHARMA_BILL_TIME));
+                invoice.setItemUpdatedQuantity(rs.getInt(DatabaseConstants.PHARMA_ITEM_UPDATED_QUANTITY));
             }
         }
         catch(SQLException e) {
@@ -79,9 +85,8 @@ public class RequestMedicationDAOImpl {
         return invoice;
     }
 
-    // In order to update the stock based on medicine that is requested by patient
     public void updatePharmaInvoice(String medication, int remainingQuantity) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "UPDATE pharma_supplies SET pharma_item_updated_quantity = ? where pharma_item_name = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, remainingQuantity);
@@ -93,7 +98,7 @@ public class RequestMedicationDAOImpl {
     }
 
     public void updatePrescription(int prescription_id, int billing_id) {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.instance();
         String sql = "UPDATE prescription SET billing_id = ? where prescription_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, billing_id);
@@ -103,5 +108,4 @@ public class RequestMedicationDAOImpl {
             e.getLocalizedMessage();
         }
     }
-
 }

@@ -4,12 +4,20 @@ import persistence.common.paymentInterface.modelPaymentInterface.PaymentInterfac
 import persistence.patient.model.Patient;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Database DAO - performs database functionality from payment_billing, voucher table
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public interface PaymentInterfaceDAO {
 
     int insertPaymentInterfaceDetails(PaymentInterface paymentInterface);
 
-    public List<PaymentInterface> getAllPaymentInterfaceDetails(Patient patient);
+    List<PaymentInterface> getAllPaymentInterfaceDetails(Patient patient);
 
     /**
      * <pre>
@@ -19,9 +27,9 @@ public interface PaymentInterfaceDAO {
      * @param patientId
      * @return voucher points
      */
-    public int getVoucherRedemptionPoints(int patientId);
+    int getVoucherRedemptionPoints(int patientId);
 
-    public int findMaxBillingId();
+    int findMaxBillingId();
     
     /**
      * <pre>
@@ -31,5 +39,5 @@ public interface PaymentInterfaceDAO {
      * @param billingIdList
      * @return map
      */
-    public Map<Integer, PaymentInterface> getPaymentDetails(List<Integer> billingIdList);
+     Map<Integer, PaymentInterface> getPaymentDetails(List<Integer> billingIdList);
 }

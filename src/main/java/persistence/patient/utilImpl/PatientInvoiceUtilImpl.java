@@ -30,6 +30,26 @@ import persistence.patient.model.Patient;
 import persistence.patient.util.PatientInvoiceUtil;
 
 /**
+ * <pre>
+ * This class provides abstraction to the database.
+ * It fetches data from DAO objects and returns back to the 
+ * presentation layer.
+ * 
+ * It fetches data 
+ * 	1. for a patient.
+ * 	2. Doctor's appointment table.
+ * 	3. LabCheck appointments table.
+ * 	4. Pharma supplies table.
+ * 	5. Prescription table.
+ * 	6. Doctor's table.
+ * 	7. Payment table.
+ * 
+ * All the data in this file will be dynamic and will come
+ * from DAO (Database). Therefore, this is not covered in tests 
+ * except for getGenericInvoiceDetails which is covered in 
+ * PatientInvoiceUtilImplTest.
+ * </pre>
+ * 
  * @author Gurleen Saluja
  *
  */
@@ -38,17 +58,17 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 	@Override
 	public Invoice getGenericInvoiceDetails() {
 		Invoice invoice = new Invoice();
-		invoice.setPatientName(Patient.getPatient().getPatientName());
-		invoice.setAddress(Patient.getPatient().getPatientAddress());
+		invoice.setPatientName(Patient.instance().getPatientName());
+		invoice.setAddress(Patient.instance().getPatientAddress());
 		invoice.setOriginalDatetime(new Timestamp(System.currentTimeMillis()));
 		invoice.setAge(calculateAge());
-		invoice.setContactNumber(String.valueOf(Patient.getPatient().getPatientContact()));
-		invoice.setGender(Patient.getPatient().getPatientGender().trim().charAt(0));
+		invoice.setContactNumber(String.valueOf(Patient.instance().getPatientContact()));
+		invoice.setGender(Patient.instance().getPatientGender().trim().charAt(0));
 		return invoice;
 	}
 	
 	private int calculateAge() {
-		LocalDate patientBirthdate = LocalDate.parse(Patient.getPatient().getPatientDob());
+		LocalDate patientBirthdate = LocalDate.parse(Patient.instance().getPatientDob());
 		LocalDate currentDate = LocalDate.now();
 		return Period.between(patientBirthdate, currentDate).getYears();
 	}
@@ -61,10 +81,10 @@ public class PatientInvoiceUtilImpl implements PatientInvoiceUtil {
 		List<Integer> doctorIdList = new ArrayList<>();
 		List<Integer> billingIdList = new ArrayList<>();
 		for(Appointment appointment: appointmentsList) {
-			if(appointment.getBooked_for_date().toString().equals(date)) {
-				doctorIdList.add(appointment.getDoctor_id());
+			if(appointment.getBookedForDate().toString().equals(date)) {
+				doctorIdList.add(appointment.getDoctorId());
 				actualAppointmentList.add(appointment);
-				billingIdList.add(appointment.getBilling_id());
+				billingIdList.add(appointment.getBillingId());
 			}
 		}
 		DoctorDAO doctorDAO = new DoctorDAOImpl();

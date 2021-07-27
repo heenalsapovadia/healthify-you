@@ -6,12 +6,16 @@ import persistence.doctor.util.PrescriptionValidationUtil;
 
 import java.util.Set;
 
+/**
+ * @author Heenal Sapovadia
+ *
+ */
 public class PrescriptionValidationUtilImpl implements PrescriptionValidationUtil {
 
     @Override
     public Appointment validateAppointmentId(int id){
         Appointment appointment = new Appointment();
-        appointment.setAppointment_id(id);
+        appointment.setAppointmentId(id);
 
         AppointmentDAOImpl appointmentDAO = new AppointmentDAOImpl();
         return appointmentDAO.validateAppointmentId(appointment);

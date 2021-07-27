@@ -14,27 +14,31 @@ public class PatientReportValidationUtilImplTest {
     public void validateBloodReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateBloodReports());
+        assertTrue(patientReportValidationUtil.validateBloodReports());
+        Patient.resetPatient();
     }
 
     @Test
     public void validateKidneyReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateKidneyReports());
+        assertTrue(patientReportValidationUtil.validateKidneyReports());
+        Patient.resetPatient();
     }
 
     @Test
     public void validateLiverReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateLiverReports());
+        assertTrue(patientReportValidationUtil.validateLiverReports());
+        Patient.resetPatient();
     }
 
     @Test
     public void validateEyeReports() {
         DatabaseConnection.loadDatabaseConnection();
         Patient.setPatient("ronnie@gma.com");
-        assertFalse(patientReportValidationUtil.validateEyeReports());
+        assertTrue(patientReportValidationUtil.validateEyeReports());
+        Patient.resetPatient();
     }
 }

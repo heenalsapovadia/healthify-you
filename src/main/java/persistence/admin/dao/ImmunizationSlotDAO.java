@@ -8,13 +8,28 @@ import java.util.Queue;
 
 public interface ImmunizationSlotDAO {
 
-  public Queue<Integer> getDoctorsAvailable();
+	/**
+	 * @param
+	 * @return Queue<Integer>
+	 */
+	public Queue<Integer> getDoctorsAvailable();
 
-  public List<String> getSlotTiming();
+	/**
+	 * @param
+	 * @return List<String>
+	 */
+	public List<String> getSlotTiming();
 
-  public Map<String, ArrayList<Integer>> getAssignedDoctors(int updatedChoice);
-  
-  public void updateSlotsInDatabase(LinkedHashMap<String, ArrayList<Integer>> updatedRecords);
-  
+	/**
+	 * @param updatedChoice
+	 * @return Map<String, ArrayList<Integer>>
+	 */
+	public Map<String, ArrayList<Integer>> getAssignedDoctors(int updatedChoice);
+
+	/**
+	 * @param updatedRecords
+	 * @return void
+	 */
+	public void updateSlotsInDatabase(LinkedHashMap<String, ArrayList<Integer>> updatedRecords);
 
 }

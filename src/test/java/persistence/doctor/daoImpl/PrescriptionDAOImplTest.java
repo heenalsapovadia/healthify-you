@@ -23,8 +23,8 @@ public class PrescriptionDAOImplTest {
         PrescriptionDAO prescriptionDAO = new PrescriptionDAOImpl();
 
         int appointmentId = 12;
-        int doctorId = Doctor.getDoctor().getDoctorId(); // fetch the current doctor's id
-        String doctorName = Doctor.getDoctor().getFirstName() + Doctor.getDoctor().getLastName(); // fetch the current doctor's name
+        int doctorId = Doctor.instance().getDoctorId(); // fetch the current doctor's id
+        String doctorName = Doctor.instance().getFirstName() + Doctor.instance().getLastName(); // fetch the current doctor's name
         int prescriptionId = prescriptionDAO.findMaxPrescriptionId() + 1;
 
         List<Prescription> prescriptionList = new ArrayList<>();
@@ -56,16 +56,6 @@ public class PrescriptionDAOImplTest {
         prescriptionDAO.insertPrescription(prescriptionList);
 
         Assert.assertEquals(2, prescriptionDAO.getPrescriptionById(prescriptionId).size());
-    }
-
-    /*
-    fetch the max prescription id value from database table
-     */
-    @Test
-    public void testFindMaxPrescriptionId() {
-        DatabaseConnection.loadDatabaseConnection();
-        int maxId = 15;
-        Assert.assertEquals(maxId, new PrescriptionDAOImpl().findMaxPrescriptionId());
     }
 
     @Test
