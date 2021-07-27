@@ -8,7 +8,6 @@ package persistence.common.paymentInterface.modelPaymentInterface;
  * @author Saloni Raythatha
  *
  */
-
 public enum PaymentBillingCategory {
     D, L, M, P;
 }

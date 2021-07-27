@@ -1,9 +1,15 @@
 package persistence.common.paymentInterface.util;
 
-// author - saloni raythatha
-// this is interface for payment interface feature - process payment
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Util - method to process all the payment through the interface
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public interface PaymentInterfaceUtil {
 
     // this method is the complete functionality for processing payment based on credit card, voucher and further generating billing

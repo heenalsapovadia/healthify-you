@@ -1,4 +1,10 @@
 package persistence.patient.util;
+
+import persistence.doctor.model.Prescription;
+import persistence.patient.daoImpl.RequestMedicationDAOImpl;
+import persistence.patient.model.RequestMedicationModel.MedicationsToUpdate;
+import persistence.patient.model.RequestMedicationModel.RequestMedicationDetails;
+import java.util.ArrayList;
 /**
  * <pre>
  * Request Medication Interface
@@ -7,13 +13,6 @@ package persistence.patient.util;
  * @author Saloni Raythatha
  *
  */
-import persistence.doctor.model.Prescription;
-import persistence.patient.daoImpl.RequestMedicationDAOImpl;
-import persistence.patient.model.RequestMedicationModel.MedicationsToUpdate;
-import persistence.patient.model.RequestMedicationModel.RequestMedicationDetails;
-
-import java.util.ArrayList;
-
 public interface RequestMedicationUtil {
 
     // this method is for collection precription id and process the payment based on stock, name, dosage, charges..
@@ -25,5 +24,4 @@ public interface RequestMedicationUtil {
                                                       ArrayList<MedicationsToUpdate> medicationsToUpdate,
                                                       RequestMedicationDAOImpl requestMedication,
                                                       int current_PrescriptionId);
-
 }

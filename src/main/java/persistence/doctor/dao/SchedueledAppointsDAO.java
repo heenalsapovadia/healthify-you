@@ -6,7 +6,8 @@ import java.util.Date;
 import java.util.List;
 /**
  * <pre>
- * Scheduled Appointments - DAO interface
+ * Scheduled Appointments - DAO interface get all details from doctor appointment table
+ * and fetches details from patient table
  * </pre>
  *
  * @author Saloni Raythatha

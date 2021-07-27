@@ -1,12 +1,5 @@
 package persistence.patient.utilImpl;
-/**
- * <pre>
- * Request Medication class for implementing functionality for medication..
- * </pre>
- *
- * @author Saloni Raythatha
- *
- */
+
 import persistence.admin.model.PharmaInvoice;
 import persistence.common.paymentInterface.modelPaymentInterface.PaymentBillingCategory;
 import persistence.doctor.model.Prescription;
@@ -17,7 +10,14 @@ import presentation.common.PaymentInterfaceOutput;
 import persistence.patient.model.RequestMedicationModel.MedicationsToUpdate;
 import presentation.common.ScreenFields;
 import java.util.ArrayList;
-
+/**
+ * <pre>
+ * Request Medication class for implementing functionality for request medication..
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public class RequestMedicationUtilImpl implements RequestMedicationUtil {
 
     public RequestMedicationDetails processPrescription(Prescription currentPrescription,

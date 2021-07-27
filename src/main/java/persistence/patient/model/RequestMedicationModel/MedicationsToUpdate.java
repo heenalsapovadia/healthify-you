@@ -1,14 +1,13 @@
 package persistence.patient.model.RequestMedicationModel;
 /**
  * <pre>
- * // this  is MedicationsToUpdate model
+ * // this is MedicationsToUpdate model
  * // method tested at package persistence.patient.model.RequestMedicationModel;
  * </pre>
  *
  * @author Saloni Raythatha
  *
  */
-
 public class MedicationsToUpdate {
     public String medicationName;
     public int medicationLeft;

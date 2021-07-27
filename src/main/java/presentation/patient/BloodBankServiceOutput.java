@@ -15,9 +15,8 @@ import java.util.Locale;
 import java.util.Scanner;
 /**
  * <pre>
- * This is class is responsible for displaying services for blood bank service- blood donation.
+ * This class is responsible for displaying series of services for blood bank service - blood donation.
  * </pre>
- *
  * @author Saloni Raythatha
  *
  */
@@ -97,8 +96,6 @@ public class BloodBankServiceOutput {
         }
         return "";
     }
-
-
 
     public static String validateDonationDataAndReport(String bloodGroupInput) {
         BloodBankServiceDAOImpl bloodBankServiceDAOImpl = new BloodBankServiceDAOImpl();

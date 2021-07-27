@@ -1,4 +1,7 @@
 package persistence.patient.model.RequestMedicationModel;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 /**
  * <pre>
  * RequestMedicationDetails Test method
@@ -7,9 +10,6 @@ package persistence.patient.model.RequestMedicationModel;
  * @author Saloni Raythatha
  *
  */
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-
 public class RequestMedicationDetailsTest {
     @Test
     public void testConstructor() {

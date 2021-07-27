@@ -1,10 +1,16 @@
 package persistence.common.paymentInterface.util;
 
-// author - saloni raythatha
-// this is interface for payment credit card validation
-
 import java.util.List;
-
+/**
+ * <pre>
+ *
+ * PaymentInterface Credit Card Interface
+ * This validates all the credit card inputs
+ * </pre>
+ *
+ * @author Saloni Raythatha
+ *
+ */
 public interface PaymentCreditCardValidationUtil {
 
     //validating credit card number
