@@ -7,5 +7,10 @@ import persistence.patient.model.Patient;
  *
  */
 public interface RegistrationDAO {
-  public String addPatientDetails(Patient p);
+
+	/**
+	 * @param Patient object
+	 * @return String
+	 */
+	public String addPatientDetails(Patient p);
 }

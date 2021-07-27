@@ -11,7 +11,12 @@ import persistence.startup.model.Login;
  */
 public interface UserLoginDAO {
 
-  // getting user details whenever any user logins into the system
-  public String getuserDetails(Login l);
+	/**
+	 * getting user details whenever any user logins into the system
+	 * 
+	 * @param Login object
+	 * @return String
+	 */
+	public String getuserDetails(Login l);
 
 }

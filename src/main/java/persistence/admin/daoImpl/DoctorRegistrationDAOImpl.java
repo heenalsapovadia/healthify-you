@@ -1,6 +1,7 @@
 package persistence.admin.daoImpl;
 import persistence.admin.dao.DoctorRegistrationDAO;
 import persistence.admin.model.DoctorRegistration;
+import persistence.common.DatabaseConstants;
 import presentation.startup.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
       resultSet = statement.executeQuery("select * from UserCredentials where User_Id = " + "\"" + email + "\"" + ";");
       ArrayList<String> check = new ArrayList<>();
       while (resultSet.next()) {
-        check.add(resultSet.getString("User_Id"));
+        check.add(resultSet.getString(DatabaseConstants.USER_ID));
       }
 
       if (check.size() > 0) {

@@ -8,6 +8,8 @@ import static presentation.common.CommonErrors.*;
 import static presentation.common.ScreenFields.*;
 import static presentation.common.ScreenTitles.DOCTOR_REGISTRATION;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,7 +32,7 @@ public class DoctorRegistrationOutput {
     consoleObj.printHeader(DOCTOR_REGISTRATION);
 
     consoleObj.printSingleNewLine();
-    consoleObj.printScreenFields("Please enter the details below:\n");
+    consoleObj.printScreenFields(GET_INPUT);
 
     consoleObj.printScreenFields(EMAIL_INPUT);
 
@@ -56,7 +58,7 @@ public class DoctorRegistrationOutput {
 
     if(!checkFName) {
       do {
-        consoleObj.printError("Invalid First Name! Enter valid First Name (only alphabets))!");
+        consoleObj.printError(INVALID_FIRST_NAME);
         consoleObj.printScreenFields(FIRST_NAME_INPUT);
         fname = sc.nextLine().trim();
         checkFName = doctorRegistrationUtilImpl.validateFirstName(fname);
@@ -73,7 +75,7 @@ public class DoctorRegistrationOutput {
 
     if(!checkLName) {
       do {
-        consoleObj.printError("Invalid Last Name! Enter valid Last Name (only alphabets))!");
+        consoleObj.printError(INVALID_LAST_NAME);
         consoleObj.printScreenFields(LAST_NAME_INPUT);
         lname = sc.nextLine().trim();
         checkLName = doctorRegistrationUtilImpl.validateLastName(lname);
@@ -193,7 +195,7 @@ public class DoctorRegistrationOutput {
 
     if(!checkCity) {
       do {
-        consoleObj.printError("Invalid city! Enter valid city (only alphabets and spaces))!");
+        consoleObj.printError(INVALID_CITY_NAME);
         consoleObj.printScreenFields(CITY_INPUT);
         city = sc.nextLine().trim();
         checkCity = doctorRegistrationUtilImpl.validateCity(city);
@@ -207,11 +209,12 @@ public class DoctorRegistrationOutput {
     consoleObj.printSingleNewLine();
     int choice = 0;
 
-    consoleObj.printScreenFields("Select one of the below options:");
-    consoleObj.printScreenFields("1. Confirm to proceed to register");
-    consoleObj.printScreenFields("2. Exit");
+    consoleObj.printScreenFields(SELECTION_FIELD);
+    List<String> registrationOptionList = new ArrayList<>();
+    registrationOptionList.add("Confirm to proceed to register");
+    registrationOptionList.add("Exit");
+    consoleObj.printSelection(registrationOptionList);
 
-    consoleObj.printScreenFields("Please enter your selection below:");
     choice = sc.nextInt();
 
     if(choice == 1) {

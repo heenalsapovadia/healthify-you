@@ -1,21 +1,46 @@
 package persistence.patient.util;
 
 /**
- * Interface for handling utility functions of Patient registration 
+ * Interface for handling utility functions of Patient registration
+ * 
  * @author Deeksha Sareen
  *
  */
 public interface RegistrationUtil {
-  
-  public String validateDate(String date);
 
-  public String validateContact(Long Contact);
+	/**
+	 * @param date
+	 * @return String
+	 */
+	public String validateDate(String date);
 
-  public String validateEmail(String email);
+	/**
+	 * @param Contact
+	 * @return String
+	 */
+	public String validateContact(Long contact);
 
-  public String validatePassword(String password);
+	/**
+	 * @param email
+	 * @return String
+	 */
+	public String validateEmail(String email);
 
-  public String validateNames(String name);
+	/**
+	 * @param password
+	 * @return String
+	 */
+	public String validatePassword(String password);
 
-  public String validateCity(String city);
+	/**
+	 * @param name
+	 * @return String
+	 */
+	public String validateNames(String name);
+
+	/**
+	 * @param city
+	 * @return String
+	 */
+	public String validateCity(String city);
 }

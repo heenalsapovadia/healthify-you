@@ -1,6 +1,3 @@
-/**
- * 
- */
 package persistence.admin.dao;
 
 /**
@@ -10,5 +7,10 @@ package persistence.admin.dao;
  */
 public interface ImmunizationDoctorsDAO {
 
-  public int getDoctorAssigned(String weekday, String slotTime);
+	/**
+	 * @param weekday
+	 * @param slotTime
+	 * @return integer
+	 */
+	public int getDoctorAssigned(String weekday, String slotTime);
 }
