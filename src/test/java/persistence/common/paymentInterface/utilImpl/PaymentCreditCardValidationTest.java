@@ -19,7 +19,7 @@ public class PaymentCreditCardValidationTest {
 
     @Test
     public void testValidateCvv() {
-        assertEquals("Cvv number should be 3 digit long", (new PaymentCreditCardValidation()).validateCvv(922l));
+        assertEquals("Cvv number should be 3 digit long", (new PaymentCreditCardValidation()).validateCvv(1L));
     }
 }
 
