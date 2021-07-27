@@ -6,7 +6,7 @@ import persistence.patient.model.ImmunizationBooking;
 
 /**
  * @author Deeksha Sareen
- *
+ * interface DAO class for booking of immunization for patients
  */
 
 public interface ImmunizationBookingDAO {
@@ -21,23 +21,8 @@ public interface ImmunizationBookingDAO {
 
 	public boolean assignPatientinDatabase(String slotChosen, int vaccineId);
 
-	/**
-	 * <pre>
-	 * Returns map of vaccine name with their corresponding id.
-	 * </pre>
-	 * 
-	 * @param vaccineId
-	 * @return map
-	 */
 	public Map<Integer, String> getVaccineDetailById(List<Integer> vaccineId);
 
-	/**
-	 * <pre>
-	 * Returns list of immunization booking objects.
-	 * </pre>
-	 * 
-	 * @return
-	 */
 	public List<ImmunizationBooking> getVaccineIdByPatientId();
 
 }

@@ -38,7 +38,7 @@ public class AdminMenuOutput {
 		selectionOptions.add(ScreenFields.GET_INVOICES);
 		selectionOptions.add(ScreenFields.GET_RECOMMENDATIONS);
 		selectionOptions.add(ScreenFields.REGISTER_DOCTOR);
-		selectionOptions.add(ScreenFields.immunizationmanagement);
+		selectionOptions.add(ScreenFields.IMMUNIZATION_MANAGEMENT);
 		selectionOptions.add(ScreenFields.LOGOUT);
 		return selectionOptions;
 	}

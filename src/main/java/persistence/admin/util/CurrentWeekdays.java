@@ -26,7 +26,7 @@ public class CurrentWeekdays {
 
   public List<String> getDates() {
     Calendar now = Calendar.getInstance();
-
+  
     if (now.get(Calendar.DAY_OF_WEEK) == 2) { // Monday
       return getWeekdays(now);
     }

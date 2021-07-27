@@ -22,14 +22,17 @@ import presentation.patient.RegisterPatientOutput;
  */
 public class UserLogin {
 
+  public void retryOptions() {
+    
+  }
   public boolean loginUser() {
 
     PrintToConsole print = PrintToConsole.getInstance();
-    print.printHeader(ScreenTitles.login);
-    print.printScreenFields(ScreenFields.userEmailInput);
+    print.printHeader(ScreenTitles.LOGIN);
+    print.printScreenFields(ScreenFields.USER_EMAIL_INPUT);
     Scanner sc = new Scanner(System.in);
     String userId = sc.next();
-    print.printScreenFields(ScreenFields.userPasswordInput);
+    print.printScreenFields(ScreenFields.USER_PASSWORD_INPUT);
     String password = sc.next();
     int length = password.length();
     String hidden = "";
@@ -40,12 +43,12 @@ public class UserLogin {
     l.setUserPassword(password);
     l.setUserEmail(userId);
     print.printSingleNewLine();
-    print.printScreenFields(ScreenFields.emailIdOutput + "=" + userId);
-    print.printScreenFields(ScreenFields.passwordOutput + "=" + hidden);
+    print.printScreenFields(ScreenFields.EMAILID_OUTPUT + "=" + userId);
+    print.printScreenFields(ScreenFields.PASSWORD_OUTPUT + "=" + hidden);
     print.printDoubleNewlines();
     int sel;
     while (true) {
-      List<String> selectionOptions = Arrays.asList(ScreenFields.proceed, "Patient Sign Up", ScreenFields.EXIT);
+      List<String> selectionOptions = Arrays.asList(ScreenFields.PROCEED, "Patient Sign Up", ScreenFields.EXIT);
       sel = print.printSelection(selectionOptions);
       switch (sel) {
       case 1:
@@ -53,8 +56,8 @@ public class UserLogin {
         if (util.validateEmail(userId) == null && util.validatePassword(password) == null) {
           UserLoginDAO dao = new UserLoginDAOImpl();
           print.printMethodReturns(dao.getuserDetails(l));
-          if (dao.getuserDetails(l).equals(CommonErrors.userPasswordUnmatch)
-                  || dao.getuserDetails(l).equals(CommonErrors.userIDInvalid)) {
+          if (dao.getuserDetails(l).equals(CommonErrors.PASSWORD_MISMATCH)
+                  || dao.getuserDetails(l).equals(CommonErrors.INVALID_USERID)) {
 
             List<String> selectionOptions2 = Arrays.asList("Retry", "Sign-Up", "Exit");
             int sel2 = print.printSelection(selectionOptions2);
@@ -64,12 +67,12 @@ public class UserLogin {
             } else if (sel2 == 2) {
               RegisterPatientOutput obj = new RegisterPatientOutput();
               obj.registerPatient();
-              break;
+              return false;
             } else if (sel2 == 3) {
               System.exit(0);
               return false;
             }
-          } else if (dao.getuserDetails(l).equals(ScreenFields.successLogin)) {
+          } else if (dao.getuserDetails(l).equals(ScreenFields.SUCCESS_LOGIN)) {
             return false;
           }
         } else {
@@ -87,7 +90,7 @@ public class UserLogin {
           } else if (sel2 == 2) {
             RegisterPatientOutput obj = new RegisterPatientOutput();
             obj.registerPatient();
-            break;
+            return false;
           } else if (sel2 == 3) {
             System.exit(0);
             return false;

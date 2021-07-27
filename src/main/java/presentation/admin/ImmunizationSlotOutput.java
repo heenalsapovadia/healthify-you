@@ -23,8 +23,11 @@ public class ImmunizationSlotOutput {
 
   PrintToConsole print = PrintToConsole.getInstance();
 
+  /**
+   * This method used to print the stucture for immunization slot headers
+   */
   private void printSlotHeaders() {
-    print.printHeader(presentation.common.ScreenTitles.immunizationDashboard);
+    print.printHeader(presentation.common.ScreenTitles.IMMUNIZATION_DASHBOARD);
     print.printSubHeading("Slots Assigned");
     Date date = new Date();
     String str = String.format("Current " + ScreenFields.DATETIME + ": %tc", date);
@@ -42,6 +45,9 @@ public class ImmunizationSlotOutput {
     print.printSingleNewLine();
   }
 
+  /**
+   * This method is used to print the slot content for immunization
+   */
   private void printSlotContent(ImmunizationSlotDAOImpl dao, int updateChoice) {
     printSlotHeaders();
 
@@ -60,9 +66,11 @@ public class ImmunizationSlotOutput {
       print.printSingleNewLine();
       i++;
     }
-
   }
 
+  /**
+   * This method prints the slots assigned
+   */
   public void immunizationSlotAssign() {
 
     ImmunizationSlotDAOImpl dao = new ImmunizationSlotDAOImpl();
@@ -80,13 +88,12 @@ public class ImmunizationSlotOutput {
     if (choice == 1) {
       if (util.validateWeekend()) {
         util.assignDoctors(assign, dao.getDoctorsAvailable());
-        print.printScreenFields(ScreenFields.slotsassigned);
+        print.printScreenFields(ScreenFields.SLOTS_ASSIGNED);
         printSlotContent(dao, 1);
       } else {
-        print.printScreenFields(CommonErrors.invalidWeekday);
+        print.printScreenFields(CommonErrors.INVALID_WEEKDAY);
         print.printSingleNewLine();
       }
-
     }
     if (choice == 2) {
       ImmunizationDashboard immunizationdashboard = ImmunizationDashboard.getInstance();
