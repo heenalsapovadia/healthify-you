@@ -157,17 +157,36 @@ public class ScreenFields {
 
 
   /* Payment Interface fields */
-  public static final String cardNumber = "Enter your card number(12 digit - start with 512): ";
-  public static final String expirydate = "Enter expiry date(yyyy-mm): ";
-  public static final String cvvNumber = "Enter cvv number(3 digit - start with 9): ";
-  public static final String checkoutAmount = "Checkout Amount: ";
-  public static final String redeemVoucher = "Reedemable Voucher: ";
-  public static final String voucherIdOption1 = "1. Enter 1 to proceed without voucher and make payment through Credit Card. ";
-  public static final String voucherIdOption2 = "2. Enter 2 to proceed with voucher. ";
-  public static final String enterVoucherId = "Enter Voucher Id: ";
-  public static final String paymentExit = "3. Exit: ";
-  public static final String voucherId = "1. Enter voucher id or enter 1 to proceed: ";
+  public static final String CARD_NUMBER = "Enter your card number(12 digit - start with 512): ";
+  public static final String EXPIRY_DATE = "Enter expiry date(yyyy-mm): ";
+  public static final String CVV_NUMBER = "Enter cvv number(3 digit - start with 9): ";
+  public static final String CHECKOUT_AMOUNT = "Checkout Amount: ";
+  public static final String REDEEM_VOUCHER = "Reedemable Voucher: ";
+  public static final String VOUCHER_ID_OPTION1 = "1. Enter 1 to proceed without voucher and make payment through Credit Card. ";
+  public static final String VOUCHER_ID_OPTION2 = "2. Enter 2 to proceed with voucher. ";
+  public static final String ENTER_VOUCHERID = "Enter Voucher Id: ";
   public static final String CONTINUE_TO_PAYMENT = "Continue To Payment";
+  public static final String VOUCHER_POINTS_USED_FOR_BILLING = " -- Voucher points used for billing and billing id is: ";
+  public static final String BALANCE_REMAINING_FROM_CHECKOUT = "Remaining balance of ";
+  public static final String REMAINING_BALANCE_PAID_THROUGH_CREDITCARD =  " paid through credit card and billing id is: ";
+  public static final String BILLING_ID_GENERATED = "Payment Successful and billing id is: ";
+  public static final String INVALID_VOUCHER = "Invalid Voucher. Please pay through credit card.";
+  public static final String BILLING_ID =  "Billing id is: ";
+  public static final String VOUCHER_NOT_AVAILABLE = "Voucher not available. Please enter details again.";
+  public static final String BILL_SUCCESSFUL_FOR_LABTEST =  "Billing successful for Lab Health Check Booking. ";
+  public static final String BILL_SUCCESSFUL_FOR_DOCTOR_APPOINTMENT = "Billing successful for Doctor Appointment.";
+  public static final String BILL_SUCCESSFUL_FOR_REQUEST_MEDICATION = "Billing successful for Request Medication.";
+  public static final String BILL_SUCCESSFUL_FOR_PHARMARCY = "Billing successful for Pharmacy.";
+
+  /* Credit Card Validation field for Payment Interface*/
+  public static final String ENTER_VALID_CREDITCARD_Number = "Should start with 512. Please enter again.";
+  public static final String MIN_CARD_NUMBER = "Card number should be 12 digit long";
+  public static final String WRONG_CARD_NUMBER = "Wrong credit card number. Please enter again";
+  public static final String ENTER_VALID_CVV = "Should start with 9. Please enter again.";
+  public static final String MIN_CVV_NUMBER = "Cvv number should be 3 digit long";
+  public static final String WRONG_CVV_NUMBER = "Wrong Cvv. Please start with 9 and make sure its 3 digit long.";
+  public static final String WRONG_DATE = "Wrong date. Please enter again";
+
 
   /* Blood Bank recommendation screen fields */
   public static final String BLOOD_GROUP_INPUT = "Please enter the primary blood group to be ordered from the list - A+, AB+, B+, O+, A-, AB-, B-, O- (case-insensitive)";
@@ -213,7 +232,7 @@ public class ScreenFields {
   public static final String BILL_AMT = "Bill Amount (CAD)";
   public static final String AMOUNT = "Amount (CAD)";
   public static final String CREATED_ON = "Created On";
-  public static final String EXPIRY_DATE = "Expiry Date";
+  public static final String EXPIRY_DATE_OF_CARD = "Expiry Date";
   public static final String VACCINE_NAME = "Vaccine Name";
   public static final String LAB_TEST_NAME = "Laboratory Test Name";
 
