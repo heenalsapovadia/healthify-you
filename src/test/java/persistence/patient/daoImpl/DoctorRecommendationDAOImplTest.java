@@ -21,6 +21,10 @@ import java.util.ArrayList;
 
 public class DoctorRecommendationDAOImplTest {
 
+    /**
+    * Test method for
+    * {@link persistence.patient.daoImpl.DoctorRecommendationDAOImpl#fetchDoctorList(String)}
+    */
     @Test
     public void fetchDoctorList() throws SQLException {
 
@@ -51,6 +55,10 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.patient.daoImpl.DoctorRecommendationDAOImpl#fetchDoctorList(String)}
+    */
     @Test
     public void fetchDoctorList2() throws SQLException {
 
@@ -67,6 +75,10 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.patient.daoImpl.DoctorRecommendationDAOImpl#fetchDoctorList(String)}
+    */
     @Test
     public void fetchIncorrectDoctorList() throws SQLException {
 
@@ -84,6 +96,10 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.patient.daoImpl.DoctorRecommendationDAOImpl#fetchDoctorList(String)}
+    */
     @Test
     public void fetchIncorrectDoctorList2() throws SQLException {
 
@@ -101,6 +117,10 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.patient.daoImpl.DoctorRecommendationDAOImpl#fetchDoctorList(String)}
+    */
     @Test
     public void fetchIncorrectDoctorList3() throws SQLException {
 
@@ -114,6 +134,10 @@ public class DoctorRecommendationDAOImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.patient.daoImpl.DoctorRecommendationDAOImpl#fetchDoctorList(String)}
+    */
     @Test
     public void fetchIncorrectDoctorList4() throws SQLException {
 

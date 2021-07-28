@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
-import static persistence.common.DatabaseConstants.ORDER_NUMBER;
-
 /**
 * <pre>
 * DAOImpl class for blood bank recommendation
@@ -22,16 +20,29 @@ import static persistence.common.DatabaseConstants.ORDER_NUMBER;
 
 public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDAO {
 
-  public class Order {
-    public int orderNumber;
-    public String bloodGroup;
+  /**
+   * <pre>
+   * Inner class for Order
+   * </pre>
+   *
+   * @author Samiksha Salgaonkar
+   *
+   */
 
+  /* This is an inner class which groups orders based on their order numbers and blood groups ordered in that order */
+  public class Order {
+    public int orderNumber;    /* stores the order number */
+    public String bloodGroup;    /* stores the blood group */
+
+    /* parameterized constructor for the Order class */
     Order(int orderNumber, String bloodGroup) {
-      this.orderNumber = orderNumber;
-      this.bloodGroup = bloodGroup;
+      this.orderNumber = orderNumber;   /* assigns the passed order number to the instance variable */
+      this.bloodGroup = bloodGroup;    /* assigns the passed blood group to the instance variable */
     }
   }
 
+  /* This method is passed the primary blood group entered by the patient, based on which it fetches
+     the list of orders and the blood groups ordered for each of those orders */
   @Override
   public List<Order> fetchBloodGroupList(String bloodGroup) {
 
@@ -47,7 +58,7 @@ public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDA
     String sql = "select * from blood_bank_orders where blood_group = \"" + bloodGroup + "\";";
 
     try {
-      /* retrieves blood group list for the symptoms */
+      /* retrieves order numbers for the entered primary blood group */
       resultSet = statement.executeQuery(sql);
       Set<Integer> orderNumberSet = new HashSet<>();
 
@@ -75,7 +86,7 @@ public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDA
 
       resultSet = statement.executeQuery(sql2);
 
-      List<Order> orders = new ArrayList<Order>();
+      List<Order> orders = new ArrayList<Order>();    /* list to store Order instances with their order numbers and blood groups ordered in those orders */
       if(!resultSet.next()) {
         System.err.println("Nothing was ordered for the mentioned blood group!");
         return null;
@@ -86,7 +97,7 @@ public class BloodBankRecommendationDAOImpl implements BloodBankRecommendationDA
           } while(resultSet.next());
       }
 
-      return orders;
+      return orders;    /* returns the list of instances of class Order storing the order number and blood group */
 
     } catch (SQLException se) {
         return null;

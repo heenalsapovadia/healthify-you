@@ -22,6 +22,9 @@ import java.util.*;
 
 public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentBookingByNameDAO {
 
+  /**
+  * This method returns a map of identifier and full name of the doctor
+  */
   @Override
   public Map<Integer, String> fetchDoctorIdentifier(String name) {
 
@@ -65,6 +68,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
     }
   }
 
+  /**
+  * This method returns a map of identifier and available dates of the doctor
+  */
   @Override
   public Map<Integer, List<String>> fetchDoctorAvailability(int doctorID) {
 
@@ -114,6 +120,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
     }
   }
 
+  /**
+  * This method adds the doctor appointment details
+  */
   @Override
   public int addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) {
 
@@ -175,6 +184,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
     }
   }
 
+  /**
+  * This method checks if the the doctor exists in the application
+  */
   @Override
   public int checkDoctorExists(int doctorID) {
     String sql = "select distinct doctor_id from doctors;";
@@ -210,6 +222,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
     }
   }
 
+  /**
+  * This method checks if the patient exists in the application
+  */
   @Override
   public int checkPatientExists(String email) {
     String sql = "select patient_id from patients where patient_email = ";
@@ -242,6 +257,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
     return identifier;
   }
 
+  /**
+  * This method returns the charges for the passed doctor identifier
+  */
   @Override
   public double fetchDoctorCharges(int doctorID) {
 
@@ -280,6 +298,9 @@ public class DoctorAppointmentBookingByNameDAOImpl implements DoctorAppointmentB
     }
   }
 
+  /**
+  * This method updates the billing id for the appointment id
+  */
   @Override
   public int updateBillingID(int billingID, String appointmentIDList) {
 

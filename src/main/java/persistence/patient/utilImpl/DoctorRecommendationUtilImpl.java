@@ -17,6 +17,9 @@ import java.util.stream.Collectors;
 
 public class DoctorRecommendationUtilImpl implements DoctorRecommendationUtil {
 
+  /**
+  * This method gets doctor recommendations for the passed symptom, support and number of recommendations
+  */
   public ArrayList<String> getDoctorRecommendations(String symptom, int support, int numRec) {
 
     if(numRec <= 0) {

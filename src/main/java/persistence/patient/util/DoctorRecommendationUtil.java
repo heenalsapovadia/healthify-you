@@ -13,5 +13,10 @@ import java.util.ArrayList;
 
 public interface DoctorRecommendationUtil {
 
+  /**
+  * @param symptom,support,numRec
+  * @return ArrayList<String>
+  */
   public ArrayList<String> getDoctorRecommendations(String symptom, int support, int numRec);
+
 }

@@ -13,6 +13,10 @@ import java.util.*;
 
 public interface BloodBankRecommendationUtil {
 
+  /**
+   * @param bloodGroup,numRec
+   * @return HashSet<ArrayList<String>>
+   */
   public HashSet<ArrayList<String>> getBloodGroupList(String bloodGroup, int numRec);
 
 }

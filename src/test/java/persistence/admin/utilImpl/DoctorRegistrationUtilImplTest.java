@@ -21,6 +21,10 @@ import java.sql.Statement;
 
 public class DoctorRegistrationUtilImplTest {
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateFirstName(String)}
+    */
     @Test
     public void validateCorrectFirstName() {
         String fName = "Karolina";
@@ -34,6 +38,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateFirstName(String)}
+    */
     @Test
     public void validateIncorrectFirstName() {
         String fName = "Karolina12";
@@ -51,6 +59,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateLastName(String)}
+    */
     @Test
     public void validateCorrectLastName() {
         String lName = "Blix";
@@ -64,6 +76,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateLastName(String)}
+    */
     @Test
     public void validateIncorrectLastName() {
         String lName = "Karolina12";
@@ -83,6 +99,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateDegree(String)}
+    */
     @Test
     public void validateCorrectDegree() {
         String dName = "M B B S";
@@ -96,6 +116,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateDegree(String)}
+    */
     @Test
     public void validateIncorrectDegree() {
         String dName = "Karolina12";
@@ -113,6 +137,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateSpecialization(String)}
+    */
     @Test
     public void validateCorrectSpecialization() {
         String sName = "M B B S";
@@ -126,6 +154,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateSpecialization(String)}
+    */
     @Test
     public void validateIncorrectSpecialization() {
         String sName = "Karolina12";
@@ -143,6 +175,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateCity(String)}
+    */
     @Test
     public void validateCorrectCity() {
         String cName = "Halifax";
@@ -161,6 +197,10 @@ public class DoctorRegistrationUtilImplTest {
         assertTrue(doc.validateDegree(cName6));
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateCity(String)}
+    */
     @Test
     public void validateIncorrectCity() {
         String cName = "Halifax123";
@@ -179,6 +219,10 @@ public class DoctorRegistrationUtilImplTest {
         assertFalse(doc.validateDegree(cName6));
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateContact(Long)}
+    */
     @Test
     public void validateCorrectContact() {
         Long number1 = new Long("9021234567");
@@ -188,6 +232,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateContact(Long)}
+    */
     @Test
     public void validateIncorrectContact() {
         Long number1 = new Long("9031234567");
@@ -203,6 +251,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateEmail(String)}
+    */
     @Test
     public void validateCorrectEmail() {
         DatabaseConnection.loadDatabaseConnection();
@@ -216,6 +268,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateEmail(String)}
+    */
     @Test
     public void validateIncorrectEmail() {
         DatabaseConnection.loadDatabaseConnection();
@@ -237,6 +293,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validatePassword(String)}
+    */
     @Test
     public void validateCorrectPassword() {
         DoctorRegistrationUtilImpl doc = new DoctorRegistrationUtilImpl();
@@ -248,6 +308,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validatePassword(String)}
+    */
     @Test
     public void validateIncorrectPassword() {
         DoctorRegistrationUtilImpl doc = new DoctorRegistrationUtilImpl();
@@ -264,6 +328,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateDate(String)}
+    */
     @Test
     public void validateCorrectDate() {
         String date1 = "1997-09-12";
@@ -273,6 +341,10 @@ public class DoctorRegistrationUtilImplTest {
 
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.utilImpl.DoctorRegistrationUtilImpl#validateDate(String)}
+    */
     @Test
     public void validateIncorrectDate() {
         String date1 = "1995/09/12";
