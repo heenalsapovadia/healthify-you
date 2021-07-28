@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 
 public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationUtil {
 
+  /**
+  * This method returns a set of blood group list
+  */
   public HashSet<ArrayList<String>> getBloodGroupList(String bloodGroup, int numRec) {
 
     bloodGroup = bloodGroup.toUpperCase(Locale.ROOT);
@@ -132,6 +135,9 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
 
   }
 
+  /**
+  * This method validates if the passed blood group is present in the valid list
+  */
   public boolean validateBloodGroup(String bloodGroup) {
     bloodGroup = bloodGroup.toUpperCase(Locale.ROOT);
     ArrayList<String> bloodGroupOptions = new ArrayList<>();
@@ -147,6 +153,9 @@ public class BloodBankRecommendationUtilImpl implements BloodBankRecommendationU
     return bloodGroupOptions.contains(bloodGroup);
   }
 
+  /**
+  * This method checks if number of recommendations passed is valid
+  */
   public boolean validateNumRec(int numRec) {
     if(numRec <= 0 ) {
       System.err.println("Enter number of recommendation greater than 0!");

@@ -14,7 +14,16 @@ import java.util.ArrayList;
 
 public interface DoctorRecommendationDAO {
 
+  /**
+  * @param symptom
+  * @return ArrayList<Integer>
+  */
   public ArrayList<Integer> fetchDoctorList(String symptom) throws SQLException;
+
+  /**
+  * @param recf
+  * @return ArrayList<String>
+  */
   public ArrayList<String> getDoctorName(ArrayList<Integer> recf);
 
 }

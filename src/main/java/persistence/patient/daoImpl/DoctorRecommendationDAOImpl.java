@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
 
+  /**
+  * This method fetches the list of doctor treating the passed symptom
+  */
   @Override
   public ArrayList<Integer> fetchDoctorList(String symptom) {
     Connection connection = DatabaseConnection.instance();
@@ -48,6 +51,9 @@ public class DoctorRecommendationDAOImpl implements DoctorRecommendationDAO{
     }
   }
 
+  /**
+  * This method returns the list of doctor name for the passed list of doctor identifiers
+  */
   @Override
   public ArrayList<String> getDoctorName(ArrayList<Integer> recf) {
 

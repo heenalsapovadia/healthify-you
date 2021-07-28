@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
 
+  /* This method deals with inserting entered doctor details during the doctor registration into the database */
   @Override
   public int updateDoctorDetails(DoctorRegistration doc) {
     Connection connection = DatabaseConnection.instance();
@@ -41,6 +42,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
     }
   }
 
+  /* This method checks if the email address if of a registered doctor of the application */
   @Override
   public boolean checkDoctorExists(String email) {
 
@@ -55,7 +57,7 @@ public class DoctorRegistrationDAOImpl implements DoctorRegistrationDAO {
     ResultSet resultSet = null;
 
     try {
-      /* retrieves details into the UserCredentials table of the database */
+      /* retrieves details from the UserCredentials table of the database */
       resultSet = statement.executeQuery("select * from UserCredentials where User_Id = " + "\"" + email + "\"" + ";");
       ArrayList<String> check = new ArrayList<>();
       while (resultSet.next()) {

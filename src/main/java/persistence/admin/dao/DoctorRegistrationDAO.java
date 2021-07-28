@@ -14,7 +14,16 @@ import java.sql.SQLException;
 
 public interface DoctorRegistrationDAO {
 
+  /**
+   * @param doc
+   * @return int
+   */
   public int updateDoctorDetails(DoctorRegistration doc) throws SQLException;
+
+  /**
+   * @param email
+   * @return boolean
+   */
   public boolean checkDoctorExists(String email) throws SQLException;
 
 }

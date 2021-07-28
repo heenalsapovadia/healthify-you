@@ -21,6 +21,9 @@ import java.util.regex.Pattern;
 
 public class DoctorAppointmentBookingBySpecializationUtilImpl implements DoctorAppointmentBookingBySpecializationUtil{
 
+  /**
+  * This method checks the specialization for validity
+  */
   @Override
   public boolean validateSpecialization(String specialization) {
     specialization = specialization.toUpperCase(Locale.ROOT);
@@ -38,6 +41,9 @@ public class DoctorAppointmentBookingBySpecializationUtilImpl implements DoctorA
     }
   }
 
+  /**
+  * This method checks the doctor identifier for validity
+  */
   @Override
   public boolean validateID(int doctorID) throws SQLException {
     DoctorAppointmentBookingBySpecializationDAOImpl doctorAppointmentBookingBySpecializationDAO = new DoctorAppointmentBookingBySpecializationDAOImpl();
@@ -53,6 +59,9 @@ public class DoctorAppointmentBookingBySpecializationUtilImpl implements DoctorA
     }
   }
 
+  /**
+  * This method checks the date for validity
+  */
   @Override
   public boolean validateDate(String date, List<String> datesAvailable) {
     String regex = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
@@ -73,6 +82,9 @@ public class DoctorAppointmentBookingBySpecializationUtilImpl implements DoctorA
     }
   }
 
+  /**
+  * This method checks the email for validity
+  */
   @Override
   public int validateEmail(String email) throws SQLException {
     DoctorAppointmentBookingBySpecializationDAOImpl doctorAppointmentBookingBySpecializationDAO = new DoctorAppointmentBookingBySpecializationDAOImpl();

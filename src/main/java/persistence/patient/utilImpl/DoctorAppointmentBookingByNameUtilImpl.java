@@ -20,6 +20,9 @@ import java.util.regex.Pattern;
 
 public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointmentBookingByNameUtil {
 
+  /**
+  * This method checks the doctor identifier for validity
+  */
   @Override
   public boolean validateID(int doctorID) throws SQLException {
     DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAO = new DoctorAppointmentBookingByNameDAOImpl();
@@ -35,6 +38,9 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
     }
   }
 
+  /**
+  * This method checks the first name or last name for validity
+  */
   @Override
   public boolean validateName(String name) {
     if (name != null) {
@@ -48,7 +54,9 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
     }
   }
 
-
+  /**
+  * This method checks the date for validity
+  */
   @Override
   public boolean validateDate(String date, List<String> datesAvailable) {
     String regex = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
@@ -69,7 +77,9 @@ public class DoctorAppointmentBookingByNameUtilImpl implements DoctorAppointment
     }
   }
 
-
+  /**
+  * This method checks the email for validity
+  */
   @Override
   public int validateEmail(String email) throws SQLException {
     DoctorAppointmentBookingByNameDAOImpl doctorAppointmentBookingByNameDAO = new DoctorAppointmentBookingByNameDAOImpl();

@@ -22,6 +22,9 @@ import java.util.*;
 
 public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAppointmentBookingBySpecializationDAO {
 
+  /**
+  * This method returns a map of identifier and full name of the doctor
+  */
   @Override
   public Map<Integer, String> fetchDoctorIdentifier(String specialization) {
 
@@ -65,6 +68,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     }
   }
 
+  /**
+  * This method returns a map of identifier and available dates of the doctor
+  */
   @Override
   public Map<Integer, List<String>> fetchDoctorAvailability(int doctorID) {
 
@@ -110,6 +116,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
       }
   }
 
+  /**
+  * This method checks if the the doctor exists in the application
+  */
   @Override
   public int checkDoctorExists(int doctorID) {
       String sql = "select distinct doctor_id from doctors;";
@@ -145,6 +154,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
       }
   }
 
+  /**
+  * This method checks if the patient exists in the application
+  */
   @Override
   public int checkPatientExists(String email) {
     String sql = "select patient_id from patients where patient_email = ";
@@ -177,6 +189,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     return identifier;
   }
 
+  /**
+  * This method returns the charges for the passed doctor identifier
+  */
   @Override
   public double fetchDoctorCharges(int doctorID) {
 
@@ -215,6 +230,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     }
   }
 
+  /**
+  * This method updates the billing id for the appointment id
+  */
   @Override
   public int updateBillingID(int billingID, String appointmentIDList) {
 
@@ -242,6 +260,9 @@ public class DoctorAppointmentBookingBySpecializationDAOImpl implements DoctorAp
     }
   }
 
+  /**
+  * This method adds the doctor appointment details
+  */
   @Override
   public int addDoctorAppointment(int patientID, int doctorID, String bookedOnDate, String appointmentDate, int billingID) throws SQLException {
 

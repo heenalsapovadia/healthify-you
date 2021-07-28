@@ -21,39 +21,51 @@ import java.sql.Statement;
 
 public class DoctorRegistrationDAOImplTest {
 
+    /**
+    * Test method for
+    * {@link persistence.admin.daoImpl.DoctorRegistrationDAOImpl#updateDoctorDetails(DoctorRegistration)}}
+    */
     @Test
     public void updateDoctorDetails() throws SQLException {
-        DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
-        DoctorRegistration doc = new DoctorRegistration();
-        DatabaseConnection.loadDatabaseConnection();
+      DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
+      DoctorRegistration doc = new DoctorRegistration();
+      DatabaseConnection.loadDatabaseConnection();
 
-        doc.setFirstName("Karolina");
-        doc.setLastName("Blix");
-        doc.setEmail("karolina123@healthifyyou.com");
-        doc.setPassword("Karo1234@");
-        doc.setJoiningDate("1998-09-06");
-        doc.setBirthDate("1956-07-03");
-        doc.setDegree("MBBS");
-        doc.setSpecialization("NA");
-        doc.setCity("Halifax");
+      doc.setFirstName("Karolina");
+      doc.setLastName("Blix");
+      doc.setEmail("karolina123@healthifyyou.com");
+      doc.setPassword("Karo1234@");
+      doc.setJoiningDate("1998-09-06");
+      doc.setBirthDate("1956-07-03");
+      doc.setDegree("MBBS");
+      doc.setSpecialization("NA");
+      doc.setCity("Halifax");
 
-        assertEquals(0, doctorRegistrationDAOImpl.updateDoctorDetails(doc));
+      assertEquals(0, doctorRegistrationDAOImpl.updateDoctorDetails(doc));
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.daoImpl.DoctorRegistrationDAOImpl#checkDoctorExists(String)}
+    */
     @Test
     public void checkDoctorExists() throws SQLException {
-        DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
-        DatabaseConnection.loadDatabaseConnection();
+      DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
+      DatabaseConnection.loadDatabaseConnection();
 
-        assertTrue(doctorRegistrationDAOImpl.checkDoctorExists("karolina@healthifyyou.com"));
+      assertTrue(doctorRegistrationDAOImpl.checkDoctorExists("karolina@healthifyyou.com"));
     }
 
+    /**
+    * Test method for
+    * {@link persistence.admin.daoImpl.DoctorRegistrationDAOImpl#checkDoctorExists(String)}
+    */
     @Test
     public void checkDoctorNotExists() throws SQLException {
-        DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
-        DatabaseConnection.loadDatabaseConnection();
+      DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
+      DatabaseConnection.loadDatabaseConnection();
 
-        assertFalse(doctorRegistrationDAOImpl.checkDoctorExists("karolina123456@healthifyyou.com"));
+      assertFalse(doctorRegistrationDAOImpl.checkDoctorExists("karolina123456@healthifyyou.com"));
     }
 
 

@@ -11,6 +11,10 @@ import static org.junit.Assert.*;
 
 public class DoctorAppointmentBookingByNameTest {
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateID(int)}
+  */
   @Test
   /* Test Case 1: invalid doctorID */
   public void validateID_1() throws SQLException {
@@ -18,6 +22,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateID(0));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateID(int)}
+  */
   @Test
   /* Test Case 2: valid doctorID */
   public void validateID_2() throws SQLException {
@@ -26,6 +34,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertTrue(doctorAppointmentBookingByNameUtil.validateID(2));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateName(String)}
+  */
   @Test
   /* Test Case 3: invalid name */
   public void validateName_1() {
@@ -33,6 +45,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateName(null));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateName(String)}
+  */
   @Test
   /* Test Case 4: invalid name */
   public void validateName_2() {
@@ -40,6 +56,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateName(""));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateName(String)}
+  */
   @Test
   /* Test Case 5: valid name */
   public void validateName_3() {
@@ -48,6 +68,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertTrue(doctorAppointmentBookingByNameUtil.validateName("thomas"));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateName(String)}
+  */
   @Test
   /* Test Case 6: valid name */
   public void validateName_4() {
@@ -56,6 +80,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertTrue(doctorAppointmentBookingByNameUtil.validateName("heenal"));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateDate(String, List)}
+  */
   @Test
   /* Test Case 7: invalid date - empty string */
   public void validateDate_1() {
@@ -64,6 +92,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateDate("", datesAvailable));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateDate(String, List)}
+  */
   @Test
   /* Test Case 8: invalid date - null string */
   public void validateDate_2() {
@@ -72,6 +104,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateDate(null, datesAvailable));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateDate(String, List)}
+  */
   @Test
   /* Test Case 9: valid date but not in the list */
   public void validateDate_3() {
@@ -82,6 +118,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateDate("2021-07-20", datesAvailable));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateDate(String, List)}
+  */
   @Test
   /* Test Case 10: valid date and in the list */
   public void validateDate_4() {
@@ -92,6 +132,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertTrue(doctorAppointmentBookingByNameUtil.validateDate("2021-07-24", datesAvailable));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateDate(String, List)}
+  */
   @Test
   /* Test Case 11: datesAvailable list null */
   public void validateDate_5() {
@@ -100,6 +144,10 @@ public class DoctorAppointmentBookingByNameTest {
     assertFalse(doctorAppointmentBookingByNameUtil.validateDate("2021-07-24", datesAvailable));
   }
 
+  /**
+  * Test method for
+  * {@link persistence.patient.utilImpl.DoctorAppointmentBookingByNameUtilImpl#validateDate(String, List)}
+  */
   @Test
   /* Test Case 11: datesAvailable list null */
   public void validateDate_6() {

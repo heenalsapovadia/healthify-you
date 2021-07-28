@@ -19,6 +19,9 @@ import java.util.regex.Pattern;
 
 public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
 
+  /**
+  * This method checks the first name for validity
+  */
   @Override
   public boolean validateFirstName(String fname) {
     if(fname!=null && !fname.equals("") && fname.matches("^[ a-zA-Z]*$")) {
@@ -28,6 +31,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the last name for validity
+  */
   @Override
   public boolean validateLastName(String lname) {
     if(lname!=null && !lname.equals("") && lname.matches("^[a-zA-Z]*$")) {
@@ -37,6 +43,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the degree for validity
+  */
   @Override
   public boolean validateDegree(String degree) {
     if(degree!=null && !degree.equals("") && degree.matches("^[ a-zA-Z]*$")) {
@@ -46,6 +55,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the specialization for validity
+  */
   @Override
   public boolean validateSpecialization(String specialization) {
     specialization = specialization.toUpperCase(Locale.ROOT);
@@ -62,6 +74,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the city for validity
+  */
   @Override
   public boolean validateCity(String city) {
     if(city!=null && !city.equals("") && city.matches("^[ a-zA-Z]*$")) {
@@ -71,6 +86,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the contact number for validity
+  */
   @Override
   public boolean validateContact(Long contact) {
 
@@ -91,6 +109,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the email for validity
+  */
   @Override
   public boolean validateEmail(String email) {
     DoctorRegistrationDAOImpl doctorRegistrationDAOImpl = new DoctorRegistrationDAOImpl();
@@ -116,6 +137,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the password for validity
+  */
   @Override
   public boolean validatePassword(String password) {
     String regex = "^(?=.*[0-9])"
@@ -136,6 +160,9 @@ public class DoctorRegistrationUtilImpl implements DoctorRegistrationUtil {
     }
   }
 
+  /**
+  * This method checks the date for validity
+  */
   @Override
   public boolean validateDate(String date) {
     String regex = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";

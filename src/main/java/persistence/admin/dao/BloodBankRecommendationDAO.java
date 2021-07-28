@@ -16,6 +16,10 @@ import java.util.List;
 
 public interface BloodBankRecommendationDAO {
 
+  /**
+   * @param bloodGroup
+   * @return List<Order>
+   */
   public List<BloodBankRecommendationDAOImpl.Order> fetchBloodGroupList(String bloodGroup) throws SQLException;
 
 }

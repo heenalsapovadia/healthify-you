@@ -21,6 +21,10 @@ import static org.junit.Assert.assertTrue;
 
 public class BloodBankrecommendationDAOImplTest {
 
+  /**
+  * Test method for
+  * {@link persistence.admin.daoImpl.BloodBankRecommendationDAOImpl#fetchBloodGroupList(String)} ()}
+  */
   @Test
   public void fetchBloodGroupList() throws SQLException {
     BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
@@ -59,6 +63,10 @@ public class BloodBankrecommendationDAOImplTest {
 
   }
 
+  /**
+  * Test method for
+  * {@link persistence.admin.daoImpl.BloodBankRecommendationDAOImpl#fetchBloodGroupList(String)} ()}
+  */
   @Test
   public void fetchBloodGroupList2() throws SQLException {
     BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
@@ -68,6 +76,10 @@ public class BloodBankrecommendationDAOImplTest {
 
   }
 
+  /**
+  * Test method for
+  * {@link persistence.admin.daoImpl.BloodBankRecommendationDAOImpl#fetchBloodGroupList(String)} ()}
+  */
   @Test
   public void fetchBloodGroupList3() throws SQLException {
     BloodBankRecommendationDAOImpl bloodBankRecommendationDAOImpl = new BloodBankRecommendationDAOImpl();
